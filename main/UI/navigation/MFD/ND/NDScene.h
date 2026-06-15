@@ -32,8 +32,9 @@ namespace pizda {
 		protected:
 			void onTick() override;
 			void onBoundsChanged() override;
-			void onRender(Renderer* renderer, const Bounds& bounds) override;
 			void onEvent(Event* event) override;
+			void onFocusChanged() override;
+			void onRender(Renderer* renderer, const Bounds& bounds) override;
 
 		private:
 			constexpr static uint8_t compassTickMarkUnitsDeg = 10;
@@ -59,6 +60,7 @@ namespace pizda {
 
 			float _pinchLength = 0;
 			Point _pointerDownPosition {};
+			int64_t _focusingFrameTimeUs = 0;
 
 			AircraftElement* _aircraftElement = nullptr;
 

@@ -91,5 +91,26 @@ namespace pizda {
 					waypointData.name
 				);
 			}
+
+			static void renderFocusFrame(Renderer* renderer, const Rectangle& bounds, const uint8_t lineLength, const Color* color) {
+				const auto x2 = bounds.getX2();
+				const auto y2 = bounds.getY2();
+
+				// Top left
+				renderer->renderHorizontalLine(bounds.getTopLeft(), lineLength, color);
+				renderer->renderVerticalLine(bounds.getTopLeft(), lineLength, color);
+
+				// Top right
+				renderer->renderHorizontalLine(Point(x2 - lineLength + 1, bounds.getY()), lineLength, color);
+				renderer->renderVerticalLine(Point(x2, bounds.getY()), lineLength, color);
+
+				// Bottom right
+				renderer->renderHorizontalLine(Point(x2 - lineLength + 1, y2), lineLength, color);
+				renderer->renderVerticalLine(Point(x2, y2 - lineLength + 1), lineLength, color);
+
+				// Bottom left
+				renderer->renderHorizontalLine(Point(bounds.getX(), y2), lineLength, color);
+				renderer->renderVerticalLine(Point(bounds.getX(), y2 - lineLength + 1), lineLength, color);
+			}
 	};
 }

@@ -4,6 +4,8 @@
 #include <YOBA/UI.h>
 #include <YOBA/UI/spatial.h>
 
+#include "esp_timer.h"
+
 namespace pizda {
 	using namespace YOBA;
 	using namespace YOBA::spatial;
@@ -14,11 +16,12 @@ namespace pizda {
 
 		protected:
 			void onEvent(Event* event) override;
-
+			void onFocusChanged() override;
 			void onRender(Renderer* renderer, const Bounds& bounds) override;
 
 		private:
 			Point _prevDragPosition { -1, -1 };
+			int64_t _focusingFrameTimeUs = 0;
 
 			static void renderPitchOverlay(
 				Renderer* renderer,

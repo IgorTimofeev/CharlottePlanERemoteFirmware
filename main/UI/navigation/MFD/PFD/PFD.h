@@ -170,7 +170,7 @@ namespace pizda {
 
 			static void renderMetricUnits(Renderer* renderer, const Bounds& bounds, bool left, int32_t yCenter, std::string_view text);
 			static void renderAutopilotValueIndicator(Renderer* renderer, const Bounds& bounds, int32_t centerY, uint8_t unitStep, uint16_t stepPixels, float currentValue, uint16_t autopilotValue, bool left);
-			static void renderCurrentValue(Renderer* renderer, const Bounds& bounds, uint8_t digitCount, float value, bool left);
+			static void renderCurrentValue(Renderer* renderer, const Bounds& bounds, uint8_t digitCount, float value, bool isSpeed);
 			static void renderTrendArrow(Renderer* renderer, int32_t x, int32_t y, uint8_t unitStep, uint16_t stepPixels, float value);
 			static void renderSpeed(Renderer* renderer, const Bounds& bounds);
 			static void renderAltitude(Renderer* renderer, const Bounds& bounds);

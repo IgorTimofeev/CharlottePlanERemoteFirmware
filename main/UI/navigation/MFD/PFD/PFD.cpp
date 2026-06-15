@@ -122,7 +122,7 @@ namespace pizda {
 		));
 	}
 
-	void PFD::renderCurrentValue(Renderer* renderer, const Bounds& bounds, const uint8_t digitCount, float value, const bool left) {
+	void PFD::renderCurrentValue(Renderer* renderer, const Bounds& bounds, const uint8_t digitCount, float value, const bool isSpeed) {
 		const auto isConnected = RC::getInstance().getTransceiver().isConnected();
 		const auto bg = isConnected ? &Theme::bg2 : &Theme::bad3;
 		const auto x2 = bounds.getX2();
@@ -131,7 +131,7 @@ namespace pizda {
 		// Rect
 		renderer->renderFilledRectangle(
 			Bounds(
-				left ? bounds.getX() : bounds.getX() + currentValueTriangleSize,
+				isSpeed ? bounds.getX() : bounds.getX() + currentValueTriangleSize,
 				bounds.getY(),
 				bounds.getWidth() - currentValueTriangleSize,
 				bounds.getHeight()
@@ -142,15 +142,15 @@ namespace pizda {
 		// Triangle
 		renderer->renderFilledTriangle(
 			Point(
-				left ? x2 - currentValueTriangleSize + 1 : bounds.getX() + currentValueTriangleSize - 1,
+				isSpeed ? x2 - currentValueTriangleSize + 1 : bounds.getX() + currentValueTriangleSize - 1,
 				bounds.getY()
 			),
 			Point(
-				left ? x2 : bounds.getX(),
+				isSpeed ? x2 : bounds.getX(),
 				yCenter
 			),
 			Point(
-				left ? x2 - currentValueTriangleSize + 1 : bounds.getX() + currentValueTriangleSize - 1,
+				isSpeed ? x2 - currentValueTriangleSize + 1 : bounds.getX() + currentValueTriangleSize - 1,
 				bounds.getY2()
 			),
 			bg
@@ -163,54 +163,61 @@ namespace pizda {
 
 		if (isConnected) {
 			const auto oldViewport = renderer->pushViewport(bounds);
-			
+
+			const auto digitsColor = value >= 0 ? &Theme::fg1 : &Theme::yellow;
 			value = std::abs(value);
-			
+
 			const uint8_t maxDigitWidth = currentValueFont->getWidth('4');
 			
 			int32_t textX =
-				left
+				isSpeed
 				? x2 - speedBarSize - currentValueTextOffset - maxDigitWidth
 				: bounds.getX() + currentValueTextOffset + maxDigitWidth * (digitCount - 1) + 1;
-			
+
 			const auto getAdjacentDigit = [&](const uint8_t digit, const bool plus) {
 				return
 					plus
 					? (digit < 9 ? digit + 1 : 0)
 					: (digit > 1 ? digit - 1 : 9);
 			};
-			
-			const auto renderDigit = [&](const int32_t digitY, const uint8_t digit) {
-				const char text = '0' + digit;
-				
+
+			const auto renderDigit = [renderer, &textX, digitsColor](const int32_t digitY, const uint8_t digit) {
 				renderer->renderChar(
 					Point(
 						textX,
 						digitY
 					),
 					currentValueFont,
-					&Theme::fg1,
-					text
+					digitsColor,
+					'0' + digit
 				);
 			};
 			
 			for (uint8_t digitIndex = 0; digitIndex < digitCount; ++digitIndex) {
-				const auto digit = static_cast<uint32_t>(value) % 10;
-				
-				// Roll
-				if (digitIndex == 0) {
-					float integer;
-					const auto fractional = std::modf(value, &integer);
-					const auto rolledY = textY + static_cast<int32_t>(fractional * static_cast<float>(currentValueFont->getHeight()));
-					
-					renderDigit(rolledY - currentValueFont->getHeight(), getAdjacentDigit(digit, true));
-					renderDigit(rolledY, digit);
-					renderDigit(rolledY + currentValueFont->getHeight(), getAdjacentDigit(digit, false));
+				// Altitude, 1st digit
+				if (!isSpeed && digitIndex == 0) {
+					renderDigit(textY, 0);
 				}
 				else {
-					renderDigit(textY, digit);
+					const auto digit = static_cast<uint32_t>(value) % 10;
+
+					// Speed or altitude, rolling digit
+					if ((isSpeed && digitIndex == 0) || (!isSpeed && digitIndex == 1)) {
+						// Rolling
+						float integer;
+						const auto fractional = std::modf(value, &integer);
+						const auto rolledY = textY + static_cast<int32_t>(fractional * static_cast<float>(currentValueFont->getHeight()));
+
+						renderDigit(rolledY - currentValueFont->getHeight(), getAdjacentDigit(digit, true));
+						renderDigit(rolledY, digit);
+						renderDigit(rolledY + currentValueFont->getHeight(), getAdjacentDigit(digit, false));
+					}
+					// Static digit
+					else {
+						renderDigit(textY, digit);
+					}
 				}
-				
+
 				textX -= maxDigitWidth;
 				value = value / 10;
 			}
@@ -222,7 +229,7 @@ namespace pizda {
 			
 			renderer->renderText(
 				Point(
-					left
+					isSpeed
 						? x2 - speedBarSize - currentValueTextOffset - Theme::fontSmall.getWidth(text)
 						: bounds.getX() + speedBarSize + currentValueTextOffset,
 					textY

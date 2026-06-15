@@ -4,11 +4,13 @@
 
 #include <format>
 #include <esp_log.h>
+#include <esp_timer.h>
 
 #include "UI/navigation/MFD/ND/sceneElements/NDRunwayElement.h"
 #include "UI/navigation/MFD/ND/sceneElements/waypointElement.h"
 #include "UI/navigation/MFD/ND/sceneElements/routeElement.h"
 #include "UI/navigation/MFD/PFD/PFD.h"
+#include "utilities/rendering.h"
 
 namespace pizda {
 	NDScene::NDScene() {
@@ -67,6 +69,139 @@ namespace pizda {
 		Scene::onBoundsChanged();
 
 		updatePivot();
+	}
+
+	void NDScene::onEvent(Event* event) {
+		Scene::onEvent(event);
+
+		if (event->getTypeID() == PointerDownEvent::typeID) {
+			const auto pointerDownEvent = static_cast<PointerDownEvent*>(event);
+
+			setFocused(true);
+			setCaptured(true);
+
+			_pointerDownPosition = pointerDownEvent->getPosition();
+
+			event->setHandled(true);
+		}
+		else if (event->getTypeID() == PointerDragEvent::typeID) {
+			const auto pointerDragEventEvent = static_cast<PointerDragEvent*>(event);
+
+//			ESP_LOGI("ND", "------------- Drag -------------");
+
+			auto& rc = RC::getInstance();
+			const auto yaw = -rc.getAircraftData().computed.yawRad;
+			const auto& deltaPixels = (pointerDragEventEvent->getPosition() - _pointerDownPosition).rotate(yaw);
+			_pointerDownPosition = pointerDragEventEvent->getPosition();
+
+	//			ESP_LOGI("ND", "deltaPixels: %ld, %ld", deltaPixels.getX(), deltaPixels.getY());
+
+			// viewport rad - height px
+			// x rad - 1 px
+			const auto equatorialRadiansPerPixel = getEquatorialRadiansPerPixel();
+
+	//			ESP_LOGI("ND", "camera lat: %f", cameraCoordinates.getLatitude());
+	//			ESP_LOGI("ND", "camera lat cos: %f", std::cosf(cameraCoordinates.getLatitude()));
+	//			ESP_LOGI("ND", "deltaPixelsX with coorection: %f", static_cast<float>(deltaPixels.getX()) / std::cosf(cameraCoordinates.getLatitude()));
+
+			const auto deltaRadLon = static_cast<float>(deltaPixels.getX()) * equatorialRadiansPerPixel / std::cosf(_cameraCoordinates.getLatitude());
+			const auto deltaRadLat = static_cast<float>(deltaPixels.getY()) * equatorialRadiansPerPixel;
+
+	//			ESP_LOGI("ND", "deltaDeg: %f lat, %f lon", toDegrees(deltaRadLat), toDegrees(deltaRadLon));
+
+			setCameraOffset(GeoCoordinates(
+				_cameraOffset.getLatitude() + deltaRadLat,
+				_cameraOffset.getLongitude() - deltaRadLon,
+				_cameraOffset.getAltitude()
+			));
+
+	//			ESP_LOGI("ND", "cameraOffset: %f deg, %f deg, %f m", toDegrees(_cameraCoordinates.getLatitude()), toDegrees(_cameraCoordinates.getLongitude()), _cameraCoordinates.getAltitude());
+
+	//			setCameraOffset(GeographicCoordinates(
+	//				_cameraOffset.getLatitude() + toRadians(deltaPixels.getX() >= 0 ? -5 : 5),
+	//				_cameraOffset.getLongitude() + toRadians(deltaPixels.getY() >= 0 ? -5 : 5),
+	//				_cameraOffset.getAltitude()
+	//			));
+	//
+	//			ESP_LOGI("ND", "cameraOffset: %f, %f, %f", _cameraOffset.getLatitude(), _cameraOffset.getLongitude(), _cameraOffset.getAltitude());
+
+			event->setHandled(true);
+		}
+		else if (event->getTypeID() == PointerUpEvent::typeID) {
+			setCaptured(false);
+
+			event->setHandled(true);
+		}
+		else if (event->getTypeID() == PinchDownEvent::typeID) {
+			_pinchLength = reinterpret_cast<PinchDownEvent*>(event)->getLength();
+
+			event->setHandled(true);
+		}
+		else if (event->getTypeID() == PinchDragEvent::typeID) {
+
+			//			ESP_LOGI("ND", "------------- Pinch -------------");
+
+			//			const auto pinchLength = pinchDragEvent->getLength();
+			//			const auto pinchDelta = pinchLength - _pinchLength;
+			//			_pinchLength = pinchLength;
+			//
+			//			ESP_LOGI("ND", "pinchDelta: %f px", pinchDelta);
+			//
+			//			setAltitudeFromDeltaPixels(-pinchDelta);
+
+			const auto pinchLength = reinterpret_cast<PinchDragEvent*>(event)->getLength();
+			const auto pinchFactor = _pinchLength / pinchLength;
+			_pinchLength = pinchLength;
+
+			setCameraOffset(GeoCoordinates(
+				_cameraOffset.getLatitude(),
+				_cameraOffset.getLongitude(),
+				std::clamp(
+					_cameraOffset.getAltitude() * pinchFactor,
+					static_cast<float>(cameraAltitudeMinimum),
+					static_cast<float>(cameraAltitudeMaximum)
+				)
+			));
+
+			event->setHandled(true);
+		}
+		else if (event->getTypeID() == PinchUpEvent::typeID) {
+
+		}
+		else if (event->getTypeID() == EncoderValueChangedEvent::typeID) {
+			if (isFocused()) {
+				const auto rotateEvent = static_cast<EncoderValueChangedEvent*>(event);
+				const auto scaleFactor = std::abs(rotateEvent->getDPS()) > 80 ? 1.5f : 1.25f;
+
+				setCameraOffset(GeoCoordinates(
+					_cameraOffset.getLatitude(),
+					_cameraOffset.getLongitude(),
+					std::clamp(
+						rotateEvent->getDPS() >= 0
+							? _cameraOffset.getAltitude() / scaleFactor
+							: _cameraOffset.getAltitude() * scaleFactor,
+						static_cast<float>(cameraAltitudeMinimum),
+						static_cast<float>(cameraAltitudeMaximum)
+					)
+				));
+
+				event->setHandled(true);
+			}
+		}
+		else if (event->getTypeID() == PushButtonEncoderDownEvent::typeID) {
+			if (isFocused()) {
+				resetCameraLateralOffset();
+
+				event->setHandled(true);
+			}
+		}
+	}
+
+	void NDScene::onFocusChanged() {
+		Scene::onFocusChanged();
+
+		if (isFocused())
+			_focusingFrameTimeUs = esp_timer_get_time() + 600'000;
 	}
 
 	void NDScene::onRender(Renderer* renderer, const Bounds& bounds) {
@@ -337,131 +472,10 @@ namespace pizda {
 			// Triangle
 			AircraftElement::render(renderer, pivot);
 		}
-	}
 
-	void NDScene::onEvent(Event* event) {
-		Scene::onEvent(event);
-
-		if (event->getTypeID() == PointerDownEvent::typeID) {
-			const auto pointerDownEvent = static_cast<PointerDownEvent*>(event);
-
-			setFocused(true);
-			setCaptured(true);
-
-			_pointerDownPosition = pointerDownEvent->getPosition();
-
-			event->setHandled(true);
-		}
-		else if (event->getTypeID() == PointerDragEvent::typeID) {
-			const auto pointerDragEventEvent = static_cast<PointerDragEvent*>(event);
-
-//			ESP_LOGI("ND", "------------- Drag -------------");
-
-			auto& rc = RC::getInstance();
-			const auto yaw = -rc.getAircraftData().computed.yawRad;
-			const auto& deltaPixels = (pointerDragEventEvent->getPosition() - _pointerDownPosition).rotate(yaw);
-			_pointerDownPosition = pointerDragEventEvent->getPosition();
-
-	//			ESP_LOGI("ND", "deltaPixels: %ld, %ld", deltaPixels.getX(), deltaPixels.getY());
-
-			// viewport rad - height px
-			// x rad - 1 px
-			const auto equatorialRadiansPerPixel = getEquatorialRadiansPerPixel();
-
-	//			ESP_LOGI("ND", "camera lat: %f", cameraCoordinates.getLatitude());
-	//			ESP_LOGI("ND", "camera lat cos: %f", std::cosf(cameraCoordinates.getLatitude()));
-	//			ESP_LOGI("ND", "deltaPixelsX with coorection: %f", static_cast<float>(deltaPixels.getX()) / std::cosf(cameraCoordinates.getLatitude()));
-
-			const auto deltaRadLon = static_cast<float>(deltaPixels.getX()) * equatorialRadiansPerPixel / std::cosf(_cameraCoordinates.getLatitude());
-			const auto deltaRadLat = static_cast<float>(deltaPixels.getY()) * equatorialRadiansPerPixel;
-
-	//			ESP_LOGI("ND", "deltaDeg: %f lat, %f lon", toDegrees(deltaRadLat), toDegrees(deltaRadLon));
-
-			setCameraOffset(GeoCoordinates(
-				_cameraOffset.getLatitude() + deltaRadLat,
-				_cameraOffset.getLongitude() - deltaRadLon,
-				_cameraOffset.getAltitude()
-			));
-
-	//			ESP_LOGI("ND", "cameraOffset: %f deg, %f deg, %f m", toDegrees(_cameraCoordinates.getLatitude()), toDegrees(_cameraCoordinates.getLongitude()), _cameraCoordinates.getAltitude());
-
-	//			setCameraOffset(GeographicCoordinates(
-	//				_cameraOffset.getLatitude() + toRadians(deltaPixels.getX() >= 0 ? -5 : 5),
-	//				_cameraOffset.getLongitude() + toRadians(deltaPixels.getY() >= 0 ? -5 : 5),
-	//				_cameraOffset.getAltitude()
-	//			));
-	//
-	//			ESP_LOGI("ND", "cameraOffset: %f, %f, %f", _cameraOffset.getLatitude(), _cameraOffset.getLongitude(), _cameraOffset.getAltitude());
-
-			event->setHandled(true);
-		}
-		else if (event->getTypeID() == PointerUpEvent::typeID) {
-			setCaptured(false);
-
-			event->setHandled(true);
-		}
-		else if (event->getTypeID() == PinchDownEvent::typeID) {
-			_pinchLength = reinterpret_cast<PinchDownEvent*>(event)->getLength();
-
-			event->setHandled(true);
-		}
-		else if (event->getTypeID() == PinchDragEvent::typeID) {
-
-			//			ESP_LOGI("ND", "------------- Pinch -------------");
-
-			//			const auto pinchLength = pinchDragEvent->getLength();
-			//			const auto pinchDelta = pinchLength - _pinchLength;
-			//			_pinchLength = pinchLength;
-			//
-			//			ESP_LOGI("ND", "pinchDelta: %f px", pinchDelta);
-			//
-			//			setAltitudeFromDeltaPixels(-pinchDelta);
-
-			const auto pinchLength = reinterpret_cast<PinchDragEvent*>(event)->getLength();
-			const auto pinchFactor = _pinchLength / pinchLength;
-			_pinchLength = pinchLength;
-
-			setCameraOffset(GeoCoordinates(
-				_cameraOffset.getLatitude(),
-				_cameraOffset.getLongitude(),
-				std::clamp(
-					_cameraOffset.getAltitude() * pinchFactor,
-					static_cast<float>(cameraAltitudeMinimum),
-					static_cast<float>(cameraAltitudeMaximum)
-				)
-			));
-
-			event->setHandled(true);
-		}
-		else if (event->getTypeID() == PinchUpEvent::typeID) {
-
-		}
-		else if (event->getTypeID() == EncoderValueChangedEvent::typeID) {
-			if (isFocused()) {
-				const auto rotateEvent = static_cast<EncoderValueChangedEvent*>(event);
-				const auto scaleFactor = std::abs(rotateEvent->getDPS()) > 80 ? 1.5f : 1.25f;
-
-				setCameraOffset(GeoCoordinates(
-					_cameraOffset.getLatitude(),
-					_cameraOffset.getLongitude(),
-					std::clamp(
-						rotateEvent->getDPS() >= 0
-							? _cameraOffset.getAltitude() / scaleFactor
-							: _cameraOffset.getAltitude() * scaleFactor,
-						static_cast<float>(cameraAltitudeMinimum),
-						static_cast<float>(cameraAltitudeMaximum)
-					)
-				));
-
-				event->setHandled(true);
-			}
-		}
-		else if (event->getTypeID() == PushButtonEncoderDownEvent::typeID) {
-			if (isFocused()) {
-				resetCameraLateralOffset();
-
-				event->setHandled(true);
-			}
+		// Focusing frame
+		if (isFocused() && esp_timer_get_time() <= _focusingFrameTimeUs) {
+			RenderingUtils::renderFocusFrame(renderer, bounds, 5, &Theme::fg1);
 		}
 	}
 

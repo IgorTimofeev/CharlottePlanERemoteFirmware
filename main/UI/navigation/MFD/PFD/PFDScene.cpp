@@ -2,10 +2,13 @@
 
 #include <numbers>
 
+#include <esp_timer.h>
+
 #include "rc.h"
 #include "UI/theme.h"
 #include "UI/navigation/MFD/PFD/PFD.h"
 #include "UI/navigation/MFD/PFD/PFDRunwayElement.h"
+#include "utilities/rendering.h"
 
 namespace pizda {
 	PFDScene::PFDScene() {
@@ -26,6 +29,8 @@ namespace pizda {
 
 		if (event->getTypeID() == PointerDownEvent::typeID) {
 			_prevDragPosition = reinterpret_cast<PointerDownEvent*>(event)->getPosition();
+
+			setFocused(true);
 		}
 		else if (event->getTypeID() == PointerDragEvent::typeID && _prevDragPosition.getX() >= 0) {
 			auto& rc = RC::getInstance();
@@ -48,6 +53,12 @@ namespace pizda {
 			// Sending packet
 			rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::camera);
 		}
+	}
+
+	void PFDScene::onFocusChanged() {
+		Scene::onFocusChanged();
+
+		_focusingFrameTimeUs = esp_timer_get_time() + 600'000;
 	}
 
 	void PFDScene::onRender(Renderer* renderer, const Bounds& bounds) {
@@ -162,55 +173,55 @@ namespace pizda {
 			)
 		);
 
-		// Wind
-		if (rc.getAircraftData().raw.groundSpeedKt > PFD::windVisibilityGroundSpeed) {
-			const auto& windPosition = Point(
-				bounds.getX() + 6,
-				bounds.getY2() - 18
-			);
-
-			constexpr uint8_t textOffset = 4;
-			constexpr uint8_t arrowSize = 16;
-
-			const auto text = std::to_string(static_cast<uint16_t>(rc.getAircraftData().raw.windSpeed));
-
-			const auto arrowVec = Vector2F(0, arrowSize).rotate(rc.getAircraftData().computed.windDirectionRad + std::numbers::pi_v<float> + rc.getAircraftData().computed.yawRad);
-			const auto arrowVecNorm = arrowVec.normalize();
-			const auto arrowVecPerp = arrowVecNorm.counterClockwisePerpendicular();
-
-			const auto arrowCenter = Vector2F (
-				windPosition.getX() + arrowSize / 2,
-				windPosition.getY() - Theme::fontSmall.getHeight() - textOffset - arrowSize / 2
-			);
-
-			const auto arrowToVec = arrowCenter - arrowVec / 2.f;
-
-			renderer->renderLine(
-				static_cast<Point>(arrowCenter + arrowVec / 2.f),
-				static_cast<Point>(arrowToVec),
-				&Theme::ground2
-			);
-
-			constexpr uint8_t triangleWidth = 2;
-			constexpr uint8_t triangleHeight = 3;
-
-			renderer->renderFilledTriangle(
-				static_cast<Point>(arrowToVec),
-				static_cast<Point>(arrowToVec + arrowVecNorm * triangleHeight - arrowVecPerp * triangleWidth),
-				static_cast<Point>(arrowToVec + arrowVecNorm * triangleHeight + arrowVecPerp * triangleWidth),
-				&Theme::ground2
-			);
-
-			renderer->renderText(
-				Point(
-					arrowCenter.getX() - Theme::fontSmall.getWidth(text) / 2,
-					windPosition.getY() - Theme::fontSmall.getHeight()
-				),
-				&Theme::fontSmall,
-				&Theme::ground2,
-				text
-			);
-		}
+		// // Wind
+		// if (rc.getAircraftData().raw.groundSpeedKt > PFD::windVisibilityGroundSpeed) {
+		// 	const auto& windPosition = Point(
+		// 		bounds.getX() + 6,
+		// 		bounds.getY2() - 18
+		// 	);
+		//
+		// 	constexpr uint8_t textOffset = 4;
+		// 	constexpr uint8_t arrowSize = 16;
+		//
+		// 	const auto text = std::to_string(static_cast<uint16_t>(rc.getAircraftData().raw.windSpeed));
+		//
+		// 	const auto arrowVec = Vector2F(0, arrowSize).rotate(rc.getAircraftData().computed.windDirectionRad + std::numbers::pi_v<float> + rc.getAircraftData().computed.yawRad);
+		// 	const auto arrowVecNorm = arrowVec.normalize();
+		// 	const auto arrowVecPerp = arrowVecNorm.counterClockwisePerpendicular();
+		//
+		// 	const auto arrowCenter = Vector2F (
+		// 		windPosition.getX() + arrowSize / 2,
+		// 		windPosition.getY() - Theme::fontSmall.getHeight() - textOffset - arrowSize / 2
+		// 	);
+		//
+		// 	const auto arrowToVec = arrowCenter - arrowVec / 2.f;
+		//
+		// 	renderer->renderLine(
+		// 		static_cast<Point>(arrowCenter + arrowVec / 2.f),
+		// 		static_cast<Point>(arrowToVec),
+		// 		&Theme::ground2
+		// 	);
+		//
+		// 	constexpr uint8_t triangleWidth = 2;
+		// 	constexpr uint8_t triangleHeight = 3;
+		//
+		// 	renderer->renderFilledTriangle(
+		// 		static_cast<Point>(arrowToVec),
+		// 		static_cast<Point>(arrowToVec + arrowVecNorm * triangleHeight - arrowVecPerp * triangleWidth),
+		// 		static_cast<Point>(arrowToVec + arrowVecNorm * triangleHeight + arrowVecPerp * triangleWidth),
+		// 		&Theme::ground2
+		// 	);
+		//
+		// 	renderer->renderText(
+		// 		Point(
+		// 			arrowCenter.getX() - Theme::fontSmall.getWidth(text) / 2,
+		// 			windPosition.getY() - Theme::fontSmall.getHeight()
+		// 		),
+		// 		&Theme::fontSmall,
+		// 		&Theme::ground2,
+		// 		text
+		// 	);
+		// }
 
 		// Flight director
 		if (rc.getSettings().personalization.MFD.PFD.flightDirector) {
@@ -323,51 +334,58 @@ namespace pizda {
 		}
 
 		// Aircraft symbol
-		const auto& renderAircraftSymbolRect = [&renderer](const Point& position, const uint16_t width) {
-			renderer->renderFilledRectangle(
-				Bounds(
-					position.getX(),
-					position.getY(),
-					width,
-					PFD::aircraftSymbolThickness
+		{
+			const auto& renderAircraftSymbolRect = [&renderer](const Point& position, const uint16_t width) {
+				renderer->renderFilledRectangle(
+					Bounds(
+						position.getX(),
+						position.getY(),
+						width,
+						PFD::aircraftSymbolThickness
+					),
+					&Theme::bg1
+				);
+
+				// Outline
+				// renderer->renderHorizontalLine(Point(position.getX() - 1, position.getY() - 1), width + 2, &Theme::fg1);
+				// renderer->renderHorizontalLine(Point(position.getX() - 1, position.getY() + PFD::aircraftSymbolThickness), width + 2, &Theme::fg1);
+				//
+				// renderer->renderVerticalLine(Point(position.getX() - 1, position.getY()), PFD::aircraftSymbolThickness, &Theme::fg1);
+				// renderer->renderVerticalLine(Point(position.getX() + width, position.getY()), PFD::aircraftSymbolThickness, &Theme::fg1);
+			};
+
+			// Left
+			renderAircraftSymbolRect(
+				Point(
+					center.getX() - PFD::aircraftSymbolCenterOffset - PFD::aircraftSymbolThickness - PFD::aircraftSymbolWidth,
+					center.getY() - PFD::aircraftSymbolThickness / 2
 				),
-				&Theme::bg1
+				PFD::aircraftSymbolWidth
 			);
 
-			// Outline
-			// renderer->renderHorizontalLine(Point(position.getX() - 1, position.getY() - 1), width + 2, &Theme::fg1);
-			// renderer->renderHorizontalLine(Point(position.getX() - 1, position.getY() + PFD::aircraftSymbolThickness), width + 2, &Theme::fg1);
-			//
-			// renderer->renderVerticalLine(Point(position.getX() - 1, position.getY()), PFD::aircraftSymbolThickness, &Theme::fg1);
-			// renderer->renderVerticalLine(Point(position.getX() + width, position.getY()), PFD::aircraftSymbolThickness, &Theme::fg1);
-		};
+			// Right
+			renderAircraftSymbolRect(
+				Point(
+					center.getX() + PFD::aircraftSymbolCenterOffset + PFD::aircraftSymbolThickness,
+					center.getY() - PFD::aircraftSymbolThickness / 2
+				),
+				PFD::aircraftSymbolWidth
+			);
 
-		// Left
-		renderAircraftSymbolRect(
-			Point(
-				center.getX() - PFD::aircraftSymbolCenterOffset - PFD::aircraftSymbolThickness - PFD::aircraftSymbolWidth,
-				center.getY() - PFD::aircraftSymbolThickness / 2
-			),
-			PFD::aircraftSymbolWidth
-		);
+			// Dot
+			renderAircraftSymbolRect(
+				Point(
+					center.getX() - PFD::aircraftSymbolThickness / 2,
+					center.getY() - PFD::aircraftSymbolThickness / 2
+				),
+				PFD::aircraftSymbolThickness
+			);
+		}
 
-		// Right
-		renderAircraftSymbolRect(
-			Point(
-				center.getX() + PFD::aircraftSymbolCenterOffset + PFD::aircraftSymbolThickness,
-				center.getY() - PFD::aircraftSymbolThickness / 2
-			),
-			PFD::aircraftSymbolWidth
-		);
-
-		// Dot
-		renderAircraftSymbolRect(
-			Point(
-				center.getX() - PFD::aircraftSymbolThickness / 2,
-				center.getY() - PFD::aircraftSymbolThickness / 2
-			),
-			PFD::aircraftSymbolThickness
-		);
+		// Focusing frame
+		if (isFocused() && esp_timer_get_time() <= _focusingFrameTimeUs) {
+			RenderingUtils::renderFocusFrame(renderer, bounds, 5, &Theme::fg1);
+		}
 	}
 
 	void PFDScene::renderPitchOverlay(

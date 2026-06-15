@@ -3,7 +3,7 @@
 #include <functional>
 
 #include <YOBA/UI.h>
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 
 #include "UI/elements/dialogs/scrollViewDialog.h"
 #include "UI/elements/referencer.h"

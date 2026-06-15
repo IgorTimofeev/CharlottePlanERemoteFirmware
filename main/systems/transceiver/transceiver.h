@@ -14,7 +14,7 @@
 #include <SX1262.h>
 #include <circularQueue.h>
 #include <bitStream.h>
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 
 #include "config.h"
 #include "types/generic.h"

@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 
 #include <esp_timer.h>
 

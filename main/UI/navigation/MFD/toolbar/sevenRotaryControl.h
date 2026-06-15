@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 #include <YOBA/UI.h>
 
 #include "UI/navigation/MFD/toolbar/rotaryControl.h"

@@ -1,6 +1,8 @@
 #include <cstdint>
-#include <esp_timer.h>
 
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
+#include <esp_timer.h>
 #include <nvs.h>
 
 #include "rc.h"

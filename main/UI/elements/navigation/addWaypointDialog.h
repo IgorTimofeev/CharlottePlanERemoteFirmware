@@ -2,7 +2,7 @@
 
 #include <esp_log.h>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 #include <YOBA/UI.h>
 
 #include "UI/elements/dialogs/scrollViewDialog.h"

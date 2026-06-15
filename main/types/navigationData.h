@@ -3,7 +3,7 @@
 #include <optional>
 #include <format>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 
 namespace pizda {
 	using namespace YOBA;

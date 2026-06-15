@@ -2,7 +2,7 @@
 
 #include <functional>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 #include <YOBA/UI.h>
 
 #include "UI/navigation/page.h"

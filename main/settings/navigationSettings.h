@@ -4,7 +4,7 @@
 #include <cstring>
 #include <ranges>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 
 #include <NVSSettings.h>
 

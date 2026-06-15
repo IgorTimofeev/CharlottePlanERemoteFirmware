@@ -3,11 +3,12 @@
 #include <esp_log.h>
 #include <esp_adc/adc_oneshot.h>
 
-#include <YOBA/main.h>
-#include <YOBA/UI.h>
+#include <YOBA/core.h>
 #include <YOBA/hardware/displays/ILI9341Display.h>
 #include <YOBA/hardware/touchPanels/FT6336UTouchPanel.h>
 #include <YOBA/hardware/encoder.h>
+#include <YOBA/rendering.h>
+#include <YOBA/UI.h>
 
 #include <units.h>
 #include <ADCVoltmeter.h>
@@ -86,7 +87,6 @@ namespace pizda {
 
 			ILI9341Display _display {
 				config::SPI::MOSI,
-				config::SPI::MISO,
 				config::SPI::SCK,
 
 				config::screen::SS,
@@ -98,8 +98,8 @@ namespace pizda {
 			RGB565PixelBufferRenderer _renderer {};
 
 			FT6336UTouchPanel _touchPanel {
-				config::I2C::SDA,
 				config::I2C::SCL,
+				config::I2C::SDA,
 				config::screen::touch::RST,
 				config::screen::touch::INTR
 			};

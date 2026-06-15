@@ -2,7 +2,7 @@
 
 #include <format>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 #include <YOBA/UI.h>
 
 #include "UI/theme.h"

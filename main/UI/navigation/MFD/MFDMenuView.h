@@ -2,7 +2,7 @@
 
 #include <array>
 
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 #include <YOBA/UI.h>
 
 #include "UI/navigation/menu/menuView.h"

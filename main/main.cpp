@@ -10,7 +10,7 @@ extern "C" void app_main(void) {
 // #include <esp_timer.h>
 // #include <esp_log.h>
 
-//#include <YOBA/main.h>
+//#include <YOBA/core.h>
 //#include <YOBA/UI.h>
 //#include <YOBA/hardware/displays/ILI9341Display.h>
 //#include <YOBA/hardware/touchPanels/FT6336UTouchPanel.h>

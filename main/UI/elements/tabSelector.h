@@ -1,7 +1,7 @@
 #pragma once
 
 #include <YOBA/UI.h>
-#include <YOBA/main.h>
+#include <YOBA/core.h>
 
 #include "UI/theme.h"
 

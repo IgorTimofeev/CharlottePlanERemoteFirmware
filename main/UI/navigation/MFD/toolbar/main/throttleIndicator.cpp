@@ -10,7 +10,7 @@ namespace pizda {
 		setSize(Size(42, 5));
 	}
 	
-	void ThrottleIndicator::onRender(Renderer* renderer, const Bounds& bounds) {
+	void ThrottleIndicator::onRender(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 		const auto isConnected = rc.getTransceiver().isConnected();
 		
@@ -23,7 +23,7 @@ namespace pizda {
 		
 		// Frame
 		renderer->renderRectangle(
-			Bounds(
+			Rectangle(
 				bounds.getX(),
 				bounds.getY(),
 				frameSize,
@@ -55,7 +55,7 @@ namespace pizda {
 			
 			if (aircraftValueSize > 2) {
 				renderer->renderFilledRectangle(
-					Bounds(
+					Rectangle(
 						bounds.getX(),
 						bounds.getY(),
 						aircraftValueSize - 1,

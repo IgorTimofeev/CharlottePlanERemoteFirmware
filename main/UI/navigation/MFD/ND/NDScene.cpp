@@ -204,7 +204,7 @@ namespace pizda {
 			_focusingFrameTimeUs = esp_timer_get_time() + 600'000;
 	}
 
-	void NDScene::onRender(Renderer* renderer, const Bounds& bounds) {
+	void NDScene::onRender(Renderer* renderer, const Rectangle& bounds) {
 		Scene::onRender(renderer, bounds);
 
 		auto& rc = RC::getInstance();

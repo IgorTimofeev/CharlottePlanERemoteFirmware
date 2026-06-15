@@ -34,7 +34,7 @@ namespace pizda {
 		}
 	}
 
-	void PIDChart::onRender(Renderer* renderer, const Bounds& bounds) {
+	void PIDChart::onRender(Renderer* renderer, const Rectangle& bounds) {
 		constexpr static uint8_t textHOffset = 4;
 
 		// Background

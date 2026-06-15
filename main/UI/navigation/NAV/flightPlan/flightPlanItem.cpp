@@ -14,7 +14,7 @@ namespace pizda {
 		(new FlightPlanItemDialog(_legIndex))->show();
 	}
 
-	void FlightPlanItem::onRender(Renderer* renderer, const Bounds& bounds) {
+	void FlightPlanItem::onRender(Renderer* renderer, const Rectangle& bounds) {
 		if (getWaypointIndex() < 0)
 			return;
 

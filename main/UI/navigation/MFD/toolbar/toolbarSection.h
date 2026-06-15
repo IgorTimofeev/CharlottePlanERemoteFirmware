@@ -55,17 +55,17 @@ namespace pizda {
 				updateColors();
 			}
 			
-			void onRender(Renderer* renderer, const Bounds& bounds) override {
+			void onRender(Renderer* renderer, const Rectangle& bounds) override {
 				if (isFocused()) {
 					// Panel
 					renderer->renderFilledRectangle(
-						Bounds(bounds.getX(), bounds.getY(), bounds.getWidth(), Toolbar::topPanelHeight),
+						Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), Toolbar::topPanelHeight),
 						&Theme::bg4
 					);
 
 					// Background
 					renderer->renderFilledRectangle(
-						Bounds(bounds.getX(), bounds.getY() + Toolbar::topPanelHeight, bounds.getWidth(), bounds.getHeight() - Toolbar::topPanelHeight),
+						Rectangle(bounds.getX(), bounds.getY() + Toolbar::topPanelHeight, bounds.getWidth(), bounds.getHeight() - Toolbar::topPanelHeight),
 						&Theme::bg3
 					);
 				}

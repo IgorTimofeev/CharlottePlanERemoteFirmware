@@ -56,7 +56,7 @@ namespace pizda {
 		)->show();
 	}
 
-	void ComboBox::onRender(Renderer* renderer, const Bounds& bounds) {
+	void ComboBox::onRender(Renderer* renderer, const Rectangle& bounds) {
 		Referencer::onRender(renderer, bounds);
 
 		if (!_items || _itemCount == 0)

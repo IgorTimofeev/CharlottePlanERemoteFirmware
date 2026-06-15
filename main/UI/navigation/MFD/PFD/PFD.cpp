@@ -41,7 +41,7 @@ namespace pizda {
 		invalidate();
 	}
 
-	void PFD::renderMetricUnits(Renderer* renderer, const Bounds& bounds, const bool left, const int32_t yCenter, const std::string_view text) {
+	void PFD::renderMetricUnits(Renderer* renderer, const Rectangle& bounds, const bool left, const int32_t yCenter, const std::string_view text) {
 		constexpr static uint8_t verticalPanelOffset = 5;
 		constexpr static uint8_t horizontalTextOffset = 2;
 		constexpr static uint8_t verticalTextOffset = 1;
@@ -51,7 +51,7 @@ namespace pizda {
 			Theme::fontSmall.getHeight() + verticalTextOffset * 2
 		);
 
-		const auto panelBounds = Bounds(
+		const auto panelBounds = Rectangle(
 			left
 				? bounds.getX()
 				: bounds.getX2() - panelSize.getWidth() + 1,
@@ -76,45 +76,45 @@ namespace pizda {
 		);
 	}
 
-	void PFD::onRender(Renderer* renderer, const Bounds& bounds) {
+	void PFD::onRender(Renderer* renderer, const Rectangle& bounds) {
 		Layout::onRender(renderer, bounds);
 
-		renderSpeed(renderer, Bounds(
+		renderSpeed(renderer, Rectangle(
 			bounds.getX(),
 			bounds.getY() + miniHeight,
 			speedWidth,
 			bounds.getHeight() - miniHeight * 2
 		));
 
-		renderAutopilotSpeed(renderer, Bounds(
+		renderAutopilotSpeed(renderer, Rectangle(
 			bounds.getX(),
 			bounds.getY(),
 			speedWidth,
 			miniHeight
 		));
 
-		renderAltitude(renderer, Bounds(
+		renderAltitude(renderer, Rectangle(
 			bounds.getX2() + 1 - altitudeWidth - verticalSpeedWidth,
 			bounds.getY() + miniHeight,
 			altitudeWidth,
 			bounds.getHeight() - miniHeight * 2
 		));
 
-		renderAutopilotAltitude(renderer, Bounds(
+		renderAutopilotAltitude(renderer, Rectangle(
 			bounds.getX2() + 1 - altitudeWidth - verticalSpeedWidth,
 			bounds.getY(),
 			altitudeWidth,
 			miniHeight
 		));
 
-		renderPressure(renderer, Bounds(
+		renderPressure(renderer, Rectangle(
 			bounds.getX2() + 1 - altitudeWidth - verticalSpeedWidth,
 			bounds.getY2() + 1 - miniHeight,
 			altitudeWidth,
 			miniHeight
 		));
 
-		renderVerticalSpeed(renderer, Bounds(
+		renderVerticalSpeed(renderer, Rectangle(
 			bounds.getX2() + 1 - verticalSpeedWidth,
 			bounds.getY(),
 			verticalSpeedWidth,
@@ -122,7 +122,7 @@ namespace pizda {
 		));
 	}
 
-	void PFD::renderCurrentValue(Renderer* renderer, const Bounds& bounds, const uint8_t digitCount, float value, const bool isSpeed) {
+	void PFD::renderCurrentValue(Renderer* renderer, const Rectangle& bounds, const uint8_t digitCount, float value, const bool isSpeed) {
 		const auto isConnected = RC::getInstance().getTransceiver().isConnected();
 		const auto bg = isConnected ? &Theme::bg2 : &Theme::bad3;
 		const auto x2 = bounds.getX2();
@@ -130,7 +130,7 @@ namespace pizda {
 		
 		// Rect
 		renderer->renderFilledRectangle(
-			Bounds(
+			Rectangle(
 				isSpeed ? bounds.getX() : bounds.getX() + currentValueTriangleSize,
 				bounds.getY(),
 				bounds.getWidth() - currentValueTriangleSize,
@@ -241,7 +241,7 @@ namespace pizda {
 		}
 	}
 	
-	void PFD::renderAutopilotValueIndicator(Renderer* renderer, const Bounds& bounds, const int32_t centerY, const uint8_t unitStep, const uint16_t stepPixels, const float currentValue, const uint16_t autopilotValue, const bool left) {
+	void PFD::renderAutopilotValueIndicator(Renderer* renderer, const Rectangle& bounds, const int32_t centerY, const uint8_t unitStep, const uint16_t stepPixels, const float currentValue, const uint16_t autopilotValue, const bool left) {
 		if (autopilotValue == 0)
 			return;
 		
@@ -261,7 +261,7 @@ namespace pizda {
 				
 		// Common rect
 		renderer->renderFilledRectangle(
-			Bounds(
+			Rectangle(
 				left ? x + autopilotIndicatorTriangleThickness : x,
 				y,
 				autopilotIndicatorRectangleThickness,
@@ -272,7 +272,7 @@ namespace pizda {
 		
 		// Upper rect
 		renderer->renderFilledRectangle(
-			Bounds(
+			Rectangle(
 				left ? x : x + autopilotIndicatorRectangleThickness,
 				y,
 				autopilotIndicatorThickness - autopilotIndicatorRectangleThickness,
@@ -283,7 +283,7 @@ namespace pizda {
 		
 		// Lower rect
 		renderer->renderFilledRectangle(
-			Bounds(
+			Rectangle(
 				left ? x : x + autopilotIndicatorRectangleThickness,
 				y + autopilotIndicatorSize - autopilotIndicatorTriangleMargin,
 				autopilotIndicatorThickness - autopilotIndicatorRectangleThickness,
@@ -362,7 +362,7 @@ namespace pizda {
 		);
 	}
 
-	void PFD::renderSpeed(Renderer* renderer, const Bounds& bounds) {
+	void PFD::renderSpeed(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		const auto oldViewport = renderer->pushViewport(bounds);
@@ -379,7 +379,7 @@ namespace pizda {
 			const int32_t height = (toSpeed - fromSpeed) * speedStepPixels / speedStepUnits;
 
 			renderer->renderFilledRectangle(
-				Bounds(
+				Rectangle(
 					x,
 					fromY - height,
 					width,
@@ -480,7 +480,8 @@ namespace pizda {
 
 			lineValue -= speedStepUnits;
 			y += speedStepPixels;
-		} while (y <= bounds.getY2() && lineValue >= 0);
+		}
+		while (y <= bounds.getY2() && lineValue >= 0);
 
 		// Trend
 		renderTrendArrow(
@@ -491,39 +492,6 @@ namespace pizda {
 			speedStepPixels,
 			rc.getAircraftData().computed.airspeedTrendKt
 		);
-
-		// V-speeds
-		for (const auto& bug : speedBugs) {
-			const auto& bugBounds = Bounds(
-				bounds.getX2() + 1 + speedBugOffset + speedBugTriangleWidth,
-				centerY - static_cast<int32_t>((static_cast<float>(bug.getValue()) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(speedStepUnits)),
-				Theme::fontSmall.getWidth(bug.getName()) + speedBugTextOffset * 2,
-				Theme::fontSmall.getHeight() + speedBugTextOffset * 2
-			);
-
-			// Rect
-			renderer->renderFilledRectangle(
-				bugBounds,
-				1,
-				&Theme::bg2
-			);
-
-			// Triangle
-			renderer->renderFilledTriangle(
-				Point(bugBounds.getX(), bugBounds.getY()),
-				Point(bugBounds.getX(), bugBounds.getY2()),
-				Point(bugBounds.getX() - speedBugTriangleWidth, bugBounds.getYCenter()),
-				&Theme::bg2
-			);
-
-			// Text
-			renderer->renderText(
-				Point(bugBounds.getX() + speedBugTextOffset, bugBounds.getY() + speedBugTextOffset),
-				&Theme::fontSmall,
-				&Theme::green1,
-				bug.getName()
-			);
-		}
 
 		// Autopilot
 		renderAutopilotValueIndicator(
@@ -540,7 +508,7 @@ namespace pizda {
 		// Current speed
 		renderCurrentValue(
 			renderer,
-			Bounds(
+			Rectangle(
 				bounds.getX(),
 				centerY - currentValueHeight / 2,
 				bounds.getWidth(),
@@ -550,6 +518,9 @@ namespace pizda {
 			rc.getAircraftData().computed.airspeedKt,
 			true
 		);
+
+		renderer->popViewport(oldViewport);
+
 
 		// Metric
 		if (rc.getSettings().personalization.MFD.PFD.metricUnits) {
@@ -572,10 +543,40 @@ namespace pizda {
 			);
 		}
 
-		renderer->popViewport(oldViewport);
+		// Speed bugs
+		for (const auto& bug : speedBugs) {
+			const auto& bugBounds = Rectangle(
+				bounds.getX2() + 1 + speedBugOffset + speedBugTriangleWidth,
+				centerY - static_cast<int32_t>((static_cast<float>(bug.getValue()) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(speedStepUnits)),
+				Theme::fontSmall.getWidth(bug.getName()) + speedBugTextOffset * 2,
+				Theme::fontSmall.getHeight() + speedBugTextOffset * 2
+			);
+
+			// Rect
+			renderer->renderFilledRectangle(
+				bugBounds,
+				&Theme::bg2
+			);
+
+			// Triangle
+			renderer->renderFilledTriangle(
+				bugBounds.getTopLeft(),
+				Point(bugBounds.getX(), bugBounds.getY2()),
+				Point(bugBounds.getX() - speedBugTriangleWidth, bugBounds.getYCenter() - 1),
+				&Theme::bg2
+			);
+
+			// Text
+			renderer->renderText(
+				Point(bugBounds.getX() + speedBugTextOffset, bugBounds.getY() + speedBugTextOffset),
+				&Theme::fontSmall,
+				&Theme::green1,
+				bug.getName()
+			);
+		}
 	}
 
-	void PFD::renderAltitude(Renderer* renderer, const Bounds& bounds) {
+	void PFD::renderAltitude(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		const auto centerY = bounds.getYCenter();
@@ -762,7 +763,7 @@ namespace pizda {
 		// Current value
 		renderCurrentValue(
 			renderer,
-			Bounds(
+			Rectangle(
 				bounds.getX(),
 				centerY - currentValueHeight / 2,
 				bounds.getWidth(),
@@ -795,7 +796,7 @@ namespace pizda {
 		}
 	}
 
-	void PFD::renderVerticalSpeed(Renderer* renderer, const Bounds& bounds) {
+	void PFD::renderVerticalSpeed(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		const auto centerY = bounds.getYCenter();
@@ -859,7 +860,7 @@ namespace pizda {
 		);
 	}
 
-	void PFD::renderMiniPanel(Renderer* renderer, const Bounds& bounds, const Color* bg, const Color* fg, const std::string_view text, const int8_t textXOffset) {
+	void PFD::renderMiniPanel(Renderer* renderer, const Rectangle& bounds, const Color* bg, const Color* fg, const std::string_view text, const int8_t textXOffset) {
 		// Background
 		renderer->renderFilledRectangle(bounds, bg);
 
@@ -875,7 +876,7 @@ namespace pizda {
 		);
 	}
 
-	void PFD::renderMiniPanelWithAutopilotValue(Renderer* renderer, const Bounds& bounds, const Color* bg, const Color* fg, const uint16_t autopilotValue, const bool autopilotValueEnabled, const bool left) {
+	void PFD::renderMiniPanelWithAutopilotValue(Renderer* renderer, const Rectangle& bounds, const Color* bg, const Color* fg, const uint16_t autopilotValue, const bool autopilotValueEnabled, const bool left) {
 		renderMiniPanel(
 			renderer,
 			bounds,
@@ -886,7 +887,7 @@ namespace pizda {
 		);
 	}
 
-	void PFD::renderAutopilotSpeed(Renderer* renderer, const Bounds& bounds) {
+	void PFD::renderAutopilotSpeed(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		const auto bg = &Theme::bg2;
@@ -895,7 +896,7 @@ namespace pizda {
 		renderMiniPanelWithAutopilotValue(renderer, bounds, bg, fg, rc.getSettings().autopilot.speedKt, rc.getSettings().autopilot.speedKt > 0, true);
 	}
 
-	void PFD::renderAutopilotAltitude(Renderer* renderer, const Bounds& bounds) {
+	void PFD::renderAutopilotAltitude(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		const auto bg = &Theme::bg2;
@@ -904,7 +905,7 @@ namespace pizda {
 		renderMiniPanelWithAutopilotValue(renderer, bounds, bg, fg, rc.getSettings().autopilot.altitudeFt, rc.getSettings().autopilot.altitudeFt > 0, false);
 	}
 
-	void PFD::renderPressure(Renderer* renderer, const Bounds& bounds) {
+	void PFD::renderPressure(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		auto bg = &Theme::bg2;

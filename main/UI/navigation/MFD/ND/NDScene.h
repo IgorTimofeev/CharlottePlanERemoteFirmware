@@ -34,7 +34,7 @@ namespace pizda {
 			void onBoundsChanged() override;
 			void onEvent(Event* event) override;
 			void onFocusChanged() override;
-			void onRender(Renderer* renderer, const Bounds& bounds) override;
+			void onRender(Renderer* renderer, const Rectangle& bounds) override;
 
 		private:
 			constexpr static uint8_t compassTickMarkUnitsDeg = 10;

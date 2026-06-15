@@ -25,7 +25,7 @@ namespace pizda {
 				switch (waypointData.type) {
 					case NavigationWaypointType::enroute: {
 						renderer->renderRectangle(
-							Bounds(
+							Rectangle(
 								center.getX() - 1,
 								center.getY() - 1,
 								3,

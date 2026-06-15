@@ -88,7 +88,7 @@ namespace pizda {
 		}
 	}
 	
-	void AxisEditor::onRender(Renderer* renderer, const Bounds& bounds) {
+	void AxisEditor::onRender(Renderer* renderer, const Rectangle& bounds) {
 		// Track
 		renderer->renderFilledRectangle(bounds, Theme::cornerRadius, &Theme::bg2);
 		renderer->renderRectangle(bounds, Theme::cornerRadius, &Theme::bg3);
@@ -100,7 +100,7 @@ namespace pizda {
 		const uint16_t fillWidth = toX - fromX + 1;
 		
 		renderer->renderFilledRectangle(
-			Bounds(
+			Rectangle(
 				fromX,
 				bounds.getY(),
 				fillWidth,
@@ -172,7 +172,7 @@ namespace pizda {
 				Theme::fontSmall.getHeight() + textOffsetY * 2
 			);
 			
-			const auto flagBounds = Bounds(
+			const auto flagBounds = Rectangle(
 				Point(
 					to ? x - flagSize.getWidth() + 1 : x,
 					bounds.getY() + bounds.getHeight() - flagSize.getHeight()
@@ -216,7 +216,7 @@ namespace pizda {
 		);
 		
 		if (thumbInWorkingRange) {
-			const auto oldViewport = renderer->pushViewport(Bounds(
+			const auto oldViewport = renderer->pushViewport(Rectangle(
 				fromX,
 				bounds.getY(),
 				fillWidth,

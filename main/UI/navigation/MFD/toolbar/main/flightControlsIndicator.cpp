@@ -8,7 +8,7 @@ namespace pizda {
 		setSize(Size(21, 21));
 	}
 
-	void FlightControlsIndicator::onRender(Renderer* renderer, const Bounds& bounds) {
+	void FlightControlsIndicator::onRender(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		const auto center = bounds.getCenter();
@@ -17,8 +17,8 @@ namespace pizda {
 		renderer->renderCircle(center, radius, &Theme::fg7);
 		
 		// Blackout
-		renderer->renderFilledRectangle(Bounds(bounds.getX(), center.getY() - 1, bounds.getWidth(), 3), &Theme::bg1);
-		renderer->renderFilledRectangle(Bounds(center.getX() - 1, bounds.getY(), 3, bounds.getHeight()), &Theme::bg1);
+		renderer->renderFilledRectangle(Rectangle(bounds.getX(), center.getY() - 1, bounds.getWidth(), 3), &Theme::bg1);
+		renderer->renderFilledRectangle(Rectangle(center.getX() - 1, bounds.getY(), 3, bounds.getHeight()), &Theme::bg1);
 		
 		// Lines
 		const auto lineLength = bounds.getWidth() / 2 - 1;

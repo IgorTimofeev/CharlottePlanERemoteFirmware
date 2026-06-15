@@ -17,7 +17,7 @@ namespace pizda {
 		protected:
 			void onEvent(Event* event) override;
 			void onFocusChanged() override;
-			void onRender(Renderer* renderer, const Bounds& bounds) override;
+			void onRender(Renderer* renderer, const Rectangle& bounds) override;
 
 		private:
 			Point _prevDragPosition { -1, -1 };
@@ -25,7 +25,7 @@ namespace pizda {
 
 			static void renderPitchOverlay(
 				Renderer* renderer,
-				const Bounds& bounds,
+				const Rectangle& bounds,
 				float pitchPixelOffsetProjected,
 				float projectionPlaneDistance,
 				const Point& horizonLeft,
@@ -37,8 +37,8 @@ namespace pizda {
 				const Vector2F& horizonCenter
 			);
 
-			static void renderTurnCoordinatorOverlay(Renderer* renderer, const Bounds& bounds);
-			static void renderFlightModeAnnunciatorOverlay(Renderer* renderer, const Bounds& bounds);
-			static void renderYawOverlay(Renderer* renderer, const Bounds& bounds);
+			static void renderTurnCoordinatorOverlay(Renderer* renderer, const Rectangle& bounds);
+			static void renderFlightModeAnnunciatorOverlay(Renderer* renderer, const Rectangle& bounds);
+			static void renderYawOverlay(Renderer* renderer, const Rectangle& bounds);
 	};
 }

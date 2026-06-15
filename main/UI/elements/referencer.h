@@ -57,7 +57,7 @@ namespace pizda {
 					setFocused(false);
 			}
 
-			void onRender(Renderer* renderer, const Bounds& bounds) override {
+			void onRender(Renderer* renderer, const Rectangle& bounds) override {
 				renderer->renderFilledRectangle(bounds, Theme::cornerRadius, isFocused() ? &Theme::bg4 : &Theme::bg3);
 				renderer->renderRectangle(bounds, Theme::cornerRadius, isFocused() ? &Theme::bg5 : &Theme::bg4);
 

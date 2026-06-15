@@ -20,12 +20,12 @@ namespace pizda {
 		setActiveTextColor(&Theme::fg1);
 	}
 
-	void MenuViewButton::onRender(Renderer* renderer, const Bounds& bounds) {
+	void MenuViewButton::onRender(Renderer* renderer, const Rectangle& bounds) {
 		constexpr static uint8_t cornerRadius = 3;
 
 		// Background
 		renderer->renderFilledRectangle(
-			Bounds(bounds.getX() - 1, bounds.getY() - 1, bounds.getWidth() + 2, _image->getSize().getHeight() + 2),
+			Rectangle(bounds.getX() - 1, bounds.getY() - 1, bounds.getWidth() + 2, _image->getSize().getHeight() + 2),
 			cornerRadius,
 			isActive() ? getActiveBackgroundColor() : getDefaultBackgroundColor()
 		);
@@ -36,7 +36,7 @@ namespace pizda {
 		// Border
 		if (isActive()) {
 			renderer->renderRectangle(
-				Bounds(bounds.getX() - 1, bounds.getY() - 1, bounds.getWidth() + 2, _image->getSize().getHeight() + 2),
+				Rectangle(bounds.getX() - 1, bounds.getY() - 1, bounds.getWidth() + 2, _image->getSize().getHeight() + 2),
 				cornerRadius,
 				getActiveBorderColor()
 			);

@@ -70,7 +70,7 @@ namespace pizda {
 		}
 	}
 
-	void PFDPageSplitter::onRender(Renderer* renderer, const Bounds& bounds) {
+	void PFDPageSplitter::onRender(Renderer* renderer, const Rectangle& bounds) {
 		renderer->renderFilledRectangle(bounds, isActive() ? &Theme::fg1 : &Theme::bg2);
 
 		const auto text = RC::getInstance().getSettings().personalization.MFD.split.mode == PersonalizationSettingsMFDSplitMode::PFD ? "< >" : "> <";

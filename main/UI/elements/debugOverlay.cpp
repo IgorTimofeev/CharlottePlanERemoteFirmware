@@ -13,7 +13,7 @@ namespace pizda {
 		invalidateRender();
 	}
 
-	void DebugOverlay::onRender(Renderer* renderer, const Bounds& bounds) {
+	void DebugOverlay::onRender(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		int32_t y = 0;

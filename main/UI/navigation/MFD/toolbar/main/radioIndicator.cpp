@@ -13,7 +13,7 @@ namespace pizda {
 		));
 	}
 
-	void RadioIndicator::onRender(Renderer* renderer, const Bounds& bounds) {
+	void RadioIndicator::onRender(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 		const auto isConnected = rc.getTransceiver().isConnected();
 

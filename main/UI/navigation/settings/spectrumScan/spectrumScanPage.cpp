@@ -58,7 +58,7 @@ namespace pizda {
 		}
 	}
 
-	void SpectrumScanningChart::onRender(Renderer* renderer, const Bounds& bounds) {
+	void SpectrumScanningChart::onRender(Renderer* renderer, const Rectangle& bounds) {
 		constexpr static uint8_t textHOffset = 4;
 		constexpr static uint8_t textVOffset = 1;
 

@@ -17,7 +17,7 @@ namespace pizda {
 		setText(text);
 	}
 
-	void MenuTabButton::onRender(Renderer* renderer, const Bounds& bounds) {
+	void MenuTabButton::onRender(Renderer* renderer, const Rectangle& bounds) {
 		Button::onRender(renderer, bounds);
 
 		// if (isChecked())

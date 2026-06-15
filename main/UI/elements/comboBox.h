@@ -29,7 +29,7 @@ namespace pizda {
 		protected:
 			void onClick() override;
 
-			void onRender(Renderer* renderer, const Bounds& bounds) override;
+			void onRender(Renderer* renderer, const Rectangle& bounds) override;
 
 		private:
 			std::string_view* _items = nullptr;

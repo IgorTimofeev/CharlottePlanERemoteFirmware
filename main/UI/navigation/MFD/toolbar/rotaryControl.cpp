@@ -121,7 +121,7 @@ namespace pizda {
 		}
 	}
 	
-	void RotaryControl::onRender(Renderer* renderer, const Bounds& bounds) {
+	void RotaryControl::onRender(Renderer* renderer, const Rectangle& bounds) {
 		ToolbarSection::onRender(renderer, bounds);
 		
 		if (!variantSelectMode)

@@ -72,8 +72,8 @@ extern "C" void app_main(void) {
 //		govnoTime = esp_timer_get_time();
 //
 //		renderer.clear(&color0);
-////		_renderer->renderFilledRectangle(Bounds(_display.getSize()), &color1);
-//		renderer->renderFilledRectangle(Bounds(10, 10, 30, 10), &color1);
+////		_renderer->renderFilledRectangle(Rectangle(_display.getSize()), &color1);
+//		renderer->renderFilledRectangle(Rectangle(10, 10, 30, 10), &color1);
 //		renderer->renderHorizontalLine(Point(10, 20), 130, &color2);
 //		renderer->renderVerticalLine(Point(10, 25), 130, &color3);
 //

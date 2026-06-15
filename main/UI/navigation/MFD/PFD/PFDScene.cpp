@@ -61,7 +61,7 @@ namespace pizda {
 		_focusingFrameTimeUs = esp_timer_get_time() + 600'000;
 	}
 
-	void PFDScene::onRender(Renderer* renderer, const Bounds& bounds) {
+	void PFDScene::onRender(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 		
 		const auto& center = bounds.getCenter();
@@ -124,7 +124,7 @@ namespace pizda {
 		
 		renderFlightModeAnnunciatorOverlay(
 			renderer,
-			Bounds(
+			Rectangle(
 				bounds.getXCenter() - FMAWidth / 2,
 				bounds.getY() + PFD::flightModeAnnunciatorTopOffset,
 				FMAWidth,
@@ -135,7 +135,7 @@ namespace pizda {
 		// Turn coordinator
 		renderTurnCoordinatorOverlay(
 			renderer,
-			Bounds(
+			Rectangle(
 				bounds.getX(),
 				bounds.getY() + PFD::flightModeAnnunciatorTopOffset + PFD::flightModeAnnunciatorHeight + PFD::turnCoordinatorOverlayTopOffset,
 				bounds.getWidth(),
@@ -146,7 +146,7 @@ namespace pizda {
 		// Pitch overlay
 		renderPitchOverlay(
 			renderer,
-			Bounds(
+			Rectangle(
 				bounds.getX(),
 				bounds.getY() + PFD::flightModeAnnunciatorTopOffset + PFD::flightModeAnnunciatorHeight + PFD::turnCoordinatorOverlayTopOffset + PFD::pitchOverlayVerticalOffset,
 				bounds.getWidth(),
@@ -165,7 +165,7 @@ namespace pizda {
 		// Yaw overlay
 		renderYawOverlay(
 			renderer,
-			Bounds(
+			Rectangle(
 				bounds.getX(),
 				bounds.getY2() - PFD::yawOverlayHeight + 1,
 				bounds.getWidth(),
@@ -229,7 +229,7 @@ namespace pizda {
 			const auto flightDirectorLengthHalfF = static_cast<float>(flightDirectorLength) / 2.f;
 
 			// Horizontal
-			auto flightDirectorRectBounds = Bounds(
+			auto flightDirectorRectBounds = Rectangle(
 				center.getX() - flightDirectorLength / 2,
 				center.getY()
 					- static_cast<int32_t>(std::clamp(
@@ -337,7 +337,7 @@ namespace pizda {
 		{
 			const auto& renderAircraftSymbolRect = [&renderer](const Point& position, const uint16_t width) {
 				renderer->renderFilledRectangle(
-					Bounds(
+					Rectangle(
 						position.getX(),
 						position.getY(),
 						width,
@@ -390,7 +390,7 @@ namespace pizda {
 
 	void PFDScene::renderPitchOverlay(
 		Renderer* renderer,
-		const Bounds& bounds,
+		const Rectangle& bounds,
 		const float pitchPixelOffsetProjected,
 		const float projectionPlaneDistance,
 		const Point& horizonLeft,
@@ -462,7 +462,7 @@ namespace pizda {
 
 	void PFDScene::renderTurnCoordinatorOverlay(
 		Renderer* renderer,
-		const Bounds& bounds
+		const Rectangle& bounds
 	) {
 		auto& rc = RC::getInstance();
 
@@ -528,7 +528,7 @@ namespace pizda {
 
 		// Slip/skid indicator
 		renderer->renderFilledRectangle(
-			Bounds(
+			Rectangle(
 				center.getX()
 					+ static_cast<int32_t>(
 						static_cast<float>(PFD::turnCoordinatorOverlaySlipAndSkidIndicatorMaxValuePixels)
@@ -543,7 +543,7 @@ namespace pizda {
 		);
 	}
 	
-	void PFDScene::renderFlightModeAnnunciatorOverlay(Renderer* renderer, const Bounds& bounds) {
+	void PFDScene::renderFlightModeAnnunciatorOverlay(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
 		constexpr static uint8_t sectionCount = 3;
@@ -643,7 +643,7 @@ namespace pizda {
 	
 	void PFDScene::renderYawOverlay(
 		Renderer* renderer,
-		const Bounds& bounds
+		const Rectangle& bounds
 	) {
 		auto& rc = RC::getInstance();
 		const auto viewport = renderer->pushViewport(bounds);
@@ -749,7 +749,7 @@ namespace pizda {
 			
 			// Lower rect
 			renderer->renderFilledRectangle(
-				Bounds(
+				Rectangle(
 					x,
 					y2 - PFD::autopilotIndicatorRectangleThickness + 1,
 					PFD::autopilotIndicatorSize,
@@ -760,7 +760,7 @@ namespace pizda {
 			
 			// Left rect
 			renderer->renderFilledRectangle(
-				Bounds(
+				Rectangle(
 					x,
 					y,
 					PFD::autopilotIndicatorTriangleMargin,
@@ -771,7 +771,7 @@ namespace pizda {
 			
 			// Right rect
 			renderer->renderFilledRectangle(
-				Bounds(
+				Rectangle(
 					x + PFD::autopilotIndicatorSize - PFD::autopilotIndicatorTriangleMargin,
 					y,
 					PFD::autopilotIndicatorTriangleMargin,

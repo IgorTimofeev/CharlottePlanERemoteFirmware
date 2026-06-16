@@ -79,23 +79,23 @@ namespace pizda {
 		// Deleting
 		_MFDLayout.deleteShit();
 
-		if (_autopilotToolbar.get() && rc.getSettings().personalization.MFD.toolbar.mode != PersonalizationSettingsMFDToolbarMode::autopilot)
+		if (_autopilotToolbar.get() && rc.getSettings().personalization.MFD.toolbars.topMode != PersonalizationSettingsMFDToolbarMode::autopilot)
 			_autopilotToolbar.reset();
 
-		if (_baroToolbar.get() && rc.getSettings().personalization.MFD.toolbar.mode != PersonalizationSettingsMFDToolbarMode::baro)
+		if (_baroToolbar.get() && rc.getSettings().personalization.MFD.toolbars.topMode != PersonalizationSettingsMFDToolbarMode::baro)
 			_baroToolbar.reset();
 		
-		if (_trimToolbar.get() && rc.getSettings().personalization.MFD.toolbar.mode != PersonalizationSettingsMFDToolbarMode::trim)
+		if (_trimToolbar.get() && rc.getSettings().personalization.MFD.toolbars.topMode != PersonalizationSettingsMFDToolbarMode::trim)
 			_trimToolbar.reset();
 		
-		if (_lightsToolbar.get() && rc.getSettings().personalization.MFD.toolbar.mode != PersonalizationSettingsMFDToolbarMode::lights)
+		if (_lightsToolbar.get() && rc.getSettings().personalization.MFD.toolbars.topMode != PersonalizationSettingsMFDToolbarMode::lights)
 			_lightsToolbar.reset();
 
-		if (_cameraToolbar.get() && rc.getSettings().personalization.MFD.toolbar.mode != PersonalizationSettingsMFDToolbarMode::camera)
+		if (_cameraToolbar.get() && rc.getSettings().personalization.MFD.toolbars.topMode != PersonalizationSettingsMFDToolbarMode::camera)
 			_cameraToolbar.reset();
 		
 		// Creating
-		switch (rc.getSettings().personalization.MFD.toolbar.mode) {
+		switch (rc.getSettings().personalization.MFD.toolbars.topMode) {
 			case PersonalizationSettingsMFDToolbarMode::autopilot: {
 				if (!_autopilotToolbar)
 					_autopilotToolbar = std::make_unique<AutopilotToolbar>();

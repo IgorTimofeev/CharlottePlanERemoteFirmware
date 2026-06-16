@@ -8,30 +8,31 @@
 #include "MFDPage.h"
 
 namespace pizda {
-	MFDModeMenuViewButton::MFDModeMenuViewButton(const Image* image, const std::string_view text, const PersonalizationSettingsMFDToolbarMode mode) : MenuViewButton(image, text), _mode(mode) {
+	// Top
+	MFDMenuViewTopToolbarButton::MFDMenuViewTopToolbarButton(const Image* image, const std::string_view text, const PersonalizationSettingsMFDToolbarMode mode) : MenuViewButton(image, text), _mode(mode) {
 		setToggle(true);
-		setActive(RC::getInstance().getSettings().personalization.MFD.toolbar.mode == mode);
+		setActive(RC::getInstance().getSettings().personalization.MFD.toolbars.topMode == mode);
 	}
 
-	void MFDModeMenuViewButton::onClick() {
+	void MFDMenuViewTopToolbarButton::onClick() {
 		MenuViewButton::onClick();
 
+		auto& settings = RC::getInstance().getSettings();
+		settings.personalization.MFD.toolbars.topMode = settings.personalization.MFD.toolbars.topMode == _mode ? PersonalizationSettingsMFDToolbarMode::none : _mode;
+		settings.personalization.writeLater();
+
+		// Deselecting other buttons
 		const auto menuView = reinterpret_cast<MFDMenuView*>(getMenuView());
 
-		auto& settings = RC::getInstance().getSettings();
-		settings.personalization.MFD.toolbar.mode = settings.personalization.MFD.toolbar.mode == _mode ? PersonalizationSettingsMFDToolbarMode::none : _mode;
-
-		for (const auto modeButton : menuView->modeButtons)
-			modeButton->setActive(modeButton->_mode == settings.personalization.MFD.toolbar.mode);
+		for (const auto modeButton : menuView->topToolbarButtons)
+			modeButton->setActive(modeButton->_mode == settings.personalization.MFD.toolbars.topMode);
 
 		MFDPage::getInstance()->fromSettings();
-
-		settings.personalization.writeLater();
 	}
 
 	MFDMenuView::MFDMenuView() {
-		for (const auto modeButton : modeButtons) {
-			*this += modeButton;
+		for (const auto button : topToolbarButtons) {
+			*this += button;
 		}
 	}
 

@@ -37,9 +37,9 @@ namespace pizda {
 		camera
 	};
 
-	class PersonalizationSettingsMFDToolbar {
+	class PersonalizationSettingsMFDToolbars {
 		public:
-			PersonalizationSettingsMFDToolbarMode mode = PersonalizationSettingsMFDToolbarMode::none;
+			PersonalizationSettingsMFDToolbarMode topMode = PersonalizationSettingsMFDToolbarMode::none;
 	};
 
 	enum class PersonalizationSettingsMFDSplitMode : uint8_t {
@@ -59,7 +59,7 @@ namespace pizda {
 		public:
 			PersonalizationSettingsMFDPFD PFD {};
 			PersonalizationSettingsMFDND ND {};
-			PersonalizationSettingsMFDToolbar toolbar {};
+			PersonalizationSettingsMFDToolbars toolbars {};
 			PersonalizationSettingsMFDSplit split {};
 	};
 	
@@ -85,7 +85,7 @@ namespace pizda {
 				MFD.ND.mode = static_cast<PersonalizationSettingsMFDNDMode>(stream.readUint8(_MFDNDMode, static_cast<uint8_t>(PersonalizationSettingsMFDNDMode::arc)));
 				MFD.ND.earth = stream.readBool(_MFDNDEarth, true);
 
-				MFD.toolbar.mode = static_cast<PersonalizationSettingsMFDToolbarMode>(stream.readUint8(_MFDToolbarMode, static_cast<uint8_t>(PersonalizationSettingsMFDToolbarMode::none)));
+				MFD.toolbars.topMode = stream.readEnum<PersonalizationSettingsMFDToolbarMode>(_MFDToolbarsTopMode, PersonalizationSettingsMFDToolbarMode::autopilot);
 
 				MFD.split.mode = static_cast<PersonalizationSettingsMFDSplitMode>(stream.readUint8(_MFDSplitMode, static_cast<uint8_t>(PersonalizationSettingsMFDSplitMode::PFD)));
 				MFD.split.ratio = stream.readUint8(_MFDSplitRatio, 60);
@@ -106,7 +106,7 @@ namespace pizda {
 				stream.writeUint8(_MFDNDMode, static_cast<uint8_t>(MFD.ND.mode));
 				stream.writeBool(_MFDNDEarth, MFD.ND.earth);
 
-				stream.writeUint8(_MFDToolbarMode, static_cast<uint8_t>(MFD.toolbar.mode));
+				stream.writeEnum<PersonalizationSettingsMFDToolbarMode>(_MFDToolbarsTopMode,MFD.toolbars.topMode);
 
 				stream.writeUint8(_MFDSplitMode, static_cast<uint8_t>(MFD.split.mode));
 				stream.writeUint8(_MFDSplitRatio, MFD.split.ratio);
@@ -125,7 +125,7 @@ namespace pizda {
 			constexpr static auto _MFDPFDWaypointLabels = "mpwl";
 			constexpr static auto _MFDNDMode = "mnmd";
 			constexpr static auto _MFDNDEarth = "mnea";
-			constexpr static auto _MFDToolbarMode = "mtmd";
+			constexpr static auto _MFDToolbarsTopMode = "mttm";
 			constexpr static auto _MFDSplitMode = "msm";
 			constexpr static auto _MFDSplitRatio = "msr";
 

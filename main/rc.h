@@ -95,7 +95,7 @@ namespace pizda {
 				config::screen::frequency
 			};
 
-			RGB565PixelBufferRenderer _renderer {};
+			RGB565Renderer _renderer {};
 
 			FT6336UTouchPanel _touchPanel {
 				config::I2C::SCL,

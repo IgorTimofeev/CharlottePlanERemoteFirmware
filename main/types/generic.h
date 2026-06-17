@@ -58,12 +58,12 @@ namespace pizda {
 			constexpr static uint16_t powerMax = (1 << powerResolutionBits) - 1;
 
 			constexpr static uint8_t dutyFrequencyHz = 50;
-			constexpr static uint16_t dutyCycleDurationUs = 1'000'000 / dutyFrequencyHz;
+			constexpr static uint16_t dutyDurationUs = 1'000'000 / dutyFrequencyHz;
 			constexpr static uint8_t dutyResolutionBits = 12;
 			constexpr static uint16_t dutyMax = (1 << dutyResolutionBits) - 1;
 
 			constexpr static uint16_t pulseWidthUsToDuty(const uint16_t pulseWidthUs) {
-				return static_cast<uint32_t>(pulseWidthUs) * dutyMax / dutyCycleDurationUs;
+				return (static_cast<uint32_t>(pulseWidthUs) * dutyMax + dutyDurationUs / 2) / dutyDurationUs;
 			}
 
 			uint16_t min = 1000;

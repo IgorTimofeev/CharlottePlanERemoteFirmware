@@ -9,58 +9,67 @@ namespace pizda {
 	MotorEditor::MotorEditor(const std::string_view title, const MotorType type) : Titler(title), _type(type) {
 		const auto settings = RC::getInstance().getSettings().motors.getByType(type);
 
+		constexpr static uint8_t buttonSideMargin = Theme::cornerRadius + 1;
+
+		// Main row
 		*this += &_mainLayout;
-		
+
+		// Confirm
+		Theme::applyPrimary(&_confirm);
+		_confirm.setWidth(24);
+		_confirm.setHorizontalAlignment(Alignment::end);
+		_confirm.setContentMargin(Margin(buttonSideMargin - 1, 0, 0, 0));
+		_confirm.setFont(&Theme::fontSmall);
+		_confirm.setText(">");
+
+		_confirm.setOnClick([this] {
+			auto& rc = RC::getInstance();
+
+			rc.getRemoteData().motorSettings.type = _type;
+			rc.getRemoteData().motorSettings.settings.min = static_cast<uint16_t>(StringUtils::tryParseInt32Or(_min.getText(), 1'000));
+			rc.getRemoteData().motorSettings.settings.max = static_cast<uint16_t>(StringUtils::tryParseInt32Or(_max.getText(), 2'000));
+			rc.getRemoteData().motorSettings.settings.reverse = _reverse.isActive();
+			rc.getRemoteData().motorSettings.settings.sanitize();
+
+			*rc.getSettings().motors.getByType(_type) = rc.getRemoteData().motorSettings.settings;
+			rc.getSettings().motors.writeLater();
+
+			rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::motors);
+		});
+
+		_mainLayout += &_confirm;
+
 		// Reverse
-		_reverse.setWidth(20);
-		_reverse.setContentMargin(Margin(Theme::cornerRadius - 1, 0, 0, 0));
+		Theme::applySecondary(&_reverse);
+		_reverse.setWidth(_confirm.getSize().getWidth() + 1);
+		_reverse.setMargin(Margin(0, 0, _confirm.getSize().getWidth() - buttonSideMargin, 0));
+		_reverse.setContentMargin(Margin(buttonSideMargin - 1, 0, 0, 0));
 		_reverse.setHorizontalAlignment(Alignment::end);
-		_reverse.setCornerRadius(Theme::cornerRadius);
-		
+
 		_reverse.setDefaultBackgroundColor(&Theme::bg2);
 		_reverse.setDefaultTextColor(&Theme::fg4);
-		
-		_reverse.setActiveBackgroundColor(&Theme::fg1);
-		_reverse.setActiveTextColor(&Theme::bg1);
+
+		_reverse.setActiveBackgroundColor(&Theme::bg6);
+		_reverse.setActiveTextColor(&Theme::fg1);
 		
 		_reverse.setFont(&Theme::fontSmall);
 		_reverse.setText("<>");
 		_reverse.setToggle(true);
 		
 		_reverse.setActive(settings->reverse);
-		
-		_reverse.setOnClick([this] {
-			changed();
-		});
-		
 		_mainLayout += &_reverse;
-		
-		// Row
+
+		// Min / max
 		_minMaxRow.setOrientation(Orientation::horizontal);
 		_minMaxRow.setGap(8);
-		_minMaxRow.setMargin(Margin(0, 0, _reverse.getSize().getWidth() - Theme::cornerRadius - 1, 0));
+		_minMaxRow.setMargin(Margin(0, 0, _confirm.getSize().getWidth() + _reverse.getSize().getWidth() - buttonSideMargin * 2, 0));
 		_mainLayout += &_minMaxRow;
-		
+
 		// Min
 		addTextField(_min, settings->min);
 		
 		// Max
 		addTextField(_max, settings->max);
-	}
-
-	void MotorEditor::changed() const {
-		auto& rc = RC::getInstance();
-
-		rc.getRemoteData().motorSettings.type = _type;
-		rc.getRemoteData().motorSettings.settings.min = static_cast<uint16_t>(StringUtils::tryParseInt32Or(_min.getText(), 1'000));
-		rc.getRemoteData().motorSettings.settings.max = static_cast<uint16_t>(StringUtils::tryParseInt32Or(_max.getText(), 2'000));
-		rc.getRemoteData().motorSettings.settings.reverse = _reverse.isActive();
-		rc.getRemoteData().motorSettings.settings.sanitize();
-
-		*rc.getSettings().motors.getByType(_type) = rc.getRemoteData().motorSettings.settings;
-		rc.getSettings().motors.writeLater();
-
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::motors);
 	}
 
 	MotorsSettingsPage::MotorsSettingsPage() {

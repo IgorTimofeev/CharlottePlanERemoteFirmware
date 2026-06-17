@@ -30,19 +30,13 @@ namespace pizda {
 
 			Button _reverse {};
 
-			void changed() const;
+			Button _confirm {};
 
 			template<std::integral T>
 			void addTextField(TextField& textField, T value) {
 				Theme::apply(&textField);
 				textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
 				textField.setText(std::to_string(value));
-
-				textField.setOnInput([this](const Key key, std::optional<std::string_view> text) {
-					if (key == Key::enter)
-						changed();
-				});
-				
 				_minMaxRow += &textField;
 			}
 	};

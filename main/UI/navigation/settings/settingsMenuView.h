@@ -21,10 +21,10 @@ namespace pizda {
 			std::array<PageMenuViewButton, 7> _buttons {
 				PageMenuViewButton(&resources::images::menuIconPersonalization, "Personal", &Routes::settingsPersonalization),
 				PageMenuViewButton(&resources::images::menuIconADIRS, "ADIRS", &Routes::settingsADIRS),
-				PageMenuViewButton(&resources::images::menuIconSpectrumScan, "Scan", &Routes::settingsSpectrumScan),
+				PageMenuViewButton(&resources::images::menuIconMotors, "Motors", &Routes::settingsMotors),
 				PageMenuViewButton(&resources::images::menuIconTransceiverImage, "XCVR", &Routes::settingsTransceiver),
 				PageMenuViewButton(&resources::images::menuIconAxes, "Axes", &Routes::settingsAxes),
-				PageMenuViewButton(&resources::images::menuIconMotors, "Motors", &Routes::settingsMotors),
+				PageMenuViewButton(&resources::images::menuIconSpectrumScan, "Scan", &Routes::settingsSpectrumScan),
 				PageMenuViewButton(&resources::images::menuIconAutopilotSettings, "Autopilot", &Routes::settingsAutopilot),
 			};
 	};

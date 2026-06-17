@@ -13,7 +13,7 @@ namespace pizda {
 			NDActionButtonDialog(NDScene* scene);
 
 		private:
-			Button _newWaypointButton {};
+			Button _addWaypointButton {};
 			Button _setHomeButton {};
 	};
 

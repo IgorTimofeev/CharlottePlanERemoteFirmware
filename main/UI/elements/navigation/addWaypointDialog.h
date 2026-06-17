@@ -36,12 +36,24 @@ namespace pizda {
 				longitude.setText(std::to_string(toDegrees(lon)));
 			}
 
-			void toRadians(float& lat, float& lon) const {
-				if (!StringUtils::tryParseFloat(latitude.getText().data(), lat))
-					lat = 0;
+			bool toRadians(float& lat, float& lon) {
+				// Lat
+				if (!StringUtils::tryParseFloat(latitude.getText().data(), lat)) {
+					latitude.setDefaultBorderColor(&Theme::bad1);
+					return false;
+				}
 
-				if (!StringUtils::tryParseFloat(longitude.getText().data(), lon))
-					lon = 0;
+				lat = YOBA::toRadians(lat);
+
+				// Lon
+				if (!StringUtils::tryParseFloat(longitude.getText().data(), lon)) {
+					longitude.setDefaultBorderColor(&Theme::bad1);
+					return false;
+				}
+
+				lon = YOBA::toRadians(lon);
+
+				return true;
 			}
 	};
 
@@ -69,7 +81,7 @@ namespace pizda {
 
 			Button _confirmButton {};
 
-			explicit AddWaypointDialog(const GeoCoordinates& coordinates, const std::function<void()>& onConfirm) : _onConfirm(onConfirm) {
+			AddWaypointDialog(const GeoCoordinates& coordinates, const std::function<void()>& onConfirm) : _onConfirm(onConfirm) {
 				auto& rc = RC::getInstance();
 				auto& nd = rc.getNavigationData();
 
@@ -100,19 +112,24 @@ namespace pizda {
 				_confirmButton.setText("Confirm");
 
 				_confirmButton.setOnClick([this, &nd, &rc] {
+					// Name
 					if (_nameTextField.getText().size() == 0) {
 						_nameTextField.setDefaultBorderColor(&Theme::bad1);
 						return;
 					}
 
-					rc.getApplication().invokeLater([this, &nd] {
-						float latitudeRad, longitudeRad;
-						_latLon.toRadians(latitudeRad, longitudeRad);
+					// Lat
+					float lat, lon;
 
+					if (!_latLon.toRadians(lat, lon))
+						return;
+
+					// Finally
+					rc.getApplication().invokeLater([this, &nd, lat, lon] {
 						nd.addEnrouteWaypoint(
 							NavigationWaypointType::enroute,
 							_nameTextField.getText(),
-							GeoCoordinates(latitudeRad, longitudeRad, 0)
+							GeoCoordinates(lat, lon, 0)
 						);
 
 						_onConfirm();

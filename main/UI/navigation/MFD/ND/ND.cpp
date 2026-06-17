@@ -9,27 +9,8 @@ namespace pizda {
 
 		title.setText("Coord");
 
-		// Create waypoint
-		Theme::applyPrimary(&_newWaypointButton);
-		_newWaypointButton.setText("Create waypoint");
-
-		_newWaypointButton.setOnClick([this,  scene, &rc] {
-			rc.getApplication().invokeLater([this, scene] {
-				AddWaypointDialog::create(scene->getCameraCoordinates(), [scene] {
-					scene->deleteSceneElements();
-					scene->createSceneElementsFromNavigationData();
-					scene->setFocused(true);
-				});
-
-				hide();
-				delete this;
-			});
-		});
-
-		rows += &_newWaypointButton;
-
 		// Set home
-		Theme::applySecondary(&_setHomeButton);
+		Theme::applyPrimary(&_setHomeButton);
 		_setHomeButton.setText("Set home");
 
 		_setHomeButton.setOnClick([this, &rc, scene] {
@@ -46,6 +27,25 @@ namespace pizda {
 		});
 
 		rows += &_setHomeButton;
+
+		// Create waypoint
+		Theme::applySecondary(&_addWaypointButton);
+		_addWaypointButton.setText("Add waypoint");
+
+		_addWaypointButton.setOnClick([this,  scene, &rc] {
+			rc.getApplication().invokeLater([this, scene] {
+				AddWaypointDialog::create(scene->getCameraCoordinates(), [scene] {
+					scene->deleteSceneElements();
+					scene->createSceneElementsFromNavigationData();
+					scene->setFocused(true);
+				});
+
+				hide();
+				delete this;
+			});
+		});
+
+		rows += &_addWaypointButton;
 	}
 
 	ND::ND() {

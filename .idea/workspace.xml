@@ -193,79 +193,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="зарефакторил баунды и вернул рендеринг СКОРОСТНЫХ ЖУКОВ">
+    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="чета идея с отключением EIS была галимой">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/rc.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/splashScreenImage.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/resources/images/splashScreenImage.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/personalizationSettings.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/settings/personalizationSettings.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/concepts/MFD.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/concepts/MFD.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/back.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/back.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconADIRS.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconADIRS.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconADIRS.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconADIRS.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconAutopilotSettings.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconAutopilotSettings.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconAutopilotSettings.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconAutopilotSettings.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconAxes.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconAxes.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconAxes.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconAxes.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconDev.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconDev.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconDev.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconDev.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconFlightPlan.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconFlightPlan.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconFlightPlan.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconFlightPlan.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFD.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFD.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFD.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFD.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilot.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilot.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilot.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilot.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotEngage.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotEngage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotEngage.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotEngage.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotFlightDirector.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotFlightDirector.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotFlightDirector.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotFlightDirector.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotGyro.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotGyro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotGyro.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDAutopilotGyro.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDBaro.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDBaro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDBaro.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDBaro.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDCamera.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDCamera.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDCamera.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDCamera.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDCameraReset.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDCameraReset.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDCameraReset.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDCameraReset.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLights.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLights.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLights.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLights.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsCabin.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsCabin.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsCabin.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsCabin.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsLanding.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsLanding.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsLanding.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsLanding.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsNavigation.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsNavigation.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsNavigation.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsNavigation.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsStrobe.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsStrobe.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLightsStrobe.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLightsStrobe.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDLog.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDLog.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDMetricUnits.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDMetricUnits.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDMetricUnits.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDMetricUnits.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDND.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDND.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDND.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDND.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDPFD.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDPFD.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDPFD.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDPFD.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDTrim.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDTrim.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMFDTrim.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMFDTrim.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMotors.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMotors.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconMotors.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconMotors.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconPersonalization.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconPersonalization.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconPersonalization.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconPersonalization.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconPower.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconPower.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconPower.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconPower.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconSpectrumScan.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconSpectrumScan.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconSpectrumScan.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconSpectrumScan.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconTransceiver.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconTransceiver.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconTransceiver.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconTransceiver.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconWaypoints.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconWaypoints.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconWaypoints.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconWaypoints.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconWiFi.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconWiFi.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/menuIconWiFi.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/menuIconWiFi.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/splashScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/splashScreen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/images/splashScreen.psd" beforeDir="false" afterPath="$PROJECT_DIR$/resources/images/splashScreen.psd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/button.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/button.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/generic.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/generic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/elements/PID/PIDReferencer.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/PID/PIDReferencer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/dialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/dialogs/dialog.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/elements/navigation/addWaypointDialog.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/navigation/addWaypointDialog.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/settingsMenuView.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/settingsMenuView.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/theme.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/theme.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/types/generic.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/types/generic.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -942,11 +886,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="app-flash" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CharlottePlanERemote" TARGET_NAME="app-flash" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -1207,8 +1146,8 @@
       <item itemvalue="CMake Application.__idf_esp_bootloader_format" />
       <item itemvalue="CMake Application.__idf_esp_coex" />
       <item itemvalue="CMake Application.__idf_esp_common" />
-      <item itemvalue="CMake Application.__idf_esp_driver_dac" />
       <item itemvalue="CMake Application.__idf_esp_driver_cam" />
+      <item itemvalue="CMake Application.__idf_esp_driver_dac" />
       <item itemvalue="CMake Application.__idf_esp_driver_dma" />
       <item itemvalue="CMake Application.__idf_esp_driver_gpio" />
       <item itemvalue="CMake Application.__idf_esp_driver_gptimer" />
@@ -1407,7 +1346,9 @@
       <workItem from="1781285585480" duration="307000" />
       <workItem from="1781286792148" duration="425000" />
       <workItem from="1781537184153" duration="5848000" />
-      <workItem from="1781610034043" duration="2669000" />
+      <workItem from="1781610034043" duration="3242000" />
+      <workItem from="1781628064728" duration="1000" />
+      <workItem from="1781684502984" duration="9072000" />
     </task>
     <task id="LOCAL-00001" summary="ебучий есп">
       <option name="closed" value="true" />
@@ -1657,7 +1598,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781544639579</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="чета идея с отключением EIS была галимой">
+      <option name="closed" value="true" />
+      <created>1781613123417</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1781613123417</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1709,7 +1658,6 @@
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/unity/unity" />
       <path value="$PROJECT_DIR$/components/ESP-IDF-Battery" />
     </ignored-roots>
-    <MESSAGE value="добавил конфигурацию макс тока на каскаде, чтоб ебашило на все сука 140 ма, ато БлДЯЬ ЗАПЛОЧЕНО ЗА ПОЛНОЕ - БУДЕМ ЮЗАТЬ ПОЛНОЕ" />
     <MESSAGE value="СУКА НЕ ВЛЕЗАЕТ В СТРОКУ" />
     <MESSAGE value="захуярил наконец эту пиздятину на серводрайвере - ну и камеру на гимбаллике заодно уж" />
     <MESSAGE value="ебучие темплейты от любви до ненависти, ДАЙТИ КИСЛОРООООДАА" />
@@ -1734,7 +1682,8 @@
     <MESSAGE value="перехуячил HAL на классовую логику, т.к. хранить SPI/I2C в статике как-то парашно" />
     <MESSAGE value="добавил отсечение младшего разряда высоты, т.к. один хуй альтиметр дает пердящую погрешность в +- 50 см" />
     <MESSAGE value="зарефакторил баунды и вернул рендеринг СКОРОСТНЫХ ЖУКОВ" />
-    <option name="LAST_COMMIT_MESSAGE" value="зарефакторил баунды и вернул рендеринг СКОРОСТНЫХ ЖУКОВ" />
+    <MESSAGE value="чета идея с отключением EIS была галимой" />
+    <option name="LAST_COMMIT_MESSAGE" value="чета идея с отключением EIS была галимой" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

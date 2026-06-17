@@ -20,7 +20,7 @@ namespace pizda {
 			keyboard->setActionKeyTextColor(&Theme::fg1);
 
 			keyboard->setDisabledKeyBackgroundColor(&Theme::bg2);
-			keyboard->setDisabledKeyTextColor(&Theme::fg5);
+			keyboard->setDisabledKeyTextColor(&Theme::fg6);
 
 			keyboard->setNumericLayoutBuilder([] {
 				return new NumericKeyboardLayout();

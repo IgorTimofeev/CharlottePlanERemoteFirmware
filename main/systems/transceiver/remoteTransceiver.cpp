@@ -47,7 +47,7 @@ namespace pizda {
 				transmit();
 
 				// Receiving
-				if (receive(100'000)) {
+				if (receive(500'000)) {
 					updateRSSIAndSNR();
 				}
 

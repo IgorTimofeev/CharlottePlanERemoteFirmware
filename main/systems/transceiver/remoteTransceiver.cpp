@@ -44,9 +44,7 @@ namespace pizda {
 		switch (rc.getRemoteData().transceiver.spectrumScanning.state) {
 			case RemoteDataRadioSpectrumScanningState::stopped: {
 				// Transmitting
-				if (transmit(100'000)) {
-
-				}
+				transmit();
 
 				// Receiving
 				if (receive(100'000)) {
@@ -69,10 +67,10 @@ namespace pizda {
 
 		float valueF;
 
-		if (_SX.getRSSI(valueF) == SX1262::error::none)
+		if (_SX.getRSSI(valueF) == SX1262Error::none)
 			_RSSI = static_cast<int8_t>(valueF);
 
-		if (_SX.getSNR(valueF) == SX1262::error::none)
+		if (_SX.getSNR(valueF) == SX1262Error::none)
 			_SNR = static_cast<int8_t>(valueF);
 
 		_RSSIAndSNRUpdateTimeUs = esp_timer_get_time() + _RSSIAndSNRUpdateIntervalUs;
@@ -120,7 +118,7 @@ namespace pizda {
 		// Switching to standby
 		auto error = _SX.setStandby();
 
-		if (error != SX1262::error::none) {
+		if (error != SX1262Error::none) {
 			logSXError("stopSpectrumScanning() error", error);
 			return false;
 		}
@@ -128,7 +126,7 @@ namespace pizda {
 		// Setting normal RX/TX frequency
 		error = _SX.setRFFrequency(config::XCVR::communicationSettings.frequencyHz);
 
-		if (error != SX1262::error::none) {
+		if (error != SX1262Error::none) {
 			logSXError("stopSpectrumScanning() error", error);
 			return false;
 		}
@@ -156,7 +154,7 @@ namespace pizda {
 			// Switching to standby
 			const auto error = _SX.setStandby();
 
-			if (error != SX1262::error::none) {
+			if (error != SX1262Error::none) {
 				logSXError("onSpectrumScanning() error", error);
 				stopSpectrumScanning();
 
@@ -173,7 +171,7 @@ namespace pizda {
 
 		// Changing frequency
 		auto error = _SX.setRFFrequency(rd.frequency);
-		if (error != SX1262::error::none) {
+		if (error != SX1262Error::none) {
 			logSXError("onSpectrumScanning() error", error);
 			stopSpectrumScanning();
 
@@ -185,7 +183,7 @@ namespace pizda {
 		// Moving to RX single mode
 		error = _SX.setRX();
 
-		if (error != SX1262::error::none) {
+		if (error != SX1262Error::none) {
 			logSXError("onSpectrumScanning() error", error);
 			stopSpectrumScanning();
 
@@ -200,7 +198,7 @@ namespace pizda {
 		for (uint8_t i = 0; i < RSSISamplesLength; i++) {
 			error = _SX.getRSSIInst(RSSIF);
 
-			if (error != SX1262::error::none) {
+			if (error != SX1262Error::none) {
 				logSXError("onSpectrumScanning() error", error);
 				stopSpectrumScanning();
 

@@ -67,6 +67,11 @@ namespace pizda {
 
 			virtual bool setup() {
 				const auto error = _SX.setup(
+					config::XCVR::SS,
+					config::XCVR::busy,
+					config::XCVR::DIO1,
+					config::XCVR::RST,
+
 					config::SPI::device,
 					config::XCVR::SPIFrequencyHz,
 
@@ -82,7 +87,7 @@ namespace pizda {
 					false
 				);
 
-				if (error != SX1262::error::none) {
+				if (error != SX1262Error::none) {
 					ESP_LOGE(_logTag, "SX1262 setup failed with code %d", std::to_underlying(error));
 					return false;
 				}
@@ -134,7 +139,7 @@ namespace pizda {
 
 				const auto error = _SX.receive(_SXBuffer, receivedLength, timeoutUs);
 
-				if (error == SX1262::error::none) {
+				if (error == SX1262Error::none) {
 					//		ESP_LOGI(_logTag, "read length: %d", length);
 					//
 					//		for (int i = 0; i < length; ++i) {
@@ -190,7 +195,7 @@ namespace pizda {
 				return false;
 			}
 
-			bool transmit(const uint32_t timeoutUs) {
+			bool transmit() {
 				BitStream stream { _SXBuffer };
 
 				const auto packetType = getTransmitPacketType();
@@ -217,9 +222,9 @@ namespace pizda {
 				// 	ESP_LOGI(_logTag, "write buffer[%d]: %d", i, _buffer[i]);
 				// }
 
-				const auto error = _SX.transmit({ _SXBuffer, totalLength }, timeoutUs);
+				const auto error = _SX.transmit({ _SXBuffer, totalLength }, 500'000);
 
-				if (error != SX1262::error::none) {
+				if (error != SX1262Error::none) {
 					logSXError("transmit error", error);
 					return false;
 				}
@@ -256,18 +261,13 @@ namespace pizda {
 		protected:
 			constexpr static auto _logTag = "XCVR";
 
-			SX1262::Transceiver _SX {
-				config::XCVR::SS,
-				config::XCVR::busy,
-				config::XCVR::DIO1,
-				config::XCVR::RST
-			};
+			SX1262 _SX {};
 
 			constexpr static uint16_t _SXBufferLength = 255;
 			uint8_t _SXBuffer[_SXBufferLength] {};
 
-			static void logSXError(const char* key, const SX1262::error error) {
-				// if (error == SX1262::error::timeout)
+			static void logSXError(const char* key, const SX1262Error error) {
+				// if (error == SX1262Error::timeout)
 				// 	return;
 
 				constexpr static uint8_t errorBufferLength = 255;
@@ -306,8 +306,8 @@ namespace pizda {
 			virtual void onCommunicationSettingsSyncCheckScheduled() = 0;
 			virtual void onCommunicationSettingsSyncCheckCompleted() = 0;
 
-			static bool checkSXErrorOnSetCommunicationSettings(const SX1262::error error) {
-				if (error != SX1262::error::none) {
+			static bool checkSXErrorOnSetCommunicationSettings(const SX1262Error error) {
+				if (error != SX1262Error::none) {
 					logSXError("failed to set communication settings", error);
 					return false;
 				}

@@ -85,8 +85,8 @@ namespace pizda {
 		_confirmButton.setOnClick([this, &rc] {
 			auto& settings = rc.getRemoteData().transceiver.communicationSettings;
 			settings.frequencyHz = StringUtils::tryParseInt32Or(_RFFrequency.getText(), 0) * 1'000'000;
-			settings.bandwidth = static_cast<SX1262::LoRaBandwidth>(_bandwidth.getSelectedIndex());
-			settings.codingRate = static_cast<SX1262::LoRaCodingRate>(_codingRate.getSelectedIndex());
+			settings.bandwidth = static_cast<SX1262LoRaBandwidth>(_bandwidth.getSelectedIndex());
+			settings.codingRate = static_cast<SX1262LoRaCodingRate>(_codingRate.getSelectedIndex());
 			settings.spreadingFactor = StringUtils::tryParseInt32Or(_spreadingFactor.getText(), 0);
 			settings.syncWord = StringUtils::tryParseInt32Or(_syncWord.getText(), 0);
 			settings.preambleLength = StringUtils::tryParseInt32Or(_preambleLength.getText(), 0);

@@ -6,6 +6,8 @@
 #include <SX1262.h>
 
 namespace pizda {
+	using namespace YOBA;
+
 	enum class ConnectionState : uint8_t {
 		initial,
 		connected,
@@ -82,9 +84,9 @@ namespace pizda {
 	class TransceiverCommunicationSettings {
 		public:
 			uint32_t frequencyHz = 0;
-			SX1262::LoRaBandwidth bandwidth = SX1262::LoRaBandwidth::bw500_0;
+			SX1262LoRaBandwidth bandwidth = SX1262LoRaBandwidth::bw500_0;
 			uint8_t spreadingFactor = 0;
-			SX1262::LoRaCodingRate codingRate = SX1262::LoRaCodingRate::cr4_5;
+			SX1262LoRaCodingRate codingRate = SX1262LoRaCodingRate::cr4_5;
 			uint8_t syncWord = 0;
 			uint16_t preambleLength = 0;
 

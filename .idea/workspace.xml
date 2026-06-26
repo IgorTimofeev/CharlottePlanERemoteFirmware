@@ -193,14 +193,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="бля это какой-то рандом сучий">
+    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="добавил поддержку implicit header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/ESP-IDF-SX1262" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-SX1262" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/rc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/rc.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/systems/transceiver/transceiver.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/transceiver.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,7 +212,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/components/ESP-IDF-SX1262" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -303,11 +302,6 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.__idf_ESP-IDF-ADCVoltmeter">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CharlottePlanERemote.elf" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CharlottePlanERemote" TARGET_NAME="CharlottePlanERemote.elf" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="CharlottePlanERemote" RUN_TARGET_NAME="CharlottePlanERemote.elf">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -879,6 +873,11 @@
       </method>
     </configuration>
     <configuration name="_project_elf_src" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CharlottePlanERemote" TARGET_NAME="_project_elf_src" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -1637,7 +1636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782430187012</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="добавил поддержку implicit header">
+      <option name="closed" value="true" />
+      <created>1782480261426</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1782480261426</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1689,7 +1696,6 @@
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/unity/unity" />
       <path value="$PROJECT_DIR$/components/ESP-IDF-Battery" />
     </ignored-roots>
-    <MESSAGE value="чет идея синхронить стейт на подключении тоже галимая - типа вдруг у меня пульт наебнется, пока миссис птичка наворачивает свою коробочку ебучую... мб синхронить их на тейкофф фазе" />
     <MESSAGE value="пультик тож на новую йобу обновим-с" />
     <MESSAGE value="ахахахах эндинги уебало" />
     <MESSAGE value="опять фиксики..." />
@@ -1714,7 +1720,8 @@
     <MESSAGE value="бля, забыл АЙРАМ (ПРИВЕТ ЖОННИ АЙВУ) _АТТР добавить" />
     <MESSAGE value="а, не, хуевая идея - тут по-хорошему надо чекать наличие опции" />
     <MESSAGE value="бля это какой-то рандом сучий" />
-    <option name="LAST_COMMIT_MESSAGE" value="бля это какой-то рандом сучий" />
+    <MESSAGE value="добавил поддержку implicit header" />
+    <option name="LAST_COMMIT_MESSAGE" value="добавил поддержку implicit header" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

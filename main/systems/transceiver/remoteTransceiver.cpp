@@ -461,14 +461,14 @@ namespace pizda {
 						return true;
 					}
 					default: {
-						ESP_LOGE(_logTag, "failed to receive packet: unsupported aircraft system packet type %d", aircraftSystemPacketType);
+						ESP_LOGE(_logTag, "failed to receive packet: unsupported aircraft system type %d", std::to_underlying(aircraftSystemPacketType));
 
 						return false;
 					}
 				}
 			}
 			default: {
-				ESP_LOGE(_logTag, "failed to receive packet: unsupported type %d", packetType);
+				ESP_LOGE(_logTag, "failed to receive packet: unsupported type %d", std::to_underlying(packetType));
 
 				return false;
 			}
@@ -505,13 +505,15 @@ namespace pizda {
 		}
 	}
 
-	void RemoteTransceiver::transmitRemoteSystemPacket(BitStream& stream) const {
+	void RemoteTransceiver::transmitRemoteSystemPacket(BitStream& stream) {
 		auto& rc = RC::getInstance();
 
 		// Type
-		stream.writeUint8(std::to_underlying(getEnqueuedSystemPacketType()), RemoteSystemPacket::typeLengthBits);
+		const auto systemPacketType = getTransmitSystemPacketType();
+
+		stream.writeUint8(std::to_underlying(systemPacketType), RemoteSystemPacket::typeLengthBits);
 		
-		switch (getEnqueuedSystemPacketType()) {
+		switch (systemPacketType) {
 			case RemoteSystemPacketType::trim: {
 				const auto write = [&stream](const int8_t settingsValue) {
 					stream.writeUint16(
@@ -744,7 +746,7 @@ namespace pizda {
 			}
 
 			default:
-				ESP_LOGE(_logTag, "failed to transmit packet: unsupported type %d", getEnqueuedSystemPacketType());
+				ESP_LOGE(_logTag, "failed to transmit packet: unsupported system type %d", std::to_underlying(systemPacketType));
 				break;
 		}
 	}

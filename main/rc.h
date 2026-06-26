@@ -158,8 +158,8 @@ namespace pizda {
 			int64_t _dataInterpolationTime = 0;
 			int64_t _batteryTickTime = 0;
 
-			float applyLPF(float oldValue, float newValue, float factor) const;
-			float applyLPFToAngle(float oldValue, float newValue, float factor) const;
+			float applyEMA(float oldValue, float newValue, float factor) const;
+			float applyEMAToAngle(float oldValue, float newValue, float factor) const;
 			void interpolateData();
 			void batteryTick();
 

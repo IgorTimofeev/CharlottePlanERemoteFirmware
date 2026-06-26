@@ -155,14 +155,14 @@ namespace pizda {
 		}
 	}
 
-	float RC::applyLPF(const float oldValue, const float newValue, const float factor) const {
+	float RC::applyEMA(const float oldValue, const float newValue, const float factor) const {
 		return
 			_settings.personalization.LPF
 			? EMAFilter::apply(oldValue, newValue, factor)
 			: newValue;
 	}
 	
-	float RC::applyLPFToAngle(const float oldValue, const float newValue, const float factor) const {
+	float RC::applyEMAToAngle(const float oldValue, const float newValue, const float factor) const {
 		return
 			_settings.personalization.LPF
 			? EMAFilter::applyToAngle(oldValue, newValue, factor)
@@ -184,21 +184,21 @@ namespace pizda {
 		float LPFFactor = EMAFilter::getDeltaTimeUsFactor(5.0f, deltaTimeUs);
 		
 		// Pitch
-		_aircraftData.computed.pitchRad = applyLPFToAngle(
+		_aircraftData.computed.pitchRad = applyEMAToAngle(
 			_aircraftData.computed.pitchRad,
 			_aircraftData.raw.pitchRad,
 			LPFFactor
 		);
 		
 		// Roll
-		_aircraftData.computed.rollRad = applyLPFToAngle(
+		_aircraftData.computed.rollRad = applyEMAToAngle(
 			_aircraftData.computed.rollRad,
 			_aircraftData.raw.rollRad,
 			LPFFactor
 		);
 		
 		// Yaw
-		_aircraftData.computed.yawRad = applyLPFToAngle(
+		_aircraftData.computed.yawRad = applyEMAToAngle(
 			_aircraftData.computed.yawRad,
 			_aircraftData.raw.yawRad,
 			LPFFactor
@@ -209,90 +209,90 @@ namespace pizda {
 //		ESP_LOGI("PIZDA", "raw: %f, raw deg: %f, computed: %f, deg: %f, heading: %f", _aircraftData.raw.yawRad, toDegrees(-_aircraftData.raw.yawRad), _aircraftData.computed.yawRad, toDegrees(_aircraftData.computed.yawRad), _aircraftData.computed.headingDeg);
 
 		// Coordinates
-		_aircraftData.computed.coordinates.setLatitude(applyLPF(
+		_aircraftData.computed.coordinates.setLatitude(applyEMA(
 			_aircraftData.computed.coordinates.getLatitude(),
 			_aircraftData.raw.coordinates.getLatitude(),
 			LPFFactor
 		));
 
-		_aircraftData.computed.coordinates.setLongitude(applyLPF(
+		_aircraftData.computed.coordinates.setLongitude(applyEMA(
 			_aircraftData.computed.coordinates.getLongitude(),
 			_aircraftData.raw.coordinates.getLongitude(),
 			LPFFactor
 		));
 
-		_aircraftData.computed.coordinates.setAltitude(applyLPF(
+		_aircraftData.computed.coordinates.setAltitude(applyEMA(
 			_aircraftData.computed.coordinates.getAltitude(),
 			_aircraftData.raw.coordinates.getAltitude(),
 			LPFFactor
 		));
 
 		// Slip & skid
-		_aircraftData.computed.slipAndSkidFactor = applyLPF(
+		_aircraftData.computed.slipAndSkidFactor = applyEMA(
 			_aircraftData.computed.slipAndSkidFactor,
 			_aircraftData.raw.slipAndSkidFactor,
 			LPFFactor
 		);
 
 		// Flight path vector
-		_aircraftData.computed.flightPathVectorPitchRad = applyLPF(
+		_aircraftData.computed.flightPathVectorPitchRad = applyEMA(
 			_aircraftData.computed.flightPathVectorPitchRad,
 			_aircraftData.raw.flightPathVectorPitchRad,
 			LPFFactor
 		);
 		
-		_aircraftData.computed.flightPathVectorYawRad = applyLPF(
+		_aircraftData.computed.flightPathVectorYawRad = applyEMA(
 			_aircraftData.computed.flightPathVectorYawRad,
 			_aircraftData.raw.flightPathVectorYawRad,
 			LPFFactor
 		);
 		
 		// Flight director
-		_aircraftData.computed.autopilot.rollRad = applyLPF(
+		_aircraftData.computed.autopilot.rollRad = applyEMA(
 			_aircraftData.computed.autopilot.rollRad,
 			_aircraftData.raw.autopilot.rollRad,
 			LPFFactor
 		);
 		
-		_aircraftData.computed.autopilot.pitchRad = applyLPF(
+		_aircraftData.computed.autopilot.pitchRad = applyEMA(
 			_aircraftData.computed.autopilot.pitchRad,
 			_aircraftData.raw.autopilot.pitchRad,
 			LPFFactor
 		);
-		
+
+		// Throttle
+		_aircraftData.computed.throttle_0_1 = applyEMA(
+			_aircraftData.computed.throttle_0_1,
+			static_cast<float>(_aircraftData.raw.throttle_0_255) / 255.f,
+			LPFFactor
+		);
+
 		// Normal
 		LPFFactor = EMAFilter::getDeltaTimeUsFactor(3.0f, deltaTimeUs);
 		
 		// Air speed
-		_aircraftData.computed.airspeedKt = applyLPF(
+		_aircraftData.computed.airspeedKt = applyEMA(
 			_aircraftData.computed.airspeedKt,
 			Units::convertSpeed(_aircraftData.raw.airspeedMPS, SpeedUnit::meterPerSecond, SpeedUnit::knot),
 			LPFFactor
 		);
 		
 		// Altitude
-		_aircraftData.computed.altitudeFt = applyLPF(
+		_aircraftData.computed.altitudeFt = applyEMA(
 			_aircraftData.computed.altitudeFt,
 			Units::convertDistance(_aircraftData.raw.coordinates.getAltitude(), DistanceUnit::meter, DistanceUnit::foot),
 			LPFFactor
 		);
 		
 		// Wind direction
-		_aircraftData.computed.windDirectionRad = applyLPF(
+		_aircraftData.computed.windDirectionRad = applyEMA(
 			_aircraftData.computed.windDirectionRad,
 			_aircraftData.raw.windDirectionRad,
 			LPFFactor
 		);
-		
-		// Throttle
-		_aircraftData.computed.throttle_0_1 = applyLPF(
-			_aircraftData.computed.throttle_0_1,
-			static_cast<float>(_aircraftData.raw.throttle_0_255) / 255.f,
-			LPFFactor
-		);
 
 		// Yaw trend
-		_aircraftData.computed.yawTrendDeg = applyLPF(
+		_aircraftData.computed.yawTrendDeg = applyEMA(
 			_aircraftData.computed.yawTrendDeg,
 			_aircraftData.raw.yawTrendDeg,
 			LPFFactor
@@ -302,21 +302,21 @@ namespace pizda {
 		LPFFactor = EMAFilter::getDeltaTimeUsFactor(1.0f, deltaTimeUs);
 
 		// Airspeed trend
-		_aircraftData.computed.airspeedTrendKt = applyLPF(
+		_aircraftData.computed.airspeedTrendKt = applyEMA(
 			_aircraftData.computed.airspeedTrendKt,
 			Units::convertSpeed(_aircraftData.raw.airspeedTrendMPS, SpeedUnit::meterPerSecond, SpeedUnit::knot),
 			LPFFactor
 		);
 		
 		// Altitude trend
-		_aircraftData.computed.altitudeTrendFt = applyLPF(
+		_aircraftData.computed.altitudeTrendFt = applyEMA(
 			_aircraftData.computed.altitudeTrendFt,
 			Units::convertDistance(_aircraftData.raw.altitudeTrendM, DistanceUnit::meter, DistanceUnit::foot),
 			LPFFactor
 		);
 		
 		// Vertical speed
-		_aircraftData.computed.verticalSpeedFPM = applyLPF(
+		_aircraftData.computed.verticalSpeedFPM = applyEMA(
 			_aircraftData.computed.verticalSpeedFPM,
 			Units::convertDistance(_aircraftData.raw.verticalSpeedMPM, DistanceUnit::meter, DistanceUnit::foot),
 			LPFFactor

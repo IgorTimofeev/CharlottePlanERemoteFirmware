@@ -70,6 +70,6 @@ namespace pizda {
 			// ----------------------------- Other stuff -----------------------------
 
 			static void writePID(BitStream& stream, const PIDCoefficients& coefficients);
-			void transmitRemoteSystemPacket(BitStream& stream) const;
+			void transmitRemoteSystemPacket(BitStream& stream);
 	};
 }

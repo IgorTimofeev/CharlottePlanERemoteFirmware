@@ -24,10 +24,10 @@ namespace pizda {
 		deleteSceneElements();
 	}
 
-	GeoCoordinates NDScene::_cameraOffset = {
+	GeoCoordinates NDScene::_cameraOffset {
 		0,
 		0,
-		2500
+		500
 	};
 
 	void NDScene::onTick() {

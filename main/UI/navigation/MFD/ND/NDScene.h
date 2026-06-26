@@ -18,7 +18,7 @@ namespace pizda {
 			NDScene();
 			~NDScene() override;
 
-			constexpr static uint32_t cameraAltitudeMinimum = 50;
+			constexpr static uint32_t cameraAltitudeMinimum = 20;
 			constexpr static uint32_t cameraAltitudeMaximum = GeoCoordinates::equatorialRadiusMeters * 2;
 
 			const GeoCoordinates& getCameraOffset() const;

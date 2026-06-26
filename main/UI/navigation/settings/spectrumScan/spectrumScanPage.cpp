@@ -303,7 +303,7 @@ namespace pizda {
 		frequencyPresetsButton.setText("...");
 
 		frequencyPresetsButton.setOnClick([this] {
-			constexpr static std::array<std::string_view, 5> itemsNames {
+			constexpr static std::array<std::string_view, 5> itemNames {
 				"430 - 440 MHz",
 				"470 - 510 MHz",
 				"779 - 787 MHz",
@@ -311,7 +311,7 @@ namespace pizda {
 				"902 - 928 MHz"
 			};
 
-			constexpr static std::array<std::tuple<uint16_t, uint16_t>, itemsNames.size()> itemsFromTo {
+			constexpr static std::array<std::tuple<uint16_t, uint16_t>, itemNames.size()> itemsFromTo {
 				std::tuple(430, 440),
 				std::tuple(470, 510),
 				std::tuple(779, 787),
@@ -335,8 +335,7 @@ namespace pizda {
 			(
 				new SelectorDialog(
 					"Presets",
-					itemsNames.data(),
-					itemsNames.size(),
+					itemNames,
 					presetIndex,
 					[this](const uint8_t index) {
 						frequencyFromTextField.setText(std::to_string(std::get<0>(itemsFromTo[index])));

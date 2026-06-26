@@ -24,13 +24,11 @@ namespace pizda {
 
 	SelectorDialog::SelectorDialog(
 		const std::string_view& title,
-		const std::string_view* items,
-		const uint8_t itemCount,
+		const std::span<const std::string_view> items,
 		const uint8_t selectedIndex,
 		const std::function<void(uint8_t)>& onItemSelected
 	) :
 		_items(items),
-		_itemCount(itemCount),
 		_selectedIndex(selectedIndex),
 		_onItemSelected(onItemSelected)
 	{
@@ -39,7 +37,7 @@ namespace pizda {
 		_itemRows.setGap(Theme::verticalGap);
 		rows += &_itemRows;
 
-		for (uint16_t i = 0; i < _itemCount; ++i) {
+		for (uint16_t i = 0; i < _items.size(); ++i) {
 			const auto item = new SelectorDialogItem(this, i);
 			item->setActive(i == _selectedIndex);
 
@@ -52,7 +50,7 @@ namespace pizda {
 			delete child;
 	}
 
-	const std::string_view* SelectorDialog::getItems() const {
+	const std::span<const std::string_view> SelectorDialog::getItems() const {
 		return _items;
 	}
 

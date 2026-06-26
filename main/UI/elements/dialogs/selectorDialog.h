@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <span>
 
 #include <YOBA/UI.h>
 #include <YOBA/core.h>
@@ -29,23 +30,21 @@ namespace pizda {
 		public:
 			SelectorDialog(
 				const std::string_view& title,
-				const std::string_view* items,
-				uint8_t itemCount,
+				const std::span<const std::string_view> items,
 				uint8_t selectedIndex,
 				const std::function<void(uint8_t)>& onItemSelected
 			);
 
 			~SelectorDialog() override;
 
-			const std::string_view* getItems() const;
+			const std::span<const std::string_view> getItems() const;
 			const std::function<void(uint8_t)>& getOnItemSelected();
 
 		protected:
 			void onAddedToParent(Layout* parent) override;
 
 		private:
-			const std::string_view* _items;
-			uint8_t _itemCount;
+			const std::span<const std::string_view> _items;
 			uint8_t _selectedIndex;
 			std::function<void(uint8_t)> _onItemSelected;
 

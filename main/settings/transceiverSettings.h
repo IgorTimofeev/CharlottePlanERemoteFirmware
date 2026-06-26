@@ -45,6 +45,9 @@ namespace pizda {
 
 				communication.currentLimitMA = stream.readInt8(_communicationCurrentLimitMA, config::XCVR::communicationSettings.currentLimitMA);
 				communication.powerDBm = stream.readInt8(_communicationPowerDBm, config::XCVR::communicationSettings.powerDBm);
+
+				communication.receivingTimeOffsetUs = stream.readInt32(_communicationReceivingTimeOffsetUs, config::XCVR::communicationSettings.receivingTimeOffsetUs);
+				communication.transmittingTimeOffsetUs = stream.readInt32(_communicationTransmittingTimeOffsetUs, config::XCVR::communicationSettings.transmittingTimeOffsetUs);
 			}
 
 			void onWrite(const NVSStream& stream) override {
@@ -61,11 +64,14 @@ namespace pizda {
 
 				stream.writeInt8(_communicationCurrentLimitMA, communication.currentLimitMA);
 				stream.writeInt8(_communicationPowerDBm, communication.powerDBm);
+
+				stream.writeInt32(_communicationReceivingTimeOffsetUs, communication.receivingTimeOffsetUs);
+				stream.writeInt32(_communicationTransmittingTimeOffsetUs, communication.transmittingTimeOffsetUs);
 			}
 
 		private:
 			constexpr static auto _namespace = "trn";
-			
+
 			constexpr static auto _spectrumScanningFrequencyFrom  = "ssff";
 			constexpr static auto _spectrumScanningFrequencyTo  = "ssft";
 			constexpr static auto _spectrumScanningFrequencyStep  = "ssfs";
@@ -79,5 +85,8 @@ namespace pizda {
 
 			constexpr static auto _communicationCurrentLimitMA = "cmcl";
 			constexpr static auto _communicationPowerDBm = "cmpw";
+
+			constexpr static auto _communicationReceivingTimeOffsetUs = "cmrt";
+			constexpr static auto _communicationTransmittingTimeOffsetUs = "cmtt";
 	};
 }

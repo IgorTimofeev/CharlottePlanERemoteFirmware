@@ -587,6 +587,9 @@ namespace pizda {
 				stream.writeInt8(settings.currentLimitMA, RemoteSystemCommunicationSettingsPacket::currentLimitMALengthBits);
 				stream.writeInt8(settings.powerDBm, RemoteSystemCommunicationSettingsPacket::powerDBmLengthBits);
 
+				stream.writeInt32(settings.receivingTimeOffsetUs, RemoteSystemCommunicationSettingsPacket::receivingTimeOffsetLengthBits);
+				stream.writeInt32(settings.transmittingTimeOffsetUs, RemoteSystemCommunicationSettingsPacket::transmittingTimeOffsetLengthBits);
+
 				break;
 			}
 			case RemoteSystemPacketType::magneticDeclination: {

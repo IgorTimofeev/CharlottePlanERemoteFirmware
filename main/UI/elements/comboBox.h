@@ -1,6 +1,7 @@
 #pragma once
 
 #include <functional>
+#include <span>
 
 #include <YOBA/UI.h>
 #include <YOBA/core.h>
@@ -14,11 +15,8 @@ namespace pizda {
 		public:
 			ComboBox();
 
-			std::string_view* getItems() const;
-			void setItems(std::string_view* const items);
-
-			uint8_t getItemCount() const;
-			void setItemCount(const uint8_t itemCount);
+			std::span<const std::string_view> getItems() const;
+			void setItems(const std::span<const std::string_view> items);
 
 			uint8_t getSelectedIndex() const;
 			void setSelectedIndex(const uint8_t value);
@@ -32,8 +30,7 @@ namespace pizda {
 			void onRender(Renderer* renderer, const Rectangle& bounds) override;
 
 		private:
-			std::string_view* _items = nullptr;
-			uint8_t _itemCount = 0;
+			std::span<const std::string_view> _items {};
 			uint8_t _selectedIndex = 0;
 			std::string _dialogTitle;
 	};

@@ -8,11 +8,11 @@ namespace pizda {
 		setHeight(Theme::elementHeight);
 	}
 
-	std::string_view* ComboBox::getItems() const {
+	std::span<const std::string_view> ComboBox::getItems() const {
 		return _items;
 	}
 
-	void ComboBox::setItems(std::string_view* const items) {
+	void ComboBox::setItems(const std::span<const std::string_view> items) {
 		_items = items;
 	}
 
@@ -22,14 +22,6 @@ namespace pizda {
 
 	void ComboBox::setSelectedIndex(const uint8_t value) {
 		_selectedIndex = value;
-	}
-
-	uint8_t ComboBox::getItemCount() const {
-		return _itemCount;
-	}
-
-	void ComboBox::setItemCount(const uint8_t itemCount) {
-		_itemCount = itemCount;
 	}
 
 	const std::string& ComboBox::getDialogTitle() {
@@ -47,7 +39,6 @@ namespace pizda {
 			new SelectorDialog(
 				getDialogTitle(),
 				_items,
-				_itemCount,
 				_selectedIndex,
 				[this](const uint8_t index) {
 					setSelectedIndex(index);
@@ -59,7 +50,7 @@ namespace pizda {
 	void ComboBox::onRender(Renderer* renderer, const Rectangle& bounds) {
 		Referencer::onRender(renderer, bounds);
 
-		if (!_items || _itemCount == 0)
+		if (_items.empty())
 			return;
 
 		renderer->renderText(

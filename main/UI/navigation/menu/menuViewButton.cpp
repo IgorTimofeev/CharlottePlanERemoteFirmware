@@ -9,7 +9,7 @@ namespace pizda {
 	// -------------------------------- Default --------------------------------
 
 	MenuViewButton::MenuViewButton(const Image* image, const std::string_view text) : _image(image) {
-		setSize(Size(45, image->getSize().getHeight() + _textOffset + Theme::fontSmall.getHeight()));
+		setSize(Size(45, image->getSize().getHeight() + _textOffset + Theme::fontSmall.getLineHeight()));
 		setText(text);
 
 		setDefaultBackgroundColor(&Theme::bg3);

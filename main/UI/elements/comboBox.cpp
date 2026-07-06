@@ -56,7 +56,7 @@ namespace pizda {
 		renderer->renderText(
 			Point(
 				bounds.getX() + 10,
-				bounds.getYCenter() - Theme::fontNormal.getHeight() / 2
+				bounds.getYCenter() - Theme::fontNormal.getLineHeight() / 2
 			),
 			&Theme::fontNormal,
 			&Theme::fg1,

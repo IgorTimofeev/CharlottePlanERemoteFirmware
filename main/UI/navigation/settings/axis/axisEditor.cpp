@@ -169,7 +169,7 @@ namespace pizda {
 			
 			const auto flagSize = Size(
 				Theme::fontSmall.getWidth(text) + textOffsetX * 2,
-				Theme::fontSmall.getHeight() + textOffsetY * 2
+				Theme::fontSmall.getLineHeight() + textOffsetY * 2
 			);
 			
 			const auto flagBounds = Rectangle(

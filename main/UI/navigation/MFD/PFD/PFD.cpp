@@ -48,7 +48,7 @@ namespace pizda {
 
 		const auto panelSize = Size(
 			Theme::fontSmall.getWidth(text) + horizontalTextOffset * 2,
-			Theme::fontSmall.getHeight() + verticalTextOffset * 2
+			Theme::fontSmall.getLineHeight() + verticalTextOffset * 2
 		);
 
 		const auto panelBounds = Rectangle(
@@ -157,7 +157,7 @@ namespace pizda {
 		);
 
 		// Text
-		const auto textY = yCenter - currentValueFont->getHeight() / 2;
+		const auto textY = yCenter - currentValueFont->getLineHeight() / 2;
 		
 		// Assuming 4 is "widest" digit
 
@@ -206,11 +206,11 @@ namespace pizda {
 						// Rolling
 						float integer;
 						const auto fractional = std::modf(value, &integer);
-						const auto rolledY = textY + static_cast<int32_t>(fractional * static_cast<float>(currentValueFont->getHeight()));
+						const auto rolledY = textY + static_cast<int32_t>(fractional * static_cast<float>(currentValueFont->getLineHeight()));
 
-						renderDigit(rolledY - currentValueFont->getHeight(), getAdjacentDigit(digit, true));
+						renderDigit(rolledY - currentValueFont->getLineHeight(), getAdjacentDigit(digit, true));
 						renderDigit(rolledY, digit);
-						renderDigit(rolledY + currentValueFont->getHeight(), getAdjacentDigit(digit, false));
+						renderDigit(rolledY + currentValueFont->getLineHeight(), getAdjacentDigit(digit, false));
 					}
 					// Static digit
 					else {
@@ -462,7 +462,7 @@ namespace pizda {
 				renderer->renderText(
 					Point(
 						bounds.getX2() + 1 - speedBarSize - lineSizeBig - lineTextOffset - currentValueFont->getWidth(text),
-						y - currentValueFont->getHeight() / 2
+						y - currentValueFont->getLineHeight() / 2
 					),
 					currentValueFont,
 					lineColor,
@@ -549,7 +549,7 @@ namespace pizda {
 				bounds.getX2() + 1 + speedBugOffset + speedBugTriangleWidth,
 				centerY - static_cast<int32_t>((static_cast<float>(bug.getValue()) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(speedStepUnits)),
 				Theme::fontSmall.getWidth(bug.getName()) + speedBugTextOffset * 2,
-				Theme::fontSmall.getHeight() + speedBugTextOffset * 2
+				Theme::fontSmall.getLineHeight() + speedBugTextOffset * 2
 			);
 
 			// Rect
@@ -610,7 +610,7 @@ namespace pizda {
 
 				// Text
 				renderer->renderText(
-					Point(x + lineSizeBig + lineTextOffset, y - currentValueFont->getHeight() / 2),
+					Point(x + lineSizeBig + lineTextOffset, y - currentValueFont->getLineHeight() / 2),
 					currentValueFont,
 					lineColor,
 					std::to_string(lineValue)
@@ -826,7 +826,7 @@ namespace pizda {
 					renderer->renderText(
 						Point(
 							bounds.getX() + verticalSpeedLineSizeBig + verticalSpeedLineTextOffset,
-							y - verticalSpeedFont->getHeight() / 2
+							y - verticalSpeedFont->getLineHeight() / 2
 						),
 						verticalSpeedFont,
 						lineColor,
@@ -868,7 +868,7 @@ namespace pizda {
 		renderer->renderText(
 			Point(
 				bounds.getX() + textXOffset + (bounds.getWidth() - textXOffset) / 2 - miniFont->getWidth(text) / 2,
-				bounds.getY() + miniHeight / 2 - miniFont->getHeight() / 2
+				bounds.getY() + miniHeight / 2 - miniFont->getLineHeight() / 2
 			),
 			miniFont,
 			fg,

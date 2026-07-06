@@ -442,7 +442,7 @@ namespace pizda {
 			if (lineAngleDeg % 10 == 0) {
 				const auto text = std::to_string(abs(lineAngleDeg));
 
-				const auto& textCenterVec = Vector2F(static_cast<float>(PFD::pitchOverlayFont->getWidth(text)) / 2.f, static_cast<float>(PFD::pitchOverlayFont->getHeight()) / 2.f);
+				const auto& textCenterVec = Vector2F(static_cast<float>(PFD::pitchOverlayFont->getWidth(text)) / 2.f, static_cast<float>(PFD::pitchOverlayFont->getLineHeight()) / 2.f);
 				const auto textCenterVecLengthWithOffset = static_cast<float>(PFD::pitchOverlayTextOffset) + textCenterVec.getLength();
 
 				renderer->renderText(
@@ -555,7 +555,7 @@ namespace pizda {
 			renderer->renderText(
 				Point(
 					x + sectionWidth / 2 - Theme::fontSmall.getWidth(text) / 2,
-					yCenter - Theme::fontSmall.getHeight() / 2
+					yCenter - Theme::fontSmall.getLineHeight() / 2
 				),
 				&Theme::fontSmall,
 				ap ? &Theme::green1 : &Theme::sky2,
@@ -707,7 +707,7 @@ namespace pizda {
 				renderer->renderText(
 					Point(
 						x - PFD::yawOverlayFont->getWidth(text) / 2,
-						lineY - PFD::yawOverlayTextOffset - PFD::yawOverlayFont->getHeight()
+						lineY - PFD::yawOverlayTextOffset - PFD::yawOverlayFont->getLineHeight()
 					),
 					PFD::yawOverlayFont,
 					PFD::yawOverlayColor,

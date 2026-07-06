@@ -13,7 +13,7 @@ namespace pizda {
 			
 			constexpr static uint8_t sensitivityMax = 0xFF;
 
-			void setup(adc_oneshot_unit_handle_t* ADCOneshotUnit, adc_channel_t ADCChannel, bool invertInput, AxisSettingsData* settings);
+			void setup(adc_oneshot_unit_handle_t ADCOneshotUnit, adc_channel_t ADCChannel, bool invertInput, AxisSettingsData* settings);
 			void tick();
 
 			AxisSettingsData* getSettings() const;
@@ -24,7 +24,7 @@ namespace pizda {
 			float getFilteredValueFloat() const;
 
 		private:
-			adc_oneshot_unit_handle_t* _ADCOneshotUnit = nullptr;
+			adc_oneshot_unit_handle_t _ADCOneshotUnit = nullptr;
 			adc_channel_t _ADCChannel {};
 			bool _invertInput = false;
 			AxisSettingsData* _settings = nullptr;

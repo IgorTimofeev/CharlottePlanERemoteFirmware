@@ -31,7 +31,7 @@ namespace pizda {
 				renderer->renderText(
 					Point(
 						bounds.getXCenter() - Theme::fontNormal.getWidth(getText()) / 2,
-						bounds.getYCenter() - Theme::fontNormal.getHeight() / 2
+						bounds.getYCenter() - Theme::fontNormal.getLineHeight() / 2
 					),
 					&Theme::fontNormal,
 					isActive() ? &Theme::bg1 : &Theme::fg4,

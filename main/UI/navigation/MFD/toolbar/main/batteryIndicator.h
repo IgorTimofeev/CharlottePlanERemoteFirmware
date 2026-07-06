@@ -78,7 +78,7 @@ namespace pizda {
 				renderer->renderText(
 					Point(
 						bounds.getX() + frameSize / 2 - Theme::fontSmall.getWidth(text) / 2,
-						bounds.getYCenter() - Theme::fontSmall.getHeight() / 2 + 1
+						bounds.getYCenter() - Theme::fontSmall.getLineHeight() / 2 + 1
 					),
 					&Theme::fontSmall,
 					available ? &Theme::fg1 : &Theme::bad1,

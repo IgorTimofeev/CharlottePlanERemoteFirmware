@@ -69,7 +69,7 @@ namespace pizda {
 			renderer->renderText(
 				Point(
 					bounds.getX() + textHOffset,
-					y - Theme::fontSmall.getHeight() / 2
+					y - Theme::fontSmall.getLineHeight() / 2
 				),
 				&Theme::fontSmall,
 				&Theme::fg4,

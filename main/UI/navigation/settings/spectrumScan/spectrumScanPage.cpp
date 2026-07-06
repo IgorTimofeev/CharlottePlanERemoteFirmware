@@ -182,7 +182,7 @@ namespace pizda {
 			renderer->renderText(
 				Point(
 					bounds.getX() + textHOffset,
-					bounds.getY() + pointerPixelPos.getY() - Theme::fontSmall.getHeight() / 2
+					bounds.getY() + pointerPixelPos.getY() - Theme::fontSmall.getLineHeight() / 2
 				),
 				&Theme::fontSmall,
 				&Theme::fg4,
@@ -215,9 +215,9 @@ namespace pizda {
 			renderer->renderVerticalLine(
 				Point(
 					bounds.getX() + pointerPixelPos.getX(),
-					bounds.getY() + textVOffset + Theme::fontSmall.getHeight() + textVOffset
+					bounds.getY() + textVOffset + Theme::fontSmall.getLineHeight() + textVOffset
 				),
-				bounds.getHeight() - (textVOffset + Theme::fontSmall.getHeight() + textVOffset),
+				bounds.getHeight() - (textVOffset + Theme::fontSmall.getLineHeight() + textVOffset),
 				&Theme::fg4
 			);
 
@@ -244,7 +244,7 @@ namespace pizda {
 				renderer->renderText(
 					Point(
 						bounds.getX() + pointerPixelPos.getX() + 2 + textHOffset,
-						tipY - Theme::fontSmall.getHeight() / 2
+						tipY - Theme::fontSmall.getLineHeight() / 2
 					),
 					&Theme::fontSmall,
 					&Theme::fg1,
@@ -298,7 +298,7 @@ namespace pizda {
 		// Presets button
 		Theme::applySecondary(&frequencyPresetsButton);
 		frequencyPresetsButton.setDefaultBackgroundColor(&Theme::bg2);
-		frequencyPresetsButton.setMargin(Margin(0, Theme::fontNormal.getHeight() + frequencyFromTitle.getGap(), 0, 0));
+		frequencyPresetsButton.setMargin(Margin(0, Theme::fontNormal.getLineHeight() + frequencyFromTitle.getGap(), 0, 0));
 		frequencyPresetsButton.setWidth(24);
 		frequencyPresetsButton.setText("...");
 

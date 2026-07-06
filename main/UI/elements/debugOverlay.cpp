@@ -28,7 +28,7 @@ namespace pizda {
 		const auto renderLine = [&renderer, &y](const std::string_view text, const Color* color = &Theme::magenta1, uint8_t scale = 1) {
 			renderer->renderText(Point(10, y), &Theme::fontNormal, color, text, scale);
 
-			y += Theme::fontNormal.getHeight(scale) + 2;
+			y += Theme::fontNormal.getLineHeight(scale) + 2;
 		};
 
 		// Big fucking FPS counter

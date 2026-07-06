@@ -10,7 +10,7 @@
 #include "rc.h"
 
 namespace pizda {
-	void Axis::setup(adc_oneshot_unit_handle_t* ADCOneshotUnit, const adc_channel_t ADCChannel, const bool invertInput, AxisSettingsData* settings) {
+	void Axis::setup(const adc_oneshot_unit_handle_t ADCOneshotUnit, const adc_channel_t ADCChannel, const bool invertInput, AxisSettingsData* settings) {
 		_ADCOneshotUnit = ADCOneshotUnit;
 		_ADCChannel = ADCChannel;
 		_invertInput = invertInput;
@@ -19,7 +19,7 @@ namespace pizda {
 		adc_oneshot_chan_cfg_t channelConfig {};
 		channelConfig.atten = ADC_ATTEN_DB_12;
 		channelConfig.bitwidth = ADC_BITWIDTH_12;
-		ESP_ERROR_CHECK(adc_oneshot_config_channel(*_ADCOneshotUnit, _ADCChannel, &channelConfig));
+		ESP_ERROR_CHECK(adc_oneshot_config_channel(_ADCOneshotUnit, _ADCChannel, &channelConfig));
 
 		tick();
 	}
@@ -27,7 +27,7 @@ namespace pizda {
 	void Axis::tick() {
 		// Reading value
 		int readValue;
-		const auto error = adc_oneshot_read(*_ADCOneshotUnit, _ADCChannel, &readValue);
+		const auto error = adc_oneshot_read(_ADCOneshotUnit, _ADCChannel, &readValue);
 
 		if (error != ESP_OK) {
 			ESP_ERROR_CHECK_WITHOUT_ABORT(error);

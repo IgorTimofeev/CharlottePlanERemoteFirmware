@@ -3,8 +3,8 @@
 #include <YOBA/core.h>
 #include <YOBA/UI.h>
 #include <YOBA/resources/fonts/PIXY10Font.h>
-#include <YOBA/resources/fonts/Vaticanus8Font.h>
-#include <YOBA/resources/fonts/unscii16Font.h>
+#include <YOBA/resources/fonts/vaticanus8Font.h>
+// #include <YOBA/resources/fonts/unscii8Font.h>
 
 namespace pizda {
 	using namespace YOBA;
@@ -64,6 +64,7 @@ namespace pizda {
 
 			constexpr static PIXY10Font fontNormal {};
 			constexpr static Vaticanus8Font fontSmall {};
+			// constexpr static Unscii8Font fontSmall {};
 
 			// -------------------------------- UI elements --------------------------------
 

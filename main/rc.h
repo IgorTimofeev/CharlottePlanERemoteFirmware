@@ -65,15 +65,15 @@ namespace pizda {
 			void playFeedback(const Sound* sound);
 			void playFeedback();
 
-			constexpr adc_oneshot_unit_handle_t* getAssignedADCOneshotUnit(const adc_unit_t ADCUnit) {
+			constexpr adc_oneshot_unit_handle_t getAssignedADCOneshotUnit(const adc_unit_t ADCUnit) const {
 				switch (ADCUnit) {
-					case ADC_UNIT_1: return &_ADCOneshotUnit1;
+					case ADC_UNIT_1: return _ADCOneshotUnit1;
 					default: startErrorLoop("failed to find assigned ADC oneshot unit");
 				}
 			}
 
 		private:
-			constexpr static const char* _logTag = "RC";
+			constexpr static auto _logTag = "RC";
 			
 			RC() = default;
 
@@ -118,21 +118,11 @@ namespace pizda {
 			Axes _axes {};
 
 			// Battery
-			ADCVoltmeter _battery {
-				config::battery::remote::unit,
-				getAssignedADCOneshotUnit(config::battery::remote::unit),
-				config::battery::remote::channel,
-
-				config::battery::remote::voltageMin,
-				config::battery::remote::voltageMax,
-
-				config::battery::remote::dividerResistanceR1,
-				config::battery::remote::dividerResistanceR2
-			};
+			ADCVoltmeter _battery {};
 
 			// Audio
 			Buzzer _buzzer {
-				config::buzzer::gpio,
+				config::buzzer::pin,
 				config::buzzer::channel
 			};
 

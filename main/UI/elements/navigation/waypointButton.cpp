@@ -79,7 +79,7 @@ namespace pizda {
 		renderer->renderText(
 			Point(
 				x,
-				y - Theme::fontNormal.getHeight() / 2
+				y - Theme::fontNormal.getLineHeight() / 2
 			),
 			&Theme::fontNormal,
 			&Theme::fg1,
@@ -97,7 +97,7 @@ namespace pizda {
 		renderer->renderText(
 			Point(
 				x,
-				y - Theme::fontNormal.getHeight() / 2
+				y - Theme::fontNormal.getLineHeight() / 2
 			),
 			&Theme::fontNormal,
 			&Theme::fg4,

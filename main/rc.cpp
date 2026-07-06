@@ -4,6 +4,7 @@
 #include <freertos/task.h>
 #include <esp_timer.h>
 #include <nvs.h>
+#include <esp_adc/adc_continuous.h>
 
 #include "rc.h"
 #include "config.h"
@@ -122,7 +123,26 @@ namespace pizda {
 
 		// Other shit
 		_axes.setup();
-		_battery.setup();
+
+		// Battery
+		{
+			adc_unit_t ADCUnit;
+			adc_channel_t ADCChannel;
+			ESP_ERROR_CHECK(adc_continuous_io_to_channel(config::battery::remote::pin, &ADCUnit, &ADCChannel));
+
+			_battery.setup(
+				ADCUnit,
+				getAssignedADCOneshotUnit(ADCUnit),
+				ADCChannel,
+
+				config::battery::remote::voltageMin,
+				config::battery::remote::voltageMax,
+
+				config::battery::remote::dividerResistanceR1,
+				config::battery::remote::dividerResistanceR2
+			);
+		}
+
 		_audioPlayer.setup();
 
 		// -------------------------------- UI --------------------------------

@@ -73,7 +73,7 @@ namespace pizda {
 
 		// RSSI
 		position.setX(position.getX() - 1 - _lineSpacing + _textOffset + 1);
-		position.setY(bounds.getYCenter() - Theme::fontSmall.getHeight() + 1);
+		position.setY(bounds.getYCenter() - Theme::fontSmall.getLineHeight() + 1);
 		
 		renderer->renderText(
 			position,
@@ -82,7 +82,7 @@ namespace pizda {
 			isConnected ? std::format("R {}", RSSI) : "----"
 		);
 		
-		position.setY(position.getY() + Theme::fontSmall.getHeight());
+		position.setY(position.getY() + Theme::fontSmall.getLineHeight());
 
 		// SNR
 		renderer->renderText(

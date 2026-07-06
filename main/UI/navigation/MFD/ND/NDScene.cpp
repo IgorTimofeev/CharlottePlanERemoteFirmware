@@ -305,13 +305,13 @@ namespace pizda {
 					if (isBig) {
 						const auto text = std::to_string(shownAngleDeg / 10);
 						const auto textWidth = Theme::fontSmall.getWidth(text);
-						const auto textDiagonal = std::sqrtf(textWidth * textWidth + Theme::fontSmall.getHeight() * Theme::fontSmall.getHeight());
+						const auto textDiagonal = std::sqrtf(textWidth * textWidth + Theme::fontSmall.getLineHeight() * Theme::fontSmall.getLineHeight());
 						const auto textCenterVec = angleStartVec - angleEndVecNorm * (compassTickMarkTextOffset + textDiagonal / 2);
 
 						renderer->renderText(
 							Point(
 								static_cast<float>(pivot.getX()) + textCenterVec.getX() - static_cast<float>(textWidth) / 2.f,
-								static_cast<float>(pivot.getY()) + textCenterVec.getY() - static_cast<float>(Theme::fontSmall.getHeight()) / 2.f
+								static_cast<float>(pivot.getY()) + textCenterVec.getY() - static_cast<float>(Theme::fontSmall.getLineHeight()) / 2.f
 							),
 							&Theme::fontSmall,
 							&Theme::fg1,

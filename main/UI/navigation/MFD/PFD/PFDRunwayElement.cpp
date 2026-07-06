@@ -46,7 +46,7 @@ namespace pizda {
 		renderer->renderText(
 			Point(
 				waypointVertex.getX() - Theme::fontNormal.getWidth(waypoint.name) / 2,
-				waypointVertex.getY() - lineLength - textOffset - Theme::fontNormal.getHeight()
+				waypointVertex.getY() - lineLength - textOffset - Theme::fontNormal.getLineHeight()
 			),
 			&Theme::fontNormal,
 			&Theme::fg1,

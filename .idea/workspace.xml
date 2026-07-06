@@ -195,17 +195,31 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="рефакторнул тачпанель, а то меня эти дефайны калят пиздец">
+    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="во бля">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/element.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/element.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textField.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textField.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFD.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axisEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axisEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/rc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/rc.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +231,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/components/YOBA" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -1353,7 +1367,7 @@
       <workItem from="1781684502984" duration="9072000" />
       <workItem from="1782397845886" duration="12536000" />
       <workItem from="1782419427575" duration="10241000" />
-      <workItem from="1783337142812" duration="19624000" />
+      <workItem from="1783337142812" duration="27999000" />
     </task>
     <task id="LOCAL-00001" summary="ебучий есп">
       <option name="closed" value="true" />
@@ -1691,7 +1705,31 @@
       <option name="project" value="LOCAL" />
       <updated>1783356482184</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Заренеймил вьюпорт на клип, а то чет какое-то двоякое восприятие">
+      <option name="closed" value="true" />
+      <created>1783357204068</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1783357204068</updated>
+    </task>
+    <task id="LOCAL-00044" summary="по ходу неинициализированный SPI вообще не работал хд">
+      <option name="closed" value="true" />
+      <created>1783362508863</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1783362508863</updated>
+    </task>
+    <task id="LOCAL-00045" summary="во бля">
+      <option name="closed" value="true" />
+      <created>1783363109295</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1783363109295</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1743,9 +1781,6 @@
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/unity/unity" />
       <path value="$PROJECT_DIR$/components/ESP-IDF-Battery" />
     </ignored-roots>
-    <MESSAGE value="перехуярил таски на таймеры, а то хипа не резиновая" />
-    <MESSAGE value="опача, стринги обычными чарами" />
-    <MESSAGE value="перехуярил дженерик трансивер, чтоб почитабельней было" />
     <MESSAGE value="пиздец нвску уебало этими таймерами пидорскими" />
     <MESSAGE value="опача" />
     <MESSAGE value="ВОТЕТА ПА-НАУЧНАМУ Я ПАНИМАЮЮЮ ДААА" />
@@ -1768,7 +1803,10 @@
     <MESSAGE value="выпилил к хуям индексирование битмамы для шрифтов с константной шириной глифов" />
     <MESSAGE value="реворкнул цветовую модель - а то какого-то хуя у меня там из коробки биг эндиан юзался" />
     <MESSAGE value="рефакторнул тачпанель, а то меня эти дефайны калят пиздец" />
-    <option name="LAST_COMMIT_MESSAGE" value="рефакторнул тачпанель, а то меня эти дефайны калят пиздец" />
+    <MESSAGE value="Заренеймил вьюпорт на клип, а то чет какое-то двоякое восприятие" />
+    <MESSAGE value="по ходу неинициализированный SPI вообще не работал хд" />
+    <MESSAGE value="во бля" />
+    <option name="LAST_COMMIT_MESSAGE" value="во бля" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

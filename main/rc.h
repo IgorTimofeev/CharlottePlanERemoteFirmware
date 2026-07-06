@@ -80,15 +80,7 @@ namespace pizda {
 
 			adc_oneshot_unit_handle_t _ADCOneshotUnit1 {};
 
-			ILI9341Display _display {
-				config::SPI::MOSI,
-				config::SPI::SCK,
-				config::screen::SS,
-				config::screen::DC,
-				config::screen::RST,
-				config::screen::SPIFrequencyHz
-			};
-
+			ILI9341Display _display {};
 			RGB565Renderer _renderer {};
 
 			FT6336UTouchPanel _touchPanel {

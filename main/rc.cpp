@@ -32,7 +32,7 @@ namespace pizda {
 			config.sclk_io_num = config::SPI::SCK;
 			config.quadwp_io_num = -1;
 			config.quadhd_io_num = -1;
-			config.max_transfer_sz = _display.getSize().getSquare() * 2;
+			config.max_transfer_sz = 0xFFFF;
 
 			ESP_ERROR_CHECK(spi_bus_initialize(config::SPI::device, &config, SPI_DMA_CH_AUTO));
 		}
@@ -60,7 +60,15 @@ namespace pizda {
 		// which will definitely cause bleed from videophiles eyes
 		//
 		// So...
-		_display.setup();
+		_display.setup(
+			config::SPI::MOSI,
+			config::SPI::SCK,
+			config::screen::SS,
+			config::screen::DC,
+			config::screen::RST,
+			config::screen::SPIFrequencyHz
+		);
+
 		_renderer.setTarget(&_display);
 
 		// Rendering splash screen

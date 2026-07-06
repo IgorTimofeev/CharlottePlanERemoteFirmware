@@ -18,9 +18,6 @@ namespace pizda {
 		const WaypointDialogSelectedItem& selectedItem,
 		const std::function<void(const WaypointDialogSelectedItem& selectedItem)>& onConfirm
 	) {
-		const auto& nd = RC::getInstance().getNavigationData();
-		const auto& selectedWaypointData = nd.waypoints[selectedItem.waypointIndex];
-
 		(new SelectWaypointDialog(
 			titleText,
 			selectedItem,
@@ -119,7 +116,7 @@ namespace pizda {
 		const uint16_t waypointIndex,
 		const NavigationWaypointData& waypointData
 	) {
-		const auto& nd = RC::getInstance().getNavigationData();
+		// const auto& nd = RC::getInstance().getNavigationData();
 
 		_waypointButton.setWaypointIndex(waypointIndex);
 

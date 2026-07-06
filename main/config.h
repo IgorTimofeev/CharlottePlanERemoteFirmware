@@ -44,7 +44,10 @@ namespace pizda {
 					constexpr static gpio_num_t SS = GPIO_NUM_17;
 					constexpr static gpio_num_t DC = GPIO_NUM_16;
 					constexpr static gpio_num_t RST = GPIO_NUM_NC;
-					constexpr static uint32_t frequency = 60'000'000;
+
+					// Seems like 60 MHz is absolute maximum for this display - even on short wires
+					// any freq > 64 MHz produces weird glitches
+					constexpr static uint32_t SPIFrequencyHz = 60'000'000;
 			};
 	
 			class XCVR {

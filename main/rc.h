@@ -92,7 +92,7 @@ namespace pizda {
 				config::screen::SS,
 				config::screen::DC,
 				config::screen::RST,
-				config::screen::frequency
+				config::screen::SPIFrequencyHz
 			};
 
 			RGB565Renderer _renderer {};

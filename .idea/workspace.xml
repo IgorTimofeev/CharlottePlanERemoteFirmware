@@ -195,29 +195,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="во бля">
+    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/rc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/rc.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.h" afterDir="false" />
     </list>
@@ -1367,7 +1351,7 @@
       <workItem from="1781684502984" duration="9072000" />
       <workItem from="1782397845886" duration="12536000" />
       <workItem from="1782419427575" duration="10241000" />
-      <workItem from="1783337142812" duration="27999000" />
+      <workItem from="1783337142812" duration="28301000" />
     </task>
     <task id="LOCAL-00001" summary="ебучий есп">
       <option name="closed" value="true" />
@@ -1729,7 +1713,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783363109295</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются">
+      <option name="closed" value="true" />
+      <created>1783365693013</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1783365693013</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1781,7 +1773,6 @@
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/unity/unity" />
       <path value="$PROJECT_DIR$/components/ESP-IDF-Battery" />
     </ignored-roots>
-    <MESSAGE value="пиздец нвску уебало этими таймерами пидорскими" />
     <MESSAGE value="опача" />
     <MESSAGE value="ВОТЕТА ПА-НАУЧНАМУ Я ПАНИМАЮЮЮ ДААА" />
     <MESSAGE value="заменил палитровый ренедрер на 565 - раз уж я отказался от OTA, то хипы по идее должно хватать за глаза" />
@@ -1806,7 +1797,8 @@
     <MESSAGE value="Заренеймил вьюпорт на клип, а то чет какое-то двоякое восприятие" />
     <MESSAGE value="по ходу неинициализированный SPI вообще не работал хд" />
     <MESSAGE value="во бля" />
-    <option name="LAST_COMMIT_MESSAGE" value="во бля" />
+    <MESSAGE value="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются" />
+    <option name="LAST_COMMIT_MESSAGE" value="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

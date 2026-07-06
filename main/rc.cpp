@@ -114,7 +114,16 @@ namespace pizda {
 			startErrorLoop("failed to setup XCVR");
 
 		// Touch panel
-		_touchPanel.setup();
+		_touchPanel.setup(
+			config::I2C::SDA,
+			config::I2C::SCL,
+			config::screen::touch::RST,
+			config::screen::touch::INT,
+
+			FT6336UTouchPanel::defaultI2CAddress,
+			config::screen::touch::I2CFrequencyHz
+		);
+
 		_application.addHID(&_touchPanel);
 
 		// Encoder

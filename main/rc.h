@@ -82,16 +82,7 @@ namespace pizda {
 
 			ILI9341Display _display {};
 			RGB565Renderer _renderer {};
-
-			FT6336UTouchPanel _touchPanel {
-				config::I2C::SDA,
-				config::I2C::SCL,
-				config::screen::touch::RST,
-				config::screen::touch::INT,
-
-				FT6336UTouchPanel::defaultI2CAddress,
-				config::screen::touch::I2CFrequencyHz
-			};
+			FT6336UTouchPanel _touchPanel {};
 
 			// Transceiver
 			RemoteTransceiver _transceiver {};

@@ -409,7 +409,7 @@ namespace pizda {
 			PFD::pitchOverlayColorGround
 		);
 
-		const auto viewport = renderer->pushViewport(bounds);
+		const auto oldClip = renderer->pushClip(bounds);
 
 		for (int32_t lineAngleDeg = -90; lineAngleDeg <= 90; lineAngleDeg += PFD::pitchOverlayAngleStepDeg) {
 			if (lineAngleDeg == 0)
@@ -457,7 +457,7 @@ namespace pizda {
 			}
 		}
 
-		renderer->popViewport(viewport);
+		renderer->setClip(oldClip);
 	}
 
 	void PFDScene::renderTurnCoordinatorOverlay(
@@ -646,7 +646,7 @@ namespace pizda {
 		const Rectangle& bounds
 	) {
 		auto& rc = RC::getInstance();
-		const auto viewport = renderer->pushViewport(bounds);
+		const auto oldClip = renderer->pushClip(bounds);
 
 		const auto centerX = bounds.getXCenter();
 		const auto y2 = bounds.getY2();
@@ -844,6 +844,6 @@ namespace pizda {
 			PFD::yawOverlayColor
 		);
 
-		renderer->popViewport(viewport);
+		renderer->setClip(oldClip);
 	}
 }

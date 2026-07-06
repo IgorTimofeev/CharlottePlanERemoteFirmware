@@ -216,7 +216,7 @@ namespace pizda {
 		);
 		
 		if (thumbInWorkingRange) {
-			const auto oldViewport = renderer->pushViewport(Rectangle(
+			const auto oldClip = renderer->pushClip(Rectangle(
 				fromX,
 				bounds.getY(),
 				fillWidth,
@@ -232,7 +232,7 @@ namespace pizda {
 				&Theme::fg1
 			);
 			
-			renderer->popViewport(oldViewport);
+			renderer->setClip(oldClip);
 		}
 		
 		Element::onRender(renderer, bounds);

@@ -162,7 +162,7 @@ namespace pizda {
 		// Assuming 4 is "widest" digit
 
 		if (isConnected) {
-			const auto oldViewport = renderer->pushViewport(bounds);
+			const auto oldClip = renderer->pushClip(bounds);
 
 			const auto digitsColor = value >= 0 ? &Theme::fg1 : &Theme::yellow;
 			value = std::abs(value);
@@ -222,7 +222,7 @@ namespace pizda {
 				value = value / 10;
 			}
 			
-			renderer->popViewport(oldViewport);
+			renderer->setClip(oldClip);
 		}
 		else {
 			const auto text = "---";
@@ -365,7 +365,7 @@ namespace pizda {
 	void PFD::renderSpeed(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
 
-		const auto oldViewport = renderer->pushViewport(bounds);
+		const auto oldClip = renderer->pushClip(bounds);
 
 		const auto centerY = bounds.getYCenter();
 
@@ -519,8 +519,7 @@ namespace pizda {
 			true
 		);
 
-		renderer->popViewport(oldViewport);
-
+		renderer->setClip(oldClip);
 
 		// Metric
 		if (rc.getSettings().personalization.MFD.PFD.metricUnits) {

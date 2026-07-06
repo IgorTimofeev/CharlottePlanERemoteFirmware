@@ -4,18 +4,25 @@
 #include <algorithm>
 
 #include <esp_timer.h>
+#include <esp_adc/adc_continuous.h>
 
 #include <EMAFilter.h>
 
 #include "rc.h"
 
 namespace pizda {
-	void Axis::setup(const adc_oneshot_unit_handle_t ADCOneshotUnit, const adc_channel_t ADCChannel, const bool invertInput, AxisSettingsData* settings) {
-		_ADCOneshotUnit = ADCOneshotUnit;
-		_ADCChannel = ADCChannel;
+	void Axis::setup(const gpio_num_t pin, const bool invertInput, AxisSettingsData* settings) {
 		_invertInput = invertInput;
 		_settings = settings;
 
+		// Pin -> unit & channel
+		adc_unit_t ADCUnit;
+		ESP_ERROR_CHECK(adc_continuous_io_to_channel(pin, &ADCUnit, &_ADCChannel));
+
+		// Oneshot unit
+		_ADCOneshotUnit = RC::getInstance().getAssignedADCOneshotUnit(ADCUnit);
+
+		// Channel config
 		adc_oneshot_chan_cfg_t channelConfig {};
 		channelConfig.atten = ADC_ATTEN_DB_12;
 		channelConfig.bitwidth = ADC_BITWIDTH_12;

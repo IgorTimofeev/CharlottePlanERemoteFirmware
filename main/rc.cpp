@@ -22,15 +22,7 @@ namespace pizda {
 	}
 
 	[[noreturn]] void RC::start() {
-		// -------------------------------- Splash screen --------------------------------
-
 		// First, let's render a splash screen while we wait for the peripherals to finish warming up
-
-		// // Multicore
-		// {
-		// 	_SPIMutex = xSemaphoreCreateMutex();
-		// 	system::SPI::setMutex(_SPIMutex);
-		// }
 
 		// SPI
 		{
@@ -47,7 +39,8 @@ namespace pizda {
 
 		// GPIO
 		{
-			// Slave selects
+			// In theory, slave selects already should be pulled up on start. But who knows what can happen
+			// during sequential SPI devices initialization... Let's set them to high manually just in case
 			gpio_config_t g = {};
 			g.pin_bit_mask = (1ULL << config::screen::SS) | (1ULL << config::XCVR::SS);
 			g.mode = GPIO_MODE_OUTPUT;
@@ -79,16 +72,16 @@ namespace pizda {
 		// Turning display on
 		_display.turnOn();
 
-		// -------------------------------- Hardware --------------------------------
+		// Continuing with hardware initialization...
 
-		// NVS is required by settings & Wi-Fi
+		// NVS is required by settings & Wi-Fi (we don't use Wi-Fi & OTA for now, but maybe we will... someday)
 		{
 			const auto status = nvs_flash_init();
 
 			if (status == ESP_ERR_NVS_NO_FREE_PAGES || status == ESP_ERR_NVS_NEW_VERSION_FOUND) {
 				// NVS partition was truncated and needs to be erased
 				ESP_ERROR_CHECK(nvs_flash_erase());
-				// Retry init
+				// Retrying init
 				ESP_ERROR_CHECK(nvs_flash_init());
 			}
 			else {
@@ -121,7 +114,7 @@ namespace pizda {
 		_encoder.setMinimumDelta(4);
 		_application.addHID(&_encoder);
 
-		// Other shit
+		// Analog axes
 		_axes.setup();
 
 		// Battery
@@ -143,10 +136,10 @@ namespace pizda {
 			);
 		}
 
+		// Audio player
 		_audioPlayer.setup();
 
-		// -------------------------------- UI --------------------------------
-
+		// Initializing OOP-based UI instead of direct rendering & showing main page
 		_application.setRenderer(&_renderer);
 		_application.setBackgroundColor(&Theme::bg1);
 		_application += &_pageLayout;
@@ -155,22 +148,26 @@ namespace pizda {
 		setRoute(&Routes::MFD);
 		updateDebugOverlayVisibility();
 
-		// -------------------------------- Main loop --------------------------------
-
+		// WHOOP WHOOP TERRAIN AHEAD
 		_audioPlayer.play(&resources::sounds::boot);
 
 		// This shit is blazingly 🔥 fast 🚀, so letting user enjoy logo for a few moments
 		vTaskDelay(pdMS_TO_TICKS(500));
 
 		while (true) {
+			// Processing analog axes & battery in main task, because this is the only guaranteed way
+			// to get rid of electromagnetic interference from SPI/XCVR. Sounds ridiculous, but...)))
 			_axes.tick();
 			batteryTick();
 
+			// Interpolating various data - mostly received from aircraft
 			interpolateData();
 
+			// Processing events & rendering UI
 			_application.tick();
 			_application.render();
 
+			// 60 FPS is hardly achievable on SPI screens, so let's treat it as an unattainable ideal
 			vTaskDelay(pdMS_TO_TICKS(1'000 / 60));
 		}
 	}

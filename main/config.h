@@ -28,17 +28,14 @@ namespace pizda {
 					constexpr static gpio_num_t SCL = GPIO_NUM_22;
 			};
 
-			class OTA {
-				public:
-					constexpr static const char* url = "https://github.com/IgorTimofeev/CharlotteDownloads/raw/refs/heads/master/Firmware/Remote.bin";
-			};
-
 			class screen {
 				public:
 					class touch {
 						public:
 							constexpr static gpio_num_t RST = GPIO_NUM_NC;
-							constexpr static gpio_num_t INTR = GPIO_NUM_5;
+							constexpr static gpio_num_t INT = GPIO_NUM_5;
+
+							constexpr static uint32_t I2CFrequencyHz = 400'000;
 					};
 
 					constexpr static gpio_num_t SS = GPIO_NUM_17;
@@ -83,36 +80,31 @@ namespace pizda {
 
 					class leverLeft {
 						public:
-							constexpr static adc_unit_t unit = ADC_UNIT_1;
-							constexpr static adc_channel_t channel = ADC_CHANNEL_0;
+							constexpr static gpio_num_t pin = GPIO_NUM_36;
 							constexpr static bool invertInput = false;
 					};
 
 					class leverRight {
 						public:
-							constexpr static adc_unit_t unit = ADC_UNIT_1;
-							constexpr static adc_channel_t channel = ADC_CHANNEL_3;
+							constexpr static gpio_num_t pin = GPIO_NUM_39;
 							constexpr static bool invertInput = false;
 					};
 
 					class joystickHorizontal {
 						public:
-							constexpr static adc_unit_t unit = ADC_UNIT_1;
-							constexpr static adc_channel_t channel = ADC_CHANNEL_7;
+							constexpr static gpio_num_t pin = GPIO_NUM_35;
 							constexpr static bool invertInput = true;
 					};
 
 					class joystickVertical {
 						public:
-							constexpr static adc_unit_t unit = ADC_UNIT_1;
-							constexpr static adc_channel_t channel = ADC_CHANNEL_5;
+							constexpr static gpio_num_t pin = GPIO_NUM_33;
 							constexpr static bool invertInput = false;
 					};
 
 					class ring {
 						public:
-							constexpr static adc_unit_t unit = ADC_UNIT_1;
-							constexpr static adc_channel_t channel = ADC_CHANNEL_6;
+							constexpr static gpio_num_t pin = GPIO_NUM_34;
 							constexpr static bool invertInput = true;
 					};
 			};

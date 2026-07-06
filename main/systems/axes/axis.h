@@ -13,7 +13,7 @@ namespace pizda {
 			
 			constexpr static uint8_t sensitivityMax = 0xFF;
 
-			void setup(adc_oneshot_unit_handle_t ADCOneshotUnit, adc_channel_t ADCChannel, bool invertInput, AxisSettingsData* settings);
+			void setup(const gpio_num_t pin, bool invertInput, AxisSettingsData* settings);
 			void tick();
 
 			AxisSettingsData* getSettings() const;

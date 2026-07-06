@@ -13,36 +13,31 @@ namespace pizda {
 		auto& rc = RC::getInstance();
 		
 		_leverLeft.setup(
-			rc.getAssignedADCOneshotUnit(config::axes::leverLeft::unit),
-			config::axes::leverLeft::channel,
+			config::axes::leverLeft::pin,
 			config::axes::leverLeft::invertInput,
 			&rc.getSettings().axes.leverLeft
 		);
 
 		_leverRight.setup(
-			rc.getAssignedADCOneshotUnit(config::axes::leverRight::unit),
-			config::axes::leverRight::channel,
+			config::axes::leverRight::pin,
 			config::axes::leverRight::invertInput,
 			&rc.getSettings().axes.leverRight
 		);
 
 		_joystickHorizontal.setup(
-			rc.getAssignedADCOneshotUnit(config::axes::joystickHorizontal::unit),
-			config::axes::joystickHorizontal::channel,
+			config::axes::joystickHorizontal::pin,
 			config::axes::joystickHorizontal::invertInput,
 			&rc.getSettings().axes.joystickHorizontal
 		);
 
 		_joystickVertical.setup(
-			rc.getAssignedADCOneshotUnit(config::axes::joystickVertical::unit),
-			config::axes::joystickVertical::channel,
+			config::axes::joystickVertical::pin,
 			config::axes::joystickVertical::invertInput,
 			&rc.getSettings().axes.joystickVertical
 		);
 
 		_ring.setup(
-			rc.getAssignedADCOneshotUnit(config::axes::ring::unit),
-			config::axes::ring::channel,
+			config::axes::ring::pin,
 			config::axes::ring::invertInput,
 			&rc.getSettings().axes.ring
 		);

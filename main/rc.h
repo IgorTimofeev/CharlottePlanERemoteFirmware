@@ -16,6 +16,7 @@
 #include <audioPlayer.h>
 
 #include "config.h"
+#include "config.h"
 #include "UI/theme.h"
 #include "UI/navigation/route.h"
 #include "UI/navigation/menu/openMenuButton.h"
@@ -60,8 +61,6 @@ namespace pizda {
 			AircraftData& getAircraftData();
 			NavigationData& getNavigationData();
 
-			// SemaphoreHandle_t getSPIMutex() const;
-
 			void playFeedback(const Sound* sound);
 			void playFeedback();
 
@@ -77,10 +76,6 @@ namespace pizda {
 			
 			RC() = default;
 
-			// // -------------------------------- Multicore --------------------------------
-			//
-			// SemaphoreHandle_t _SPIMutex = nullptr;
-
 			// -------------------------------- Hardware --------------------------------
 
 			adc_oneshot_unit_handle_t _ADCOneshotUnit1 {};
@@ -88,7 +83,6 @@ namespace pizda {
 			ILI9341Display _display {
 				config::SPI::MOSI,
 				config::SPI::SCK,
-
 				config::screen::SS,
 				config::screen::DC,
 				config::screen::RST,
@@ -98,10 +92,13 @@ namespace pizda {
 			RGB565Renderer _renderer {};
 
 			FT6336UTouchPanel _touchPanel {
-				config::I2C::SCL,
 				config::I2C::SDA,
+				config::I2C::SCL,
 				config::screen::touch::RST,
-				config::screen::touch::INTR
+				config::screen::touch::INT,
+
+				FT6336UTouchPanel::defaultI2CAddress,
+				config::screen::touch::I2CFrequencyHz
 			};
 
 			// Transceiver

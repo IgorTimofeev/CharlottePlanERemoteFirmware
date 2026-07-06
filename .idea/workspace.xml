@@ -195,15 +195,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются">
+    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="ПРОЩАЙ, LPF">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-PIDController" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-PIDController" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-PIDController/src/PIDController.h" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-PIDController/src/PIDController.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/personalization/personalizationSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/personalization/personalizationSettingsPage.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/rc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/rc.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/settings/autopilotSettings.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/settings/autopilotSettings.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/settings/personalizationSettings.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/settings/personalizationSettings.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/packet.h" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/packet.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1351,7 +1354,7 @@
       <workItem from="1781684502984" duration="9072000" />
       <workItem from="1782397845886" duration="12536000" />
       <workItem from="1782419427575" duration="10241000" />
-      <workItem from="1783337142812" duration="28301000" />
+      <workItem from="1783337142812" duration="30246000" />
     </task>
     <task id="LOCAL-00001" summary="ебучий есп">
       <option name="closed" value="true" />
@@ -1721,7 +1724,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783365693013</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="бля, тачпанель забыл...">
+      <option name="closed" value="true" />
+      <created>1783366128863</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1783366128863</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1773,8 +1784,6 @@
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/unity/unity" />
       <path value="$PROJECT_DIR$/components/ESP-IDF-Battery" />
     </ignored-roots>
-    <MESSAGE value="опача" />
-    <MESSAGE value="ВОТЕТА ПА-НАУЧНАМУ Я ПАНИМАЮЮЮ ДААА" />
     <MESSAGE value="заменил палитровый ренедрер на 565 - раз уж я отказался от OTA, то хипы по идее должно хватать за глаза" />
     <MESSAGE value="так, ну проблема по ходу явно где-то в смене типа рендерера - забекаплю-ка это тоже, и будем потихоньку чекать" />
     <MESSAGE value="бля, ну тут явно какой-то кал со вторым ядром - то ли оно как-то тайминги скипает, то ли че... я не догоняю. Уже даже заменил мьютексы на спинлоки чисто чтоб убедиться - но не, та же самая хуйня. Тупо втф творится)) посижу пока на палитровом рендерере, а то нервы сдадут" />
@@ -1798,7 +1807,9 @@
     <MESSAGE value="по ходу неинициализированный SPI вообще не работал хд" />
     <MESSAGE value="во бля" />
     <MESSAGE value="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются" />
-    <option name="LAST_COMMIT_MESSAGE" value="выдрочил логику инициализации renderTarget из конструкторов в setup - так и контроллить проще, и объекты без хуйни создаются" />
+    <MESSAGE value="бля, тачпанель забыл..." />
+    <MESSAGE value="ПРОЩАЙ, LPF" />
+    <option name="LAST_COMMIT_MESSAGE" value="ПРОЩАЙ, LPF" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

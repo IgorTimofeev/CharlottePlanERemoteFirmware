@@ -35,10 +35,10 @@ namespace pizda {
 		rows += &_generalAudioFeedback;
 		
 		// LPF
-		_generalDataInterpolation.getSwitch().setActive(settings.personalization.LPF);
+		_generalDataInterpolation.getSwitch().setActive(settings.personalization.dataInterpolation);
 		
 		_generalDataInterpolation.getSwitch().setOnIsActiveChanged([this, &settings] {
-			settings.personalization.LPF = _generalDataInterpolation.getSwitch().isActive();
+			settings.personalization.dataInterpolation = _generalDataInterpolation.getSwitch().isActive();
 			settings.personalization.writeLater();
 		});
 		

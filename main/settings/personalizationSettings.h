@@ -66,7 +66,7 @@ namespace pizda {
 	class PersonalizationSettings : public NVSSettings {
 		public:
 			PersonalizationSettingsMFD MFD {};
-			bool LPF = false;
+			bool dataInterpolation = false;
 			bool debugOverlay = false;
 			bool audioFeedback = false;
 		
@@ -91,7 +91,7 @@ namespace pizda {
 				MFD.split.ratio = stream.readUint8(_MFDSplitRatio, 60);
 
 				// Other
-				LPF = stream.readBool(_LPF, true);
+				dataInterpolation = stream.readBool(_dataInterpolation, true);
 				audioFeedback = stream.readBool(_audioFeedback, true);
 				debugOverlay = stream.readBool(_debugOverlay, false);
 			}
@@ -112,7 +112,7 @@ namespace pizda {
 				stream.writeUint8(_MFDSplitRatio, MFD.split.ratio);
 
 				// Other
-				stream.writeBool(_LPF, LPF);
+				stream.writeBool(_dataInterpolation, dataInterpolation);
 				stream.writeBool(_audioFeedback, audioFeedback);
 				stream.writeBool(_debugOverlay, debugOverlay);
 			}
@@ -129,7 +129,7 @@ namespace pizda {
 			constexpr static auto _MFDSplitMode = "msm";
 			constexpr static auto _MFDSplitRatio = "msr";
 
-			constexpr static auto _LPF = "lp";
+			constexpr static auto _dataInterpolation = "di";
 			constexpr static auto _audioFeedback = "af";
 			constexpr static auto _debugOverlay = "do";
 	};

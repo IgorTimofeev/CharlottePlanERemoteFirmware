@@ -23,8 +23,6 @@ namespace pizda {
 
 		rows += &_latMaxRollTitle;
 
-		addRow(_latRow0);
-
 		// Angle increment
 		setupRadTextField(
 			_latSMTAIRPS,
@@ -33,19 +31,19 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond
 		);
 
-		_latRow0 += &_latSMTAIFRSTitle;
+		rows += &_latSMTAIFRSTitle;
 
-		// Angle LPFF
+		// Angle EMA filter factor
 		setupFloatTextField(
-			_latTALPFFPS,
-			&rc.getSettings().autopilot.rollAngleLPFFactorPerSecond,
+			_latTAEMAFPS,
+			&rc.getSettings().autopilot.rollAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
-			RemoteSystemPacketType::autopilotRollAngleLPFFactorPerSecond
+			RemoteSystemPacketType::autopilotRollAngleEMAFilterFactorPerSecond
 		);
 
-		_latRow0 += &_latTALPFFPSTitle;
+		rows += &_latTAEMAFPSTitle;
 
 		// Surface factor
 		setupUint8PercentTextField(
@@ -90,8 +88,6 @@ namespace pizda {
 
 		rows += &_verMaxPitchTitle;
 
-		addRow(_verRow0);
-
 		// Angle increment
 		setupRadTextField(
 			_verSMTARFPS,
@@ -100,19 +96,19 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond
 		);
 
-		_verRow0 += &_verSMTAIRPSTitle;
+		rows += &_verSMTAIRPSTitle;
 
-		// Angle LPFF
+		// Angle EMA filter factor
 		setupFloatTextField(
-			_verTALPFFPS,
-			&rc.getSettings().autopilot.pitchAngleLPFFactorPerSecond,
+			_verTAEMAFPS,
+			&rc.getSettings().autopilot.pitchAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
-			RemoteSystemPacketType::autopilotPitchAngleLPFFactorPerSecond
+			RemoteSystemPacketType::autopilotPitchAngleEMAFilterFactorPerSecond
 		);
 
-		_verRow0 += &_verTALPFFPSTitle;
+		rows += &_verTAEMAFPSTitle;
 
 		// Surface factor
 		setupUint8PercentTextField(
@@ -153,8 +149,6 @@ namespace pizda {
 		Theme::applyPageTitle(&_lonTitle);
 		rows += &_lonTitle;
 
-		addRow(_lonRow0);
-
 		// Min
 		setupUint8PercentTextField(
 			_lonThrottleMin,
@@ -163,7 +157,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMinThrottlePercent
 		);
 
-		_lonRow0 += &_lonThrottleMinTitle;
+		rows += &_lonThrottleMinTitle;
 
 		// Max
 		setupUint8PercentTextField(
@@ -173,7 +167,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMaxThrottlePercent
 		);
 
-		_lonRow0 += &_lonThrottleMaxTitle;
+		rows += &_lonThrottleMaxTitle;
 
 		// PIDs
 		addPID(
@@ -254,12 +248,6 @@ namespace pizda {
 		);
 
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
-	}
-
-	void AutopilotSettingsPage::addRow(RelativeStackLayout& row) {
-		row.setOrientation(Orientation::horizontal);
-		row.setGap(Theme::horizontalGap);
-		rows += &row;
 	}
 
 	void AutopilotSettingsPage::addPID(Titler& titler, PIDReferencer& referencer,

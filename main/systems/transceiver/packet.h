@@ -53,7 +53,7 @@ namespace pizda {
 		autopilotYawToRollPID,
 		autopilotRollToAileronsPID,
 		autopilotStabilizedModeRollAngleIncrementRadPerSecond,
-		autopilotRollAngleLPFFactorPerSecond,
+		autopilotRollAngleEMAFilterFactorPerSecond,
 		autopilotMaxAileronsPercent,
 
 		// Vertical
@@ -64,7 +64,7 @@ namespace pizda {
 		autopilotAltitudeToPitchPID,
 		autopilotPitchToElevatorPID,
 		autopilotStabilizedModePitchAngleIncrementRadPerSecond,
-		autopilotPitchAngleLPFFactorPerSecond,
+		autopilotPitchAngleEMAFilterFactorPerSecond,
 		autopilotMaxElevatorPercent,
 
 		// Longitudinal

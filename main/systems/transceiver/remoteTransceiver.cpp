@@ -636,8 +636,8 @@ namespace pizda {
 				stream.writeFloat(rc.getSettings().autopilot.stabilizedModeRollAngleIncrementRadPerSecond);
 				break;
 			}
-			case RemoteSystemPacketType::autopilotRollAngleLPFFactorPerSecond: {
-				stream.writeFloat(rc.getSettings().autopilot.rollAngleLPFFactorPerSecond);
+			case RemoteSystemPacketType::autopilotRollAngleEMAFilterFactorPerSecond: {
+				stream.writeFloat(rc.getSettings().autopilot.rollAngleEMAFilterFactorPerSecond);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotYawToRollPID: {
@@ -694,8 +694,8 @@ namespace pizda {
 				stream.writeFloat(rc.getSettings().autopilot.stabilizedModePitchAngleIncrementRadPerSecond);
 				break;
 			}
-			case RemoteSystemPacketType::autopilotPitchAngleLPFFactorPerSecond: {
-				stream.writeFloat(rc.getSettings().autopilot.pitchAngleLPFFactorPerSecond);
+			case RemoteSystemPacketType::autopilotPitchAngleEMAFilterFactorPerSecond: {
+				stream.writeFloat(rc.getSettings().autopilot.pitchAngleEMAFilterFactorPerSecond);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotSpeedToPitchPID: {

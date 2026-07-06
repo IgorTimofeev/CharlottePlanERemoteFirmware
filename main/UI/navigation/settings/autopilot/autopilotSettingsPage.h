@@ -23,18 +23,16 @@ namespace pizda {
 			// ----------------------------- Lateral -----------------------------
 
 			TextField _latMaxRoll {};
-			Titler _latMaxRollTitle { "Max roll ANG", &_latMaxRoll };
+			Titler _latMaxRollTitle { "Max roll angle (deg)", &_latMaxRoll };
 
-			RelativeStackLayout _latRow0 {};
-
-			TextField _latTALPFFPS {};
-			Titler _latTALPFFPSTitle { "TGT ANG LPFF", &_latTALPFFPS };
+			TextField _latTAEMAFPS {};
+			Titler _latTAEMAFPSTitle { "Target angle EMA filter factor", &_latTAEMAFPS };
 
 			TextField _latSMTAIRPS {};
-			Titler _latSMTAIFRSTitle { "TGT ANG INC deg", &_latSMTAIRPS };
+			Titler _latSMTAIFRSTitle { "Target angle increment (deg)", &_latSMTAIRPS };
 
 			TextField _latMaxAileronsFactor {};
-			Titler _latMaxAileronsFactorTitle { "Max ailerons %", &_latMaxAileronsFactor };
+			Titler _latMaxAileronsFactorTitle { "Max ailerons deflection (%)", &_latMaxAileronsFactor };
 
 			PIDReferencer _latYawToRollPID { "Yaw to roll" };
 			Titler _latYawToRollPIDTitle { "Yaw to roll", &_latYawToRollPID };
@@ -48,18 +46,16 @@ namespace pizda {
 			TextView _verTitle { "Vertical"};
 
 			TextField _verMaxPitch {};
-			Titler _verMaxPitchTitle { "Max pitch ANG", &_verMaxPitch };
+			Titler _verMaxPitchTitle { "Max pitch angle (deg)", &_verMaxPitch };
 
-			RelativeStackLayout _verRow0 {};
-
-			TextField _verTALPFFPS {};
-			Titler _verTALPFFPSTitle { "TGT ANG LPFF", &_verTALPFFPS };
+			TextField _verTAEMAFPS {};
+			Titler _verTAEMAFPSTitle { "Target angle EMA filter factor", &_verTAEMAFPS };
 
 			TextField _verSMTARFPS {};
-			Titler _verSMTAIRPSTitle { "TGT ANG INC deg", &_verSMTARFPS };
+			Titler _verSMTAIRPSTitle { "Target angle increment (deg)", &_verSMTARFPS };
 
 			TextField _verMaxElevatorFactor {};
-			Titler _verMaxElevatorFactorTitle { "Max elevator %", &_verMaxElevatorFactor };
+			Titler _verMaxElevatorFactorTitle { "Max elevator deflection (%)", &_verMaxElevatorFactor };
 
 			PIDReferencer _verSpeedToPitchPID { "Speed to pitch" };
 			Titler _verSpeedToPitchPIDTitle { "Speed to pitch", &_verSpeedToPitchPID };
@@ -75,13 +71,11 @@ namespace pizda {
 			HorizontalSeparator _lonSeparator {};
 			TextView _lonTitle { "Longitudinal"};
 
-			RelativeStackLayout _lonRow0 {};
-
 			TextField _lonThrottleMin {};
-			Titler _lonThrottleMinTitle { "Throttle idle %", &_lonThrottleMin };
+			Titler _lonThrottleMinTitle { "Throttle idle power (%)", &_lonThrottleMin };
 
 			TextField _lonThrottleMax {};
-			Titler _lonThrottleMaxTitle { "Throttle climb %", &_lonThrottleMax };
+			Titler _lonThrottleMaxTitle { "Throttle climb power (%)", &_lonThrottleMax };
 
 			PIDReferencer _lonSpeedToThrottlePID { "Speed to throttle" };
 			Titler _lonSpeedToThrottlePIDTitle { "Speed to throttle", &_lonSpeedToThrottlePID };
@@ -91,7 +85,6 @@ namespace pizda {
 			static void setupRadTextField(TextField& textField, float* angleRad, float fallbackAngleDeg, RemoteSystemPacketType packetType);
 			static void setupUint8PercentTextField(TextField& textField, uint8_t* percent, float fallbackPercent, RemoteSystemPacketType packetType);
 
-			void addRow(RelativeStackLayout& row);
 			void addPID(Titler& titler, PIDReferencer& referencer, RemoteSystemPacketType packetType, PIDCoefficients* settingsCoefficients);
 	};
 }

@@ -191,14 +191,14 @@ namespace pizda {
 
 	float RC::applyEMA(const float oldValue, const float newValue, const float factor) const {
 		return
-			_settings.personalization.LPF
+			_settings.personalization.dataInterpolation
 			? EMAFilter::apply(oldValue, newValue, factor)
 			: newValue;
 	}
 	
 	float RC::applyEMAToAngle(const float oldValue, const float newValue, const float factor) const {
 		return
-			_settings.personalization.LPF
+			_settings.personalization.dataInterpolation
 			? EMAFilter::applyToAngle(oldValue, newValue, factor)
 			: newValue;
 	}
@@ -215,27 +215,27 @@ namespace pizda {
 		// factorPerTick = factorPerSecond * deltaTime / 1'000'000
 
 		// Fast
-		float LPFFactor = EMAFilter::getDeltaTimeUsFactor(5.0f, deltaTimeUs);
+		float EMAFFactor = EMAFilter::getDeltaTimeUsFactor(5.0f, deltaTimeUs);
 		
 		// Pitch
 		_aircraftData.computed.pitchRad = applyEMAToAngle(
 			_aircraftData.computed.pitchRad,
 			_aircraftData.raw.pitchRad,
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Roll
 		_aircraftData.computed.rollRad = applyEMAToAngle(
 			_aircraftData.computed.rollRad,
 			_aircraftData.raw.rollRad,
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Yaw
 		_aircraftData.computed.yawRad = applyEMAToAngle(
 			_aircraftData.computed.yawRad,
 			_aircraftData.raw.yawRad,
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Heading
@@ -246,118 +246,118 @@ namespace pizda {
 		_aircraftData.computed.coordinates.setLatitude(applyEMA(
 			_aircraftData.computed.coordinates.getLatitude(),
 			_aircraftData.raw.coordinates.getLatitude(),
-			LPFFactor
+			EMAFFactor
 		));
 
 		_aircraftData.computed.coordinates.setLongitude(applyEMA(
 			_aircraftData.computed.coordinates.getLongitude(),
 			_aircraftData.raw.coordinates.getLongitude(),
-			LPFFactor
+			EMAFFactor
 		));
 
 		_aircraftData.computed.coordinates.setAltitude(applyEMA(
 			_aircraftData.computed.coordinates.getAltitude(),
 			_aircraftData.raw.coordinates.getAltitude(),
-			LPFFactor
+			EMAFFactor
 		));
 
 		// Slip & skid
 		_aircraftData.computed.slipAndSkidFactor = applyEMA(
 			_aircraftData.computed.slipAndSkidFactor,
 			_aircraftData.raw.slipAndSkidFactor,
-			LPFFactor
+			EMAFFactor
 		);
 
 		// Flight path vector
 		_aircraftData.computed.flightPathVectorPitchRad = applyEMA(
 			_aircraftData.computed.flightPathVectorPitchRad,
 			_aircraftData.raw.flightPathVectorPitchRad,
-			LPFFactor
+			EMAFFactor
 		);
 		
 		_aircraftData.computed.flightPathVectorYawRad = applyEMA(
 			_aircraftData.computed.flightPathVectorYawRad,
 			_aircraftData.raw.flightPathVectorYawRad,
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Flight director
 		_aircraftData.computed.autopilot.rollRad = applyEMA(
 			_aircraftData.computed.autopilot.rollRad,
 			_aircraftData.raw.autopilot.rollRad,
-			LPFFactor
+			EMAFFactor
 		);
 		
 		_aircraftData.computed.autopilot.pitchRad = applyEMA(
 			_aircraftData.computed.autopilot.pitchRad,
 			_aircraftData.raw.autopilot.pitchRad,
-			LPFFactor
+			EMAFFactor
 		);
 
 		// Throttle
 		_aircraftData.computed.throttle_0_1 = applyEMA(
 			_aircraftData.computed.throttle_0_1,
 			static_cast<float>(_aircraftData.raw.throttle_0_255) / 255.f,
-			LPFFactor
+			EMAFFactor
 		);
 
 		// Normal
-		LPFFactor = EMAFilter::getDeltaTimeUsFactor(3.0f, deltaTimeUs);
+		EMAFFactor = EMAFilter::getDeltaTimeUsFactor(3.0f, deltaTimeUs);
 		
 		// Air speed
 		_aircraftData.computed.airspeedKt = applyEMA(
 			_aircraftData.computed.airspeedKt,
 			Units::convertSpeed(_aircraftData.raw.airspeedMPS, SpeedUnit::meterPerSecond, SpeedUnit::knot),
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Altitude
 		_aircraftData.computed.altitudeFt = applyEMA(
 			_aircraftData.computed.altitudeFt,
 			Units::convertDistance(_aircraftData.raw.coordinates.getAltitude(), DistanceUnit::meter, DistanceUnit::foot),
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Wind direction
 		_aircraftData.computed.windDirectionRad = applyEMA(
 			_aircraftData.computed.windDirectionRad,
 			_aircraftData.raw.windDirectionRad,
-			LPFFactor
+			EMAFFactor
 		);
 
 		// Yaw trend
 		_aircraftData.computed.yawTrendDeg = applyEMA(
 			_aircraftData.computed.yawTrendDeg,
 			_aircraftData.raw.yawTrendDeg,
-			LPFFactor
+			EMAFFactor
 		);
 
 		// Slower
-		LPFFactor = EMAFilter::getDeltaTimeUsFactor(1.0f, deltaTimeUs);
+		EMAFFactor = EMAFilter::getDeltaTimeUsFactor(1.0f, deltaTimeUs);
 
 		// Airspeed trend
 		_aircraftData.computed.airspeedTrendKt = applyEMA(
 			_aircraftData.computed.airspeedTrendKt,
 			Units::convertSpeed(_aircraftData.raw.airspeedTrendMPS, SpeedUnit::meterPerSecond, SpeedUnit::knot),
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Altitude trend
 		_aircraftData.computed.altitudeTrendFt = applyEMA(
 			_aircraftData.computed.altitudeTrendFt,
 			Units::convertDistance(_aircraftData.raw.altitudeTrendM, DistanceUnit::meter, DistanceUnit::foot),
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Vertical speed
 		_aircraftData.computed.verticalSpeedFPM = applyEMA(
 			_aircraftData.computed.verticalSpeedFPM,
 			Units::convertDistance(_aircraftData.raw.verticalSpeedMPM, DistanceUnit::meter, DistanceUnit::foot),
-			LPFFactor
+			EMAFFactor
 		);
 		
 		// Smooth as fuck
-		LPFFactor = EMAFilter::getDeltaTimeUsFactor(0.5f, deltaTimeUs);
+		EMAFFactor = EMAFilter::getDeltaTimeUsFactor(0.5f, deltaTimeUs);
 	}
 
 	void RC::batteryTick() {

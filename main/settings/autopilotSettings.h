@@ -22,10 +22,10 @@ namespace pizda {
 
 			PIDCoefficients speedToThrottle {};
 
-			static void read(const NVSStream& stream, const char* keyP, const char* keyI, const char* keyD, PIDCoefficients& coefficients) {
-				coefficients.p = stream.readFloat(keyP, 1);
-				coefficients.i = stream.readFloat(keyI, 0);
-				coefficients.d = stream.readFloat(keyD, 0);
+			static void read(const NVSStream& stream, const char* keyP, const char* keyI, const char* keyD, PIDCoefficients& coefficients, const PIDCoefficients& fallbackCoefficients) {
+				coefficients.p = stream.readFloat(keyP, fallbackCoefficients.p);
+				coefficients.i = stream.readFloat(keyI, fallbackCoefficients.i);
+				coefficients.d = stream.readFloat(keyD, fallbackCoefficients.d);
 			}
 
 			static void write(const NVSStream& stream, const char* keyP, const char* keyI, const char* keyD, const PIDCoefficients& coefficients) {
@@ -42,7 +42,7 @@ namespace pizda {
 			uint16_t headingDeg = 0;
 			float maxRollAngleRad = 0;
 			float stabilizedModeRollAngleIncrementRadPerSecond = 0;
-			float rollAngleLPFFactorPerSecond = 0;
+			float rollAngleEMAFilterFactorPerSecond = 0;
 			uint8_t maxAileronsPercent = 0;
 
 			// Vertical
@@ -50,7 +50,7 @@ namespace pizda {
 			uint16_t altitudeFt = 0;
 			float maxPitchAngleRad = 0;
 			float stabilizedModePitchAngleIncrementRadPerSecond = 0;
-			float pitchAngleLPFFactorPerSecond = 0;
+			float pitchAngleEMAFilterFactorPerSecond = 0;
 			uint8_t maxElevatorPercent = 0;
 
 			// Longitudinal
@@ -72,15 +72,15 @@ namespace pizda {
 				headingDeg = stream.readUint16(_headingDeg, 0);
 				maxRollAngleRad = stream.readFloat(_maxRollAngleRad, toRadians(30));
 				stabilizedModeRollAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModeRollAngleIncrementRadPerSecond, toRadians(5));
-				rollAngleLPFFactorPerSecond = stream.readFloat(_rollAngleLPFFactorPerSecond, 0.5f);
+				rollAngleEMAFilterFactorPerSecond = stream.readFloat(_rollAngleEMAFilterFactorPerSecond, 0.8f);
 				maxAileronsPercent = stream.readUint8(_maxAileronsPercent, 100);
 
 				// Vertical
 				verticalMode = stream.readEnum<AutopilotVerticalMode>(_verticalMode, AutopilotVerticalMode::flc);
 				altitudeFt = stream.readUint16(_altitudeFt, 100);
-				maxPitchAngleRad = stream.readFloat(_maxPitchAngleRad, toRadians(20));
+				maxPitchAngleRad = stream.readFloat(_maxPitchAngleRad, toRadians(15));
 				stabilizedModePitchAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModePitchAngleIncrementRadPerSecond, toRadians(5));
-				pitchAngleLPFFactorPerSecond = stream.readFloat(_pitchAngleLPFFactorPerSecond, 0.5f);
+				pitchAngleEMAFilterFactorPerSecond = stream.readFloat(_pitchAngleEMAFilterFactorPerSecond, 0.8f);
 				maxElevatorPercent = stream.readUint8(_maxElevatorPercent, 100);
 
 				// Longitudinal
@@ -89,12 +89,12 @@ namespace pizda {
 				maxThrottlePercent = stream.readUint8(_maxThrottlePercent, 100);
 
 				// PIDs
-				AutopilotSettingsPIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll);
-				AutopilotSettingsPIDs::read(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch);
-				AutopilotSettingsPIDs::read(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch);
-				AutopilotSettingsPIDs::read(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons);
-				AutopilotSettingsPIDs::read(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator);
-				AutopilotSettingsPIDs::read(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle);
+				AutopilotSettingsPIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll, { 0.8f, 0.1f, 0.3f });
+				AutopilotSettingsPIDs::read(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch, { 0.04f, 0.01f, 0.01f });
+				AutopilotSettingsPIDs::read(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch, { 0.2f, 0.05f, 0.01f });
+				AutopilotSettingsPIDs::read(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons, { 2.5f, 0.01f, 0.2f });
+				AutopilotSettingsPIDs::read(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator, { 3.5f, 0.3f, 0.2f });
+				AutopilotSettingsPIDs::read(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle, { 0.4f, 0.1f, 0.1f });
 			}
 
 			void onWrite(const NVSStream& stream) override {
@@ -103,7 +103,7 @@ namespace pizda {
 				stream.writeUint16(_headingDeg, headingDeg);
 				stream.writeFloat(_maxRollAngleRad, maxRollAngleRad);
 				stream.writeFloat(_stabilizedModeRollAngleIncrementRadPerSecond, stabilizedModeRollAngleIncrementRadPerSecond);
-				stream.writeFloat(_rollAngleLPFFactorPerSecond, rollAngleLPFFactorPerSecond);
+				stream.writeFloat(_rollAngleEMAFilterFactorPerSecond, rollAngleEMAFilterFactorPerSecond);
 				stream.writeUint8(_maxAileronsPercent, maxAileronsPercent);
 
 				// Vertical
@@ -111,7 +111,7 @@ namespace pizda {
 				stream.writeUint16(_altitudeFt, altitudeFt);
 				stream.writeFloat(_maxPitchAngleRad, maxPitchAngleRad);
 				stream.writeFloat(_stabilizedModePitchAngleIncrementRadPerSecond, stabilizedModePitchAngleIncrementRadPerSecond);
-				stream.writeFloat(_pitchAngleLPFFactorPerSecond, pitchAngleLPFFactorPerSecond);
+				stream.writeFloat(_pitchAngleEMAFilterFactorPerSecond, pitchAngleEMAFilterFactorPerSecond);
 				stream.writeUint8(_maxElevatorPercent, maxElevatorPercent);
 
 				// Longitudinal
@@ -136,7 +136,7 @@ namespace pizda {
 			constexpr static auto _headingDeg = "thdg";
 			constexpr static auto _maxRollAngleRad = "mrla";
 			constexpr static auto _stabilizedModeRollAngleIncrementRadPerSecond = "rair";
-			constexpr static auto _rollAngleLPFFactorPerSecond = "ralf";
+			constexpr static auto _rollAngleEMAFilterFactorPerSecond = "raef";
 			constexpr static auto _maxAileronsPercent = "aipe";
 
 			// Vertical
@@ -144,7 +144,7 @@ namespace pizda {
 			constexpr static auto _altitudeFt = "talt";
 			constexpr static auto _maxPitchAngleRad = "mpia";
 			constexpr static auto _stabilizedModePitchAngleIncrementRadPerSecond = "pair";
-			constexpr static auto _pitchAngleLPFFactorPerSecond = "palf";
+			constexpr static auto _pitchAngleEMAFilterFactorPerSecond = "paef";
 			constexpr static auto _maxElevatorPercent = "elpe";
 
 			// Longitudinal

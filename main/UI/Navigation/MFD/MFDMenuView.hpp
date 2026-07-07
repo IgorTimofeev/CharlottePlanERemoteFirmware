@@ -28,11 +28,11 @@ namespace pizda {
 			explicit MFDMenuView();
 
 			MFDMenuViewTopToolbarButton
-				autopilotButton { &resources::images::menuIconMFDAutopilot, "A/P", PersonalizationSettingsMFDToolbarMode::autopilot },
-				pressureButton { &resources::images::menuIconMFDBaro, "BARO", PersonalizationSettingsMFDToolbarMode::baro },
-				trimButton { &resources::images::menuIconMFDTrim, "Trim", PersonalizationSettingsMFDToolbarMode::trim },
-				lightsButton { &resources::images::menuIconMFDLights, "Lights", PersonalizationSettingsMFDToolbarMode::lights },
-				cameraButton { &resources::images::menuIconMFDCameraImage, "Camera", PersonalizationSettingsMFDToolbarMode::camera };
+				autopilotButton { &Images::menuIconMFDAutopilot, "A/P", PersonalizationSettingsMFDToolbarMode::autopilot },
+				pressureButton { &Images::menuIconMFDBaro, "BARO", PersonalizationSettingsMFDToolbarMode::baro },
+				trimButton { &Images::menuIconMFDTrim, "Trim", PersonalizationSettingsMFDToolbarMode::trim },
+				lightsButton { &Images::menuIconMFDLights, "Lights", PersonalizationSettingsMFDToolbarMode::lights },
+				cameraButton { &Images::menuIconMFDCameraImage, "Camera", PersonalizationSettingsMFDToolbarMode::camera };
 
 			std::array<MFDMenuViewTopToolbarButton*, 5> topToolbarButtons {
 				&autopilotButton,

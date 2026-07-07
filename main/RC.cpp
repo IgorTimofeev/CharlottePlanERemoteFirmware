@@ -74,7 +74,7 @@ namespace pizda {
 		// Rendering splash screen
 		Theme::setup();
 		_renderer.clear(&Theme::bg1);
-		_renderer.renderImage(Point(), &resources::images::splashScreen);
+		_renderer.renderImage(Point(), &Images::splashScreen);
 		_renderer.flush();
 
 		// Turning display on
@@ -166,7 +166,7 @@ namespace pizda {
 		updateDebugOverlayVisibility();
 
 		// WHOOP WHOOP TERRAIN AHEAD
-		_audioPlayer.play(&resources::sounds::boot);
+		_audioPlayer.play(&Sounds::boot);
 
 		// This shit is blazingly 🔥 fast 🚀, so letting user enjoy logo for a few moments
 		vTaskDelay(pdMS_TO_TICKS(500));
@@ -386,10 +386,6 @@ namespace pizda {
 	NavigationData& RC::getNavigationData() {
 		return _navigationData;
 	}
-	
-	// SemaphoreHandle_t RC::getSPIMutex() const {
-	// 	return _SPIMutex;
-	// }
 
 	void RC::playFeedback(const Sound* sound) {
 		if (_settings.personalization.audioFeedback) {
@@ -398,7 +394,7 @@ namespace pizda {
 	}
 
 	void RC::playFeedback() {
-		playFeedback(&resources::sounds::feedback);
+		playFeedback(&Sounds::feedback);
 	}
 
 	Settings& RC::getSettings() {

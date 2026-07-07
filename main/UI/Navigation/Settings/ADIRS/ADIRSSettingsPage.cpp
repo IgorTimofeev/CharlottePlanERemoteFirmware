@@ -14,15 +14,15 @@ namespace pizda {
 		// Magnetic declination
 		Theme::apply(&_ADIRSMagneticDeclinationTextField);
 		_ADIRSMagneticDeclinationTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowSigned);
-		_ADIRSMagneticDeclinationTextField.setText(std::to_string(RC::getInstance().getSettings().ADIRS.magneticDeclinationDeg));
+		_ADIRSMagneticDeclinationTextField.setText(std::to_string(RC::getInstance().getSettings().flightModeSelection.magneticDeclinationDeg));
 
 		_ADIRSMagneticDeclinationTextField.setOnInput([this](const Key key, std::optional<std::string_view>) {
 			if (key != Key::enter)
 				return;
 
 			auto& rc = RC::getInstance();
-			rc.getSettings().ADIRS.magneticDeclinationDeg = StringUtils::tryParseInt32Or(_ADIRSMagneticDeclinationTextField.getText(), 0);
-			rc.getSettings().ADIRS.writeLater();
+			rc.getSettings().flightModeSelection.magneticDeclinationDeg = StringUtils::tryParseInt32Or(_ADIRSMagneticDeclinationTextField.getText(), 0);
+			rc.getSettings().flightModeSelection.writeLater();
 
 			rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::magneticDeclination);
 		});

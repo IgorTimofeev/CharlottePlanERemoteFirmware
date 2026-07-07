@@ -7,8 +7,8 @@
 #include "Resources/Sounds/DisengagedSound.hpp"
 #include "Resources/Sounds/FeedbackSound.hpp"
 
-namespace pizda::resources {
-	class sounds {
+namespace pizda {
+	class Sounds {
 		public:
 			constexpr static BootSound boot {};
 			constexpr static FeedbackSound feedback {};

@@ -23,6 +23,6 @@ namespace pizda {
 		private:
 			CameraControl _pitch;
 			CameraControl _yaw;
-			ImageToolbarButton _reset { "Reset", &resources::images::menuIconMFDCameraResetImage };
+			ImageToolbarButton _reset { "Reset", &Images::menuIconMFDCameraResetImage };
 	};
 }

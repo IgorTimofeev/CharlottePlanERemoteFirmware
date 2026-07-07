@@ -11,7 +11,7 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class AutopilotSettingsPIDs {
+	class AutopilotConfigurationSettingsPIDs {
 		public:
 			PIDCoefficients yawToRoll {};
 			PIDCoefficients altitudeToPitch {};
@@ -35,31 +35,26 @@ namespace pizda {
 			}
 	};
 
-	class AutopilotSettings : public NVSSettings {
+	class AutopilotConfigurationSettings : public NVSSettings {
 		public:
 			// Lateral
-			AutopilotLateralMode lateralMode = AutopilotLateralMode::hdg;
-			uint16_t headingDeg = 0;
 			float maxRollAngleRad = 0;
 			float stabilizedModeRollAngleIncrementRadPerSecond = 0;
 			float rollAngleEMAFilterFactorPerSecond = 0;
 			uint8_t maxAileronsPercent = 0;
 
 			// Vertical
-			AutopilotVerticalMode verticalMode = AutopilotVerticalMode::flc;
-			uint16_t altitudeFt = 0;
 			float maxPitchAngleRad = 0;
 			float stabilizedModePitchAngleIncrementRadPerSecond = 0;
 			float pitchAngleEMAFilterFactorPerSecond = 0;
 			uint8_t maxElevatorPercent = 0;
 
 			// Longitudinal
-			uint16_t speedKt = 0;
 			uint8_t minThrottlePercent = 0;
 			uint8_t maxThrottlePercent = 0;
 
 			// PIDs
-			AutopilotSettingsPIDs PIDs {};
+			AutopilotConfigurationSettingsPIDs PIDs {};
 
 		protected:
 			const char* getNamespace() override {
@@ -68,87 +63,72 @@ namespace pizda {
 
 			void onRead(const NVSStream& stream) override {
 				// Lateral
-				lateralMode = stream.readEnum<AutopilotLateralMode>(_lateralMode, AutopilotLateralMode::hdg);
-				headingDeg = stream.readUint16(_headingDeg, 0);
 				maxRollAngleRad = stream.readFloat(_maxRollAngleRad, toRadians(30));
 				stabilizedModeRollAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModeRollAngleIncrementRadPerSecond, toRadians(5));
 				rollAngleEMAFilterFactorPerSecond = stream.readFloat(_rollAngleEMAFilterFactorPerSecond, 0.8f);
 				maxAileronsPercent = stream.readUint8(_maxAileronsPercent, 100);
 
 				// Vertical
-				verticalMode = stream.readEnum<AutopilotVerticalMode>(_verticalMode, AutopilotVerticalMode::flc);
-				altitudeFt = stream.readUint16(_altitudeFt, 100);
 				maxPitchAngleRad = stream.readFloat(_maxPitchAngleRad, toRadians(15));
 				stabilizedModePitchAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModePitchAngleIncrementRadPerSecond, toRadians(5));
 				pitchAngleEMAFilterFactorPerSecond = stream.readFloat(_pitchAngleEMAFilterFactorPerSecond, 0.8f);
 				maxElevatorPercent = stream.readUint8(_maxElevatorPercent, 100);
 
 				// Longitudinal
-				speedKt = stream.readUint16(_speedKt, 90);
 				minThrottlePercent = stream.readUint8(_minThrottlePercent, 0);
 				maxThrottlePercent = stream.readUint8(_maxThrottlePercent, 100);
 
 				// PIDs
-				AutopilotSettingsPIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll, { 0.8f, 0.1f, 0.3f });
-				AutopilotSettingsPIDs::read(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch, { 0.04f, 0.01f, 0.01f });
-				AutopilotSettingsPIDs::read(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch, { 0.2f, 0.05f, 0.01f });
-				AutopilotSettingsPIDs::read(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons, { 2.5f, 0.01f, 0.2f });
-				AutopilotSettingsPIDs::read(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator, { 3.5f, 0.3f, 0.2f });
-				AutopilotSettingsPIDs::read(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle, { 0.4f, 0.1f, 0.1f });
+				AutopilotConfigurationSettingsPIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll, { 0.8f, 0.1f, 0.3f });
+				AutopilotConfigurationSettingsPIDs::read(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch, { 0.04f, 0.01f, 0.01f });
+				AutopilotConfigurationSettingsPIDs::read(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch, { 0.2f, 0.05f, 0.01f });
+				AutopilotConfigurationSettingsPIDs::read(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons, { 2.5f, 0.01f, 0.2f });
+				AutopilotConfigurationSettingsPIDs::read(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator, { 3.5f, 0.3f, 0.2f });
+				AutopilotConfigurationSettingsPIDs::read(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle, { 0.4f, 0.1f, 0.1f });
 			}
 
 			void onWrite(const NVSStream& stream) override {
 				// Lateral
-				stream.writeEnum<AutopilotLateralMode>(_lateralMode, lateralMode);
-				stream.writeUint16(_headingDeg, headingDeg);
 				stream.writeFloat(_maxRollAngleRad, maxRollAngleRad);
 				stream.writeFloat(_stabilizedModeRollAngleIncrementRadPerSecond, stabilizedModeRollAngleIncrementRadPerSecond);
 				stream.writeFloat(_rollAngleEMAFilterFactorPerSecond, rollAngleEMAFilterFactorPerSecond);
 				stream.writeUint8(_maxAileronsPercent, maxAileronsPercent);
 
 				// Vertical
-				stream.writeEnum<AutopilotVerticalMode>(_verticalMode, verticalMode);
-				stream.writeUint16(_altitudeFt, altitudeFt);
 				stream.writeFloat(_maxPitchAngleRad, maxPitchAngleRad);
 				stream.writeFloat(_stabilizedModePitchAngleIncrementRadPerSecond, stabilizedModePitchAngleIncrementRadPerSecond);
 				stream.writeFloat(_pitchAngleEMAFilterFactorPerSecond, pitchAngleEMAFilterFactorPerSecond);
 				stream.writeUint8(_maxElevatorPercent, maxElevatorPercent);
 
 				// Longitudinal
-				stream.writeUint16(_speedKt, speedKt);
 				stream.writeUint8(_minThrottlePercent, minThrottlePercent);
 				stream.writeUint8(_maxThrottlePercent, maxThrottlePercent);
 
 				// PIDs
-				AutopilotSettingsPIDs::write(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll);
-				AutopilotSettingsPIDs::write(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch);
-				AutopilotSettingsPIDs::write(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch);
-				AutopilotSettingsPIDs::write(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons);
-				AutopilotSettingsPIDs::write(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator);
-				AutopilotSettingsPIDs::write(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle);
+				AutopilotConfigurationSettingsPIDs::write(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll);
+				AutopilotConfigurationSettingsPIDs::write(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch);
+				AutopilotConfigurationSettingsPIDs::write(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch);
+				AutopilotConfigurationSettingsPIDs::write(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons);
+				AutopilotConfigurationSettingsPIDs::write(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator);
+				AutopilotConfigurationSettingsPIDs::write(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle);
 			}
 
 		private:
-			constexpr static auto _namespace = "ap1";
+			constexpr static auto _namespace = "apc";
 
 			// Lateral
-			constexpr static auto _lateralMode = "ltmd";
-			constexpr static auto _headingDeg = "thdg";
 			constexpr static auto _maxRollAngleRad = "mrla";
 			constexpr static auto _stabilizedModeRollAngleIncrementRadPerSecond = "rair";
 			constexpr static auto _rollAngleEMAFilterFactorPerSecond = "raef";
 			constexpr static auto _maxAileronsPercent = "aipe";
 
 			// Vertical
-			constexpr static auto _verticalMode = "vtmd";
-			constexpr static auto _altitudeFt = "talt";
 			constexpr static auto _maxPitchAngleRad = "mpia";
 			constexpr static auto _stabilizedModePitchAngleIncrementRadPerSecond = "pair";
 			constexpr static auto _pitchAngleEMAFilterFactorPerSecond = "paef";
 			constexpr static auto _maxElevatorPercent = "elpe";
 
 			// Longitudinal
-			constexpr static auto _speedKt = "tspd";
 			constexpr static auto _minThrottlePercent = "tmip";
 			constexpr static auto _maxThrottlePercent = "tmap";
 

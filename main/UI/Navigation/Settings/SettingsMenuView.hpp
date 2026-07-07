@@ -19,13 +19,13 @@ namespace pizda {
 			static const Route* _lastRoute;
 			
 			std::array<PageMenuViewButton, 7> _buttons {
-				PageMenuViewButton(&resources::images::menuIconPersonalization, "Personal", &Routes::settingsPersonalization),
-				PageMenuViewButton(&resources::images::menuIconADIRS, "ADIRS", &Routes::settingsADIRS),
-				PageMenuViewButton(&resources::images::menuIconMotors, "Motors", &Routes::settingsMotors),
-				PageMenuViewButton(&resources::images::menuIconTransceiverImage, "XCVR", &Routes::settingsTransceiver),
-				PageMenuViewButton(&resources::images::menuIconAxes, "Axes", &Routes::settingsAxes),
-				PageMenuViewButton(&resources::images::menuIconSpectrumScan, "Scan", &Routes::settingsSpectrumScan),
-				PageMenuViewButton(&resources::images::menuIconAutopilotSettings, "Autopilot", &Routes::settingsAutopilot),
+				PageMenuViewButton(&Images::menuIconPersonalization, "Personal", &Routes::settingsPersonalization),
+				PageMenuViewButton(&Images::menuIconADIRS, "ADIRS", &Routes::settingsADIRS),
+				PageMenuViewButton(&Images::menuIconMotors, "Motors", &Routes::settingsMotors),
+				PageMenuViewButton(&Images::menuIconTransceiverImage, "XCVR", &Routes::settingsTransceiver),
+				PageMenuViewButton(&Images::menuIconAxes, "Axes", &Routes::settingsAxes),
+				PageMenuViewButton(&Images::menuIconSpectrumScan, "Scan", &Routes::settingsSpectrumScan),
+				PageMenuViewButton(&Images::menuIconAutopilotSettings, "Autopilot", &Routes::settingsAutopilot),
 			};
 	};
 }

@@ -15,7 +15,7 @@ namespace pizda {
 		// Angle max
 		setupRadTextField(
 			_latMaxRoll,
-			&rc.getSettings().autopilot.maxRollAngleRad,
+			&rc.getSettings().APConfiguration.maxRollAngleRad,
 			30.f,
 			RemoteSystemPacketType::autopilotMaxRollAngleRad
 		);
@@ -25,7 +25,7 @@ namespace pizda {
 		// Angle increment
 		setupRadTextField(
 			_latSMTAIRPS,
-			&rc.getSettings().autopilot.stabilizedModeRollAngleIncrementRadPerSecond,
+			&rc.getSettings().APConfiguration.stabilizedModeRollAngleIncrementRadPerSecond,
 			5,
 			RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond
 		);
@@ -35,7 +35,7 @@ namespace pizda {
 		// Angle EMA filter factor
 		setupFloatTextField(
 			_latTAEMAFPS,
-			&rc.getSettings().autopilot.rollAngleEMAFilterFactorPerSecond,
+			&rc.getSettings().APConfiguration.rollAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
@@ -47,7 +47,7 @@ namespace pizda {
 		// Surface factor
 		setupUint8PercentTextField(
 			_latMaxAileronsFactor,
-			&rc.getSettings().autopilot.maxAileronsPercent,
+			&rc.getSettings().APConfiguration.maxAileronsPercent,
 			100,
 			RemoteSystemPacketType::autopilotMaxAileronsPercent
 		);
@@ -59,14 +59,14 @@ namespace pizda {
 			_latYawToRollPIDTitle,
 			_latYawToRollPID,
 			RemoteSystemPacketType::autopilotYawToRollPID,
-			&rc.getSettings().autopilot.PIDs.yawToRoll
+			&rc.getSettings().APConfiguration.PIDs.yawToRoll
 		);
 
 		addPID(
 			_latRollToAileronsPIDTitle,
 			_latRollToAileronsPID,
 			RemoteSystemPacketType::autopilotRollToAileronsPID,
-			&rc.getSettings().autopilot.PIDs.rollToAilerons
+			&rc.getSettings().APConfiguration.PIDs.rollToAilerons
 		);
 
 
@@ -80,7 +80,7 @@ namespace pizda {
 		// Angle max
 		setupRadTextField(
 			_verMaxPitch,
-			&rc.getSettings().autopilot.maxPitchAngleRad,
+			&rc.getSettings().APConfiguration.maxPitchAngleRad,
 			15.f,
 			RemoteSystemPacketType::autopilotMaxPitchAngleRad
 		);
@@ -90,7 +90,7 @@ namespace pizda {
 		// Angle increment
 		setupRadTextField(
 			_verSMTARFPS,
-			&rc.getSettings().autopilot.stabilizedModePitchAngleIncrementRadPerSecond,
+			&rc.getSettings().APConfiguration.stabilizedModePitchAngleIncrementRadPerSecond,
 			5,
 			RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond
 		);
@@ -100,7 +100,7 @@ namespace pizda {
 		// Angle EMA filter factor
 		setupFloatTextField(
 			_verTAEMAFPS,
-			&rc.getSettings().autopilot.pitchAngleEMAFilterFactorPerSecond,
+			&rc.getSettings().APConfiguration.pitchAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
@@ -112,7 +112,7 @@ namespace pizda {
 		// Surface factor
 		setupUint8PercentTextField(
 			_verMaxElevatorFactor,
-			&rc.getSettings().autopilot.maxElevatorPercent,
+			&rc.getSettings().APConfiguration.maxElevatorPercent,
 			100,
 			RemoteSystemPacketType::autopilotMaxElevatorPercent
 		);
@@ -124,21 +124,21 @@ namespace pizda {
 			_varAltitudeToPitchPIDTitle,
 			_verAltitudeToPitchPID,
 			RemoteSystemPacketType::autopilotAltitudeToPitchPID,
-			&rc.getSettings().autopilot.PIDs.altitudeToPitch
+			&rc.getSettings().APConfiguration.PIDs.altitudeToPitch
 		);
 
 		addPID(
 			_verSpeedToPitchPIDTitle,
 			_verSpeedToPitchPID,
 			RemoteSystemPacketType::autopilotSpeedToPitchPID,
-			&rc.getSettings().autopilot.PIDs.speedToPitch
+			&rc.getSettings().APConfiguration.PIDs.speedToPitch
 		);
 
 		addPID(
 			_verPitchToElevatorPIDTitle,
 			_verPitchToElevatorPID,
 			RemoteSystemPacketType::autopilotPitchToElevatorPID,
-			&rc.getSettings().autopilot.PIDs.pitchToElevator
+			&rc.getSettings().APConfiguration.PIDs.pitchToElevator
 		);
 
 		// ----------------------------- Longitudinal -----------------------------
@@ -151,7 +151,7 @@ namespace pizda {
 		// Min
 		setupUint8PercentTextField(
 			_lonThrottleMin,
-			&rc.getSettings().autopilot.minThrottlePercent,
+			&rc.getSettings().APConfiguration.minThrottlePercent,
 			100,
 			RemoteSystemPacketType::autopilotMinThrottlePercent
 		);
@@ -161,7 +161,7 @@ namespace pizda {
 		// Max
 		setupUint8PercentTextField(
 			_lonThrottleMax,
-			&rc.getSettings().autopilot.maxThrottlePercent,
+			&rc.getSettings().APConfiguration.maxThrottlePercent,
 			100,
 			RemoteSystemPacketType::autopilotMaxThrottlePercent
 		);
@@ -173,7 +173,7 @@ namespace pizda {
 			_lonSpeedToThrottlePIDTitle,
 			_lonSpeedToThrottlePID,
 			RemoteSystemPacketType::autopilotSpeedToThrottlePID,
-			&rc.getSettings().autopilot.PIDs.speedToThrottle
+			&rc.getSettings().APConfiguration.PIDs.speedToThrottle
 		);
 
 		// Initialization
@@ -206,7 +206,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*value = std::clamp(StringUtils::tryParseFloatOr(textField.getText(), fallbackValue), min, max);
-				rc.getSettings().autopilot.writeLater();
+				rc.getSettings().APConfiguration.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -223,7 +223,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*angleRad = toRadians(StringUtils::tryParseFloatOr(textField.getText(), fallbackAngleDeg));
-				rc.getSettings().autopilot.writeLater();
+				rc.getSettings().APConfiguration.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -240,7 +240,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*percent = static_cast<uint8_t>(std::clamp<int32_t>(StringUtils::tryParseInt32Or(textField.getText(), fallbackPercent), 0, 100));
-				rc.getSettings().autopilot.writeLater();
+				rc.getSettings().APConfiguration.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -257,7 +257,7 @@ namespace pizda {
 			auto& rc = RC::getInstance();
 
 			*settingsCoefficients = newCoefficients;
-			rc.getSettings().autopilot.writeLater();
+			rc.getSettings().APConfiguration.writeLater();
 
 			rc.getTransceiver().enqueueSystemPacket(packetType);
 		});

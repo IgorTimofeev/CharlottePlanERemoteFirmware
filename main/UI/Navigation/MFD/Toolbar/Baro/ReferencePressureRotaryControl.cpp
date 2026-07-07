@@ -10,7 +10,7 @@ namespace pizda {
 		setVariantIndex(0);
 
 		seven.setDecimalSeparatorIndex(0);
-		seven.setValue(RC::getInstance().getSettings().ADIRS.referencePressurePa / 10);
+		seven.setValue(RC::getInstance().getSettings().flightModeSelection.referencePressurePa / 10);
 		
 		updateColor();
 	}
@@ -26,8 +26,8 @@ namespace pizda {
 	void ReferencePressureRotaryControl::onRotate(const bool clockwise, const bool big) {
 		SevenRotaryControl::onRotate(clockwise, big);
 		
-		RC::getInstance().getSettings().ADIRS.referencePressurePa = static_cast<uint16_t>(seven.getValue()) * 10;
-		RC::getInstance().getSettings().ADIRS.writeLater();
+		RC::getInstance().getSettings().flightModeSelection.referencePressurePa = static_cast<uint16_t>(seven.getValue()) * 10;
+		RC::getInstance().getSettings().flightModeSelection.writeLater();
 		
 		RC::getInstance().getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::referencePressure);
 	}
@@ -35,8 +35,8 @@ namespace pizda {
 	void ReferencePressureRotaryControl::onPress() {
 		RotaryControl::onPress();
 		
-		RC::getInstance().getSettings().ADIRS.referencePressureSTD = !RC::getInstance().getSettings().ADIRS.referencePressureSTD;
-		RC::getInstance().getSettings().ADIRS.writeLater();
+		RC::getInstance().getSettings().flightModeSelection.referencePressureSTD = !RC::getInstance().getSettings().flightModeSelection.referencePressureSTD;
+		RC::getInstance().getSettings().flightModeSelection.writeLater();
 		
 		updateColor();
 		
@@ -51,7 +51,7 @@ namespace pizda {
 	
 	void ReferencePressureRotaryControl::updateColor() {
 		setBorderColor(
-			RC::getInstance().getSettings().ADIRS.referencePressureSTD
+			RC::getInstance().getSettings().flightModeSelection.referencePressureSTD
 			? &Theme::fg1
 			: nullptr
 		);

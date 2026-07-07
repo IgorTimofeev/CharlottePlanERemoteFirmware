@@ -9,7 +9,7 @@ namespace pizda {
 
 		setVariantIndex(0);
 
-		seven.setValue(RC::getInstance().getSettings().autopilot.speedKt);
+		seven.setValue(RC::getInstance().getSettings().flightModeSelection.speedKt);
 	}
 	
 	std::string_view SpeedRotaryControl::variantIndexToTitle(uint8_t index) {
@@ -25,8 +25,8 @@ namespace pizda {
 
 		auto& rc = RC::getInstance();
 
-		rc.getSettings().autopilot.speedKt = static_cast<uint16_t>(seven.getValue());
-		rc.getSettings().autopilot.writeLater();
+		rc.getSettings().flightModeSelection.speedKt = static_cast<uint16_t>(seven.getValue());
+		rc.getSettings().flightModeSelection.writeLater();
 
 		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotSpeed);
 	}

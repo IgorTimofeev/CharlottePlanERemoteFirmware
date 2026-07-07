@@ -322,16 +322,16 @@ namespace pizda {
 			}
 
 			// Autopilot selected value
-			if (rc.getSettings().autopilot.lateralMode == AutopilotLateralMode::hdg) {
+			if (rc.getSettings().flightModeSelection.lateralMode == AutopilotLateralMode::hdg) {
 				const auto apValueVecNorm = Vector2F(0, -1).rotate(toRadians(
-					rc.getSettings().autopilot.headingDeg
+					rc.getSettings().flightModeSelection.headingDeg
 					- rc.getAircraftData().computed.headingDeg
 				));
 
 				// Indicator
 				if (
 					rc.getSettings().personalization.MFD.ND.mode != PersonalizationSettingsMFDNDMode::arc
-					|| std::abs(normalizeAngleDeg180(rc.getAircraftData().computed.headingDeg - rc.getSettings().autopilot.headingDeg)) <= compassArcViewportHalfDeg
+					|| std::abs(normalizeAngleDeg180(rc.getAircraftData().computed.headingDeg - rc.getSettings().flightModeSelection.headingDeg)) <= compassArcViewportHalfDeg
 				) {
 					constexpr static uint8_t compassAPValueIndicatorWidth = 6;
 					constexpr static uint8_t compassAPValueIndicatorHeight = 5;

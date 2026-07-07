@@ -724,7 +724,7 @@ namespace pizda {
 		// Autopilot value
 		{
 			auto deltaDeg =
-				static_cast<int32_t>(rc.getSettings().autopilot.headingDeg)
+				static_cast<int32_t>(rc.getSettings().flightModeSelection.headingDeg)
 				- static_cast<int32_t>(rc.getAircraftData().computed.headingDeg);
 
 			if (deltaDeg > 180) {

@@ -95,18 +95,18 @@ namespace pizda {
 
 			case ConnectionState::connected:
 				// WHOOP WHOOP TERRAIN AHEAD
-				rc.getAudioPlayer().play(&resources::sounds::transceiverConnect);
+				rc.getAudioPlayer().play(&Sounds::transceiverConnect);
 				break;
 
 			case ConnectionState::disconnected:
 				RC::getInstance().getAircraftData().raw.calibration.checkValidTime();
 
-				rc.getAudioPlayer().play(&resources::sounds::transceiverDisconnect);
+				rc.getAudioPlayer().play(&Sounds::transceiverDisconnect);
 
 				break;
 
 			case ConnectionState::reconnected:
-				rc.getAudioPlayer().play(&resources::sounds::transceiverConnect);
+				rc.getAudioPlayer().play(&Sounds::transceiverConnect);
 
 				break;
 		}
@@ -543,7 +543,7 @@ namespace pizda {
 			}
 			case RemoteSystemPacketType::referencePressure: {
 				stream.writeUint16(
-					rc.getSettings().ADIRS.referencePressureSTD ? 10132 : rc.getSettings().ADIRS.referencePressurePa / 10,
+					rc.getSettings().flightModeSelection.referencePressureSTD ? 10132 : rc.getSettings().flightModeSelection.referencePressurePa / 10,
 					RemoteSystemPacket::referencePressureLengthBits
 				);
 
@@ -593,7 +593,7 @@ namespace pizda {
 				break;
 			}
 			case RemoteSystemPacketType::magneticDeclination: {
-				stream.writeInt16(rc.getSettings().ADIRS.magneticDeclinationDeg, RemoteSystemPacket::magneticDeclinationLengthBits);
+				stream.writeInt16(rc.getSettings().flightModeSelection.magneticDeclinationDeg, RemoteSystemPacket::magneticDeclinationLengthBits);
 
 				break;
 			}
@@ -615,9 +615,9 @@ namespace pizda {
 			// Lateral
 			case RemoteSystemPacketType::autopilotLateralMode: {
 				const auto mode =
-					rc.getAircraftData().raw.autopilot.lateralMode == rc.getSettings().autopilot.lateralMode
+					rc.getAircraftData().raw.autopilot.lateralMode == rc.getSettings().flightModeSelection.lateralMode
 					? AutopilotLateralMode::dir
-					: rc.getSettings().autopilot.lateralMode;
+					: rc.getSettings().flightModeSelection.lateralMode;
 
 				stream.writeUint8(std::to_underlying(mode), RemoteSystemPacket::autopilotLateralModeLengthBits);
 
@@ -625,31 +625,31 @@ namespace pizda {
 			}
 
 			case RemoteSystemPacketType::autopilotHeading: {
-				stream.writeUint16(rc.getSettings().autopilot.headingDeg, RemoteSystemPacket::autopilotHeadingLengthBits);
+				stream.writeUint16(rc.getSettings().flightModeSelection.headingDeg, RemoteSystemPacket::autopilotHeadingLengthBits);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotMaxRollAngleRad: {
-				stream.writeFloat(rc.getSettings().autopilot.maxRollAngleRad);
+				stream.writeFloat(rc.getSettings().APConfiguration.maxRollAngleRad);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond: {
-				stream.writeFloat(rc.getSettings().autopilot.stabilizedModeRollAngleIncrementRadPerSecond);
+				stream.writeFloat(rc.getSettings().APConfiguration.stabilizedModeRollAngleIncrementRadPerSecond);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotRollAngleEMAFilterFactorPerSecond: {
-				stream.writeFloat(rc.getSettings().autopilot.rollAngleEMAFilterFactorPerSecond);
+				stream.writeFloat(rc.getSettings().APConfiguration.rollAngleEMAFilterFactorPerSecond);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotYawToRollPID: {
-				writePID(stream, rc.getSettings().autopilot.PIDs.yawToRoll);
+				writePID(stream, rc.getSettings().APConfiguration.PIDs.yawToRoll);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotRollToAileronsPID: {
-				writePID(stream, rc.getSettings().autopilot.PIDs.rollToAilerons);
+				writePID(stream, rc.getSettings().APConfiguration.PIDs.rollToAilerons);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotMaxAileronsPercent: {
-				stream.writeUint8(rc.getSettings().autopilot.maxAileronsPercent, RemoteSystemPacket::autopilotPercentLengthBits);
+				stream.writeUint8(rc.getSettings().APConfiguration.maxAileronsPercent, RemoteSystemPacket::autopilotPercentLengthBits);
 				break;
 			}
 
@@ -657,7 +657,7 @@ namespace pizda {
 			case RemoteSystemPacketType::autopilotVerticalMode: {
 				AutopilotVerticalMode mode;
 
-				if (rc.getSettings().autopilot.verticalMode == AutopilotVerticalMode::flc) {
+				if (rc.getSettings().flightModeSelection.verticalMode == AutopilotVerticalMode::flc) {
 					mode =
 						rc.getAircraftData().raw.autopilot.verticalMode == AutopilotVerticalMode::flc
 							|| rc.getAircraftData().raw.autopilot.verticalMode == AutopilotVerticalMode::alts
@@ -666,9 +666,9 @@ namespace pizda {
 				}
 				else {
 					mode =
-						rc.getAircraftData().raw.autopilot.verticalMode == rc.getSettings().autopilot.verticalMode
+						rc.getAircraftData().raw.autopilot.verticalMode == rc.getSettings().flightModeSelection.verticalMode
 						? AutopilotVerticalMode::dir
-						: rc.getSettings().autopilot.verticalMode;
+						: rc.getSettings().flightModeSelection.verticalMode;
 				}
 
 				stream.writeUint8(std::to_underlying(mode), RemoteSystemPacket::autopilotVerticalModeLengthBits);
@@ -678,7 +678,7 @@ namespace pizda {
 			case RemoteSystemPacketType::autopilotAltitude: {
 				writeAltitude(
 					stream,
-					Units::convertDistance(rc.getSettings().autopilot.altitudeFt, DistanceUnit::foot, DistanceUnit::meter),
+					Units::convertDistance(rc.getSettings().flightModeSelection.altitudeFt, DistanceUnit::foot, DistanceUnit::meter),
 					RemoteSystemPacket::autopilotAltitudeLengthBits,
 					RemoteSystemPacket::autopilotAltitudeMinM,
 					RemoteSystemPacket::autopilotAltitudeMaxM
@@ -687,31 +687,31 @@ namespace pizda {
 				break;
 			}
 			case RemoteSystemPacketType::autopilotMaxPitchAngleRad: {
-				stream.writeFloat(rc.getSettings().autopilot.maxPitchAngleRad);
+				stream.writeFloat(rc.getSettings().APConfiguration.maxPitchAngleRad);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond: {
-				stream.writeFloat(rc.getSettings().autopilot.stabilizedModePitchAngleIncrementRadPerSecond);
+				stream.writeFloat(rc.getSettings().APConfiguration.stabilizedModePitchAngleIncrementRadPerSecond);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotPitchAngleEMAFilterFactorPerSecond: {
-				stream.writeFloat(rc.getSettings().autopilot.pitchAngleEMAFilterFactorPerSecond);
+				stream.writeFloat(rc.getSettings().APConfiguration.pitchAngleEMAFilterFactorPerSecond);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotSpeedToPitchPID: {
-				writePID(stream, rc.getSettings().autopilot.PIDs.speedToPitch);
+				writePID(stream, rc.getSettings().APConfiguration.PIDs.speedToPitch);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotAltitudeToPitchPID: {
-				writePID(stream, rc.getSettings().autopilot.PIDs.altitudeToPitch);
+				writePID(stream, rc.getSettings().APConfiguration.PIDs.altitudeToPitch);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotPitchToElevatorPID: {
-				writePID(stream, rc.getSettings().autopilot.PIDs.pitchToElevator);
+				writePID(stream, rc.getSettings().APConfiguration.PIDs.pitchToElevator);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotMaxElevatorPercent: {
-				stream.writeUint8(rc.getSettings().autopilot.maxElevatorPercent, RemoteSystemPacket::autopilotPercentLengthBits);
+				stream.writeUint8(rc.getSettings().APConfiguration.maxElevatorPercent, RemoteSystemPacket::autopilotPercentLengthBits);
 				break;
 			}
 
@@ -724,7 +724,7 @@ namespace pizda {
 			case RemoteSystemPacketType::autopilotSpeed: {
 				const auto speedFactor =
 					std::min<float>(
-						Units::convertSpeed(rc.getSettings().autopilot.speedKt, SpeedUnit::knot, SpeedUnit::meterPerSecond),
+						Units::convertSpeed(rc.getSettings().flightModeSelection.speedKt, SpeedUnit::knot, SpeedUnit::meterPerSecond),
 						RemoteSystemPacket::autopilotSpeedMaxMPS
 					)
 					/ static_cast<float>(RemoteSystemPacket::autopilotSpeedMaxMPS);
@@ -736,15 +736,15 @@ namespace pizda {
 				break;
 			}
 			case RemoteSystemPacketType::autopilotSpeedToThrottlePID: {
-				writePID(stream, rc.getSettings().autopilot.PIDs.speedToThrottle);
+				writePID(stream, rc.getSettings().APConfiguration.PIDs.speedToThrottle);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotMinThrottlePercent: {
-				stream.writeUint8(rc.getSettings().autopilot.minThrottlePercent, RemoteSystemPacket::autopilotPercentLengthBits);
+				stream.writeUint8(rc.getSettings().APConfiguration.minThrottlePercent, RemoteSystemPacket::autopilotPercentLengthBits);
 				break;
 			}
 			case RemoteSystemPacketType::autopilotMaxThrottlePercent: {
-				stream.writeUint8(rc.getSettings().autopilot.maxThrottlePercent, RemoteSystemPacket::autopilotPercentLengthBits);
+				stream.writeUint8(rc.getSettings().APConfiguration.maxThrottlePercent, RemoteSystemPacket::autopilotPercentLengthBits);
 				break;
 			}
 

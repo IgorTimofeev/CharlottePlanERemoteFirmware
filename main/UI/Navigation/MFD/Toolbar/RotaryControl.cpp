@@ -113,10 +113,10 @@ namespace pizda {
 		variantSelectMode = !variantSelectMode;
 		
 		if (variantSelectMode) {
-			RC::getInstance().playFeedback(&resources::sounds::engaged);
+			RC::getInstance().playFeedback(&Sounds::engaged);
 		}
 		else {
-			RC::getInstance().playFeedback(&resources::sounds::disengaged);
+			RC::getInstance().playFeedback(&Sounds::disengaged);
 		}
 	}
 	

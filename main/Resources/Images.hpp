@@ -29,8 +29,8 @@
 #include "Resources/Images/MenuIconAutopilotSettingsImage.hpp"
 #include "Resources/Images/MenuIconTransceiverImage.hpp"
 
-namespace pizda::resources {
-	class images {
+namespace pizda {
+	class Images {
 		public:
 			constexpr static SplashScreenImage splashScreen {};
 

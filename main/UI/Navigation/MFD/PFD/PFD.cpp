@@ -500,7 +500,7 @@ namespace pizda {
 			speedStepUnits,
 			speedStepPixels,
 			rc.getAircraftData().computed.airspeedKt,
-			rc.getSettings().autopilot.speedKt,
+			rc.getSettings().flightModeSelection.speedKt,
 			true
 		);
 
@@ -679,7 +679,7 @@ namespace pizda {
 		);
 
 		// Minimums
-		if (rc.getSettings().ADIRS.minimumAltitudeEnabled) {
+		if (rc.getSettings().flightModeSelection.minimumAltitudeEnabled) {
 			constexpr static uint8_t horizontalOffset = 5;
 			constexpr static uint8_t arrowWidth = 3;
 			constexpr static uint8_t arrowHeight = 4;
@@ -689,7 +689,7 @@ namespace pizda {
 			y =
 				centerY
 				- static_cast<int32_t>(
-					(rc.getSettings().ADIRS.minimumAltitudeFt- altitude)
+					(rc.getSettings().flightModeSelection.minimumAltitudeFt- altitude)
 					* static_cast<float>(altitudeStepPixels)
 					/ static_cast<float>(altitudeStepUnits)
 				);
@@ -758,7 +758,7 @@ namespace pizda {
 			altitudeStepUnits,
 			altitudeStepPixels,
 			altitude,
-			rc.getSettings().autopilot.altitudeFt,
+			rc.getSettings().flightModeSelection.altitudeFt,
 			false
 		);
 
@@ -895,7 +895,7 @@ namespace pizda {
 		const auto bg = &Theme::bg2;
 		const auto fg = &Theme::ocean;
 
-		renderMiniPanelWithAutopilotValue(renderer, bounds, bg, fg, rc.getSettings().autopilot.speedKt, rc.getSettings().autopilot.speedKt > 0, true);
+		renderMiniPanelWithAutopilotValue(renderer, bounds, bg, fg, rc.getSettings().flightModeSelection.speedKt, rc.getSettings().flightModeSelection.speedKt > 0, true);
 	}
 
 	void PFD::renderAutopilotAltitude(Renderer* renderer, const Rectangle& bounds) {
@@ -904,7 +904,7 @@ namespace pizda {
 		const auto bg = &Theme::bg2;
 		const auto fg = &Theme::ocean;
 
-		renderMiniPanelWithAutopilotValue(renderer, bounds, bg, fg, rc.getSettings().autopilot.altitudeFt, rc.getSettings().autopilot.altitudeFt > 0, false);
+		renderMiniPanelWithAutopilotValue(renderer, bounds, bg, fg, rc.getSettings().flightModeSelection.altitudeFt, rc.getSettings().flightModeSelection.altitudeFt > 0, false);
 	}
 
 	void PFD::renderPressure(Renderer* renderer, const Rectangle& bounds) {
@@ -915,7 +915,7 @@ namespace pizda {
 
 		std::string text;
 
-		if (rc.getSettings().ADIRS.referencePressureSTD) {
+		if (rc.getSettings().flightModeSelection.referencePressureSTD) {
 			text = "STD";
 			bg = &Theme::yellow;
 			fg = &Theme::bg1;
@@ -923,7 +923,7 @@ namespace pizda {
 		else {
 			text = std::to_string(static_cast<uint32_t>(
 				Units::convertPressure(
-					rc.getSettings().ADIRS.referencePressurePa,
+					rc.getSettings().flightModeSelection.referencePressurePa,
 					PressureUnit::pascal,
 					PressureUnit::hectopascal
 				)

@@ -44,10 +44,10 @@ namespace pizda {
 			&ALT
 		});
 
-		seven.setValue(RC::getInstance().getSettings().autopilot.altitudeFt);
+		seven.setValue(RC::getInstance().getSettings().flightModeSelection.altitudeFt);
 
 		// Selecting variant
-		switch (RC::getInstance().getSettings().autopilot.verticalMode) {
+		switch (RC::getInstance().getSettings().flightModeSelection.verticalMode) {
 			case AutopilotVerticalMode::stab:
 				setVariantIndex(1);
 				break;
@@ -79,8 +79,8 @@ namespace pizda {
 
 		auto& rc = RC::getInstance();
 
-		rc.getSettings().autopilot.altitudeFt = static_cast<uint16_t>(seven.getValue());
-		rc.getSettings().autopilot.writeLater();
+		rc.getSettings().flightModeSelection.altitudeFt = static_cast<uint16_t>(seven.getValue());
+		rc.getSettings().flightModeSelection.writeLater();
 
 		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotAltitude);
 	}
@@ -90,19 +90,19 @@ namespace pizda {
 
 		switch (getVariantIndex()) {
 			case 0:
-				rc.getSettings().autopilot.verticalMode = AutopilotVerticalMode::flc;
+				rc.getSettings().flightModeSelection.verticalMode = AutopilotVerticalMode::flc;
 				break;
 
 			case 1:
-				rc.getSettings().autopilot.verticalMode = AutopilotVerticalMode::stab;
+				rc.getSettings().flightModeSelection.verticalMode = AutopilotVerticalMode::stab;
 				break;
 
 			default:
-				rc.getSettings().autopilot.verticalMode = AutopilotVerticalMode::alt;
+				rc.getSettings().flightModeSelection.verticalMode = AutopilotVerticalMode::alt;
 				break;
 		}
 
-		rc.getSettings().autopilot.writeLater();
+		rc.getSettings().flightModeSelection.writeLater();
 	}
 
 	void VerticalRotaryControl::onPress() {

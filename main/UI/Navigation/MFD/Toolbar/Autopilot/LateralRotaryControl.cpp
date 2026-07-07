@@ -21,9 +21,9 @@ namespace pizda {
 			&stab
 		});
 
-		seven.setValue(RC::getInstance().getSettings().autopilot.headingDeg);
+		seven.setValue(RC::getInstance().getSettings().flightModeSelection.headingDeg);
 
-		switch (RC::getInstance().getSettings().autopilot.lateralMode) {
+		switch (RC::getInstance().getSettings().flightModeSelection.lateralMode) {
 			case AutopilotLateralMode::stab:
 				setVariantIndex(1);
 				break;
@@ -50,8 +50,8 @@ namespace pizda {
 
 		auto& rc = RC::getInstance();
 
-		rc.getSettings().autopilot.headingDeg = static_cast<uint16_t>(seven.getValue());
-		rc.getSettings().autopilot.writeLater();
+		rc.getSettings().flightModeSelection.headingDeg = static_cast<uint16_t>(seven.getValue());
+		rc.getSettings().flightModeSelection.writeLater();
 
 		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotHeading);
 	}
@@ -61,15 +61,15 @@ namespace pizda {
 
 		switch (getVariantIndex()) {
 			case 0:
-				rc.getSettings().autopilot.lateralMode = AutopilotLateralMode::hdg;
+				rc.getSettings().flightModeSelection.lateralMode = AutopilotLateralMode::hdg;
 				break;
 
 			default:
-				rc.getSettings().autopilot.lateralMode = AutopilotLateralMode::stab;
+				rc.getSettings().flightModeSelection.lateralMode = AutopilotLateralMode::stab;
 				break;
 		}
 
-		rc.getSettings().autopilot.writeLater();
+		rc.getSettings().flightModeSelection.writeLater();
 	}
 	
 	void LateralRotaryControl::onPress() {

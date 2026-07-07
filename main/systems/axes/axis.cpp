@@ -1,14 +1,13 @@
-#include "axis.h"
-
 #include <limits>
 #include <algorithm>
 
 #include <esp_timer.h>
 #include <esp_adc/adc_continuous.h>
 
-#include <EMAFilter.h>
+#include <EMAFilter.hpp>
 
-#include "rc.h"
+#include "Systems/Axes/Axis.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	void Axis::setup(const gpio_num_t pin, const bool invertInput, AxisSettingsData* settings) {

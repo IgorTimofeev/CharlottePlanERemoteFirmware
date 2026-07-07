@@ -1,6 +1,5 @@
-#include "minimumsRotaryControl.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Baro/MinimumsRotaryControl.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	MinimumsRotaryControl::MinimumsRotaryControl() : SevenRotaryControl(4, 0, 15000, false, 1, 10) {

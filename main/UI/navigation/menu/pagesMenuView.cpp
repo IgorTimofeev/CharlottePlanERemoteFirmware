@@ -1,7 +1,6 @@
-#include "pagesMenuView.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/Menu/PagesMenuView.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	const Route* PagesMenuView::getRoute() {

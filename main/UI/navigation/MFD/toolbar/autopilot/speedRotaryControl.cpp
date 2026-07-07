@@ -1,6 +1,5 @@
-#include "speedRotaryControl.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Autopilot/SpeedRotaryControl.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	SpeedRotaryControl::SpeedRotaryControl() : SevenRotaryControl(3, 0, 350, false, 1, 10) {

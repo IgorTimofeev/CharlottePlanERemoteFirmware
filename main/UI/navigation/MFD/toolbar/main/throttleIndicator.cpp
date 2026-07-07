@@ -1,9 +1,8 @@
-#include "throttleIndicator.h"
-
 #include <format>
 
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Main/ThrottleIndicator.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	ThrottleIndicator::ThrottleIndicator() {

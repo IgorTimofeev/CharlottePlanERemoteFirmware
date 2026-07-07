@@ -1,4 +1,4 @@
-#include "theme.h"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	void Theme::setup() {

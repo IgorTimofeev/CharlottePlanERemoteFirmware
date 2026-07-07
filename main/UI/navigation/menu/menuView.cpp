@@ -1,7 +1,6 @@
-#include "menuView.h"
-
-#include "menu.h"
-#include "UI/theme.h"
+#include "UI/Navigation/Menu/MenuView.hpp"
+#include "UI/Navigation/Menu/Menu.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	MenuView::MenuView() {

@@ -1,0 +1,17 @@
+#pragma once
+
+#include <YOBA/UI.hpp>
+
+namespace pizda {
+	using namespace YOBA;
+
+	class FlightControlsIndicator : public Control {
+		public:
+			FlightControlsIndicator();
+
+			void onRender(Renderer* renderer, const Rectangle& bounds) override;
+
+		private:
+		
+	};
+}

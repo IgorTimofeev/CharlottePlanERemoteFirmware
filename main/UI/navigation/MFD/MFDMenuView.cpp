@@ -1,11 +1,9 @@
-#include "MFDMenuView.h"
-
-#include "UI/theme.h"
-#include "rc.h"
-#include "settings/settings.h"
-
-#include "UI/navigation/routes.h"
-#include "MFDPage.h"
+#include "UI/Navigation/MFD/MFDMenuView.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Navigation/Routes.hpp"
+#include "RC.hpp"
+#include "Settings/Settings.hpp"
+#include "UI/Navigation/MFD/MFDPage.hpp"
 
 namespace pizda {
 	// Top

@@ -1,12 +1,11 @@
-#include "axes.h"
-
 #include <algorithm>
 
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <esp_timer.h>
 
-#include "rc.h"
+#include "Systems/Axes/Axes.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	void Axes::setup() {

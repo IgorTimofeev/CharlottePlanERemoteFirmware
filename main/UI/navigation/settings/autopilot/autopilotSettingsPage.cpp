@@ -1,9 +1,8 @@
-#include "autopilotSettingsPage.h"
-
-#include "rc.h"
-#include "UI/theme.h"
-#include "types/generic.h"
-#include "utilities/string.h"
+#include "UI/Navigation/Settings/Autopilot/AutopilotSettingsPage.hpp"
+#include "UI/Theme.hpp"
+#include "Types/Generic.hpp"
+#include "Utilities/String.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	AutopilotSettingsPage::AutopilotSettingsPage() {

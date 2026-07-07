@@ -1,8 +1,7 @@
-#include "throttleSection.h"
-
-#include "rc.h"
-#include "UI/navigation/MFD/toolbar/toolbar.h"
-#include "resources/sounds.h"
+#include "UI/Navigation/MFD/Toolbar/Main/ThrottleSection.hpp"
+#include "RC.hpp"
+#include "UI/Navigation/MFD/Toolbar/Toolbar.hpp"
+#include "Resources/Sounds.hpp"
 
 namespace pizda {
 	ThrottleSection::ThrottleSection() : ToolbarSection("THR") {

@@ -1,6 +1,5 @@
-#include "runwayElement.h"
-
-#include "rc.h"
+#include "UI/Elements/Spatial/RunwayElement.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	RunwayElement::RunwayElement(const uint16_t runwayIndex, const Color* color): _runwayIndex(runwayIndex) {

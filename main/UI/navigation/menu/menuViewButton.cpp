@@ -1,9 +1,7 @@
-#include "menuViewButton.h"
-
-#include "menuView.h"
-#include "menu.h"
-
-#include "rc.h"
+#include "UI/Navigation/Menu/MenuViewButton.hpp"
+#include "UI/Navigation/Menu/MenuView.hpp"
+#include "UI/Navigation/Menu/Menu.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	// -------------------------------- Default --------------------------------

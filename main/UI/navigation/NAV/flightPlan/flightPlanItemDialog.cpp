@@ -1,11 +1,9 @@
-#include "flightPlanItemDialog.h"
-
-#include "rc.h"
-#include "types/navigationData.h"
-#include "UI/theme.h"
-#include "UI/elements/navigation/selectWaypointDialog.h"
-
-#include "flightPlanPage.h"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanItemDialog.hpp"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanPage.hpp"
+#include "Types/NavigationData.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Elements/Navigation/SelectWaypointDialog.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	FlightPlanItemDialog::FlightPlanItemDialog(uint16_t legIndex) {

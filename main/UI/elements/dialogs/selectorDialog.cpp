@@ -1,6 +1,5 @@
-#include "selectorDialog.h"
-
-#include "UI/theme.h"
+#include "UI/Elements/Dialogs/SelectorDialog.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	SelectorDialogItem::SelectorDialogItem(SelectorDialog* comboBoxDialog, const uint8_t index) : _comboBoxDialog(comboBoxDialog), _index(index) {

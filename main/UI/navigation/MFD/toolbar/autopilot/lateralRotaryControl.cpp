@@ -1,6 +1,5 @@
-#include "lateralRotaryControl.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Autopilot/LateralRotaryControl.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	LateralRotaryControlStab::LateralRotaryControlStab() {

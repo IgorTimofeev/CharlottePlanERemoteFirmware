@@ -1,9 +1,9 @@
-#include "waypointElement.h"
-
-#include "rc.h"
-#include "UI/theme.h"
-#include "UI/navigation/MFD/ND/NDScene.h"
-#include "utilities/rendering.h"
+#include "UI/Navigation/MFD/ND/SceneElements/WaypointElement.hpp"
+#include "UI/Navigation/MFD/ND/SceneElements/RouteElement.hpp"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Navigation/MFD/ND/NDScene.hpp"
+#include "Utilities/Rendering.hpp"
 
 namespace pizda {
 	WaypointElement::WaypointElement(const uint16_t waypointIndex) : waypointIndex(waypointIndex) {

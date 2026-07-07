@@ -1,6 +1,5 @@
-#include "cameraToolbar.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Camera/CameraToolbar.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	CameraToolbar::CameraToolbar() :

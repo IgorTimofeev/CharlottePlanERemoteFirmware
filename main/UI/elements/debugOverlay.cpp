@@ -1,6 +1,6 @@
-#include "debugOverlay.h"
+#include "UI/Elements/DebugOverlay.hpp"
 #include <esp_private/esp_clk.h>
-#include "rc.h"
+#include "RC.hpp"
 
 namespace pizda {
 	DebugOverlay::DebugOverlay() {

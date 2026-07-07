@@ -1,6 +1,5 @@
-#include "pageMenuViewButton.h"
-
-#include "pagesMenuView.h"
+#include "UI/Navigation/Menu/PageMenuViewButton.hpp"
+#include "UI/Navigation/Menu/PagesMenuView.hpp"
 
 namespace pizda {
 	PageMenuViewButton::PageMenuViewButton(const Image* image, std::string_view text, const Route* route) :

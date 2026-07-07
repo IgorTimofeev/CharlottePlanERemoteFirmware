@@ -1,9 +1,9 @@
-#include "openMenuButton.h"
+#include "UI/Navigation/Menu/OpenMenuButton.hpp"
 
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
-#include "UI/navigation/menu/menu.h"
+#include "UI/Navigation/Menu/Menu.hpp"
 
 namespace pizda {
 	OpenMenuButton::OpenMenuButton() {

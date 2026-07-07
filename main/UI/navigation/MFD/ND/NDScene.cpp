@@ -1,16 +1,16 @@
-#include "NDScene.h"
 
-#include "rc.h"
 
 #include <format>
 #include <esp_log.h>
 #include <esp_timer.h>
 
-#include "UI/navigation/MFD/ND/sceneElements/NDRunwayElement.h"
-#include "UI/navigation/MFD/ND/sceneElements/waypointElement.h"
-#include "UI/navigation/MFD/ND/sceneElements/routeElement.h"
-#include "UI/navigation/MFD/PFD/PFD.h"
-#include "utilities/rendering.h"
+#include "UI/Navigation/MFD/ND/NDScene.hpp"
+#include "UI/Navigation/MFD/PFD/PFD.hpp"
+#include "UI/Navigation/MFD/ND/SceneElements/NDRunwayElement.hpp"
+#include "UI/Navigation/MFD/ND/SceneElements/WaypointElement.hpp"
+#include "UI/Navigation/MFD/ND/SceneElements/RouteElement.hpp"
+#include "Utilities/Rendering.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	NDScene::NDScene() {

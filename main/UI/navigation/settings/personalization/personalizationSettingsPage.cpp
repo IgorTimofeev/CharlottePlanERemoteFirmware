@@ -1,7 +1,6 @@
-#include "personalizationSettingsPage.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/Settings/Personalization/PersonalizationSettingsPage.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	PersonalizationSettingsPage::PersonalizationSettingsPage() {

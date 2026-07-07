@@ -1,9 +1,8 @@
-#include "selectWaypointDialog.h"
+#include "UI/Elements/Navigation/SelectWaypointDialog.hpp"
+#include "Utilities/String.hpp"
 
-#include <utilities/string.h>
-
-#include "rc.h"
-#include "UI/theme.h"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	void SelectWaypointDialog::select(

@@ -1,6 +1,6 @@
-#include "autopilotToolbar.h"
-#include "rc.h"
-#include "resources/sounds.h"
+#include "UI/Navigation/MFD/Toolbar/Autopilot/AutopilotToolbar.hpp"
+#include "RC.hpp"
+#include "Resources/Sounds.hpp"
 
 namespace pizda {
 	AutopilotToolbar::AutopilotToolbar() {

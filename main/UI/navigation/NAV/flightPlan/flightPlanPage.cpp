@@ -1,7 +1,6 @@
-#include "flightPlanPage.h"
-
-#include "rc.h"
-#include "flightPlanItem.h"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanPage.hpp"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanItem.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	FlightPlanPage* FlightPlanPage::_instance = nullptr;

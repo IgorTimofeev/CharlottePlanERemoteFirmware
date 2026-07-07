@@ -1,7 +1,6 @@
-#include "flightControlsIndicator.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Main/FlightControlsIndicator.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	FlightControlsIndicator::FlightControlsIndicator() {

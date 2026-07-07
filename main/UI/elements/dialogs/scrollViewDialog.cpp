@@ -1,6 +1,5 @@
-#include "scrollViewDialog.h"
-
-#include "UI/theme.h"
+#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	ScrollViewDialog::ScrollViewDialog() {

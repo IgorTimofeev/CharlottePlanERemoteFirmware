@@ -1,8 +1,8 @@
-#include "transceiverSettingsPage.h"
+#include "UI/Navigation/Settings/Transceiver/TransceiverSettingsPage.hpp"
 
-#include "rc.h"
-#include "UI/theme.h"
-#include "utilities/string.h"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
+#include "Utilities/String.hpp"
 
 namespace pizda {
 	TransceiverSettingsPage::TransceiverSettingsPage() {

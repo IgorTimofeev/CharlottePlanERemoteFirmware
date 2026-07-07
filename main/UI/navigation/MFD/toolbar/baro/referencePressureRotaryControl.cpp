@@ -1,6 +1,5 @@
-#include "referencePressureRotaryControl.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Baro/ReferencePressureRotaryControl.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	ReferencePressureRotaryControl::ReferencePressureRotaryControl() : SevenRotaryControl(5, 9000, 11000, false, 1, 10) {

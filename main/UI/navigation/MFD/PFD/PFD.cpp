@@ -1,11 +1,10 @@
-#include "PFD.h"
-
 #include <numbers>
 #include <inttypes.h>
 
-#include <units.h>
+#include <Units.hpp>
 
-#include "rc.h"
+#include "UI/Navigation/MFD/PFD/PFD.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	PFD::PFD() {
@@ -127,7 +126,7 @@ namespace pizda {
 		const auto bg = isConnected ? &Theme::bg2 : &Theme::bad3;
 		const auto x2 = bounds.getX2();
 		const auto yCenter = bounds.getYCenter();
-		
+
 		// Rect
 		renderer->renderFilledRectangle(
 			Rectangle(
@@ -138,7 +137,7 @@ namespace pizda {
 			),
 			bg
 		);
-		
+
 		// Triangle
 		renderer->renderFilledTriangle(
 			Point(
@@ -158,7 +157,7 @@ namespace pizda {
 
 		// Text
 		const auto textY = yCenter - currentValueFont->getLineHeight() / 2;
-		
+
 		// Assuming 4 is "widest" digit
 
 		if (isConnected) {
@@ -168,7 +167,7 @@ namespace pizda {
 			value = std::abs(value);
 
 			const uint8_t maxDigitWidth = currentValueFont->getWidth('4');
-			
+
 			int32_t textX =
 				isSpeed
 				? x2 - speedBarSize - currentValueTextOffset - maxDigitWidth
@@ -192,7 +191,7 @@ namespace pizda {
 					'0' + digit
 				);
 			};
-			
+
 			for (uint8_t digitIndex = 0; digitIndex < digitCount; ++digitIndex) {
 				// Altitude, 1st digit
 				if (!isSpeed && digitIndex == 0) {
@@ -221,12 +220,12 @@ namespace pizda {
 				textX -= maxDigitWidth;
 				value = value / 10;
 			}
-			
+
 			renderer->setClip(oldClip);
 		}
 		else {
 			const auto text = "---";
-			
+
 			renderer->renderText(
 				Point(
 					isSpeed
@@ -240,11 +239,11 @@ namespace pizda {
 			);
 		}
 	}
-	
+
 	void PFD::renderAutopilotValueIndicator(Renderer* renderer, const Rectangle& bounds, const int32_t centerY, const uint8_t unitStep, const uint16_t stepPixels, const float currentValue, const uint16_t autopilotValue, const bool left) {
 		if (autopilotValue == 0)
 			return;
-		
+
 		const auto indicatorCenterY = std::clamp<int32_t>(
 			centerY
 				- static_cast<int32_t>(
@@ -255,10 +254,10 @@ namespace pizda {
 			bounds.getY(),
 			bounds.getY2()
 		);
-		
+
 		const auto x = left ? bounds.getX2() + 1 - autopilotIndicatorThickness : bounds.getX();
 		const auto y= indicatorCenterY - autopilotIndicatorSize / 2;
-				
+
 		// Common rect
 		renderer->renderFilledRectangle(
 			Rectangle(
@@ -269,7 +268,7 @@ namespace pizda {
 			),
 			&Theme::ocean
 		);
-		
+
 		// Upper rect
 		renderer->renderFilledRectangle(
 			Rectangle(
@@ -280,7 +279,7 @@ namespace pizda {
 			),
 			&Theme::ocean
 		);
-		
+
 		// Lower rect
 		renderer->renderFilledRectangle(
 			Rectangle(
@@ -291,7 +290,7 @@ namespace pizda {
 			),
 			&Theme::ocean
 		);
-		
+
 		// Upper triangle
 		renderer->renderFilledTriangle(
 			Point(
@@ -308,7 +307,7 @@ namespace pizda {
 			),
 			&Theme::ocean
 		);
-		
+
 		// Lower triangle
 		renderer->renderFilledTriangle(
 			Point(
@@ -530,7 +529,11 @@ namespace pizda {
 				text,
 				textLength,
 				"%" PRId32,
-				static_cast<int32_t>(Units::convertSpeed(rc.getAircraftData().computed.airspeedKt, SpeedUnit::knot, SpeedUnit::meterPerSecond))
+				static_cast<int32_t>(Units::convertSpeed(
+					rc.getAircraftData().computed.airspeedKt,
+					SpeedUnit::knot,
+					SpeedUnit::kilometerPerHour
+				))
 			);
 
 			renderMetricUnits(
@@ -638,7 +641,7 @@ namespace pizda {
 			constexpr int8_t groundSpacing = 5;
 			auto groundPoint1 = Point(x, y + groundSpacing);
 			auto groundPoint2 = Point(x + groundSpacing, y);
-		
+
 			do {
 				renderer->renderLine(
 					groundPoint1,
@@ -758,7 +761,7 @@ namespace pizda {
 			rc.getSettings().autopilot.altitudeFt,
 			false
 		);
-		
+
 		// Current value
 		renderCurrentValue(
 			renderer,

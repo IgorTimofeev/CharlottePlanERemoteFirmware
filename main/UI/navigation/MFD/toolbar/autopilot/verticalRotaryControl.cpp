@@ -1,6 +1,5 @@
-#include "verticalRotaryControl.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Autopilot/VerticalRotaryControl.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	VerticalRotaryControlStab::VerticalRotaryControlStab() {

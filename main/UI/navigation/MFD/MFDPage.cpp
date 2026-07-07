@@ -1,7 +1,6 @@
-#include "MFDPage.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/MFDPage.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	void MFDLayout::deleteShit() {

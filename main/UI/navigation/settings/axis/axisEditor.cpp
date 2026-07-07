@@ -1,7 +1,6 @@
-#include "axisEditor.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/Settings/Axis/AxisEditor.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	AxisEditor::AxisEditor(Axis* axis) : _axis(axis) {

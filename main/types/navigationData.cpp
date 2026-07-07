@@ -1,7 +1,7 @@
-#include "navigationData.h"
-
 #include <esp_log.h>
-#include "rc.h"
+
+#include "Types/NavigationData.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	NavigationWaypointData::NavigationWaypointData(

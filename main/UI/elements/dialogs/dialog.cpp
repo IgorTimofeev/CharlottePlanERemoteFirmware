@@ -1,7 +1,6 @@
-#include "dialog.h"
-
-#include "rc.h"
-#include "UI/theme.h"
+#include "UI/Elements/Dialogs/Dialog.hpp"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	DialogSlideLayoutBackground::DialogSlideLayoutBackground() {

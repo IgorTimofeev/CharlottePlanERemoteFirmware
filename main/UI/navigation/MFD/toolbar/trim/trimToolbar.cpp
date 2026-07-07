@@ -1,6 +1,5 @@
-#include "trimToolbar.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Trim/TrimToolbar.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	TrimToolbar::TrimToolbar() :

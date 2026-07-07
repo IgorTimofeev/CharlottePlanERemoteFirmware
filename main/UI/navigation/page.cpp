@@ -1,4 +1,4 @@
-#include "page.h"
+#include "UI/Navigation/Page.hpp"
 
 namespace pizda {
 	// ----------------------------- Templates -----------------------------

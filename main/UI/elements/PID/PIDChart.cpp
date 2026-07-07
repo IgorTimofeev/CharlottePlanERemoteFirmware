@@ -1,11 +1,11 @@
 #include <utility>
 #include <format>
 
-#include <PIDController.h>
+#include <PIDController.hpp>
 
-#include "UI/elements/PID/PIDChart.h"
-#include "UI/theme.h"
-#include "utilities/string.h"
+#include "UI/Elements/PID/PIDChart.hpp"
+#include "UI/Theme.hpp"
+#include "Utilities/String.hpp"
 
 namespace pizda {
 	PIDChart::PIDChart() {

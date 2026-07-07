@@ -1,9 +1,8 @@
-#include "motorsSettingsPage.h"
-
 #include <optional>
 
-#include "rc.h"
-#include "UI/theme.h"
+#include "UI/Navigation/Settings/Motors/MotorsSettingsPage.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	MotorEditor::MotorEditor(const std::string_view title, const MotorType type) : Titler(title), _type(type) {

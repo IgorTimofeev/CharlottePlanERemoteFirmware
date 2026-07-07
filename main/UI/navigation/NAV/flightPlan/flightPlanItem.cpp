@@ -1,9 +1,7 @@
-#include "flightPlanItem.h"
-
-#include "rc.h"
-
-#include "flightPlanItemDialog.h"
-#include "utilities/rendering.h"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanItem.hpp"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanItemDialog.hpp"
+#include "Utilities/Rendering.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	FlightPlanItem::FlightPlanItem(const uint16_t legIndex) : _legIndex(legIndex) {

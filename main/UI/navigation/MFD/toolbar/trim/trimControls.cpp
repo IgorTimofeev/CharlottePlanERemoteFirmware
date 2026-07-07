@@ -1,6 +1,5 @@
-#include "trimControls.h"
-
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Trim/TrimControls.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	TrimControl::TrimControl(const std::string_view title, int8_t* settingsValue) : SevenRotaryControl(4, -100, 100, false, 1, 10),  _title(title), _settingsValue(settingsValue) {

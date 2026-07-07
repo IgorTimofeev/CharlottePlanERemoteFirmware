@@ -1,12 +1,12 @@
-#include "spectrumScanPage.h"
+#include "UI/Navigation/Settings/SpectrumScan/SpectrumScanPage.hpp"
 
 #include <format>
 #include <algorithm>
 
-#include "rc.h"
-#include "UI/theme.h"
-#include "UI/elements/dialogs/selectorDialog.h"
-#include "utilities/string.h"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Elements/Dialogs/SelectorDialog.hpp"
+#include "Utilities/String.hpp"
 
 namespace pizda {
 	void SpectrumScanningChart::onTick() {

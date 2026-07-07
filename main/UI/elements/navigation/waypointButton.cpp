@@ -1,9 +1,8 @@
-#include "waypointButton.h"
-
-#include "UI/theme.h"
-#include "types/navigationData.h"
-#include "utilities/rendering.h"
-#include "rc.h"
+#include "UI/Elements/Navigation/WaypointButton.hpp"
+#include "UI/Theme.hpp"
+#include "Types/NavigationData.hpp"
+#include "Utilities/Rendering.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	WaypointButton::WaypointButton() {

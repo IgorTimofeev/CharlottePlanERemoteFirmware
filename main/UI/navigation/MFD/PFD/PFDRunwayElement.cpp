@@ -1,7 +1,6 @@
-#include "PFDRunwayElement.h"
-
-#include "rc.h"
-#include "UI/theme.h"
+#include "UI/Navigation/MFD/PFD/PFDRunwayElement.hpp"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	PFDRunwayElement::PFDRunwayElement(const uint16_t runwayIndex): RunwayElement(runwayIndex, &Theme::bg1) {

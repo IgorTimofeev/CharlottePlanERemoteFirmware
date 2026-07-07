@@ -1,10 +1,9 @@
-#include "ADIRSSettingsPage.h"
-
 #include <format>
 
-#include "rc.h"
-#include "UI/theme.h"
-#include "utilities/string.h"
+#include "UI/Navigation/Settings/ADIRS/ADIRSSettingsPage.hpp"
+#include "UI/Theme.hpp"
+#include "Utilities/String.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	ADIRSSettingsPage::ADIRSSettingsPage() {

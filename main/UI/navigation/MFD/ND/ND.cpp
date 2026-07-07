@@ -1,7 +1,7 @@
-#include "ND.h"
-#include "rc.h"
-#include "UI/elements/navigation/addWaypointDialog.h"
-#include "UI/navigation/MFD/MFDPage.h"
+#include "UI/Navigation/MFD/ND/ND.hpp"
+#include "UI/Elements/Navigation/AddWaypointDialog.hpp"
+#include "UI/Navigation/MFD/MFDPage.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	NDActionButtonDialog::NDActionButtonDialog(NDScene* scene) {

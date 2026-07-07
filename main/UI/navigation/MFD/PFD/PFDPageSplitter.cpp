@@ -1,6 +1,6 @@
-#include "rc.h"
-#include "UI/theme.h"
-#include "UI/navigation/MFD/MFDPage.h"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Navigation/MFD/MFDPage.hpp"
 
 namespace pizda {
 	void PFDPageSplitter::onEvent(Event* event) {

@@ -1,9 +1,8 @@
-#include "radioIndicator.h"
-
 #include <format>
 
-#include "rc.h"
-#include "UI/theme.h"
+#include "UI/Navigation/MFD/Toolbar/Main/RadioIndicator.hpp"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	RadioIndicator::RadioIndicator() {

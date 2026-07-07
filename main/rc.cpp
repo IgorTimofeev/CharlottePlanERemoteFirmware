@@ -6,11 +6,11 @@
 #include <nvs.h>
 #include <esp_adc/adc_continuous.h>
 
-#include "rc.h"
-#include "config.h"
-#include "resources/sounds.h"
-#include "resources/images.h"
-#include "UI/navigation/routes.h"
+#include "RC.hpp"
+#include "Config.hpp"
+#include "Resources/Sounds.hpp"
+#include "Resources/Images.hpp"
+#include "UI/Navigation/Routes.hpp"
 
 namespace pizda {
 	using namespace YOBA;

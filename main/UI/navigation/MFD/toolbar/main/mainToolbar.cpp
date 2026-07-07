@@ -1,8 +1,7 @@
-#include "mainToolbar.h"
-
-#include "rc.h"
-#include "resources/images.h"
-#include "UI/navigation/MFD/toolbar/toolbar.h"
+#include "UI/Navigation/MFD/Toolbar/Main/MainToolbar.hpp"
+#include "RC.hpp"
+#include "Resources/Images.hpp"
+#include "UI/Navigation/MFD/Toolbar/Toolbar.hpp"
 
 namespace pizda {
 	MainToolbar::MainToolbar() {

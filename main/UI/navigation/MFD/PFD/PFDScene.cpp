@@ -1,14 +1,13 @@
-#include "PFDScene.h"
-
 #include <numbers>
 
 #include <esp_timer.h>
 
-#include "rc.h"
-#include "UI/theme.h"
-#include "UI/navigation/MFD/PFD/PFD.h"
-#include "UI/navigation/MFD/PFD/PFDRunwayElement.h"
-#include "utilities/rendering.h"
+#include "UI/Navigation/MFD/PFD/PFDScene.hpp"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Navigation/MFD/PFD/PFD.hpp"
+#include "UI/Navigation/MFD/PFD/PFDRunwayElement.hpp"
+#include "Utilities/Rendering.hpp"
 
 namespace pizda {
 	PFDScene::PFDScene() {

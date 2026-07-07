@@ -1,7 +1,6 @@
-#include "comboBox.h"
-
-#include "UI/theme.h"
-#include "UI/elements/dialogs/selectorDialog.h"
+#include "UI/Elements/ComboBox.hpp"
+#include "UI/Theme.hpp"
+#include "UI/Elements/Dialogs/SelectorDialog.hpp"
 
 namespace pizda {
 	ComboBox::ComboBox() {

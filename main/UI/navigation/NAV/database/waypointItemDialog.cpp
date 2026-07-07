@@ -1,10 +1,9 @@
-#include "waypointItemDialog.h"
+#include "UI/Navigation/NAV/Database/WaypointItemDialog.hpp"
+#include "UI/Navigation/NAV/Database/DatabasePage.hpp"
 
-#include "rc.h"
-#include "types/navigationData.h"
-#include "UI/theme.h"
-
-#include "databasePage.h"
+#include "Types/NavigationData.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	WaypointItemDialog::WaypointItemDialog(uint16_t waypointIndex) {

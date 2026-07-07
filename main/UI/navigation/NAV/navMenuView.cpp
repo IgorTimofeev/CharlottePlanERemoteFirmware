@@ -1,7 +1,6 @@
-#include "NavMenuView.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/NAV/NavMenuView.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	const Route* NavMenuView::_lastRoute = nullptr;

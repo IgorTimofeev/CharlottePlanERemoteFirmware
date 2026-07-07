@@ -1,16 +1,14 @@
-#include "databasePage.h"
-
-#include "rc.h"
-#include "types/navigationData.h"
-#include "UI/theme.h"
-#include "utilities/rendering.h"
-#include <utilities/string.h>
-
 #include <format>
 #include <esp_log.h>
-#include "UI/elements/navigation/addWaypointDialog.h"
 
-#include "waypointItem.h"
+#include "UI/Navigation/NAV/Database/DatabasePage.hpp"
+#include "UI/Navigation/NAV/Database/WaypointItem.hpp"
+#include "Types/NavigationData.hpp"
+#include "UI/Theme.hpp"
+#include "Utilities/Rendering.hpp"
+#include "Utilities/String.hpp"
+#include "UI/Elements/Navigation/AddWaypointDialog.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	DatabasePage* DatabasePage::_instance = nullptr;

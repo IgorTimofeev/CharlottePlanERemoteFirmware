@@ -1,5 +1,5 @@
-#include "baroToolbar.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Baro/BaroToolbar.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	BaroToolbar::BaroToolbar() {

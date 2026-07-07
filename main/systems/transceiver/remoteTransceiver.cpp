@@ -1,4 +1,4 @@
-#include "systems/transceiver/remoteTransceiver.h"
+#include "Systems/Transceiver/RemoteTransceiver.hpp"
 
 #include <utility>
 #include <algorithm>
@@ -7,8 +7,8 @@
 #include <esp_timer.h>
 #include <esp_log.h>
 
-#include "rc.h"
-#include "resources/sounds.h"
+#include "RC.hpp"
+#include "Resources/Sounds.hpp"
 
 namespace pizda {
 	// -------------------------------- Main --------------------------------

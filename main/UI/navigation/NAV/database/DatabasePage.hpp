@@ -1,0 +1,36 @@
+#pragma once
+
+#include <YOBA/Core.hpp>
+#include <YOBA/UI.hpp>
+
+#include "UI/Navigation/Page.hpp"
+#include "UI/Elements/TabSelector.hpp"
+
+namespace pizda {
+	using namespace YOBA;
+
+	class DatabasePage : public ScrollViewPage {
+		public:
+			explicit DatabasePage();
+			~DatabasePage() override;
+
+			static DatabasePage* getInstance();
+
+			void updateFromNavigationData();
+
+		private:
+			static int32_t _scrollPosition;
+
+			static DatabasePage* _instance;
+
+			TabSelectorItem _runwayTypeItem {};
+			TabSelectorItem _enrouteTypeItem {};
+			TabSelector _typeSelector {};
+
+			RelativeStackLayout _searchAndAddRow {};
+			TextField _searchTextField {};
+			Button _addButton {};
+
+			StackLayout _itemsLayout {};
+	};
+}

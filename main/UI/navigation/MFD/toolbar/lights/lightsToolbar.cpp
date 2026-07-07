@@ -1,5 +1,5 @@
-#include "lightsToolbar.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/Toolbar/Lights/LightsToolbar.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	using namespace YOBA;

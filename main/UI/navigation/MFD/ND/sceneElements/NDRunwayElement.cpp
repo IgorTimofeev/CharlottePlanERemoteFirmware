@@ -1,8 +1,7 @@
-#include "NDRunwayElement.h"
-
-#include "UI/theme.h"
-#include "utilities/rendering.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/ND/SceneElements/NDRunwayElement.hpp"
+#include "UI/Theme.hpp"
+#include "Utilities/Rendering.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	NDRunwayElement::NDRunwayElement(const uint16_t runwayIndex) : RunwayElement(runwayIndex, &Theme::fg1) {

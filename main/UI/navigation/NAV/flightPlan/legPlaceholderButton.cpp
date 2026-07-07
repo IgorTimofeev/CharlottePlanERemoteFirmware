@@ -1,11 +1,10 @@
-#include "legPlaceholderButton.h"
+#include "UI/Navigation/NAV/FlightPlan/LegPlaceholderButton.hpp"
+#include "UI/Navigation/NAV/FlightPlan/FlightPlanItemDialog.hpp"
 
-#include "UI/theme.h"
-#include "UI/elements/navigation/waypointButton.h"
-#include "types/navigationData.h"
-
-#include "flightPlanItemDialog.h"
-#include "rc.h"
+#include "UI/Theme.hpp"
+#include "UI/Elements/Navigation/WaypointButton.hpp"
+#include "Types/NavigationData.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	LegPlaceholderButton::LegPlaceholderButton() {

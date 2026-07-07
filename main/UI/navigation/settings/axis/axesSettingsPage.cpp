@@ -1,9 +1,8 @@
-#include "axesSettingsPage.h"
+#include <EMAFilter.hpp>
 
-#include <EMAFilter.h>
-
-#include "rc.h"
-#include "UI/theme.h"
+#include "UI/Navigation/Settings/Axis/AxesSettingsPage.hpp"
+#include "RC.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	AxesSettingsPage::AxesSettingsPage() :

@@ -1,7 +1,6 @@
-#include "rotaryControl.h"
-
-#include "rc.h"
-#include "resources/sounds.h"
+#include "UI/Navigation/MFD/Toolbar/RotaryControl.hpp"
+#include "Resources/Sounds.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	

@@ -1,7 +1,6 @@
-#include "menuTabButton.h"
-
-#include "menuView.h"
-#include "menu.h"
+#include "UI/Navigation/Menu/MenuTabButton.hpp"
+#include "UI/Navigation/Menu/MenuView.hpp"
+#include "UI/Navigation/Menu/Menu.hpp"
 
 namespace pizda {
 	MenuTabButton::MenuTabButton(std::string_view text, const Route* route) : _route(route) {

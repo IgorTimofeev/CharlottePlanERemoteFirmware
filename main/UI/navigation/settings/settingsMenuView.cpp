@@ -1,7 +1,7 @@
-#include "settingsMenuView.h"
+#include "UI/Navigation/Settings/SettingsMenuView.hpp"
 
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	const Route* SettingsMenuView::_lastRoute = nullptr;

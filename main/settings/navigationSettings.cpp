@@ -1,8 +1,7 @@
-#include "navigationSettings.h"
-
 #include <span>
 
-#include "rc.h"
+#include "Settings/NavigationSettings.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	const char* NavigationSettings::getNamespace() {

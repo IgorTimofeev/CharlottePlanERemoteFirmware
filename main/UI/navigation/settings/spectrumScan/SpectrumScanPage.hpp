@@ -1,0 +1,58 @@
+#pragma once
+
+#include <functional>
+
+#include <YOBA/Core.hpp>
+#include <YOBA/UI.hpp>
+
+#include "UI/Navigation/Page.hpp"
+#include "UI/Elements/Titler.hpp"
+#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
+
+namespace pizda {
+	using namespace YOBA;
+
+	class SpectrumScanningChart : public Control {
+		protected:
+			void onTick() override;
+			void onEvent(Event* event) override;
+			void onRender(Renderer* renderer, const Rectangle& bounds) override;
+
+		private:
+			Vector2F _pointerPos { 0.5f, 0.5f };
+			int32_t _pinchLength = -1;
+
+			constexpr static int8_t _RSSIMin = -100;
+			int8_t _RSSIMax = -20;
+
+			void updatePointerPos(const Point& pointerEventPos);
+	};
+
+	class SpectrumScanPage : public RelativeRowsPage {
+		public:
+			SpectrumScanPage();
+
+		protected:
+			void onTick() override;
+
+		private:
+			SpectrumScanningChart chart {};
+
+			RelativeStackLayout frequencyRow {};
+
+			TextField frequencyFromTextField {};
+			Titler frequencyFromTitle { "From (MHz)", &frequencyFromTextField };
+
+			TextField frequencyToTextField {};
+			Titler frequencyToTitle { "To (MHz)", &frequencyToTextField };
+
+			TextField frequencyStepTextField {};
+			Titler frequencyStepTitle { "Step (KHz)", &frequencyStepTextField };
+
+			Button frequencyPresetsButton {};
+
+			Button confirmButton {};
+
+			void updateConfirmButtonText();
+	};
+}

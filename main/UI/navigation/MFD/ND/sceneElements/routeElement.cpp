@@ -1,7 +1,6 @@
-#include "routeElement.h"
-
-#include "UI/theme.h"
-#include "rc.h"
+#include "UI/Navigation/MFD/ND/SceneElements/RouteElement.hpp"
+#include "UI/Theme.hpp"
+#include "RC.hpp"
 
 namespace pizda {
 	RouteElement::RouteElement(const uint16_t legIndex) : _legIndex(legIndex) {

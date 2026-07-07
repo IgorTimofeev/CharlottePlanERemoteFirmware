@@ -195,421 +195,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="РИДМИХА">
-      <change afterPath="$PROJECT_DIR$/components/YOBA/examples/ESP-IDF/Direct rendering/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/YOBA/examples/ESP-IDF/Direct rendering/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="3c43c2b2-1bb6-4c4b-b9c7-13761b7a7fd1" name="Changes" comment="вот это я наебнул говнеца каэш))) ALL HAIL HIS MAJESTY..... !!!CAMEL CASE">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-ADCVoltmeter" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-ADCVoltmeter" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-ADCVoltmeter/src/ADCVoltmeter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-ADCVoltmeter/src/ADCVoltmeter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-ADCVoltmeter/src/ADCVoltmeter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BitStream" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BitStream" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BitStream/src/bitStream.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/audioPlayer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/buzzer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/buzzer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/buzzer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-BuzzerAudio/src/sound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-CircularQueue" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-CircularQueue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-CircularQueue/src/circularQueue.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-EMAFilter" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-EMAFilter" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-EMAFilter/src/EMAFilter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-NVSExtensions" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-NVSExtensions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-NVSExtensions/src/NVSSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-NVSExtensions/src/NVSStream.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-PIDController" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-PIDController" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-PIDController/src/PIDController.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-SX1262" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-SX1262" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-SX1262/src/SX1262.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-SX1262/src/SX1262.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-SX1262/src/SX1262.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-Units" beforeDir="false" afterPath="$PROJECT_DIR$/components/ESP-IDF-Units" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/ESP-IDF-Units/src/units.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/animation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/animation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/animation.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/application.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/button.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/button.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/control.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/control.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/control.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/element.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/element.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/element.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/imageView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/imageView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/imageView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/button.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/button.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/button.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/controller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/controller.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/controller.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/generic.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/keyboard.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/keyboard.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/keyboard.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/layout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/layout.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/keyboard/layout.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/knob.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/knob.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/knob.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/layout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/layout.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/layout.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/progressBar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/progressBar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/progressBar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/relativeStackLayout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/relativeStackLayout.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/relativeStackLayout.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/scrollBar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/scrollBar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/scrollBar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/scrollView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/scrollView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/scrollView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/selector.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/selector.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/selector.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/sevenSegment.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/sevenSegment.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/sevenSegment.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/shapes/circle.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/shapes/ditheredRectangle.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/shapes/rectangle.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/shapes/shape.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/slider.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/slider.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/slider.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/line.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/line.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/line.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearCube.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearCube.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearCube.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearMesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearSphere.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearSphere.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/linearSphere.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/mesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/mesh.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/scene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/scene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/sceneElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/sceneElement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/spatial/sceneElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/stackLayout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/stackLayout.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/stackLayout.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/switch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/switch.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/switch.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textField.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textField.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textField.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/textView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/activeElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/backgroundColorElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/borderElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/cornerRadiusElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/fillColorElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/fontElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/fontScaleElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/gapElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/horizontalAndVerticalSpacingElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/orientationElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/textColorElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/textElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/traits/valueElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/wrapLayout.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/wrapLayout.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/UI/wrapLayout.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/alignment.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/color.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/color.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/color.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/event.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/event.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/event.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/keyEvent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/keyEvent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/keyEvent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/pinchEvent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/pinchEvent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/pinchEvent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/pointerEvent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/pointerEvent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/pointerEvent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/screenEvent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/screenEvent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/screenEvent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/scrollIntoViewEvent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/scrollIntoViewEvent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/events/scrollIntoViewEvent.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/font.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/font.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/geoCoordinates.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/glyph.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/gradient.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/gradient.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/gradient.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/Image.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/Image.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/image.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/image.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/image.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/key.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/margin.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/margin.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/margin.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/math.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/orientation.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/rectangle.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/sinAndCos.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/size.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/size.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/size.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/text.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/text.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/text.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/transform.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/utf-8.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/utf-8.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/utf-8.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/vector2.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/core/vector3.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/HID.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/GC9A01Display.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ILI9341Display.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SH1106Display.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/SPIDisplay.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7565Display.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/ST7789Display.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/contrastDisplay.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/display.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/display.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/display.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/displays/invertibleDisplay.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/encoder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/encoder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/encoder.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/FT6336UTouchPanel.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/touchPanel.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/touchPoint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/touchPoint.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/hardware/touchPanels/touchPoint.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/RGB565Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/RGB565Renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/RGB565Renderer.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/bit8PaletteRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/bit8PaletteRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/bit8PaletteRenderer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/bufferedRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/bufferedRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/bufferedRenderer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/monochromeRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/monochromeRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/monochromeRenderer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/paletteRenderer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/renderingTarget.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/transactionalBufferedRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/transactionalBufferedRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/rendering/transactionalBufferedRenderer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/resources/fonts/PIXY10Font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/resources/fonts/teenyTinyPixls8Font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/resources/fonts/unscii16Font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/resources/fonts/unscii8Font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/resources/fonts/vaticanus8Font.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/YOBA/src/YOBA/system/ESP-IDF.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/PID/PIDChart.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/PID/PIDChart.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/PID/PIDChart.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/PID/PIDReferencer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/comboBox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/comboBox.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/comboBox.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/debugOverlay.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/debugOverlay.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/debugOverlay.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/dialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/dialogs/dialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/dialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/progressDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/scrollViewDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/dialogs/scrollViewDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/scrollViewDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/selectorDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/dialogs/selectorDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/dialogs/selectorDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/navigation/addWaypointDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/navigation/selectWaypointDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/navigation/selectWaypointDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/navigation/selectWaypointDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/navigation/waypointButton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/navigation/waypointButton.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/navigation/waypointButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/referencer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/separator.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/spatial/runwayElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/elements/spatial/runwayElement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/spatial/runwayElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/switcher.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/tabSelector.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/elements/titler.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDMenuView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/MFDPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/ND.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/NDScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/NDScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/NDScene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/aircraft.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/NDRunwayElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/NDRunwayElement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/NDRunwayElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/routeElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/routeElement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/routeElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/waypointElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/waypointElement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/ND/sceneElements/waypointElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFD.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFD.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFD.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDPageSplitter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDPageSplitter.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDPageSplitter.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDRunwayElement.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDRunwayElement.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDRunwayElement.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/PFD/PFDScene.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/autopilotToolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/autopilotToolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/autopilotToolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/lateralRotaryControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/lateralRotaryControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/lateralRotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/speedRotaryControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/speedRotaryControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/speedRotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/verticalRotaryControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/verticalRotaryControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/autopilot/verticalRotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/baroToolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/baroToolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/baroToolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/minimumsRotaryControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/minimumsRotaryControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/minimumsRotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/referencePressureRotaryControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/referencePressureRotaryControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/baro/referencePressureRotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/camera/cameraControls.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/camera/cameraControls.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/camera/cameraControls.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/camera/cameraToolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/camera/cameraToolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/camera/cameraToolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/lights/lightsToolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/lights/lightsToolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/lights/lightsToolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/batteryIndicator.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/flightControlsIndicator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/flightControlsIndicator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/flightControlsIndicator.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/mainToolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/mainToolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/mainToolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/radioIndicator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/radioIndicator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/radioIndicator.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/throttleIndicator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/throttleIndicator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/throttleIndicator.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/throttleSection.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/throttleSection.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/main/throttleSection.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/rotaryControl.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/rotaryControl.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/rotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/sevenRotaryControl.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/toolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/toolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/toolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/toolbarButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/toolbarSection.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/trim/trimControls.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/trim/trimControls.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/trim/trimControls.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/trim/trimToolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/trim/trimToolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/MFD/toolbar/trim/trimToolbar.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/database/databasePage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/database/databasePage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/database/databasePage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/database/waypointItem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/database/waypointItemDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/database/waypointItemDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/database/waypointItemDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanItem.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanItem.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanItem.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanItemDialog.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanItemDialog.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanItemDialog.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/flightPlanPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/legPlaceholderButton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/legPlaceholderButton.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/flightPlan/legPlaceholderButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/navMenuView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/NAV/navMenuView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/NAV/navMenuView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/menu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menu.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuRoutes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuTabButton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/menuTabButton.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuTabButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/menuView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuViewButton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/menuViewButton.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/menuViewButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/openMenuButton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/openMenuButton.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/openMenuButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/pageMenuViewButton.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/pageMenuViewButton.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/pageMenuViewButton.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/pagesMenuView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/menu/pagesMenuView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/menu/pagesMenuView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/page.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/page.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/page.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/route.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/routes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/ADIRS/ADIRSSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/ADIRS/ADIRSSettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/ADIRS/ADIRSSettingsPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/autopilot/autopilotSettingsPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axesSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axesSettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axesSettingsPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axisEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axisEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/axis/axisEditor.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/motors/motorsSettingsPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/personalization/personalizationSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/personalization/personalizationSettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/personalization/personalizationSettingsPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/settingsMenuView.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/settingsMenuView.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/settingsMenuView.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/spectrumScan/spectrumScanPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/spectrumScan/spectrumScanPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/spectrumScan/spectrumScanPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/transceiver/transceiverSettingsPage.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/navigation/settings/transceiver/transceiverSettingsPage.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/navigation/settings/transceiver/transceiverSettingsPage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/theme.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/UI/theme.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/UI/theme.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/config.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/rc.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/rc.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/rc.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconADIRSImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconAutopilotSettingsImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconAxesImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconDevImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconFlightPlanImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDAutopilotEngageImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDAutopilotFlightDirectorImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDAutopilotGyroImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDAutopilotImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDBaroImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDCameraImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDCameraResetImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDLightsCabinImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDLightsImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDLightsLandingImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDLightsNavigationImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDLightsStrobeImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDMetricUnitsImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDNDImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDPFDImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMFDTrimImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconMotorsImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconPersonalizationImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconPowerImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconSpectrumScanImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconTransceiverImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconWaypointsImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/menuIconWiFiImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/images/splashScreenImage.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds/bootSound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds/disengagedSound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds/engagedSound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds/feedbackSound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds/transceiverConnectSound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/resources/sounds/transceiverDisconnectSound.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/ADIRSSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/autopilotSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/axesSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/controlSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/motorsSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/navigationSettings.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/settings/navigationSettings.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/navigationSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/personalizationSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/settings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/settings/transceiverSettings.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/axes/axes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/axes/axes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/axes/axes.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/axes/axis.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/axes/axis.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/axes/axis.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/packet.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/remoteTransceiver.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/transceiver.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/types/aircraftData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/types/generic.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/types/navigationData.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/types/navigationData.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/types/navigationData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/types/remoteData.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/types/speedBug.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/utilities/rendering.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/utilities/string.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/systems/transceiver/Transceiver.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/main/systems/transceiver/Transceiver.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -621,7 +215,7 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/components/YOBA" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -682,27 +276,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "RunOnceActivity.west.config.association.type.startup.service": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Igor/Documents/Code/MCU/ESP32/Charlotte/PlanE/Remote/Firmware/components/YOBA/examples/ESP-IDF",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "editor.preferences.folding",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.west.config.association.type.startup.service&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Igor/Documents/Code/MCU/ESP32/Charlotte/PlanE/Remote/Firmware/components/YOBA/examples/ESP-IDF&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.folding&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Igor\Documents\Code\MCU\ESP32\Charlotte\PlanE\Remote\Firmware\components\YOBA\examples\ESP-IDF" />
@@ -1291,11 +885,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="app-flash" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="CharlottePlanERemote" TARGET_NAME="app-flash" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -1769,7 +1358,8 @@
       <workItem from="1783414381055" duration="41000" />
       <workItem from="1783414438727" duration="3759000" />
       <workItem from="1783418308415" duration="521000" />
-      <workItem from="1783418853390" duration="2674000" />
+      <workItem from="1783418853390" duration="2992000" />
+      <workItem from="1783424063363" duration="662000" />
     </task>
     <task id="LOCAL-00001" summary="ебучий есп">
       <option name="closed" value="true" />
@@ -2155,7 +1745,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783370420791</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="вот это я наебнул говнеца каэш))) ALL HAIL HIS MAJESTY..... !!!CAMEL CASE">
+      <option name="closed" value="true" />
+      <created>1783421691916</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1783421691916</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -2178,6 +1776,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_NEW_TODO" value="false" />
     <ignored-roots>
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1" />
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/bootloader/subproject/components/micro-ecc/micro-ecc" />
@@ -2207,7 +1806,6 @@
       <path value="$USER_HOME$/Espressif/frameworks/esp-idf-v5.5.1/components/unity/unity" />
       <path value="$PROJECT_DIR$/components/ESP-IDF-Battery" />
     </ignored-roots>
-    <MESSAGE value="так, ну проблема по ходу явно где-то в смене типа рендерера - забекаплю-ка это тоже, и будем потихоньку чекать" />
     <MESSAGE value="бля, ну тут явно какой-то кал со вторым ядром - то ли оно как-то тайминги скипает, то ли че... я не догоняю. Уже даже заменил мьютексы на спинлоки чисто чтоб убедиться - но не, та же самая хуйня. Тупо втф творится)) посижу пока на палитровом рендерере, а то нервы сдадут" />
     <MESSAGE value="ради кекса поставил трансивер на 0 ядро - оно в принципе тот же пакетрейт выдает, как ни странно) пусть пока так повисит, но на ргб565 рендерере. Вообще чет чсв в грязь втоптано - не осилил 2 ядро, дожили. У меня до сих пор смутное ощущение, что первое ядро как-то влияет на второе во время работы, и в случае с палитрой я тупо случайно подобрал оптимальные тайминги. Но как оно может влиять, если тут даже атомиков нет... Второй варик - мб SPI как-то криво синхронится или лочится слишком долго. Но это тоже бредом попахивает, т.к. общее кол-во отправляемых данных с пикс буфера одинаковое - разве что в случае палитры имеется чуть больше оверхеда на трансляцию индексов в валуйки цветов. Ппц, короче..." />
     <MESSAGE value="перехуячил HAL на классовую логику, т.к. хранить SPI/I2C в статике как-то парашно" />
@@ -2232,7 +1830,8 @@
     <MESSAGE value="бля, тачпанель забыл..." />
     <MESSAGE value="ПРОЩАЙ, LPF" />
     <MESSAGE value="РИДМИХА" />
-    <option name="LAST_COMMIT_MESSAGE" value="РИДМИХА" />
+    <MESSAGE value="вот это я наебнул говнеца каэш))) ALL HAIL HIS MAJESTY..... !!!CAMEL CASE" />
+    <option name="LAST_COMMIT_MESSAGE" value="вот это я наебнул говнеца каэш))) ALL HAIL HIS MAJESTY..... !!!CAMEL CASE" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

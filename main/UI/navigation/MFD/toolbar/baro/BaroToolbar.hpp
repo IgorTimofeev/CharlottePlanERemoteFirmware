@@ -17,7 +17,7 @@ namespace pizda {
 		public:
 			BaroToolbar();
 
-			ImageToolbarButton metricUnits { "Metric", &resources::images::menuIconMfdMetricUnits };
+			ImageToolbarButton metricUnits { "Metric", &resources::images::menuIconMFDMetricUnits };
 			ReferencePressureRotaryControl pressure {};
 			MinimumsRotaryControl minimums {};
 	};

@@ -41,7 +41,7 @@ namespace pizda::resources {
 			constexpr static MenuIconMFDBaroImage menuIconMFDBaro {};
 			constexpr static MenuIconMFDTrimImage menuIconMFDTrim {};
 			constexpr static MenuIconMFDLightsImage menuIconMFDLights {};
-			constexpr static MenuIconMFDMetricUnitsImage menuIconMfdMetricUnits {};
+			constexpr static MenuIconMFDMetricUnitsImage menuIconMFDMetricUnits {};
 			constexpr static MenuIconMFDCameraImage menuIconMFDCameraImage {};
 			constexpr static MenuIconMFDCameraResetImage menuIconMFDCameraResetImage {};
 

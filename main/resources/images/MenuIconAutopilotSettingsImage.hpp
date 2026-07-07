@@ -8,7 +8,7 @@ namespace pizda {
 	class MenuIconAutopilotSettingsImage : public Image {
 		public:
 			constexpr MenuIconAutopilotSettingsImage() : Image(
-				ImageFlags::RGB565,
+				ImageOptions::RGB565,
 				Size(45, 33),
 				_bitmap
 			) {

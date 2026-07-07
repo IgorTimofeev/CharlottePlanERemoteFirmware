@@ -8,7 +8,7 @@ namespace pizda {
 	class MenuIconMFDCameraResetImage : public Image {
 		public:
 			constexpr MenuIconMFDCameraResetImage() : Image(
-				ImageFlags::RGB565 | ImageFlags::alpha1Bit,
+				ImageOptions::RGB565 | ImageOptions::alpha1Bit,
 				Size(19, 13),
 				_bitmap
 			) {

@@ -89,8 +89,8 @@ namespace pizda {
 	
 	void AxisEditor::onRender(Renderer* renderer, const Rectangle& bounds) {
 		// Track
-		renderer->renderFilledRectangle(bounds, Theme::cornerRadius, &Theme::bg2);
-		renderer->renderRectangle(bounds, Theme::cornerRadius, &Theme::bg3);
+		renderer->fillRectangle(bounds, Theme::cornerRadius, &Theme::bg2);
+		renderer->strokeRectangle(bounds, Theme::cornerRadius, &Theme::bg3);
 		
 		// Fill
 		const auto settingsDelta = _axis->getSettings()->to - _axis->getSettings()->from;
@@ -98,7 +98,7 @@ namespace pizda {
 		const int32_t toX = bounds.getX() + _axis->getSettings()->to * bounds.getWidth() / Axis::valueMax;
 		const uint16_t fillWidth = toX - fromX + 1;
 		
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			Rectangle(
 				fromX,
 				bounds.getY(),
@@ -123,7 +123,7 @@ namespace pizda {
 			};
 			
 			if (i > 0) {
-				renderer->renderLine(
+				renderer->strokeLine(
 					curvePos0,
 					curvePos1,
 					_selectedPin == SelectedPin::middle ? &Theme::fg1 : &Theme::bg4
@@ -134,7 +134,7 @@ namespace pizda {
 		}
 		
 		// Middle line
-		renderer->renderVerticalLine(
+		renderer->strokeVerticalLine(
 			Point(fromX + fillWidth / 2, bounds.getY() + 1),
 			bounds.getHeight() - 1,
 			&Theme::accent2
@@ -155,7 +155,7 @@ namespace pizda {
 			}
 			
 			// Line
-			renderer->renderVerticalLine(
+			renderer->strokeVerticalLine(
 				Point(x, bounds.getY()),
 				bounds.getHeight(),
 				bg
@@ -179,9 +179,9 @@ namespace pizda {
 				flagSize
 			);
 			
-			renderer->renderFilledRectangle(flagBounds, bg);
+			renderer->fillRectangle(flagBounds, bg);
 			
-			renderer->renderText(
+			renderer->putText(
 				Point(flagBounds.getX() + textOffsetX, flagBounds.getY() + textOffsetY),
 				&Theme::fontSmall,
 				fg,
@@ -205,7 +205,7 @@ namespace pizda {
 		const auto thumbX = bounds.getX() + _axis->getRawValue() * bounds.getWidth() / Axis::valueMax;
 		const auto thumbInWorkingRange = thumbX >= fromX && thumbX <= toX;
 		
-		renderer->renderVerticalLine(
+		renderer->strokeVerticalLine(
 			Point(
 				thumbX,
 				bounds.getY()
@@ -222,7 +222,7 @@ namespace pizda {
 				bounds.getHeight()
 			));
 			
-			renderer->renderFilledCircle(
+			renderer->fillCircle(
 				Point(
 					thumbX,
 					bounds.getY2() - bounds.getHeight() * _axis->applySensitivityFilter(_axis->getRawValue()) / Axis::valueMax

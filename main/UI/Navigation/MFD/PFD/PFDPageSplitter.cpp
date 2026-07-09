@@ -71,11 +71,11 @@ namespace pizda {
 	}
 
 	void PFDPageSplitter::onRender(Renderer* renderer, const Rectangle& bounds) {
-		renderer->renderFilledRectangle(bounds, isActive() ? &Theme::fg1 : &Theme::bg2);
+		renderer->fillRectangle(bounds, isActive() ? &Theme::fg1 : &Theme::bg2);
 
 		const auto text = RC::getInstance().getSettings().personalization.MFD.split.mode == PersonalizationSettingsMFDSplitMode::PFD ? "< >" : "> <";
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				bounds.getXCenter() - Theme::fontSmall.getWidth(text) / 2,
 				bounds.getYCenter() - Theme::fontSmall.getLineHeight() / 2

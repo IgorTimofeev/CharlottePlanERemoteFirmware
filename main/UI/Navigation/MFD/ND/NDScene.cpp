@@ -264,7 +264,7 @@ namespace pizda {
 		if (bounds.getHeight() >= 80) {
 			// Arc
 			if (rc.getSettings().personalization.MFD.ND.mode == PersonalizationSettingsMFDNDMode::arc) {
-				renderer->renderArc(
+				renderer->strokeArc(
 					pivot,
 					circleRadius,
 					(90 - compassArcViewportHalfDeg) * 255 / 360,
@@ -296,7 +296,7 @@ namespace pizda {
 					const auto angleEndVec = angleEndVecNorm * tickMarksRadius;
 					const auto angleStartVec = angleEndVec - angleEndVecNorm * (isBig ? compassTickMarkBigLength : compassTickMarkSmallLength);
 
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + angleStartVec,
 						pivot + angleEndVec,
 						&Theme::fg1
@@ -308,7 +308,7 @@ namespace pizda {
 						const auto textDiagonal = std::sqrtf(textWidth * textWidth + Theme::fontSmall.getLineHeight() * Theme::fontSmall.getLineHeight());
 						const auto textCenterVec = angleStartVec - angleEndVecNorm * (compassTickMarkTextOffset + textDiagonal / 2);
 
-						renderer->renderText(
+						renderer->putText(
 							Point(
 								static_cast<float>(pivot.getX()) + textCenterVec.getX() - static_cast<float>(textWidth) / 2.f,
 								static_cast<float>(pivot.getY()) + textCenterVec.getY() - static_cast<float>(Theme::fontSmall.getLineHeight()) / 2.f
@@ -350,49 +350,49 @@ namespace pizda {
 					const auto apValueIndicatorTriangleMiddleVec = apValueVec - apValueVecNorm * compassAPValueTriangleHeight;
 
 					// Bottom
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorBottomLeftVec,
 						pivot + apValueIndicatorBottomRightVec,
 						&Theme::magenta1
 					);
 
 					// Vertical left
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorBottomLeftVec,
 						pivot + apValueIndicatorTopLeftVec,
 						&Theme::magenta1
 					);
 
 					// Vertical right
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorBottomRightVec,
 						pivot + apValueIndicatorTopRightVec,
 						&Theme::magenta1
 					);
 
 					// Triangle part left
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorTopLeftVec,
 						pivot + apValueIndicatorTriangleLeftVec,
 						&Theme::magenta1
 					);
 
 					// Triangle part right
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorTopRightVec,
 						pivot + apValueIndicatorTriangleRightVec,
 						&Theme::magenta1
 					);
 
 					// Triangle middle left
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorTriangleLeftVec,
 						pivot + apValueIndicatorTriangleMiddleVec,
 						&Theme::magenta1
 					);
 
 					// Triangle middle left
-					renderer->renderLine(
+					renderer->strokeLine(
 						pivot + apValueIndicatorTriangleRightVec,
 						pivot + apValueIndicatorTriangleMiddleVec,
 						&Theme::magenta1
@@ -408,14 +408,14 @@ namespace pizda {
 				for (uint16_t i = 0; i < circleRadius - compassAPValueIndicatorDashLength * 2; i += compassAPValueIndicatorDashLength * 2) {
 					const auto to = apValueDashVec + apValueDashIncVec;
 
-					renderer->renderLine(apValueDashVec, to, &Theme::magenta1);
+					renderer->strokeLine(apValueDashVec, to, &Theme::magenta1);
 
 					apValueDashVec = to + apValueDashIncVec;
 				}
 			}
 
 			// Heading triangle
-			renderer->renderFilledTriangle(
+			renderer->fillTriangle(
 				Point(
 					pivot.getX(),
 					pivot.getY() - circleRadius
@@ -435,7 +435,7 @@ namespace pizda {
 			// {
 			// 	const auto text = std::to_string(static_cast<int32_t>(rc.getAircraftData().computed.headingDeg));
 			//
-			// 	renderer->renderText(
+			// 	renderer->putText(
 			// 		Point(
 			// 			static_cast<int32_t>(static_cast<float>(pivot.getX()) - static_cast<float>(Theme::fontNormal.getWidth(text)) / 2.f),
 			// 			pivot.getY() - circleRadius - 1 - Theme::fontNormal.getHeight()
@@ -450,7 +450,7 @@ namespace pizda {
 		// Aircraft indicator
 		if (isCameraShifted()) {
 			// Cross
-			renderer->renderHorizontalLine(
+			renderer->strokeHorizontalLine(
 				Point(
 					pivot.getX() - compassLateralOffsetCrossSize / 2,
 					pivot.getY()
@@ -459,7 +459,7 @@ namespace pizda {
 				&Theme::fg1
 			);
 
-			renderer->renderVerticalLine(
+			renderer->strokeVerticalLine(
 				Point(
 					pivot.getX(),
 					pivot.getY() - compassLateralOffsetCrossSize / 2

@@ -30,19 +30,19 @@ namespace pizda {
 		constexpr static uint8_t lineLength = 25;
 		constexpr static uint8_t textOffset = 2;
 
-		renderer->renderVerticalLine(
+		renderer->strokeVerticalLine(
 			Point(waypointVertex.getX(), waypointVertex.getY() - lineLength),
 			lineLength - 1,
 			&Theme::fg1
 		);
 
-		renderer->renderFilledCircle(
+		renderer->fillCircle(
 			Point(waypointVertex.getX(), waypointVertex.getY()),
 			2,
 			&Theme::fg1
 		);
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				waypointVertex.getX() - Theme::fontNormal.getWidth(waypoint.name) / 2,
 				waypointVertex.getY() - lineLength - textOffset - Theme::fontNormal.getLineHeight()

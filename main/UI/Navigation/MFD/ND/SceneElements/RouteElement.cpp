@@ -29,7 +29,7 @@ namespace pizda {
 
 		const auto& nd = RC::getInstance().getNavigationData();
 
-		renderer->renderLine(
+		renderer->strokeLine(
 			Point(
 				static_cast<int32_t>(projectedVertices[0].getX()),
 				static_cast<int32_t>(projectedVertices[0].getY())

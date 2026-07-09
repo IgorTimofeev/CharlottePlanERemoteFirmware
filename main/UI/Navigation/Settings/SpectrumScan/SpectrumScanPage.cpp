@@ -75,19 +75,19 @@ namespace pizda {
 		auto& rd = RC::getInstance().getRemoteData().transceiver.spectrumScanning;
 
 		// Background
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			bounds,
 			&Theme::bg2
 		);
 
 		// Axes
-		renderer->renderHorizontalLine(
+		renderer->strokeHorizontalLine(
 			bounds.getBottomLeft(),
 			bounds.getWidth(),
 			&Theme::fg4
 		);
 
-		renderer->renderVerticalLine(
+		renderer->strokeVerticalLine(
 			bounds.getTopLeft(),
 			bounds.getHeight() - 1,
 			&Theme::fg4
@@ -124,7 +124,7 @@ namespace pizda {
 			const auto frequency = getFrequency(localX);
 
 			if (shouldRenderScanline && frequency > rd.frequency) {
-				renderer->renderVerticalLine(
+				renderer->strokeVerticalLine(
 					Point(bounds.getX() + localX, bounds.getY()),
 					bounds.getHeight(),
 					&Theme::fg1
@@ -156,7 +156,7 @@ namespace pizda {
 						color = &Theme::fg6;
 					}
 
-					renderer->renderVerticalLine(
+					renderer->strokeVerticalLine(
 						Point(bounds.getX() + localX, bounds.getY2() - lineHeight + 1),
 						lineHeight,
 						color
@@ -179,7 +179,7 @@ namespace pizda {
 			auto text = std::format("{} dBm", pointerRSSI);
 			auto textWidth = Theme::fontSmall.getWidth(text);
 
-			renderer->renderText(
+			renderer->putText(
 				Point(
 					bounds.getX() + textHOffset,
 					bounds.getY() + pointerPixelPos.getY() - Theme::fontSmall.getLineHeight() / 2
@@ -189,7 +189,7 @@ namespace pizda {
 				text
 			);
 
-			renderer->renderHorizontalLine(
+			renderer->strokeHorizontalLine(
 				Point(
 					bounds.getX() + textHOffset + textWidth + textHOffset,
 					bounds.getY() + pointerPixelPos.getY()
@@ -202,7 +202,7 @@ namespace pizda {
 			text = std::format("{} MHz", frequency / 1'000'000);
 			textWidth = Theme::fontSmall.getWidth(text);
 
-			renderer->renderText(
+			renderer->putText(
 				Point(
 					bounds.getX() + pointerPixelPos.getX() - textWidth / 2,
 					bounds.getY() + textVOffset
@@ -212,7 +212,7 @@ namespace pizda {
 				text
 			);
 
-			renderer->renderVerticalLine(
+			renderer->strokeVerticalLine(
 				Point(
 					bounds.getX() + pointerPixelPos.getX(),
 					bounds.getY() + textVOffset + Theme::fontSmall.getLineHeight() + textVOffset
@@ -230,7 +230,7 @@ namespace pizda {
 
 				const auto tipY = bounds.getY2() - historyRSSIHeight + 1;
 
-				renderer->renderFilledCircle(
+				renderer->fillCircle(
 					Point(
 						bounds.getX() + pointerPixelPos.getX(),
 						tipY
@@ -241,7 +241,7 @@ namespace pizda {
 
 				text = std::format("{} dBm", historyRSSI);
 
-				renderer->renderText(
+				renderer->putText(
 					Point(
 						bounds.getX() + pointerPixelPos.getX() + 2 + textHOffset,
 						tipY - Theme::fontSmall.getLineHeight() / 2

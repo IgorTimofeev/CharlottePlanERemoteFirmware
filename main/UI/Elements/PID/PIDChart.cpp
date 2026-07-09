@@ -38,19 +38,19 @@ namespace pizda {
 		constexpr static uint8_t textHOffset = 4;
 
 		// Background
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			bounds,
 			getBackgroundColor()
 		);
 
 		// Axes
-		renderer->renderHorizontalLine(
+		renderer->strokeHorizontalLine(
 			bounds.getBottomLeft(),
 			bounds.getWidth(),
 			&Theme::fg4
 		);
 
-		renderer->renderVerticalLine(
+		renderer->strokeVerticalLine(
 			bounds.getTopLeft(),
 			bounds.getHeight() - 1,
 			&Theme::fg4
@@ -66,7 +66,7 @@ namespace pizda {
 			// Text
 			const auto text = std::to_string(valueTarget);
 
-			renderer->renderText(
+			renderer->putText(
 				Point(
 					bounds.getX() + textHOffset,
 					y - Theme::fontSmall.getLineHeight() / 2
@@ -79,7 +79,7 @@ namespace pizda {
 			// Line
 			const auto lineOffset = textHOffset + Theme::fontSmall.getWidth(text) + textHOffset;
 
-			renderer->renderHorizontalLine(
+			renderer->strokeHorizontalLine(
 				Point(
 					bounds.getX() + lineOffset,
 					y
@@ -127,7 +127,7 @@ namespace pizda {
 
 		splinePoints[_stepCount + 1] = splinePoints[_stepCount];
 
-		renderer->renderCatmullRomSpline(
+		renderer->strokeCatmullRomSpline(
 			splinePoints.data(),
 			_stepCount + 2,
 			&Theme::accent1,
@@ -135,7 +135,7 @@ namespace pizda {
 		);
 
 		for (uint16_t i = 0; i < _stepCount; ++i) {
-			renderer->renderFilledCircle(
+			renderer->fillCircle(
 				splinePoints[i + 2],
 				2,
 				&Theme::fg1

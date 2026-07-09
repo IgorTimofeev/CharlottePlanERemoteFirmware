@@ -18,7 +18,7 @@ namespace pizda {
 				auto color = getFillColor();
 				
 				if (color)
-					renderer->renderHorizontalLine(bounds.getTopLeft(), bounds.getWidth(), color);
+					renderer->strokeHorizontalLine(bounds.getTopLeft(), bounds.getWidth(), color);
 			}
 	};
 	
@@ -33,7 +33,7 @@ namespace pizda {
 				auto color = getFillColor();
 				
 				if (color)
-					renderer->renderVerticalLine(bounds.getTopLeft(), bounds.getHeight(), color);
+					renderer->strokeVerticalLine(bounds.getTopLeft(), bounds.getHeight(), color);
 			}
 	};
 }

@@ -42,7 +42,7 @@ namespace pizda {
 				constexpr static uint8_t triangleWidth = 8;
 				constexpr static uint8_t triangleHeight = 6;
 
-				renderer->renderTriangle(
+				renderer->strokeTriangle(
 					position,
 					Point(position.getX() - triangleWidth / 2, position.getY() + triangleHeight),
 					Point(position.getX() + triangleWidth / 2, position.getY() + triangleHeight),

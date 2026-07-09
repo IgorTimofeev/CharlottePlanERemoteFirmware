@@ -49,13 +49,13 @@ namespace pizda {
 
 		constexpr static uint8_t cornerRadius = 3;
 
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			bounds,
 			cornerRadius,
 			isActive() ? &Theme::bg4 : &Theme::bg3
 		);
 
-		renderer->renderRectangle(
+		renderer->strokeRectangle(
 			bounds,
 			cornerRadius,
 			isActive() ? &Theme::fg1 : &Theme::bg4
@@ -75,7 +75,7 @@ namespace pizda {
 
 		x += 15;
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				x,
 				y - Theme::fontNormal.getLineHeight() / 2
@@ -93,7 +93,7 @@ namespace pizda {
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				x,
 				y - Theme::fontNormal.getLineHeight() / 2

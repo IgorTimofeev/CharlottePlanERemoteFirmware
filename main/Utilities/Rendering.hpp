@@ -24,7 +24,7 @@ namespace pizda {
 			static void renderWaypointIcon(Renderer* renderer, const Point& center, const Color* color, const NavigationWaypointData& waypointData) {
 				switch (waypointData.type) {
 					case NavigationWaypointType::enroute: {
-						renderer->renderRectangle(
+						renderer->strokeRectangle(
 							Rectangle(
 								center.getX() - 1,
 								center.getY() - 1,
@@ -34,7 +34,7 @@ namespace pizda {
 							color
 						);
 
-						renderer->renderHorizontalLine(
+						renderer->strokeHorizontalLine(
 							Point(
 								center.getX() - 3,
 								center.getY()
@@ -43,7 +43,7 @@ namespace pizda {
 							color
 						);
 
-						renderer->renderHorizontalLine(
+						renderer->strokeHorizontalLine(
 							Point(
 								center.getX() + 2,
 								center.getY()
@@ -52,7 +52,7 @@ namespace pizda {
 							color
 						);
 
-						renderer->renderVerticalLine(
+						renderer->strokeVerticalLine(
 							Point(
 								center.getX(),
 								center.getY() - 3
@@ -61,7 +61,7 @@ namespace pizda {
 							color
 						);
 
-						renderer->renderVerticalLine(
+						renderer->strokeVerticalLine(
 							Point(
 								center.getX(),
 								center.getY() + 2
@@ -72,7 +72,7 @@ namespace pizda {
 						break;
 					}
 					case NavigationWaypointType::runway: {
-						renderer->renderCircle(
+						renderer->strokeCircle(
 							center,
 							4,
 							color
@@ -84,7 +84,7 @@ namespace pizda {
 			}
 
 			static void renderWaypointName(Renderer* renderer, const Point& center, const Color* color, const NavigationWaypointData& waypointData) {
-				renderer->renderText(
+				renderer->putText(
 					Point(center.getX() + 7, center.getY() - 7),
 					&Theme::fontSmall,
 					color,
@@ -97,20 +97,20 @@ namespace pizda {
 				const auto y2 = bounds.getY2();
 
 				// Top left
-				renderer->renderHorizontalLine(bounds.getTopLeft(), lineLength, color);
-				renderer->renderVerticalLine(bounds.getTopLeft(), lineLength, color);
+				renderer->strokeHorizontalLine(bounds.getTopLeft(), lineLength, color);
+				renderer->strokeVerticalLine(bounds.getTopLeft(), lineLength, color);
 
 				// Top right
-				renderer->renderHorizontalLine(Point(x2 - lineLength + 1, bounds.getY()), lineLength, color);
-				renderer->renderVerticalLine(Point(x2, bounds.getY()), lineLength, color);
+				renderer->strokeHorizontalLine(Point(x2 - lineLength + 1, bounds.getY()), lineLength, color);
+				renderer->strokeVerticalLine(Point(x2, bounds.getY()), lineLength, color);
 
 				// Bottom right
-				renderer->renderHorizontalLine(Point(x2 - lineLength + 1, y2), lineLength, color);
-				renderer->renderVerticalLine(Point(x2, y2 - lineLength + 1), lineLength, color);
+				renderer->strokeHorizontalLine(Point(x2 - lineLength + 1, y2), lineLength, color);
+				renderer->strokeVerticalLine(Point(x2, y2 - lineLength + 1), lineLength, color);
 
 				// Bottom left
-				renderer->renderHorizontalLine(Point(bounds.getX(), y2), lineLength, color);
-				renderer->renderVerticalLine(Point(bounds.getX(), y2 - lineLength + 1), lineLength, color);
+				renderer->strokeHorizontalLine(Point(bounds.getX(), y2), lineLength, color);
+				renderer->strokeVerticalLine(Point(bounds.getX(), y2 - lineLength + 1), lineLength, color);
 			}
 	};
 }

@@ -59,12 +59,12 @@ namespace pizda {
 			panelSize.getHeight()
 		);
 
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			panelBounds,
 			&Theme::bg2
 		);
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				panelBounds.getX() + horizontalTextOffset,
 				panelBounds.getY() + verticalTextOffset
@@ -128,7 +128,7 @@ namespace pizda {
 		const auto yCenter = bounds.getYCenter();
 
 		// Rect
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			Rectangle(
 				isSpeed ? bounds.getX() : bounds.getX() + currentValueTriangleSize,
 				bounds.getY(),
@@ -139,7 +139,7 @@ namespace pizda {
 		);
 
 		// Triangle
-		renderer->renderFilledTriangle(
+		renderer->fillTriangle(
 			Point(
 				isSpeed ? x2 - currentValueTriangleSize + 1 : bounds.getX() + currentValueTriangleSize - 1,
 				bounds.getY()
@@ -181,7 +181,7 @@ namespace pizda {
 			};
 
 			const auto renderDigit = [renderer, &textX, digitsColor](const int32_t digitY, const uint8_t digit) {
-				renderer->renderChar(
+				renderer->putText(
 					Point(
 						textX,
 						digitY
@@ -226,7 +226,7 @@ namespace pizda {
 		else {
 			const auto text = "---";
 
-			renderer->renderText(
+			renderer->putText(
 				Point(
 					isSpeed
 						? x2 - speedBarSize - currentValueTextOffset - Theme::fontSmall.getWidth(text)
@@ -259,7 +259,7 @@ namespace pizda {
 		const auto y= indicatorCenterY - autopilotIndicatorSize / 2;
 
 		// Common rect
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			Rectangle(
 				left ? x + autopilotIndicatorTriangleThickness : x,
 				y,
@@ -270,7 +270,7 @@ namespace pizda {
 		);
 
 		// Upper rect
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			Rectangle(
 				left ? x : x + autopilotIndicatorRectangleThickness,
 				y,
@@ -281,7 +281,7 @@ namespace pizda {
 		);
 
 		// Lower rect
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			Rectangle(
 				left ? x : x + autopilotIndicatorRectangleThickness,
 				y + autopilotIndicatorSize - autopilotIndicatorTriangleMargin,
@@ -292,7 +292,7 @@ namespace pizda {
 		);
 
 		// Upper triangle
-		renderer->renderFilledTriangle(
+		renderer->fillTriangle(
 			Point(
 				left ? x : x + autopilotIndicatorRectangleThickness,
 				y + autopilotIndicatorTriangleMargin
@@ -309,7 +309,7 @@ namespace pizda {
 		);
 
 		// Lower triangle
-		renderer->renderFilledTriangle(
+		renderer->fillTriangle(
 			Point(
 				left ? x + autopilotIndicatorTriangleThickness - 1 : x + autopilotIndicatorRectangleThickness,
 				y + autopilotIndicatorSize / 2
@@ -338,13 +338,13 @@ namespace pizda {
 		const auto yMin = std::min(y, yArrow);
 		const auto yMax = std::max(y, yArrow);
 
-		renderer->renderVerticalLine(
+		renderer->strokeVerticalLine(
 			Point(x, yMin),
 			yMax - yMin,
 			&Theme::magenta1
 		);
 
-		renderer->renderFilledTriangle(
+		renderer->fillTriangle(
 			Point(
 				x - arrowSize,
 				yArrow
@@ -368,7 +368,7 @@ namespace pizda {
 
 		const auto centerY = bounds.getYCenter();
 
-		renderer->renderFilledRectangle(bounds, &Theme::bg1);
+		renderer->fillRectangle(bounds, &Theme::bg1);
 
 		// Bars
 		const auto barX = bounds.getX2() + 1 - speedBarSize;
@@ -377,7 +377,7 @@ namespace pizda {
 			const int32_t fromY = centerY - static_cast<int32_t>((static_cast<float>(fromSpeed) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(speedStepUnits));
 			const int32_t height = (toSpeed - fromSpeed) * speedStepPixels / speedStepUnits;
 
-			renderer->renderFilledRectangle(
+			renderer->fillRectangle(
 				Rectangle(
 					x,
 					fromY - height,
@@ -446,7 +446,7 @@ namespace pizda {
 
 			if (isBig) {
 				// Line
-				renderer->renderHorizontalLine(
+				renderer->strokeHorizontalLine(
 					Point(
 						bounds.getX2() + 1 - speedBarSize - lineSizeBig,
 						y
@@ -458,7 +458,7 @@ namespace pizda {
 				// Text
 				const auto& text = std::to_string(lineValue);
 
-				renderer->renderText(
+				renderer->putText(
 					Point(
 						bounds.getX2() + 1 - speedBarSize - lineSizeBig - lineTextOffset - currentValueFont->getWidth(text),
 						y - currentValueFont->getLineHeight() / 2
@@ -470,7 +470,7 @@ namespace pizda {
 			}
 			else {
 				// Line
-				renderer->renderHorizontalLine(
+				renderer->strokeHorizontalLine(
 					Point(bounds.getX2() + 1 - speedBarSize - lineSizeSmall, y),
 					lineSizeSmall,
 					lineColor
@@ -555,13 +555,13 @@ namespace pizda {
 			);
 
 			// Rect
-			renderer->renderFilledRectangle(
+			renderer->fillRectangle(
 				bugBounds,
 				&Theme::bg2
 			);
 
 			// Triangle
-			renderer->renderFilledTriangle(
+			renderer->fillTriangle(
 				bugBounds.getTopLeft(),
 				Point(bugBounds.getX(), bugBounds.getY2()),
 				Point(bugBounds.getX() - speedBugTriangleWidth, bugBounds.getYCenter() - 1),
@@ -569,7 +569,7 @@ namespace pizda {
 			);
 
 			// Text
-			renderer->renderText(
+			renderer->putText(
 				Point(bugBounds.getX() + speedBugTextOffset, bugBounds.getY() + speedBugTextOffset),
 				&Theme::fontSmall,
 				&Theme::green1,
@@ -585,7 +585,7 @@ namespace pizda {
 		auto x = bounds.getX();
 		const auto x2 = bounds.getX2();
 
-		renderer->renderFilledRectangle(bounds, &Theme::bg1);
+		renderer->fillRectangle(bounds, &Theme::bg1);
 
 		const float altitude = rc.getAircraftData().computed.altitudeFt;
 		const float snapped = altitude / static_cast<float>(altitudeStepUnits);
@@ -604,14 +604,14 @@ namespace pizda {
 			const auto isBig = lineValue % altitudeStepUnitsBig == 0;
 
 			if (isBig) {
-				renderer->renderHorizontalLine(
+				renderer->strokeHorizontalLine(
 					Point(x, y),
 					lineSizeBig,
 					lineColor
 				);
 
 				// Text
-				renderer->renderText(
+				renderer->putText(
 					Point(x + lineSizeBig + lineTextOffset, y - currentValueFont->getLineHeight() / 2),
 					currentValueFont,
 					lineColor,
@@ -619,7 +619,7 @@ namespace pizda {
 				);
 			}
 			else {
-				renderer->renderHorizontalLine(
+				renderer->strokeHorizontalLine(
 					Point(x, y),
 					lineSizeSmall,
 					lineColor
@@ -632,7 +632,7 @@ namespace pizda {
 
 		// Ground
 		if (y < bounds.getY2() && lineValue < 0) {
-//			renderer->renderHorizontalLine(
+//			renderer->strokeHorizontalLine(
 //				Point(x, y),
 //				bounds.getWidth(),
 //				&Theme::yellow
@@ -643,7 +643,7 @@ namespace pizda {
 			auto groundPoint2 = Point(x + groundSpacing, y);
 
 			do {
-				renderer->renderLine(
+				renderer->strokeLine(
 					groundPoint1,
 					groundPoint2,
 					&Theme::yellow
@@ -695,7 +695,7 @@ namespace pizda {
 				);
 
 			// Arrow
-			renderer->renderTriangle(
+			renderer->strokeTriangle(
 				Point(x, y - arrowHeight / 2),
 				Point(x + arrowWidth - 1, y),
 				Point(x, y + arrowHeight / 2),
@@ -703,7 +703,7 @@ namespace pizda {
 			);
 
 			// Line
-			renderer->renderHorizontalLine(
+			renderer->strokeHorizontalLine(
 				Point(x, y),
 				bounds.getWidth() + horizontalOffset,
 				&Theme::yellow
@@ -731,13 +731,13 @@ namespace pizda {
 				);
 
 			// Arrow
-			renderer->renderLine(
+			renderer->strokeLine(
 				Point(x, y - arrowHeight / 2),
 				Point(x + arrowWidth - 1, y),
 				&Theme::ocean
 			);
 
-			renderer->renderLine(
+			renderer->strokeLine(
 				Point(x, y + arrowHeight / 2),
 				Point(x + arrowWidth - 1, y),
 				&Theme::ocean
@@ -746,7 +746,7 @@ namespace pizda {
 			x += arrowWidth;
 
 			for (; x < x2 - dashLength + 1; x += dashLength * 2) {
-				renderer->renderHorizontalLine(Point(x, y), dashLength, &Theme::ocean);
+				renderer->strokeHorizontalLine(Point(x, y), dashLength, &Theme::ocean);
 			}
 		}
 
@@ -804,7 +804,7 @@ namespace pizda {
 		const auto centerY = bounds.getYCenter();
 
 		// Background
-		renderer->renderFilledRectangle(bounds, &Theme::bg2);
+		renderer->fillRectangle(bounds, &Theme::bg2);
 
 		// Lines
 		auto lineColor = &Theme::fg4;
@@ -819,13 +819,13 @@ namespace pizda {
 				isBig = lineValue % verticalSpeedStepUnitsBig == 0;
 
 				if (isBig) {
-					renderer->renderHorizontalLine(
+					renderer->strokeHorizontalLine(
 						Point(bounds.getX(), y),
 						verticalSpeedLineSizeBig,
 						lineColor
 					);
 
-					renderer->renderText(
+					renderer->putText(
 						Point(
 							bounds.getX() + verticalSpeedLineSizeBig + verticalSpeedLineTextOffset,
 							y - verticalSpeedFont->getLineHeight() / 2
@@ -836,7 +836,7 @@ namespace pizda {
 					);
 				}
 				else {
-					renderer->renderHorizontalLine(
+					renderer->strokeHorizontalLine(
 						Point(bounds.getX(), y),
 						verticalSpeedLineSizeSmall,
 						lineColor
@@ -855,7 +855,7 @@ namespace pizda {
 		renderLines(verticalSpeedStepPixels);
 
 		// Current value
-		renderer->renderLine(
+		renderer->strokeLine(
 			Point(bounds.getX(), centerY - static_cast<int32_t>(rc.getAircraftData().computed.verticalSpeedFPM * static_cast<float>(verticalSpeedStepPixels) / static_cast<float>(verticalSpeedStepUnits))),
 			Point(bounds.getX2(), centerY - static_cast<int32_t>(rc.getAircraftData().computed.verticalSpeedFPM * static_cast<float>(verticalSpeedStepPixelsRight) / static_cast<float>(verticalSpeedStepUnits))),
 			&Theme::green1
@@ -864,10 +864,10 @@ namespace pizda {
 
 	void PFD::renderMiniPanel(Renderer* renderer, const Rectangle& bounds, const Color* bg, const Color* fg, const std::string_view text, const int8_t textXOffset) {
 		// Background
-		renderer->renderFilledRectangle(bounds, bg);
+		renderer->fillRectangle(bounds, bg);
 
 		// Text
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				bounds.getX() + textXOffset + (bounds.getWidth() - textXOffset) / 2 - miniFont->getWidth(text) / 2,
 				bounds.getY() + miniHeight / 2 - miniFont->getLineHeight() / 2

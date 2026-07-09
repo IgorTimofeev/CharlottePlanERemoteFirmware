@@ -31,13 +31,13 @@ namespace pizda {
 				const auto frameColor = available ? &Theme::bg4 : &Theme::bad3;
 				
 				// Frame
-				renderer->renderRectangle(
+				renderer->strokeRectangle(
 					Rectangle(bounds.getX(), bounds.getY(), frameSize, bounds.getHeight()),
 					frameColor
 				);
 
 				// Tip
-				renderer->renderRectangle(
+				renderer->strokeRectangle(
 					Rectangle(Point(bounds.getX() + frameSize - 1, yCenter - tipSize.getHeight() / 2), tipSize),
 					frameColor
 				);
@@ -59,7 +59,7 @@ namespace pizda {
 							color = &Theme::good2;
 						}
 						
-						renderer->renderFilledRectangle(
+						renderer->fillRectangle(
 							Rectangle(
 								bounds.getX(),
 								bounds.getY(),
@@ -77,7 +77,7 @@ namespace pizda {
 					? std::format("{:.1f}", static_cast<float>(_voltageMV) / 1000.f)
 					: "---";
 
-				renderer->renderText(
+				renderer->putText(
 					Point(
 						bounds.getX() + frameSize / 2 - Theme::fontSmall.getWidth(text) / 2,
 						bounds.getYCenter() - Theme::fontSmall.getLineHeight() / 2 + 1

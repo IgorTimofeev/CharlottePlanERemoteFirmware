@@ -21,7 +21,7 @@ namespace pizda {
 		const uint16_t frameSize = bounds.getWidth() - textMaxSize - textOffset;
 		
 		// Frame
-		renderer->renderRectangle(
+		renderer->strokeRectangle(
 			Rectangle(
 				bounds.getX(),
 				bounds.getY(),
@@ -32,7 +32,7 @@ namespace pizda {
 		);
 
 		const auto& renderLine = [&renderer, &bounds](const int32_t pos, const Color* color) {
-			renderer->renderVerticalLine(
+			renderer->strokeVerticalLine(
 				Point(
 					pos,
 					bounds.getY() - lineOffset
@@ -53,7 +53,7 @@ namespace pizda {
 			const auto aircraftValueSize = std::max(static_cast<uint16_t>(frameSize * _aircraftValue / 0xFF), static_cast<uint16_t>(1));
 			
 			if (aircraftValueSize > 2) {
-				renderer->renderFilledRectangle(
+				renderer->fillRectangle(
 					Rectangle(
 						bounds.getX(),
 						bounds.getY(),
@@ -73,7 +73,7 @@ namespace pizda {
 			? std::format("{:03}", static_cast<int32_t>(_aircraftValue * 100 / 0xFF))
 			: "---";
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				bounds.getX() + frameSize + textOffset,
 				bounds.getYCenter() - Theme::fontSmall.getLineHeight() / 2 + 1

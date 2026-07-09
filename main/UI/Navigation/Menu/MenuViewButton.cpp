@@ -22,18 +22,18 @@ namespace pizda {
 		constexpr static uint8_t cornerRadius = 3;
 
 		// Background
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			Rectangle(bounds.getX() - 1, bounds.getY() - 1, bounds.getWidth() + 2, _image->getSize().getHeight() + 2),
 			cornerRadius,
 			isActive() ? getActiveBackgroundColor() : getDefaultBackgroundColor()
 		);
 
 		// Image
-		renderer->renderImage(bounds.getTopLeft(), _image);
+		renderer->putImage(bounds.getTopLeft(), _image);
 
 		// Border
 		if (isActive()) {
-			renderer->renderRectangle(
+			renderer->strokeRectangle(
 				Rectangle(bounds.getX() - 1, bounds.getY() - 1, bounds.getWidth() + 2, _image->getSize().getHeight() + 2),
 				cornerRadius,
 				getActiveBorderColor()
@@ -41,7 +41,7 @@ namespace pizda {
 		}
 
 		// Text
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				bounds.getXCenter() - Theme::fontSmall.getWidth(getText()) / 2,
 				bounds.getY() + _image->getSize().getHeight() + _textOffset

@@ -1,4 +1,7 @@
-﻿#pragma once
+﻿// This file was generated automatically and does not require manual editing.
+// If you need a conversion tool, here is a link: https://github.com/IgorTimofeev/YOBAResourceConverter
+
+#pragma once
 
 #include <YOBA/Core.hpp>
 
@@ -8,7 +11,8 @@ namespace pizda {
 	class MenuIconMFDLightsNavigationImage : public Image {
 		public:
 			constexpr MenuIconMFDLightsNavigationImage() : Image(
-				ImageOptions::RGB565 | ImageOptions::alpha1Bit,
+				ColorModel::RGB565,
+				ImageOptions::alpha1Bit,
 				Size(21, 6),
 				_bitmap
 			) {
@@ -16,7 +20,7 @@ namespace pizda {
 			}
 		
 		private:
-			constexpr static uint8_t _bitmap[82] = {
+			constexpr static uint8_t _bitmap[82] {
 				0x80, 0x94, 0xB2, 0x20, 0xA5, 0x2C, 0x80, 0xF8, 0x00, 0x20, 0xA5, 0x2C, 0x52, 0xCA, 0x82, 0x1F,
 				0xE0, 0x88, 0x0F, 0x00, 0x48, 0x29, 0x9B, 0x52, 0x36, 0xA5, 0x2C, 0xE0, 0x07, 0xB8, 0xF8, 0x00,
 				0x48, 0x29, 0x9B, 0x52, 0x36, 0xA5, 0x6C, 0x4A, 0xD9, 0x94, 0xB2, 0x29, 0x65, 0x53, 0xCA, 0xA6,

@@ -21,14 +21,14 @@ namespace pizda {
 		protected:
 			void onRender(Renderer* renderer, const Rectangle& bounds) override {
 				if (isActive()) {
-					renderer->renderFilledRectangle(
+					renderer->fillRectangle(
 						bounds,
 						Theme::cornerRadius,
 						&Theme::fg1
 					);
 				}
 
-				renderer->renderText(
+				renderer->putText(
 					Point(
 						bounds.getXCenter() - Theme::fontNormal.getWidth(getText()) / 2,
 						bounds.getYCenter() - Theme::fontNormal.getLineHeight() / 2

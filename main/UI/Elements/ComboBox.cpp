@@ -52,7 +52,7 @@ namespace pizda {
 		if (_items.empty())
 			return;
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				bounds.getX() + 10,
 				bounds.getYCenter() - Theme::fontNormal.getLineHeight() / 2

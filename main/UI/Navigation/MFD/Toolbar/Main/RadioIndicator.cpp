@@ -59,7 +59,7 @@ namespace pizda {
 		);
 
 		for (uint8_t i = 0; i < _lineCount; i++) {
-			renderer->renderVerticalLine(
+			renderer->strokeVerticalLine(
 				position,
 				lineHeight,
 				i <= sexuality ? color : &Theme::fg4
@@ -74,7 +74,7 @@ namespace pizda {
 		position.setX(position.getX() - 1 - _lineSpacing + _textOffset + 1);
 		position.setY(bounds.getYCenter() - Theme::fontSmall.getLineHeight() + 1);
 		
-		renderer->renderText(
+		renderer->putText(
 			position,
 			&Theme::fontSmall,
 			isConnected ? &Theme::fg4 : &Theme::bad1,
@@ -84,7 +84,7 @@ namespace pizda {
 		position.setY(position.getY() + Theme::fontSmall.getLineHeight());
 
 		// SNR
-		renderer->renderText(
+		renderer->putText(
 			position,
 			&Theme::fontSmall,
 			isConnected ? &Theme::fg4 : &Theme::bad1,

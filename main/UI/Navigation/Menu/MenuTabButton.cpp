@@ -20,7 +20,7 @@ namespace pizda {
 		Button::onRender(renderer, bounds);
 
 		// if (isChecked())
-		// 	renderer->renderHorizontalLine(bounds.getBottomLeft(), bounds.getWidth(), &Theme::fg1);
+		// 	renderer->strokeHorizontalLine(bounds.getBottomLeft(), bounds.getWidth(), &Theme::fg1);
 	}
 
 	void MenuTabButton::onClick() {

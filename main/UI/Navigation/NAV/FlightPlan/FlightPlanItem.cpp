@@ -21,14 +21,14 @@ namespace pizda {
 		const auto isActiveLeg = rc.getNavigationData().flightPlan.activeLegIndex == _legIndex;
 
 		// Background
-		renderer->renderFilledRectangle(
+		renderer->fillRectangle(
 			bounds,
 			Theme::cornerRadius,
 			isActive() ? &Theme::bg4 : &Theme::bg3
 		);
 
 		// Frame
-		renderer->renderRectangle(
+		renderer->strokeRectangle(
 			bounds,
 			Theme::cornerRadius,
 			isActiveLeg ? &Theme::magenta1 : (isActive() ? &Theme::fg1 : &Theme::bg4)
@@ -49,7 +49,7 @@ namespace pizda {
 		x += 15;
 
 		// Name
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				x,
 				yCenter - Theme::fontNormal.getLineHeight() / 2
@@ -67,7 +67,7 @@ namespace pizda {
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 
-		renderer->renderText(
+		renderer->putText(
 			Point(
 				x,
 				yCenter - Theme::fontNormal.getLineHeight() / 2
@@ -88,13 +88,13 @@ namespace pizda {
 
 			x = bounds.getX() - lineWidth - arrowWidth;
 
-			renderer->renderHorizontalLine(Point(x, yPrev), lineWidth, &Theme::magenta1);
-			renderer->renderVerticalLine(Point(x, yPrev + 1), lineHeight - 1, &Theme::magenta1);
-			renderer->renderHorizontalLine(Point(x, yCenter), lineWidth, &Theme::magenta1);
+			renderer->strokeHorizontalLine(Point(x, yPrev), lineWidth, &Theme::magenta1);
+			renderer->strokeVerticalLine(Point(x, yPrev + 1), lineHeight - 1, &Theme::magenta1);
+			renderer->strokeHorizontalLine(Point(x, yCenter), lineWidth, &Theme::magenta1);
 
 			x += lineWidth;
 
-			renderer->renderFilledTriangle(
+			renderer->fillTriangle(
 				Point(x, yCenter - arrowHeightDiv2),
 				Point(x + arrowWidth, yCenter),
 				Point(x, yCenter + arrowHeightDiv2),

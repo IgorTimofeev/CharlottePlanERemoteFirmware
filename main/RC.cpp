@@ -74,7 +74,7 @@ namespace pizda {
 		// Rendering splash screen
 		Theme::setup();
 		_renderer.clear(&Theme::bg1);
-		_renderer.renderImage(Point(), &Images::splashScreen);
+		_renderer.putImage(Point(), &Images::splashScreen);
 		_renderer.flush();
 
 		// Turning display on

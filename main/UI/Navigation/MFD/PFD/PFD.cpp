@@ -10,8 +10,10 @@ namespace pizda {
 	PFD::PFD() {
 		setClipToBounds(true);
 
-		_scene.setMargin(Margin(speedWidth, 0, altitudeWidth + verticalSpeedWidth, 0));
-		*this += &_scene;
+		_sceneMarginLayout.setMargin(Margin(speedWidth, 0, altitudeWidth + verticalSpeedWidth, 0));
+		*this += &_sceneMarginLayout;
+
+		_sceneMarginLayout += &_scene;
 
 		_splitter.setSize(Size(speedWidth, miniHeight));
 		_splitter.setAlignment(Alignment::start, Alignment::end);

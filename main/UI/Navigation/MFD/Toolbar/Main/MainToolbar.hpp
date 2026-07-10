@@ -27,15 +27,18 @@ namespace pizda {
 			
 			ThrottleSection _throttleSection {};
 
+			MarginLayout _flightControlsIndicatorMarginLayout {};
 			FlightControlsIndicator _flightControlsIndicator {};
-			ToolbarSection _flightControlsSection = { "FCT", &_flightControlsIndicator };
+			ToolbarSection _flightControlsSection { "FCT", &_flightControlsIndicatorMarginLayout };
 
+			MarginLayout _batteryRowsMarginLayout {};
+			StackLayout _batteryRows {};
 			BatteryIndicator _batteryIndicatorRC {};
 			BatteryIndicator _batteryIndicatorAC {};
-			StackLayout _batteryRows {};
-			ToolbarSection _batterySection = { "BAT", &_batteryRows };
+			ToolbarSection _batterySection { "BAT", &_batteryRowsMarginLayout };
 
+			MarginLayout _radioMarginLayout {};
 			RadioIndicator _radio {};
-			ToolbarSection _radioSection = { "SIG", &_radio };
+			ToolbarSection _radioSection { "SIG", &_radioMarginLayout };
 	};
 }

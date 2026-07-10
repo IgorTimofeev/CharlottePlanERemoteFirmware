@@ -10,6 +10,7 @@ namespace pizda {
 		public:
 			explicit ThrottleSection();
 
+			MarginLayout rowMarginLayout {};
 			StackLayout row {};
 			ThrottleIndicator throttleIndicator1 {};
 			ThrottleIndicator throttleIndicator2 {};

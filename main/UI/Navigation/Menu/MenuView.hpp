@@ -9,9 +9,11 @@ namespace pizda {
 
 	class Menu;
 
-	class MenuView : public WrapLayout {
+	class MenuView : public MarginLayout {
 		public:
 			explicit MenuView();
+
+			WrapLayout wrapLayout {};
 
 			virtual void setup();
 

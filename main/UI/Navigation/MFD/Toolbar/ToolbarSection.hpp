@@ -13,28 +13,30 @@ namespace pizda {
 	class ToolbarSection : public Layout, public BorderElement {
 		public:
 			ToolbarSection() {
+				_titleMarginLayout.setMargin({ Toolbar::contentHorizontalMargin, 0, Toolbar::contentHorizontalMargin, 0 });
+				*this += &_titleMarginLayout;
+
 				_title.setHorizontalAlignment(Alignment::center);
-				_title.setMargin(Margin(Toolbar::contentHorizontalMargin, 0, Toolbar::contentHorizontalMargin, 0));
 				_title.setFont(&Theme::fontSmall);
-				*this += &_title;
-				
+				_titleMarginLayout += &_title;
+
 				updateColors();
 			}
 			
-			ToolbarSection(std::string_view title) : ToolbarSection() {
+			ToolbarSection(const std::string_view title) : ToolbarSection() {
 				setTitle(title);
 			}
 			
-			ToolbarSection(std::string_view title, Element* element) : ToolbarSection(title) {
+			ToolbarSection(const std::string_view title, Element* element) : ToolbarSection(title) {
 				*this += element;
 			}
 			
-			void setTitle(std::string_view title) {
+			void setTitle(const std::string_view title) {
 				_title.setText(title);
 			}
 			
-			static void setDefaultMargin(Element* element, uint8_t topOffset = 0) {
-				element->setMargin(Margin(Toolbar::contentHorizontalMargin, Toolbar::topPanelHeight + topOffset, Toolbar::contentHorizontalMargin, 0));
+			static void setDefaultMargin(MarginLayout* marginLayout, const uint8_t topOffset = 0) {
+				marginLayout->setMargin(Margin(Toolbar::contentHorizontalMargin, Toolbar::topPanelHeight + topOffset, Toolbar::contentHorizontalMargin, 0));
 			}
 			
 		protected:
@@ -84,6 +86,7 @@ namespace pizda {
 			}
 
 		private:
+			MarginLayout _titleMarginLayout {};
 			TextView _title {};
 			
 			void updateColors() {

@@ -7,13 +7,13 @@ namespace pizda {
 	ThrottleSection::ThrottleSection() : ToolbarSection("THR") {
 		setFocusable(false);
 
-		row.setGap(7);
-		setDefaultMargin(&row, 6);
+		setDefaultMargin(&rowMarginLayout, 6);
+		*this += &rowMarginLayout;
 
+		row.setGap(7);
 		row += &throttleIndicator1;
 		row += &throttleIndicator2;
-
-		*this += &row;
+		rowMarginLayout += &row;
 	}
 
 	void ThrottleSection::onTick() {

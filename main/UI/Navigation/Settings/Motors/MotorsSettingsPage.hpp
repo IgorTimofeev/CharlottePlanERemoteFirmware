@@ -24,10 +24,12 @@ namespace pizda {
 
 			Layout _mainLayout {};
 
+			MarginLayout _minMaxRowMarginLayout {};
 			RelativeStackLayout _minMaxRow {};
 			TextField _min {};
 			TextField _max {};
 
+			MarginLayout _reverseMarginLayout {};
 			Button _reverse {};
 
 			Button _confirm {};

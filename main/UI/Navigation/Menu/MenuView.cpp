@@ -7,8 +7,10 @@ namespace pizda {
 		// setSpacing(10);
 		// setMargin(Margin(15, 15, 15, 10));
 
-		setSpacing(12, 10);
 		setMargin(Margin(12, 15, 12, 10));
+
+		wrapLayout.setGap(12, 10);
+		*this += &wrapLayout;
 	}
 
 	void MenuView::setup() {

@@ -3,7 +3,7 @@
 #include "UI/Navigation/Menu/Menu.hpp"
 
 namespace pizda {
-	MenuTabButton::MenuTabButton(std::string_view text, const Route* route) : _route(route) {
+	MenuTabButton::MenuTabButton(const std::string_view text, const Route* route) : _route(route) {
 		setHeight(16);
 
 		setDefaultBackgroundColor(&Theme::bg1);

@@ -296,9 +296,12 @@ namespace pizda {
 		frequencyRow += &frequencyStepTitle;
 
 		// Presets button
+		frequencyPresetsButtonMarginLayout.setMargin(Margin(0, Theme::fontNormal.getLineHeight() + frequencyFromTitle.getGap(), 0, 0));;
+		frequencyRow.setAutoSize(&frequencyPresetsButtonMarginLayout);
+		frequencyRow += &frequencyPresetsButtonMarginLayout;
+
 		Theme::applySecondary(&frequencyPresetsButton);
 		frequencyPresetsButton.setDefaultBackgroundColor(&Theme::bg2);
-		frequencyPresetsButton.setMargin(Margin(0, Theme::fontNormal.getLineHeight() + frequencyFromTitle.getGap(), 0, 0));
 		frequencyPresetsButton.setWidth(24);
 		frequencyPresetsButton.setText("...");
 
@@ -345,8 +348,7 @@ namespace pizda {
 			)->show();
 		});
 
-		frequencyRow.setAutoSize(&frequencyPresetsButton);
-		frequencyRow += &frequencyPresetsButton;
+		frequencyPresetsButtonMarginLayout += &frequencyPresetsButton;
 
 		// -------------------------------- Begin button --------------------------------
 

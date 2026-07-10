@@ -13,6 +13,7 @@ namespace pizda {
 			ScrollViewDialog();
 
 			ScrollView scrollView {};
+			MarginLayout rowsMarginLayout {};
 			StackLayout rows {};
 			TextView title {};
 	};

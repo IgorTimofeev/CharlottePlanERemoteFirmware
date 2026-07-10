@@ -30,7 +30,7 @@ namespace pizda {
 
 	MFDMenuView::MFDMenuView() {
 		for (const auto button : topToolbarButtons) {
-			*this += button;
+			wrapLayout += button;
 		}
 	}
 

@@ -7,10 +7,13 @@ namespace pizda {
 		Theme::apply(&scrollView);
 		slideLayout += &scrollView;
 
+		// Rows margin
+		rowsMarginLayout.setMargin(Margin(15));
+		scrollView += &rowsMarginLayout;
+
 		// Rows
-		rows.setMargin(Margin(15));
 		rows.setGap(Theme::verticalGap);
-		scrollView += &rows;
+		rowsMarginLayout += &rows;
 
 		// Title
 		Theme::applyPageTitle(&title);

@@ -6,11 +6,11 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class OpenMenuButton : public Button {
+	class OpenMenuButton : public MarginLayout {
 		public:
 			OpenMenuButton();
 
-		protected:
-			void onClick() override;
+		private:
+			Button _button {};
 	};
 }

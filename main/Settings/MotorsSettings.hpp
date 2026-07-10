@@ -30,7 +30,7 @@ namespace pizda {
 			MotorSettings* getByType(const MotorType type) {
 				switch (type) {
 					case MotorType::cameraPitch: return &cameraPitch;
-					case MotorType::cameraYaw: return &cameraPitch;
+					case MotorType::cameraYaw: return &cameraYaw;
 
 					case MotorType::throttleLeft: return &throttleLeft;
 					case MotorType::throttleRight: return &throttleRight;

@@ -12,8 +12,9 @@ namespace pizda {
 		*this += &leftRow;
 
 		// Controls
-		ToolbarSection::setDefaultMargin(&_flightControlsIndicatorMarginLayout, 3);
-		_flightControlsIndicatorMarginLayout += &_flightControlsIndicator;
+		ToolbarSection::setDefaultMargin(&_flightControlsIndicatorMargin, 3);
+		_flightControlsIndicator.setLayoutTransform(&_flightControlsIndicatorMargin);
+
 		_flightControlsSection.setFocusable(false);
 		leftRow += &_flightControlsSection;
 
@@ -27,15 +28,17 @@ namespace pizda {
 		*this += &rightRow;
 		
 		// Radio
-		ToolbarSection::setDefaultMargin(&_radioMarginLayout, 8);
-		_radioMarginLayout += &_radio;
+		ToolbarSection::setDefaultMargin(&_radioMargin, 8);
+		_radio.setLayoutTransform(&_radioMargin);
+
 		_radioSection.setFocusable(false);
 		rightRow += &_radioSection;
 		
 		// Battery
 		_batteryRows.setGap(3);
-		ToolbarSection::setDefaultMargin(&_batteryRowsMarginLayout, 4);
-		_batteryRowsMarginLayout += &_batteryRows;
+		ToolbarSection::setDefaultMargin(&_batteryRowsMargin, 4);
+		_batteryRows.setLayoutTransform(&_batteryRowsMargin);
+
 		_batteryRows += &_batteryIndicatorRC;
 		_batteryRows += &_batteryIndicatorAC;
 		_batterySection.setFocusable(false);

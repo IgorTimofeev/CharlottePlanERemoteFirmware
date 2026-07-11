@@ -166,7 +166,7 @@ namespace pizda {
 			void onTick() override;
 
 		private:
-			MarginLayout _sceneMarginLayout {};
+			MarginTransform _sceneMarginTransform {};
 			PFDScene _scene {};
 			PFDPageSplitter _splitter {};
 

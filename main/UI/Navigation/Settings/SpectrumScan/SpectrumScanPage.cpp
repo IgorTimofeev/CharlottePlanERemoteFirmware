@@ -255,7 +255,7 @@ namespace pizda {
 	}
 
 	void SpectrumScanningChart::updatePointerPos(const Point& pointerEventPos) {
-		const auto& bounds = getRenderBounds();
+		const auto& bounds = getRenderingBounds();
 		const auto pointerPixelPos = pointerEventPos - bounds.getTopLeft();
 
 		_pointerPos.setX(std::clamp<float>(static_cast<float>(pointerPixelPos.getX()) / bounds.getWidth(), 0, 1));
@@ -296,9 +296,11 @@ namespace pizda {
 		frequencyRow += &frequencyStepTitle;
 
 		// Presets button
-		frequencyPresetsButtonMarginLayout.setMargin(Margin(0, Theme::fontNormal.getLineHeight() + frequencyFromTitle.getGap(), 0, 0));;
-		frequencyRow.setAutoSize(&frequencyPresetsButtonMarginLayout);
-		frequencyRow += &frequencyPresetsButtonMarginLayout;
+		frequencyPresetsButtonMargin.setMargin(Margin(0, Theme::fontNormal.getLineHeight() + frequencyFromTitle.getGap(), 0, 0));;
+		frequencyPresetsButton.setLayoutTransform(&frequencyPresetsButtonMargin);
+
+		frequencyRow.setAutoSize(&frequencyPresetsButton);
+		frequencyRow += &frequencyPresetsButton;
 
 		Theme::applySecondary(&frequencyPresetsButton);
 		frequencyPresetsButton.setDefaultBackgroundColor(&Theme::bg2);
@@ -347,8 +349,6 @@ namespace pizda {
 				)
 			)->show();
 		});
-
-		frequencyPresetsButtonMarginLayout += &frequencyPresetsButton;
 
 		// -------------------------------- Begin button --------------------------------
 

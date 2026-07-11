@@ -38,7 +38,7 @@ namespace pizda {
 			void setVariants(std::initializer_list<Element*> elements);
 			
 		private:
-			MarginLayout variantsLayoutMarginLayout {};
+			MarginTransform variantsLayoutMargin {};
 			Layout variantsLayout {};
 			uint8_t variantIndex = 0xFF;
 			bool variantSelectMode = false;

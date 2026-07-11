@@ -11,7 +11,7 @@ namespace pizda {
 
 	class Page : public Layout {
 		public:
-			static void setDefaultContentMargin(MarginLayout* marginLayout);
+			static void setDefaultContentMargin(MarginTransform* marginTransform);
 	};
 
 	// ----------------------------- Templates -----------------------------
@@ -27,7 +27,7 @@ namespace pizda {
 		public:
 			StackRowsPageTemplate();
 
-			MarginLayout rowsMarginLayout {};
+			MarginTransform rowsMargin {};
 			StackLayout rows {};
 	};
 
@@ -44,7 +44,7 @@ namespace pizda {
 		public:
 			RelativeRowsPage();
 
-			MarginLayout rowsMarginLayout {};
+			MarginTransform rowsMargin {};
 			RelativeStackLayout rows {};
 	};
 }

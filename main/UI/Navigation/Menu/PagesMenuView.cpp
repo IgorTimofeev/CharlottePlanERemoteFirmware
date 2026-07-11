@@ -34,7 +34,7 @@ namespace pizda {
 				button->setActive(true);
 			}
 			
-			wrapLayout += button;
+			*this += button;
 		}
 	}
 }

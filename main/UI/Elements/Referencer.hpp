@@ -14,11 +14,11 @@ namespace pizda {
 			constexpr static uint8_t arrowWidth = 5;
 			constexpr static uint8_t arrowHeightDiv2 = 5;
 
-			static void setDefaultMargin(MarginLayout* marginLayout, const Margin& margin) {
-				marginLayout->setMargin(Margin {
+			static void setDefaultMargin(MarginTransform* marginTransform, const Margin& margin) {
+				marginTransform->setMargin(Margin {
 					margin.getLeft(),
 					margin.getTop(),
-					margin.getRight() + arrowWidth + arrowOffset,
+					static_cast<uint16_t>(margin.getRight() + arrowWidth + arrowOffset),
 					margin.getBottom()
 				});
 			}

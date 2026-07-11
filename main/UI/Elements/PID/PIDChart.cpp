@@ -144,7 +144,7 @@ namespace pizda {
 	}
 
 	void PIDChart::updateValueFactorFromPointerEvent(const int32_t pointerY) {
-		const auto bounds = getRenderBounds();
+		const auto bounds = getRenderingBounds();
 		_valueFactor = 1.f - std::clamp<float>(pointerY - bounds.getY(), 0, bounds.getHeight()) / bounds.getHeight();
 
 		invalidate();

@@ -53,6 +53,6 @@ namespace pizda {
 	}
 
 	MenuView* MenuViewButton::getMenuView() const {
-		return reinterpret_cast<MenuView*>(getParent()->getParent());
+		return dynamic_cast<MenuView*>(getParent());
 	}
 }

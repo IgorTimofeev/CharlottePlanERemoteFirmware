@@ -13,12 +13,12 @@ namespace pizda {
 	class ToolbarSection : public Layout, public BorderElement {
 		public:
 			ToolbarSection() {
-				_titleMarginLayout.setMargin({ Toolbar::contentHorizontalMargin, 0, Toolbar::contentHorizontalMargin, 0 });
-				*this += &_titleMarginLayout;
+				_titleMargin.setMargin({ Toolbar::contentHorizontalMargin, 0, Toolbar::contentHorizontalMargin, 0 });
+				_title.setLayoutTransform(&_titleMargin);
 
-				_title.setHorizontalAlignment(Alignment::center);
+				_title.setAlignment(Alignment::center, Alignment::stretch);
 				_title.setFont(&Theme::fontSmall);
-				_titleMarginLayout += &_title;
+				*this += &_title;
 
 				updateColors();
 			}
@@ -35,8 +35,8 @@ namespace pizda {
 				_title.setText(title);
 			}
 			
-			static void setDefaultMargin(MarginLayout* marginLayout, const uint8_t topOffset = 0) {
-				marginLayout->setMargin(Margin(Toolbar::contentHorizontalMargin, Toolbar::topPanelHeight + topOffset, Toolbar::contentHorizontalMargin, 0));
+			static void setDefaultMargin(MarginTransform* marginTransform, const uint8_t topOffset = 0) {
+				marginTransform->setMargin(Margin(Toolbar::contentHorizontalMargin, Toolbar::topPanelHeight + topOffset, Toolbar::contentHorizontalMargin, 0));
 			}
 			
 		protected:
@@ -86,7 +86,7 @@ namespace pizda {
 			}
 
 		private:
-			MarginLayout _titleMarginLayout {};
+			MarginTransform _titleMargin {};
 			TextView _title {};
 			
 			void updateColors() {

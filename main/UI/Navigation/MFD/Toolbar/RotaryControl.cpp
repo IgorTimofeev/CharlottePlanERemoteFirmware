@@ -5,10 +5,10 @@
 namespace pizda {
 	
 	RotaryControl::RotaryControl() {
-		setDefaultMargin(&variantsLayoutMarginLayout);
-		*this += &variantsLayoutMarginLayout;
-		
-		variantsLayoutMarginLayout += &variantsLayout;
+		setDefaultMargin(&variantsLayoutMargin);
+		variantsLayout.setLayoutTransform(&variantsLayoutMargin);
+
+		*this += &variantsLayout;
 	}
 	
 	uint8_t RotaryControl::getVariantIndex() const {

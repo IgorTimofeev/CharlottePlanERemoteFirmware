@@ -7,10 +7,10 @@ namespace pizda {
 		// setSpacing(10);
 		// setMargin(Margin(15, 15, 15, 10));
 
-		setMargin(Margin(12, 15, 12, 10));
+		marginTransform.setMargin(Margin(12, 15, 12, 10));
+		setLayoutTransform(&marginTransform);
 
-		wrapLayout.setGap(12, 10);
-		*this += &wrapLayout;
+		setGap(12, 10);
 	}
 
 	void MenuView::setup() {
@@ -18,6 +18,6 @@ namespace pizda {
 	}
 
 	Menu* MenuView::getMenu() const {
-		return reinterpret_cast<Menu*>(getParent()->getParent()->getParent());
+		return dynamic_cast<Menu*>(getParent()->getParent()->getParent());
 	}
 }

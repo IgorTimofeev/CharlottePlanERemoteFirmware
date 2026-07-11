@@ -49,7 +49,7 @@ namespace pizda {
 			delete child;
 	}
 
-	const std::span<const std::string_view> SelectorDialog::getItems() const {
+	std::span<const std::string_view> SelectorDialog::getItems() const {
 		return _items;
 	}
 
@@ -57,7 +57,7 @@ namespace pizda {
 		return _onItemSelected;
 	}
 
-	void SelectorDialog::onAddedToParent(Layout* parent) {
+	void SelectorDialog::onAddedToParent(Parent* parent) {
 		ScrollViewDialog::onAddedToParent(parent);
 
 		_itemRows[_selectedIndex]->scrollIntoView();

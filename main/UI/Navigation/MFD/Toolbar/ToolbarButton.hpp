@@ -22,12 +22,12 @@ namespace pizda {
 	class ImageToolbarButton : public ToolbarSection, public ActiveElement {
 		public:
 			ImageToolbarButton(const std::string_view title, const Image* image) : ToolbarSection(title) {
-				_imageViewMarginLayout.setMargin(Margin(Toolbar::contentHorizontalMargin, 2, Toolbar::contentHorizontalMargin, 0));
-				*this += &_imageViewMarginLayout;
+				_imageViewMargin.setMargin(Margin(Toolbar::contentHorizontalMargin, 2, Toolbar::contentHorizontalMargin, 0));
+				_imageView.setLayoutTransform(&_imageViewMargin);
 
 				_imageView.setAlignment(Alignment::center);
 				_imageView.setImage(image);
-				_imageViewMarginLayout += &_imageView;
+				*this += &_imageView;
 			}
 
 			std::function<void()> onPressed = nullptr;
@@ -53,7 +53,7 @@ namespace pizda {
 			}
 		
 		private:
-			MarginLayout _imageViewMarginLayout {};
+			MarginTransform _imageViewMargin {};
 			ImageView _imageView {};
 	};
 }

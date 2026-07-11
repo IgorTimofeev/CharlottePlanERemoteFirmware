@@ -113,12 +113,12 @@ namespace pizda {
 	class PIDReferencer : public Referencer {
 		public:
 			PIDReferencer(const std::string_view& dialogTitle) {
-				setDefaultMargin(&_textsRowMarginLayout, Margin(12, 9, 12, 7));
-				*this += &_textsRowMarginLayout;
+				setDefaultMargin(&_textsRowMargin, Margin(12, 9, 12, 7));
+				_textsRow.setLayoutTransform(&_textsRowMargin);
 
 				_textsRow.setOrientation(Orientation::horizontal);
 				_textsRow.setGap(5);
-				_textsRowMarginLayout += &_textsRow;
+				*this += &_textsRow;
 
 				addCoeffText(_textP, &Theme::yellow);
 				addSuffixText(_textP_I, "P +");
@@ -160,7 +160,7 @@ namespace pizda {
 
 			StackLayout _rows {};
 
-			MarginLayout _textsRowMarginLayout {};
+			MarginTransform _textsRowMargin {};
 			StackLayout _textsRow {};
 			TextView _textP {};
 			TextView _textP_I {};

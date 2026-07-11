@@ -3,8 +3,8 @@
 namespace pizda {
 	// ----------------------------- Templates -----------------------------
 
-	void Page::setDefaultContentMargin(MarginLayout* marginLayout) {
-		marginLayout->setMargin(Margin(15, 15, 15, 20));
+	void Page::setDefaultContentMargin(MarginTransform* marginTransform) {
+		marginTransform->setMargin(Margin(15, 15, 15, 20));
 	}
 
 	TitlePageTemplate::TitlePageTemplate() {
@@ -15,11 +15,11 @@ namespace pizda {
 
 	StackRowsPageTemplate::StackRowsPageTemplate() {
 		// Margin
-		setDefaultContentMargin(&rowsMarginLayout);
+		setDefaultContentMargin(&rowsMargin);
+		rows.setLayoutTransform(&rowsMargin);
 
 		// Rows
 		rows.setGap(Theme::verticalGap);
-		rowsMarginLayout += &rows;
 
 		// Title
 		rows += &title;
@@ -33,17 +33,17 @@ namespace pizda {
 		*this += &scrollView;
 
 		// Rows
-		scrollView += &rowsMarginLayout;
+		scrollView += &rows;
 	}
 
 	RelativeRowsPage::RelativeRowsPage() {
 		// Margin
-		setDefaultContentMargin(&rowsMarginLayout);
-		*this += &rowsMarginLayout;
+		setDefaultContentMargin(&rowsMargin);
+		rows.setLayoutTransform(&rowsMargin);
 
 		// Rows
 		rows.setGap(Theme::verticalGap);
-		rowsMarginLayout += &rows;
+		*this += &rows;
 
 		// Title
 		rows += &title;

@@ -9,16 +9,18 @@ namespace pizda {
 
 	class Menu;
 
-	class MenuView : public MarginLayout {
+	class MenuView : public WrapLayout {
 		public:
 			explicit MenuView();
 
-			WrapLayout wrapLayout {};
 
 			virtual void setup();
 
 			Menu* getMenu() const;
 
 			virtual const Route* getRoute() = 0;
+
+		private:
+			MarginTransform marginTransform {};
 	};
 }

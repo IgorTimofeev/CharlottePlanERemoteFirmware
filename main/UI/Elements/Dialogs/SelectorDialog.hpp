@@ -37,11 +37,11 @@ namespace pizda {
 
 			~SelectorDialog() override;
 
-			const std::span<const std::string_view> getItems() const;
+			std::span<const std::string_view> getItems() const;
 			const std::function<void(uint8_t)>& getOnItemSelected();
 
 		protected:
-			void onAddedToParent(Layout* parent) override;
+			void onAddedToParent(Parent* parent) override;
 
 		private:
 			const std::span<const std::string_view> _items;

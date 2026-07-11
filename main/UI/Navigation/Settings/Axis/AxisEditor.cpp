@@ -9,7 +9,7 @@ namespace pizda {
 	
 	void AxisEditor::onEvent(Event* event) {
 		if (event->getTypeID() == PointerDownEvent::typeID) {
-			const auto& bounds = getRenderBounds();
+			const auto& bounds = getRenderingBounds();
 			
 			pointerDownX = reinterpret_cast<PointerDownEvent*>(event)->getPosition().getX();
 			const int32_t ADCValue = (pointerDownX - bounds.getX()) * Axis::valueMax / bounds.getWidth();
@@ -60,7 +60,7 @@ namespace pizda {
 				settings->sensitivity = static_cast<uint8_t>(std::clamp<int16_t>(static_cast<int16_t>(settings->sensitivity) + deltaX * 0xFF / 100, 0x00, 0xFF));
 			}
 			else {
-				const auto& bounds = getRenderBounds();
+				const auto& bounds = getRenderingBounds();
 				
 				const auto posClamped = std::clamp<int32_t>(pointerX - bounds.getX(), 0, bounds.getWidth());
 				const uint16_t ADCValue = posClamped * Axis::valueMax / bounds.getWidth();

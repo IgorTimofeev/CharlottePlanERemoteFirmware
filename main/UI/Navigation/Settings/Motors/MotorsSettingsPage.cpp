@@ -39,13 +39,13 @@ namespace pizda {
 		_mainLayout += &_confirm;
 
 		// Reverse
-		_reverseMarginLayout.setMargin(Margin(0, 0, _confirm.getSize().getWidth() - buttonSideMargin, 0));
-		_reverseMarginLayout.setHorizontalAlignment(Alignment::end);
-		_mainLayout += &_reverseMarginLayout;
+		_reverseMargin.setMargin(Margin(0, 0, _confirm.getSize().getWidth() - buttonSideMargin, 0));
+		_reverse.setLayoutTransform(&_reverseMargin);
 
 		Theme::applySecondary(&_reverse);
 
 		_reverse.setWidth(_confirm.getSize().getWidth() + 1);
+		_reverse.setHorizontalAlignment(Alignment::end);
 		_reverse.setContentMargin(Margin(buttonSideMargin - 1, 0, 0, 0));
 
 		_reverse.setDefaultBackgroundColor(&Theme::bg2);
@@ -59,15 +59,14 @@ namespace pizda {
 		_reverse.setToggle(true);
 		
 		_reverse.setActive(settings->reverse);
-		_reverseMarginLayout += &_reverse;
+		_mainLayout += &_reverse;
 
 		// Min / max
-		_minMaxRowMarginLayout.setMargin(Margin(0, 0, _confirm.getSize().getWidth() + _reverse.getSize().getWidth() - buttonSideMargin * 2, 0));
-		_mainLayout += &_minMaxRowMarginLayout;
-
+		_minMaxRowMargin.setMargin(Margin(0, 0, _confirm.getSize().getWidth() + _reverse.getSize().getWidth() - buttonSideMargin * 2, 0));
+		_minMaxRow.setLayoutTransform(&_minMaxRowMargin);
 		_minMaxRow.setOrientation(Orientation::horizontal);
 		_minMaxRow.setGap(8);
-		_minMaxRowMarginLayout += &_minMaxRow;
+		_mainLayout += &_minMaxRow;
 
 		// Min
 		addTextField(_min, settings->min);

@@ -26,7 +26,7 @@ namespace pizda {
 
 				// this > PFD > MFD layout
 				const auto layout = dynamic_cast<MFDLayout*>(getParent()->getParent());
-				const auto& bounds = layout->getRenderBounds();
+				const auto& bounds = layout->getRenderingBounds();
 
 				rc.getSettings().personalization.MFD.split.ratio = static_cast<uint8_t>(std::clamp<int32_t>(
 					(_pointerY - bounds.getY()) * 100 / bounds.getHeight(),

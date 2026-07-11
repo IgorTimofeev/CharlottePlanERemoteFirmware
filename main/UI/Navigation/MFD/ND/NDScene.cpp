@@ -497,7 +497,7 @@ namespace pizda {
 		// And then we can calculate how many equatorial radians of the earth is in 1 pixel of the screen
 		// viewport rad - width px
 		// x rad - 1 px
-		return viewportRad / static_cast<float>(getRenderBounds().getWidth());
+		return viewportRad / static_cast<float>(getRenderingBounds().getWidth());
 	}
 
 	const GeoCoordinates& NDScene::getCameraOffset() const {
@@ -580,7 +580,7 @@ namespace pizda {
 	}
 
 	void NDScene::updatePivot() {
-		const auto& bounds = getRenderBounds();
+		const auto& bounds = getRenderingBounds();
 		auto& rc = RC::getInstance();
 
 		setPivotOffset(

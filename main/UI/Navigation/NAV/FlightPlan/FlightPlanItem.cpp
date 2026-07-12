@@ -1,3 +1,5 @@
+#include <cstdio>
+
 #include "UI/Navigation/NAV/FlightPlan/FlightPlanItem.hpp"
 #include "UI/Navigation/NAV/FlightPlan/FlightPlanItemDialog.hpp"
 #include "Utilities/Rendering.hpp"
@@ -60,10 +62,8 @@ namespace pizda {
 		);
 
 		// Distance
-		const auto coordsText = std::format(
-			"{} nm",
-			YOBA::round(getDistanceNm(), 1)
-		);
+		char coordsText[12];
+		std::snprintf(coordsText, sizeof(coordsText), "%f nm", YOBA::round(getDistanceNm(), 1));
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 

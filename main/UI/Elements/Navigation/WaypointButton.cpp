@@ -1,3 +1,5 @@
+#include <cstdio>
+
 #include "UI/Elements/Navigation/WaypointButton.hpp"
 #include "UI/Theme.hpp"
 #include "Types/NavigationData.hpp"
@@ -86,10 +88,8 @@ namespace pizda {
 		);
 
 		// Distance
-		const auto coordsText = std::format(
-			"{} nm",
-			YOBA::round(_distanceNm, 1)
-		);
+		char coordsText[14];
+		std::snprintf(coordsText, sizeof(coordsText), "%f nm" PRIi32, YOBA::round(_distanceNm, 1));
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 

@@ -1,3 +1,5 @@
+#include <cstdio>
+
 #include "UI/Navigation/NAV/FlightPlan/FlightPlanItemDialog.hpp"
 #include "UI/Navigation/NAV/FlightPlan/FlightPlanPage.hpp"
 #include "Types/NavigationData.hpp"
@@ -40,8 +42,11 @@ namespace pizda {
 
 		_editButton.setOnClick([this, &waypointData, legIndex, &leg, &rc] {
 			rc.getApplication().invokeLater([&rc, this, &leg, legIndex, &waypointData] {
+				char dialogTitle[64];
+				std::snprintf(dialogTitle, sizeof(dialogTitle), "Change %s", waypointData.name.data());
+
 				SelectWaypointDialog::edit(
-					std::format("Change {}", waypointData.name),
+					dialogTitle,
 					WaypointDialogSelectedItem(leg.waypointIndex),
 					[legIndex, &rc](const WaypointDialogSelectedItem& selectedItem) {
 						rc.getNavigationData().flightPlan.legs[legIndex] = NavigationDataFlightPlanLeg(selectedItem.waypointIndex);
@@ -65,8 +70,11 @@ namespace pizda {
 		_insertBeforeButton.setText("Insert before");
 
 		_insertBeforeButton.setOnClick([this, &waypointData, legIndex] {
+			char dialogTitle[64];
+			std::snprintf(dialogTitle, sizeof(dialogTitle), "Insert before %s", waypointData.name.data());
+
 			insertOnButtonClick(
-				std::format("Insert before {}", waypointData.name),
+				dialogTitle,
 				legIndex
 			);
 		});
@@ -78,8 +86,11 @@ namespace pizda {
 		_insertAfterButton.setText("Insert after");
 
 		_insertAfterButton.setOnClick([this, &waypointData, legIndex] {
+			char dialogTitle[64];
+			std::snprintf(dialogTitle, sizeof(dialogTitle), "Insert after %s", waypointData.name.data());
+
 			insertOnButtonClick(
-				std::format("Insert after {}", waypointData.name),
+				dialogTitle,
 				legIndex + 1
 			);
 		});

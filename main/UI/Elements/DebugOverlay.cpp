@@ -1,5 +1,8 @@
-#include "UI/Elements/DebugOverlay.hpp"
+#include <cstdio>
+#include <inttypes.h>
 #include <esp_private/esp_clk.h>
+
+#include "UI/Elements/DebugOverlay.hpp"
 #include "RC.hpp"
 
 namespace pizda {
@@ -18,41 +21,33 @@ namespace pizda {
 
 		int32_t y = 0;
 
-		const auto totalDeltaTime =
-			rc.getApplication().getHIDTickDeltaTime()
-			+ rc.getApplication().getTickDeltaTime()
-			+ rc.getApplication().getLayoutDeltaTime()
-			+ rc.getApplication().getRenderDeltaTime()
-			+ rc.getApplication().getFlushDeltaTime();
+		const auto tickDeltaTime = rc.getTickDeltaTimeUs();
 
-		const auto renderLine = [&renderer, &y](const std::string_view text, const Color* color = &Theme::magenta1, uint8_t scale = 1) {
-			renderer->putText(Point(10, y), &Theme::fontNormal, color, text, scale);
+		const auto renderLine = [&renderer, &y](const std::string_view text, const Color* color = &Theme::magenta1, const uint8_t scale = 1) {
+			renderer->putText(Point(10, y), &Theme::fontNormal, scale, color, text);
 
 			y += Theme::fontNormal.getLineHeight(scale) + 2;
 		};
 
 		// Big fucking FPS counter
 		renderLine(
-			std::to_string(totalDeltaTime > 0 ? 1'000'000 / totalDeltaTime : 0),
+			std::to_string(tickDeltaTime > 0 ? 1'000'000 / tickDeltaTime : 0),
 			&Theme::yellow,
 			3
 		);
 
-		renderLine(std::format("CPU clock: {} MHz", static_cast<uint32_t>(esp_clk_cpu_freq()) / 1000000UL));
+		char buffer[64];
 
-		renderLine(std::format("Heap free: {} kB", esp_get_free_heap_size() / 1024));
+		std::snprintf(buffer, sizeof(buffer), "CPU frequency: %" PRIu32 " MHz", static_cast<uint32_t>(esp_clk_cpu_freq()) / 1'000'000);
+		renderLine(buffer);
 
-		const auto renderTimeLine = [&renderLine, &totalDeltaTime](std::string_view key, const uint32_t time) {
-			renderLine(std::format("{}: {} ms, {}%", key, time / 1000, totalDeltaTime > 0 ? time * 100 / totalDeltaTime : 0));
-		};
+		std::snprintf(buffer, sizeof(buffer), "Heap free: %" PRIu32 " kB", esp_get_free_heap_size() / 1024);
+		renderLine(buffer);
 
-		renderTimeLine("HID", rc.getApplication().getHIDTickDeltaTime());
-		renderTimeLine("Tick", rc.getApplication().getTickDeltaTime());
-		renderTimeLine("Layout", rc.getApplication().getLayoutDeltaTime());
-		renderTimeLine("Render", rc.getApplication().getRenderDeltaTime());
-		renderTimeLine("Flush", rc.getApplication().getFlushDeltaTime());
-		renderLine(std::format("Total: {} ms", totalDeltaTime / 1000));
+		std::snprintf(buffer, sizeof(buffer), "Tick: %" PRIu32 " ms", tickDeltaTime / 1000);
+		renderLine(buffer);
 
-		renderLine(std::format("Packet rate RX: {}, TX: {}", rc.getTransceiver().getRXPacketRate(), rc.getTransceiver().getTXPacketRate()));
+		std::snprintf(buffer, sizeof(buffer), "Packet rate RX: %" PRIu16 ", TX: %" PRIu16, rc.getTransceiver().getRXPacketRate(), rc.getTransceiver().getTXPacketRate());
+		renderLine(buffer);
 	}
 }

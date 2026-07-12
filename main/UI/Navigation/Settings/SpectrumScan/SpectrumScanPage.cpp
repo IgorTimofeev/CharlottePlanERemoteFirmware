@@ -1,8 +1,8 @@
-#include "UI/Navigation/Settings/SpectrumScan/SpectrumScanPage.hpp"
-
-#include <format>
+#include <cstdio>
+#include <inttypes.h>
 #include <algorithm>
 
+#include "UI/Navigation/Settings/SpectrumScan/SpectrumScanPage.hpp"
 #include "RC.hpp"
 #include "UI/Theme.hpp"
 #include "UI/Elements/Dialogs/SelectorDialog.hpp"
@@ -175,8 +175,11 @@ namespace pizda {
 			const auto frequency = getFrequency(pointerPixelPos.getX());
 
 			// Horizontal
-			const auto pointerRSSI = _RSSIMin + (bounds.getHeight() - pointerPixelPos.getY()) * (_RSSIMax - _RSSIMin) / bounds.getHeight();
-			auto text = std::format("{} dBm", pointerRSSI);
+			const auto pointerRSSI = static_cast<int16_t>(_RSSIMin + (bounds.getHeight() - pointerPixelPos.getY()) * (_RSSIMax - _RSSIMin) / bounds.getHeight());
+
+			char text[16];
+			std::snprintf(text, sizeof(text), "%" PRIi16 " dBm", pointerRSSI);
+
 			auto textWidth = Theme::fontSmall.getWidth(text);
 
 			renderer->putText(
@@ -199,7 +202,7 @@ namespace pizda {
 			);
 
 			// Vertical
-			text = std::format("{} MHz", frequency / 1'000'000);
+			std::snprintf(text, sizeof(text), "%llu MHz", frequency / 1'000'000);
 			textWidth = Theme::fontSmall.getWidth(text);
 
 			renderer->putText(
@@ -239,7 +242,7 @@ namespace pizda {
 					&Theme::fg1
 				);
 
-				text = std::format("{} dBm", historyRSSI);
+				std::snprintf(text, sizeof(text), "%d dBm", historyRSSI);
 
 				renderer->putText(
 					Point(

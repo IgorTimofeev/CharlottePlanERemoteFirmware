@@ -1,4 +1,4 @@
-#include <format>
+#include <cstdio>
 
 #include "UI/Navigation/Settings/ADIRS/ADIRSSettingsPage.hpp"
 #include "UI/Theme.hpp"
@@ -102,14 +102,20 @@ The magnetometer should be calibrated each time before first takeoff in new geol
 		
 		if (calibrating) {
 			_calProgressBar.setValue(static_cast<float>(rc.getAircraftData().raw.calibration.progress) / 0xFF);
-			
-			_calProgressText.setText(std::format(
-				"Calibrating {}: {}%",
+
+			char buffer[32];
+
+			std::snprintf(
+				buffer,
+				sizeof(buffer),
+				"Calibrating %s: %d%%",
 				rc.getAircraftData().raw.calibration.system == AircraftCalibrationSystem::accelAndGyro
 					 ? "accel & gyro"
 					 : "mag",
 				rc.getAircraftData().raw.calibration.progress * 100 / 0xFF
-			));
+			);
+
+			_calProgressText.setText(buffer);
 		}
 		
 		_calProgressBar.setVisible(calibrating);

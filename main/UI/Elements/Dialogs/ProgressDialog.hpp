@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cstdio>
+
 #include <YOBA/Core.hpp>
 #include <YOBA/UI.hpp>
 
@@ -34,7 +36,11 @@ namespace pizda {
 
 			void setProgress(float value) {
 				progressBar.setValue(value);
-				progressText.setText(std::format("{}%", value * 100 / 0xFFFF));
+
+				char text[8];
+				std::snprintf(text, sizeof(text), "%d%", value * 100 / 0xFFFF);
+
+				progressText.setText(text);
 			}
 	};
 }

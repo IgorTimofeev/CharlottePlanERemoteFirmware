@@ -171,6 +171,8 @@ namespace pizda {
 		// This shit is blazingly 🔥 fast 🚀, so letting user enjoy logo for a few moments
 		vTaskDelay(pdMS_TO_TICKS(500));
 
+		int64_t tickTimeUs;
+
 		while (true) {
 			// Processing analog axes & battery in main task, because this is the only guaranteed way
 			// to get rid of electromagnetic interference from SPI/XCVR. Sounds ridiculous, but...)))
@@ -181,8 +183,12 @@ namespace pizda {
 			interpolateData();
 
 			// Processing events & rendering UI
+			tickTimeUs = esp_timer_get_time();
+
 			_application.tick();
 			_application.render();
+
+			_tickDeltaTimeUs = esp_timer_get_time() - tickTimeUs;
 
 			// 60 FPS is hardly achievable on SPI screens, so let's treat it as an unattainable ideal
 			vTaskDelay(pdMS_TO_TICKS(1'000 / 60));
@@ -395,6 +401,10 @@ namespace pizda {
 
 	void RC::playFeedback() {
 		playFeedback(&Sounds::feedback);
+	}
+
+	uint32_t RC::getTickDeltaTimeUs() const {
+		return _tickDeltaTimeUs;
 	}
 
 	Settings& RC::getSettings() {

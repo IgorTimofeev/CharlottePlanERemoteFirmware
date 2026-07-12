@@ -1,4 +1,5 @@
-#include <format>
+#include <cstdio>
+#include <cstring>
 
 #include "UI/Navigation/MFD/Toolbar/Main/RadioIndicator.hpp"
 #include "RC.hpp"
@@ -71,24 +72,41 @@ namespace pizda {
 		}
 
 		// RSSI
+		char text[16];
+
+		if (isConnected) {
+			std::snprintf(text, sizeof(text), "R %d", RSSI);
+		}
+		else {
+			std::strcpy(text, "----");
+		}
+
 		position.setX(position.getX() - 1 - _lineSpacing + _textOffset + 1);
 		position.setY(bounds.getYCenter() - Theme::fontSmall.getLineHeight() + 1);
-		
+
 		renderer->putText(
 			position,
 			&Theme::fontSmall,
 			isConnected ? &Theme::fg4 : &Theme::bad1,
-			isConnected ? std::format("R {}", RSSI) : "----"
+			text
 		);
 		
 		position.setY(position.getY() + Theme::fontSmall.getLineHeight());
 
 		// SNR
+		if (isConnected) {
+			std::snprintf(text, sizeof(text), "S %d", SNR);
+		}
+		else {
+			// Already
+			// std::strcpy(text, "----");
+		}
+
 		renderer->putText(
 			position,
 			&Theme::fontSmall,
 			isConnected ? &Theme::fg4 : &Theme::bad1,
-			isConnected ? std::format("S {}", SNR) : "----"
+			text
 		);
 	}
 }

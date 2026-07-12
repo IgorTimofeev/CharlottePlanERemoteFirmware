@@ -62,6 +62,8 @@ namespace pizda {
 			void playFeedback(const Sound* sound);
 			void playFeedback();
 
+			uint32_t getTickDeltaTimeUs() const;
+
 			constexpr adc_oneshot_unit_handle_t getAssignedADCOneshotUnit(const adc_unit_t ADCUnit) const {
 				switch (ADCUnit) {
 					case ADC_UNIT_1: return _ADCOneshotUnit1;
@@ -115,6 +117,8 @@ namespace pizda {
 			DebugOverlay* _debugOverlay = nullptr;
 
 			const Route* _route = nullptr;
+
+			uint32_t _tickDeltaTimeUs = 0;
 
 			// -------------------------------- Other shit --------------------------------
 

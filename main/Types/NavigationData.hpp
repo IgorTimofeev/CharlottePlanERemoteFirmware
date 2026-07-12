@@ -1,7 +1,7 @@
 #pragma once
 
+#include <cstdio>
 #include <optional>
-#include <format>
 
 #include <YOBA/Core.hpp>
 
@@ -70,7 +70,10 @@ namespace pizda {
 			}
 
 			std::string getFormattedName() const {
-				return std::format("{:02}", getShortHeading());
+				char text[3];
+				std::snprintf(text, sizeof(text), "%02d", getShortHeading());
+
+				return text;
 			}
 
 		private:

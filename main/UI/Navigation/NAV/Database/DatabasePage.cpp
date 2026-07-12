@@ -1,4 +1,3 @@
-#include <format>
 #include <esp_log.h>
 
 #include "UI/Navigation/NAV/Database/DatabasePage.hpp"

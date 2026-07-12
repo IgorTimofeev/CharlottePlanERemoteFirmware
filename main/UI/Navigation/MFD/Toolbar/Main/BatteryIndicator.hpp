@@ -1,7 +1,7 @@
 #pragma once
 
-#include <string>
-#include <format>
+#include <cstdio>
+#include <cstring>
 
 #include <YOBA/Core.hpp>
 #include <YOBA/UI.hpp>
@@ -72,10 +72,14 @@ namespace pizda {
 				}
 
 				// Text
-				const auto text =
-					available
-					? std::format("{:.1f}", static_cast<float>(_voltageMV) / 1000.f)
-					: "---";
+				char text[32];
+
+				if (available) {
+					std::snprintf(text, sizeof(text), "%.1f", static_cast<float>(_voltageMV) / 1000.f);
+				}
+				else {
+					std::strcpy(text, "---");
+				}
 
 				renderer->putText(
 					Point(

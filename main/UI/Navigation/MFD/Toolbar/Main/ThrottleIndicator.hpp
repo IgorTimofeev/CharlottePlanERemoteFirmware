@@ -9,7 +9,7 @@ namespace pizda {
 		public:
 			ThrottleIndicator();
 			
-			void onRender(Renderer* pos, const Rectangle& bounds) override;
+			void onRender(Renderer* renderer, const Rectangle& bounds) override;
 
 			uint8_t getRemoteValue() const;
 			void setRemoteValue(uint8_t value);

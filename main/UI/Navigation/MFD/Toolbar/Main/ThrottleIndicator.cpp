@@ -1,4 +1,6 @@
-#include <format>
+#include <cstdio>
+#include <cstring>
+#include <inttypes.h>
 
 #include "UI/Navigation/MFD/Toolbar/Main/ThrottleIndicator.hpp"
 #include "UI/Theme.hpp"
@@ -68,10 +70,14 @@ namespace pizda {
 		}
 
 		// Text
-		const auto text =
-			isConnected
-			? std::format("{:03}", static_cast<int32_t>(_aircraftValue * 100 / 0xFF))
-			: "---";
+		char text[16];
+
+		if (isConnected) {
+			std::snprintf(text, sizeof(text), "%03" PRIi32, static_cast<int32_t>(_aircraftValue * 100 / 0xFF));
+		}
+		else {
+			std::strcpy(text, "---");
+		}
 
 		renderer->putText(
 			Point(

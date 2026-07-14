@@ -53,10 +53,10 @@ namespace pizda {
 				itemsLayout.setOrientation(Orientation::horizontal);
 				itemsLayout.setGap(1);
 				*this += &itemsLayout;
-				setItemsLayout(&itemsLayout);
+				setItemLayout(&itemsLayout);
 			}
 
-			RectangleShape backgroundRectangle {};
+			RectangularShape backgroundRectangle {};
 			RelativeStackLayout itemsLayout {};
 
 			void applyPageStyle() {

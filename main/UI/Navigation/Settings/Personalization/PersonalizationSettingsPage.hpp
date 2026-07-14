@@ -20,10 +20,11 @@ namespace pizda {
 			static int32_t _scrollPosition;
 
 			// -------------------------------- General --------------------------------
-			
+
+			Switcher _darkTheme { "Dark theme" };
 			Switcher _generalAudioFeedback { "Audio feedback" };
-			Switcher _generalDebugOverlay { "Debug overlay" };
 			Switcher _generalDataInterpolation { "Data interpolation" };
+			Switcher _generalDebugOverlay { "Debug overlay" };
 			HorizontalSeparator _generalSeparator {};
 
 			// -------------------------------- PFD --------------------------------

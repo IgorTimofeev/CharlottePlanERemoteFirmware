@@ -69,6 +69,7 @@ namespace pizda {
 			bool dataInterpolation = false;
 			bool debugOverlay = false;
 			bool audioFeedback = false;
+			bool darkTheme = true;
 		
 		protected:
 			const char* getNamespace() override {
@@ -94,6 +95,7 @@ namespace pizda {
 				dataInterpolation = stream.readBool(_dataInterpolation, true);
 				audioFeedback = stream.readBool(_audioFeedback, true);
 				debugOverlay = stream.readBool(_debugOverlay, false);
+				darkTheme = stream.readBool(_darkTheme, true);
 			}
 
 			void onWrite(const NVSStream& stream) override {
@@ -115,6 +117,7 @@ namespace pizda {
 				stream.writeBool(_dataInterpolation, dataInterpolation);
 				stream.writeBool(_audioFeedback, audioFeedback);
 				stream.writeBool(_debugOverlay, debugOverlay);
+				stream.writeBool(_darkTheme, darkTheme);
 			}
 
 		private:
@@ -132,5 +135,6 @@ namespace pizda {
 			constexpr static auto _dataInterpolation = "di";
 			constexpr static auto _audioFeedback = "af";
 			constexpr static auto _debugOverlay = "do";
+			constexpr static auto _darkTheme = "dt";
 	};
 }

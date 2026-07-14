@@ -30,7 +30,7 @@ namespace pizda {
 				seven.setAlignment(Alignment::center);
 				
 				seven.setDigitCount(digitCount);
-				seven.setDecimalSeparatorSpacing(2);
+				seven.setDecimalSeparatorGap(2);
 				
 				seven.setSegmentThickness(1);
 				seven.setSegmentLength(4);

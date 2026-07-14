@@ -14,7 +14,7 @@ namespace pizda {
 			constexpr static uint8_t contentHorizontalMargin = 7;
 
 		protected:
-			RectangleShape topPanel {};
+			RectangularShape topPanel {};
 	};
 	
 	class RowToolbar : public Toolbar {

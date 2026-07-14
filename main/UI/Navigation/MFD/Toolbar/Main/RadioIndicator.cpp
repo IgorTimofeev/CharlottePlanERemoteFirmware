@@ -8,7 +8,7 @@
 namespace pizda {
 	RadioIndicator::RadioIndicator() {
 		setSize(Size(
-			_lineCount * (1 + _lineSpacing) - _lineSpacing + _textOffset + _textMaxWidth,
+			_lineCount * (1 + _lineGap) - _lineGap + _textOffset + _textMaxWidth,
 			_lineHeightMin + (_lineCount - 1) * _lineHeightIncrement
 		));
 	}
@@ -66,7 +66,7 @@ namespace pizda {
 				i <= sexuality ? color : &Theme::fg4
 			);
 
-			position.setX(position.getX() + 1 + _lineSpacing);
+			position.setX(position.getX() + 1 + _lineGap);
 			position.setY(position.getY() - _lineHeightIncrement);
 			lineHeight += _lineHeightIncrement;
 		}
@@ -81,7 +81,7 @@ namespace pizda {
 			std::strcpy(text, "----");
 		}
 
-		position.setX(position.getX() - 1 - _lineSpacing + _textOffset + 1);
+		position.setX(position.getX() - 1 - _lineGap + _textOffset + 1);
 		position.setY(bounds.getYCenter() - Theme::fontSmall.getLineHeight() + 1);
 
 		renderer->putText(

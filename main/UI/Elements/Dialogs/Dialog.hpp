@@ -6,7 +6,7 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class DialogSlideLayoutBackground : public ChessPatternRectangleShape {
+	class DialogSlideLayoutBackground : public ChessPatternRectangularShape {
 		public:
 			DialogSlideLayoutBackground();
 
@@ -20,7 +20,7 @@ namespace pizda {
 
 			DialogSlideLayoutBackground ditheredBackground {};
 
-			RectangleShape slideLayoutBackground {};
+			RectangularShape slideLayoutBackground {};
 			Layout slideLayout {};
 
 			void show();

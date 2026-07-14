@@ -72,8 +72,6 @@ namespace pizda {
 		_renderer.setTarget(&_display);
 
 		// Rendering splash screen
-		Theme::setup();
-		_renderer.clear(&Theme::bg1);
 		_renderer.putImage(Point(), &Images::splashScreen);
 		_renderer.flush();
 
@@ -157,6 +155,8 @@ namespace pizda {
 		_audioPlayer.setup();
 
 		// Initializing OOP-based UI instead of direct rendering & showing main page
+		Theme::setup();
+
 		_application.setRenderer(&_renderer);
 		_application.setBackgroundColor(&Theme::bg1);
 		_application += &_pageLayout;

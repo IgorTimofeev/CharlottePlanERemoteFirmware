@@ -128,8 +128,8 @@ namespace pizda {
 			return;
 
 		constexpr static uint8_t dotWidth = 1;
-		constexpr static uint8_t dotSpacing = 3;
-		const auto dotsWidth = variantsLayout.getChildrenCount() * (dotWidth + dotSpacing) - dotSpacing;
+		constexpr static uint8_t dotGap = 3;
+		const auto dotsWidth = variantsLayout.getChildrenCount() * (dotWidth + dotGap) - dotGap;
 		
 		auto x = bounds.getXCenter() - dotsWidth / 2;
 		const auto y = bounds.getY2() - 4;
@@ -137,7 +137,7 @@ namespace pizda {
 		for (uint8_t i = 0; i < variantsLayout.getChildrenCount(); ++i) {
 			renderer->putPixel(Point(x, y), variantIndex == i ? &Theme::fg1 : &Theme::fg3);
 			
-			x += dotWidth + dotSpacing;
+			x += dotWidth + dotGap;
 		}
 		
 //		constexpr static uint8_t offset = 1;

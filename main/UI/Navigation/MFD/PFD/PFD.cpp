@@ -641,9 +641,9 @@ namespace pizda {
 //				&Theme::yellow
 //			);
 //
-			constexpr int8_t groundSpacing = 5;
-			auto groundPoint1 = Point(x, y + groundSpacing);
-			auto groundPoint2 = Point(x + groundSpacing, y);
+			constexpr int8_t groundGap = 5;
+			auto groundPoint1 = Point(x, y + groundGap);
+			auto groundPoint2 = Point(x + groundGap, y);
 
 			do {
 				renderer->strokeLine(
@@ -654,21 +654,21 @@ namespace pizda {
 
 				// 1
 				if (groundPoint1.getY() < bounds.getY2()) {
-					groundPoint1.setY(groundPoint1.getY() + groundSpacing);
+					groundPoint1.setY(groundPoint1.getY() + groundGap);
 				}
 				else {
-					groundPoint1.setX(groundPoint1.getX() + groundSpacing);
+					groundPoint1.setX(groundPoint1.getX() + groundGap);
 				}
 
 				// 2
 				if (groundPoint2.getX() < x2) {
-					groundPoint2.setX(groundPoint2.getX() + groundSpacing);
+					groundPoint2.setX(groundPoint2.getX() + groundGap);
 				}
 				else {
-					groundPoint2.setY(groundPoint2.getY() + groundSpacing);
+					groundPoint2.setY(groundPoint2.getY() + groundGap);
 				}
 			}
-			while (groundPoint1.getX() < x2 - groundSpacing);
+			while (groundPoint1.getX() < x2 - groundGap);
 		}
 
 		// Trend

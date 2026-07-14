@@ -11,17 +11,17 @@ namespace pizda {
 
 		title.setText("General");
 
-		// Debug overlay
-		_generalDebugOverlay.getSwitch().setActive(settings.personalization.debugOverlay);
+		// Dark theme
+		_darkTheme.getSwitch().setActive(settings.personalization.darkTheme);
 
-		_generalDebugOverlay.getSwitch().setOnIsActiveChanged([this, &rc, &settings] {
-			settings.personalization.debugOverlay = _generalDebugOverlay.getSwitch().isActive();
+		_darkTheme.getSwitch().setOnIsActiveChanged([this, &settings] {
+			settings.personalization.darkTheme = _darkTheme.getSwitch().isActive();
 			settings.personalization.writeLater();
 
-			rc.updateDebugOverlayVisibility();
+			Theme::updateColorScheme();
 		});
 
-		rows += &_generalDebugOverlay;
+		rows += &_darkTheme;
 
 		// Audio feedback
 		_generalAudioFeedback.getSwitch().setActive(settings.personalization.audioFeedback);
@@ -33,7 +33,7 @@ namespace pizda {
 		
 		rows += &_generalAudioFeedback;
 		
-		// LPF
+		// Interpolation
 		_generalDataInterpolation.getSwitch().setActive(settings.personalization.dataInterpolation);
 		
 		_generalDataInterpolation.getSwitch().setOnIsActiveChanged([this, &settings] {
@@ -42,6 +42,18 @@ namespace pizda {
 		});
 		
 		rows += &_generalDataInterpolation;
+
+		// Debug overlay
+		_generalDebugOverlay.getSwitch().setActive(settings.personalization.debugOverlay);
+
+		_generalDebugOverlay.getSwitch().setOnIsActiveChanged([this, &rc, &settings] {
+			settings.personalization.debugOverlay = _generalDebugOverlay.getSwitch().isActive();
+			settings.personalization.writeLater();
+
+			rc.updateDebugOverlayVisibility();
+		});
+
+		rows += &_generalDebugOverlay;
 		
 		// Separator
 		rows += &_generalSeparator;

@@ -11,7 +11,7 @@ namespace pizda {
 			Titler() {
 				setGap(3);
 
-				Theme::applyTitle(&title);
+				Theme::applyElementTitle(&title);
 				*this += &title;
 			}
 

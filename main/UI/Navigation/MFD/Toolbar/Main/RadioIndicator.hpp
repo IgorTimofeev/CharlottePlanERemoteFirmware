@@ -13,7 +13,7 @@ namespace pizda {
 
 		private:
 			constexpr static uint8_t _lineCount = 5;
-			constexpr static uint8_t _lineSpacing = 2;
+			constexpr static uint8_t _lineGap = 2;
 			constexpr static uint8_t _lineHeightMin = 2;
 			constexpr static uint8_t _lineHeightIncrement = 3;
 			

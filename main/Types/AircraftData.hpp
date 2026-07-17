@@ -65,8 +65,8 @@ namespace pizda {
 			// ПРИВЕТУЛИ ФЕДИНОЙ ДАМЕ СЕРДЦА
 			// Upd 26.12.26: а он подарит ей колечко с солнцем! Никто об этом не узнает, никто
 			GeoCoordinates coordinates {
-				toRadians(60.014581566191914f),
-				toRadians(29.70258579817704f),
+				Math::toRadians(60.014581566191914f),
+				Math::toRadians(29.70258579817704f),
 				0
 			};
 			

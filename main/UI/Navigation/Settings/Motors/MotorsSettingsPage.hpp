@@ -10,7 +10,6 @@
 #include "UI/Elements/Separator.hpp"
 
 #include "Types/Generic.hpp"
-#include "Utilities/String.hpp"
 
 namespace pizda {
 	using namespace YOBA;
@@ -61,8 +60,8 @@ namespace pizda {
 			HorizontalSeparator _aileronsSeparator {};
 
 			TextView _flapsTitle { "Flaps" };
-			MotorEditor _flapLeft { "Flap", MotorType::flapLeft };
-			MotorEditor _flapRight { "Flap", MotorType::flapRight };
+			MotorEditor _flapLeft { "Left", MotorType::flapLeft };
+			MotorEditor _flapRight { "Right", MotorType::flapRight };
 			HorizontalSeparator _flapsSeparator {};
 
 			TextView _tailTitle { "Tail" };

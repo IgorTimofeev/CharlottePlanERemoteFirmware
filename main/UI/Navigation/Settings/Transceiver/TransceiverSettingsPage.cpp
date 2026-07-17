@@ -2,7 +2,6 @@
 
 #include "RC.hpp"
 #include "UI/Theme.hpp"
-#include "Utilities/String.hpp"
 
 namespace pizda {
 	TransceiverSettingsPage::TransceiverSettingsPage() {
@@ -79,18 +78,18 @@ namespace pizda {
 		_confirmButton.setOnClick([this, &rc] {
 			auto& settings = rc.getRemoteData().transceiver.communicationSettings;
 
-			settings.frequencyHz = StringUtils::tryParseInt32Or(_RFFrequency.getText(), 0) * 1'000'000;
+			settings.frequencyHz = Text::tryParseInt32Or(_RFFrequency.getText(), 0) * 1'000'000;
 			settings.bandwidth = static_cast<SX1262LoRaBandwidth>(_bandwidth.getSelectedIndex());
 			settings.codingRate = static_cast<SX1262LoRaCodingRate>(_codingRate.getSelectedIndex());
 			settings.spreadingFactor = _spreadingFactor.getSelectedIndex() + 5;
-			settings.syncWord = StringUtils::tryParseInt32Or(_syncWord.getText(), 0);
-			settings.preambleLength = StringUtils::tryParseInt32Or(_preambleLength.getText(), 0);
+			settings.syncWord = Text::tryParseInt32Or(_syncWord.getText(), 0);
+			settings.preambleLength = Text::tryParseInt32Or(_preambleLength.getText(), 0);
 
-			settings.currentLimitMA = StringUtils::tryParseInt32Or(_currentLimit.getText(), 60);
-			settings.powerDBm = StringUtils::tryParseInt32Or(_power.getText(), 22);
+			settings.currentLimitMA = Text::tryParseInt32Or(_currentLimit.getText(), 60);
+			settings.powerDBm = Text::tryParseInt32Or(_power.getText(), 22);
 
-			settings.receivingTimeOffsetUs = StringUtils::tryParseInt32Or(_receivingTimeOffset.getText(), 0);
-			settings.transmittingTimeOffsetUs = StringUtils::tryParseInt32Or(_transmittingTimeOffset.getText(), 0);
+			settings.receivingTimeOffsetUs = Text::tryParseInt32Or(_receivingTimeOffset.getText(), 0);
+			settings.transmittingTimeOffsetUs = Text::tryParseInt32Or(_transmittingTimeOffset.getText(), 0);
 
 			settings.sanitize();
 

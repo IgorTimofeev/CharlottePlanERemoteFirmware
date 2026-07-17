@@ -2,7 +2,6 @@
 
 #include "UI/Navigation/Settings/ADIRS/ADIRSSettingsPage.hpp"
 #include "UI/Theme.hpp"
-#include "Utilities/String.hpp"
 #include "RC.hpp"
 
 namespace pizda {
@@ -21,7 +20,7 @@ namespace pizda {
 				return;
 
 			auto& rc = RC::getInstance();
-			rc.getSettings().flightModeSelection.magneticDeclinationDeg = StringUtils::tryParseInt32Or(_ADIRSMagneticDeclinationTextField.getText(), 0);
+			rc.getSettings().flightModeSelection.magneticDeclinationDeg = Text::tryParseInt32Or(_ADIRSMagneticDeclinationTextField.getText(), 0);
 			rc.getSettings().flightModeSelection.writeLater();
 
 			rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::magneticDeclination);

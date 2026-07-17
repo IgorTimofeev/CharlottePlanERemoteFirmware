@@ -39,7 +39,7 @@ namespace pizda {
 		// |--|--|                      |--|--|
 		// |--|--|                     |--|--|
 		// 3     2                     3     2
-		const auto headingRad = toRadians(static_cast<float>(this->headingDeg));
+		const auto headingRad = Math::toRadians(static_cast<float>(this->headingDeg));
 		const auto& headingVectorNorm = Vector2F(std::sinf(headingRad), std::cosf(headingRad));
 		const auto center01M = headingVectorNorm * (static_cast<float>(this->lengthM) / 2.f);
 		const auto corner0OffsetM = headingVectorNorm.counterClockwisePerpendicular() * (static_cast<float>(this->widthM) / 2.f);
@@ -125,7 +125,7 @@ namespace pizda {
 		// Зима-лето ЗА НЕ ИМЕНИЕМ ЛУЧШЕГО РАНВЕЯ
 		addRunway(
 			"ZIMA-LETO",
-			GeoCoordinates(toRadians(59.812414f), toRadians(30.555595f), 0),
+			GeoCoordinates(Math::toRadians(59.812414f), Math::toRadians(30.555595f), 0),
 			135,
 			111,
 			4
@@ -134,7 +134,7 @@ namespace pizda {
 		// // Pulkovo 10 left
 		// addRunway(
 		// 	"ULLI",
-		// 	GeoCoordinates(toRadians(59.805114621892f), toRadians(30.276415586255f), 0),
+		// 	GeoCoordinates(Math::toRadians(59.805114621892f), Math::toRadians(30.276415586255f), 0),
 		// 	// 10 L
 		// 	106,
 		// 	3780,
@@ -144,7 +144,7 @@ namespace pizda {
 		// Kronshtadt
 		addRunway(
 			"ULLY",
-			GeoCoordinates(toRadians(60.014568277272f), toRadians(29.702727704862f), 0),
+			GeoCoordinates(Math::toRadians(60.014568277272f), Math::toRadians(29.702727704862f), 0),
 			95,
 			500,
 			30
@@ -153,7 +153,7 @@ namespace pizda {
 		// // Gostilitsy
 		// addRunway(
 		// 	"ULSG",
-		// 	GeoCoordinates(toRadians(59.725833f), toRadians(29.640278f), 0),
+		// 	GeoCoordinates(Math::toRadians(59.725833f), Math::toRadians(29.640278f), 0),
 		// 	154,
 		// 	711,
 		// 	20
@@ -163,37 +163,37 @@ namespace pizda {
 		addEnrouteWaypoint(
 			NavigationWaypointType::enroute,
 			"OMEGA",
-			GeoCoordinates(toRadians(59.983333f), toRadians(30.133333f), 0)
+			GeoCoordinates(Math::toRadians(59.983333f), Math::toRadians(30.133333f), 0)
 		);
 
 		addEnrouteWaypoint(
 			NavigationWaypointType::enroute,
 			"ABRE",
-			GeoCoordinates(toRadians(59.913056f), toRadians(31.335f), 0)
+			GeoCoordinates(Math::toRadians(59.913056f), Math::toRadians(31.335f), 0)
 		);
 
 		addEnrouteWaypoint(
 			NavigationWaypointType::enroute,
 			"SAPKI",
-			GeoCoordinates(toRadians(59.604722f), toRadians(31.180833f), 0)
+			GeoCoordinates(Math::toRadians(59.604722f), Math::toRadians(31.180833f), 0)
 		);
 
 		addEnrouteWaypoint(
 			NavigationWaypointType::enroute,
 			"LI754",
-			GeoCoordinates(toRadians(59.516944f), toRadians(31.0225f), 0)
+			GeoCoordinates(Math::toRadians(59.516944f), Math::toRadians(31.0225f), 0)
 		);
 
 		addEnrouteWaypoint(
 			NavigationWaypointType::enroute,
 			"OBARI",
-			GeoCoordinates(toRadians(59.599722f), toRadians(30.679167f), 0)
+			GeoCoordinates(Math::toRadians(59.599722f), Math::toRadians(30.679167f), 0)
 		);
 
 		addEnrouteWaypoint(
 			NavigationWaypointType::enroute,
 			"BIPRI",
-			GeoCoordinates(toRadians(59.747778f), toRadians(30.565556f), 0)
+			GeoCoordinates(Math::toRadians(59.747778f), Math::toRadians(30.565556f), 0)
 		);
 
 		// Flight plan

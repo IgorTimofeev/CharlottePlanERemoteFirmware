@@ -8,10 +8,11 @@
 namespace pizda {
 	WaypointItemDialog::WaypointItemDialog(uint16_t waypointIndex) {
 		auto& rc = RC::getInstance();
-
 		const auto& waypointData = rc.getNavigationData().waypoints[waypointIndex];
 
-		title.setText(waypointData.name);
+		Theme::apply(this);
+
+		titleTextView.setText(waypointData.name);
 
 		// Remove button
 		Theme::applyCritical(&_removeButton);
@@ -19,8 +20,7 @@ namespace pizda {
 
 		_removeButton.setOnClick([&rc, waypointIndex, this] {
 			rc.getApplication().invokeLater([&rc, waypointIndex, this] {
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 
 				rc.getNavigationData().removeWaypointAt(waypointIndex);
 
@@ -31,6 +31,6 @@ namespace pizda {
 			});
 		});
 
-		rows += &_removeButton;
+		contentStackLayout += &_removeButton;
 	}
 }

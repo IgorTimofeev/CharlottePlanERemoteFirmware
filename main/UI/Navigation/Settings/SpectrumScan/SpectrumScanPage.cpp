@@ -6,7 +6,6 @@
 #include "RC.hpp"
 #include "UI/Theme.hpp"
 #include "UI/Elements/Dialogs/SelectorDialog.hpp"
-#include "Utilities/String.hpp"
 
 namespace pizda {
 	void SpectrumScanningChart::onTick() {
@@ -327,7 +326,7 @@ namespace pizda {
 				std::tuple(902, 928)
 			};
 
-			const uint16_t typedFrom = StringUtils::tryParseFloatOr(frequencyFromTextField.getText(), std::get<0>(itemsFromTo[0]));
+			const uint16_t typedFrom = Text::tryParseFloatOr(frequencyFromTextField.getText(), std::get<0>(itemsFromTo[0]));
 			uint8_t presetIndex = 0;
 
 			for (int i = 0; i < itemsFromTo.size(); ++i) {
@@ -340,17 +339,16 @@ namespace pizda {
 				presetIndex = i;
 			}
 
-			(
-				new SelectorDialog(
-					"Presets",
-					itemNames,
-					presetIndex,
-					[this](const uint8_t index) {
-						frequencyFromTextField.setText(std::to_string(std::get<0>(itemsFromTo[index])));
-						frequencyToTextField.setText(std::to_string(std::get<1>(itemsFromTo[index])));
-					}
-				)
-			)->show();
+
+			Theme::openDialog(new SelectorDialog(
+				"Presets",
+				itemNames,
+				presetIndex,
+				[this](const uint8_t index) {
+					frequencyFromTextField.setText(std::to_string(std::get<0>(itemsFromTo[index])));
+					frequencyToTextField.setText(std::to_string(std::get<1>(itemsFromTo[index])));
+				}
+			));
 		});
 
 		// -------------------------------- Begin button --------------------------------
@@ -365,7 +363,7 @@ namespace pizda {
 				// From
 				rc.getSettings().transceiver.spectrumScanning.frequency.from =
 					std::clamp<uint32_t>(
-						StringUtils::tryParseInt32Or(frequencyFromTextField.getText(), 902),
+						Text::tryParseInt32Or(frequencyFromTextField.getText(), 902),
 						0,
 						1000
 					)
@@ -374,7 +372,7 @@ namespace pizda {
 				// To
 				rc.getSettings().transceiver.spectrumScanning.frequency.to =
 					std::clamp<uint32_t>(
-						StringUtils::tryParseInt32Or(frequencyToTextField.getText(), 928),
+						Text::tryParseInt32Or(frequencyToTextField.getText(), 928),
 						0,
 						1000
 					)
@@ -387,7 +385,7 @@ namespace pizda {
 				// Step
 				rc.getSettings().transceiver.spectrumScanning.frequency.step =
 					std::clamp<uint32_t>(
-						StringUtils::tryParseInt32Or(frequencyStepTextField.getText(), 50),
+						Text::tryParseInt32Or(frequencyStepTextField.getText(), 50),
 						0,
 						1000
 					)

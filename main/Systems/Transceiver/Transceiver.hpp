@@ -488,7 +488,7 @@ namespace pizda {
 			}
 
 			static bool validatePayloadChecksumAndLength(BitStream& stream, size_t expectedDataLengthBits, uint8_t payloadLengthBytes) {
-				const auto expectedPayloadLengthBytes = static_cast<uint8_t>(divideCeiling<uint16_t>(
+				const auto expectedPayloadLengthBytes = static_cast<uint8_t>(Math::divideCeiling<uint16_t>(
 					static_cast<uint16_t>(remotePacketTypeLengthBits) + expectedDataLengthBits,
 					8
 				));
@@ -538,7 +538,7 @@ namespace pizda {
 				value = value - 0.5f;
 				value = value * range;
 
-				return sanitizeValue<float>(value, toRadians(-180), toRadians(180));
+				return sanitizeValue<float>(value, Math::toRadians(-180), Math::toRadians(180));
 			}
 
 			static void writeRadians(BitStream& stream, const float value, const float range, const uint8_t bits) {

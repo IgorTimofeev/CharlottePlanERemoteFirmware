@@ -15,7 +15,7 @@ namespace pizda {
 				if (getWaypointIndex() < 0)
 					return;
 
-				(new WaypointItemDialog(getWaypointIndex()))->show();
+				Theme::openDialog(new WaypointItemDialog(getWaypointIndex()));
 			}
 	};
 }

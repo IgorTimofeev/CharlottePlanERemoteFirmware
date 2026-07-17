@@ -321,7 +321,7 @@ namespace pizda {
 
 				if (trendsDeltaTime >= trendsInterval) {
 					// Yaw
-					rc.getAircraftData().raw.yawTrendDeg = -toDegrees(rc.getAircraftData().raw.yawRad - _trendsYawPrevRad) * 5'000'000.f / trendsDeltaTime;
+					rc.getAircraftData().raw.yawTrendDeg = -Math::toDegrees(rc.getAircraftData().raw.yawRad - _trendsYawPrevRad) * 5'000'000.f / trendsDeltaTime;
 					_trendsYawPrevRad = rc.getAircraftData().raw.yawRad;
 
 					// Speed

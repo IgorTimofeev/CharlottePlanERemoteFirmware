@@ -29,6 +29,8 @@ namespace pizda {
 			static RGB565Color fg5;
 			static RGB565Color fg6;
 			static RGB565Color fg7;
+			// Overlay
+			static RGB565Color overlay;
 			// Accent
 			static RGB565Color accent1;
 			static RGB565Color accent2;
@@ -90,5 +92,14 @@ namespace pizda {
 			static void applyDescription(TextView* text);
 			static void apply(Divider* divider);
 			static void apply(Badge* badge);
+			static void apply(Titler* titler);
+			static void apply(BottomSheetDialog* dialog);
+			static void apply(StackLayoutBottomSheetDialog* dialog);
+			static void apply(TitleStackLayoutBottomSheetDialog* dialog);
+			static void apply(ColorPickerDialog* dialog);
+			static void apply(ColorPicker* colorPicker);
+
+			static void openDialog(BottomSheetDialog* dialog);
+			static void closeDialog(BottomSheetDialog* dialog);
 	};
 }

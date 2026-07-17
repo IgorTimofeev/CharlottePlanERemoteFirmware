@@ -2,12 +2,15 @@
 #include "UI/Elements/Navigation/AddWaypointDialog.hpp"
 #include "UI/Navigation/MFD/MFDPage.hpp"
 #include "RC.hpp"
+#include "UI/Theme.hpp"
 
 namespace pizda {
 	NDActionButtonDialog::NDActionButtonDialog(NDScene* scene) {
 		auto& rc = RC::getInstance();
 
-		title.setText("Coord");
+		Theme::apply(this);
+
+		titleTextView.setText("Coord");
 
 		// Set home
 		Theme::applyPrimary(&_setHomeButton);
@@ -21,12 +24,11 @@ namespace pizda {
 				rc.getRemoteData().homeCoordinates = scene->getCameraCoordinates();
 				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::homeCoordinates);
 
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 			});
 		});
 
-		rows += &_setHomeButton;
+		contentStackLayout += &_setHomeButton;
 
 		// Create waypoint
 		Theme::applySecondary(&_addWaypointButton);
@@ -40,12 +42,11 @@ namespace pizda {
 					scene->setFocused(true);
 				});
 
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 			});
 		});
 
-		rows += &_addWaypointButton;
+		contentStackLayout += &_addWaypointButton;
 	}
 
 	ND::ND() {
@@ -112,7 +113,8 @@ namespace pizda {
 
 		addGovnoButton(&_actionButton, [this] {
 			const auto dialog = new NDActionButtonDialog(&scene);
-			dialog->show();
+
+			Theme::openDialog(dialog);
 		});
 	}
 

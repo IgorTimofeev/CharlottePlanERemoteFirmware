@@ -4,7 +4,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Elements/Titler.hpp"
-#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
 #include "UI/Elements/Navigation/SelectWaypointDialog.hpp"
 #include "UI/Elements/Navigation/WaypointButton.hpp"
 #include "UI/Elements/TabSelector.hpp"
@@ -21,7 +20,7 @@ namespace pizda {
 			}
 	};
 
-	class SelectWaypointDialog : public ScrollViewDialog {
+	class SelectWaypointDialog : public TitleStackLayoutBottomSheetDialog {
 		public:
 			static void select(
 				std::string_view titleText,

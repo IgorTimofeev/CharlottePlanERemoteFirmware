@@ -26,7 +26,7 @@ namespace pizda {
 			auto& rc = RC::getInstance();
 			const auto& waypointData = rc.getNavigationData().waypoints[value];
 
-			_distanceNm = YOBA::round(
+			_distanceNm = Math::round(
 				Units::convertDistance(
 					(waypointData.cartesianCoordinates - rc.getAircraftData().computed.coordinates.toCartesian()).getLength(),
 					DistanceUnit::meter,
@@ -89,7 +89,7 @@ namespace pizda {
 
 		// Distance
 		char coordsText[14];
-		std::snprintf(coordsText, sizeof(coordsText), "%f nm" PRIi32, YOBA::round(_distanceNm, 1));
+		std::snprintf(coordsText, sizeof(coordsText), "%f nm" PRIi32, Math::round(_distanceNm, 1));
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 

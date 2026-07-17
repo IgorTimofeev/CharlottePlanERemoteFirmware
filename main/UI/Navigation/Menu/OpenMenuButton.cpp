@@ -30,6 +30,6 @@ namespace pizda {
 	}
 
 	void OpenMenuButton::onClick() {
-		(new Menu())->show();
+		Theme::openDialog(new Menu());
 	}
 }

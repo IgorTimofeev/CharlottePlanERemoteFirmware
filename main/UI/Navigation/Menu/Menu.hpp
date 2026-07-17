@@ -4,7 +4,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Theme.hpp"
-#include "UI/Elements/Dialogs/Dialog.hpp"
 #include "Settings/Settings.hpp"
 
 #include "UI/Navigation/Menu/MenuView.hpp"
@@ -14,7 +13,7 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class Menu : public Dialog {
+	class Menu : public BottomSheetDialog {
 		public:
 			Menu();
 			~Menu() override;

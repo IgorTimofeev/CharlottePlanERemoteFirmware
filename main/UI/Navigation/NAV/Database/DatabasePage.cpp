@@ -5,7 +5,6 @@
 #include "Types/NavigationData.hpp"
 #include "UI/Theme.hpp"
 #include "Utilities/Rendering.hpp"
-#include "Utilities/String.hpp"
 #include "UI/Elements/Navigation/AddWaypointDialog.hpp"
 #include "RC.hpp"
 
@@ -101,7 +100,7 @@ namespace pizda {
 				(_typeSelector.getSelectedIndex() == 1) == (waypointData.type == NavigationWaypointType::runway)
 				&& (
 					text.length() == 0
-					|| StringUtils::containsIgnoreCase(waypointData.name, text)
+					|| Text::containsIgnoreCase(waypointData.name, text)
 				)
 			) {
 				_itemsLayout += new WaypointItem(i);

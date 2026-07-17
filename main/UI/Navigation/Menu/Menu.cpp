@@ -3,6 +3,8 @@
 
 namespace pizda {
 	Menu::Menu() {
+		Theme::apply(this);
+
 		// Tabs
 		_tabsRow.setOrientation(Orientation::horizontal);
 
@@ -11,7 +13,7 @@ namespace pizda {
 
 		// Tabs & content
 		_tabsAndContentRows += &_tabsRow;
-		slideLayout += &_tabsAndContentRows;
+		backgroundAndContentLayout += &_tabsAndContentRows;
 
 		setViewRoute(_viewRoute);
 	}

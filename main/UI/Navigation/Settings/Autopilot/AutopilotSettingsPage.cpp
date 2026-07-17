@@ -1,7 +1,6 @@
 #include "UI/Navigation/Settings/Autopilot/AutopilotSettingsPage.hpp"
 #include "UI/Theme.hpp"
 #include "Types/Generic.hpp"
-#include "Utilities/String.hpp"
 #include "RC.hpp"
 
 namespace pizda {
@@ -205,7 +204,7 @@ namespace pizda {
 			[&textField, fallbackValue, value, min, max, packetType] {
 				auto& rc = RC::getInstance();
 
-				*value = std::clamp(StringUtils::tryParseFloatOr(textField.getText(), fallbackValue), min, max);
+				*value = std::clamp(Text::tryParseFloatOr(textField.getText(), fallbackValue), min, max);
 				rc.getSettings().APConfiguration.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
@@ -218,11 +217,11 @@ namespace pizda {
 	void AutopilotSettingsPage::setupRadTextField(TextField& textField, float* angleRad, float fallbackAngleDeg, RemoteSystemPacketType packetType) {
 		setupAnyTextField(
 			textField,
-			std::to_string(YOBA::round(toDegrees(*angleRad), 2)),
+			std::to_string(Math::round(Math::toDegrees(*angleRad), 2)),
 			[&textField, fallbackAngleDeg, angleRad, packetType] {
 				auto& rc = RC::getInstance();
 
-				*angleRad = toRadians(StringUtils::tryParseFloatOr(textField.getText(), fallbackAngleDeg));
+				*angleRad = Math::toRadians(Text::tryParseFloatOr(textField.getText(), fallbackAngleDeg));
 				rc.getSettings().APConfiguration.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
@@ -239,7 +238,7 @@ namespace pizda {
 			[&textField, fallbackPercent, percent, packetType] {
 				auto& rc = RC::getInstance();
 
-				*percent = static_cast<uint8_t>(std::clamp<int32_t>(StringUtils::tryParseInt32Or(textField.getText(), fallbackPercent), 0, 100));
+				*percent = static_cast<uint8_t>(std::clamp<int32_t>(Text::tryParseInt32Or(textField.getText(), fallbackPercent), 0, 100));
 				rc.getSettings().APConfiguration.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);

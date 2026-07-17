@@ -34,16 +34,14 @@ namespace pizda {
 	void ComboBox::onClick() {
 		Referencer::onClick();
 
-		(
-			new SelectorDialog(
-				getDialogTitle(),
-				_items,
-				_selectedIndex,
-				[this](const uint8_t index) {
-					setSelectedIndex(index);
-				}
-			)
-		)->show();
+		Theme::openDialog(new SelectorDialog(
+			getDialogTitle(),
+			_items,
+			_selectedIndex,
+			[this](const uint8_t index) {
+				setSelectedIndex(index);
+			}
+		));
 	}
 
 	void ComboBox::onRender(Renderer* renderer, const Rectangle& bounds) {

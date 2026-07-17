@@ -14,7 +14,9 @@ namespace pizda {
 		const auto& leg = rc.getNavigationData().flightPlan.legs[legIndex];
 		const auto& waypointData = rc.getNavigationData().waypoints[leg.waypointIndex];
 
-		title.setText(waypointData.name);
+		Theme::apply(this);
+
+		titleTextView.setText(waypointData.name);
 
 		// Activate leg
 		Theme::applyPrimary(&_activateLegButton);
@@ -29,12 +31,11 @@ namespace pizda {
 				if (page)
 					page->updateFromNavigationData();
 
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 			});
 		});
 
-		rows += &_activateLegButton;
+		contentStackLayout += &_activateLegButton;
 
 		// Edit
 		Theme::applySecondary(&_editButton);
@@ -58,12 +59,11 @@ namespace pizda {
 					}
 				);
 
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 			});
 		});
 
-		rows += &_editButton;
+		contentStackLayout += &_editButton;
 
 		// Insert before
 		Theme::applySecondary(&_insertBeforeButton);
@@ -79,7 +79,7 @@ namespace pizda {
 			);
 		});
 
-		rows += &_insertBeforeButton;
+		contentStackLayout += &_insertBeforeButton;
 
 		// Insert after
 		Theme::applySecondary(&_insertAfterButton);
@@ -95,7 +95,7 @@ namespace pizda {
 			);
 		});
 
-		rows += &_insertAfterButton;
+		contentStackLayout += &_insertAfterButton;
 
 		// Remove
 		Theme::applyCritical(&_removeButton);
@@ -110,12 +110,11 @@ namespace pizda {
 				if (page)
 					page->updateFromNavigationData();
 
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 			});
 		});
 
-		rows += &_removeButton;
+		contentStackLayout += &_removeButton;
 	}
 
 	void FlightPlanItemDialog::showWaypointSelectionDialogToInsertAt(const std::string_view title, size_t insertAt) {
@@ -141,8 +140,7 @@ namespace pizda {
 		RC::getInstance().getApplication().invokeLater([this, insertAt, title] {
 			showWaypointSelectionDialogToInsertAt(title, insertAt);
 
-			hide();
-			delete this;
+			Theme::closeDialog(this);
 		});
 	}
 }

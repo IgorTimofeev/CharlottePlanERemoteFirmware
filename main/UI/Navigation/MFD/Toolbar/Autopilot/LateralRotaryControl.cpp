@@ -12,7 +12,7 @@ namespace pizda {
 	void LateralRotaryControlStab::onTick() {
 		RotaryControlSevenVariant::onTick();
 
-		setValue(static_cast<int32_t>(std::round(toDegrees(RC::getInstance().getAircraftData().computed.autopilot.rollRad))));
+		setValue(static_cast<int32_t>(std::round(Math::toDegrees(RC::getInstance().getAircraftData().computed.autopilot.rollRad))));
 	}
 
 	LateralRotaryControl::LateralRotaryControl() : SevenRotaryControl(3, 1, 360, true, 1, 10) {

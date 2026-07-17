@@ -6,7 +6,6 @@
 #include <YOBA/UI.hpp>
 #include <YOBA/Core.hpp>
 
-#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
 #include "UI/Elements/Referencer.hpp"
 
 namespace pizda {
@@ -26,7 +25,7 @@ namespace pizda {
 			uint8_t _index;
 	};
 
-	class SelectorDialog : public ScrollViewDialog {
+	class SelectorDialog : public TitleStackLayoutBottomSheetDialog {
 		public:
 			SelectorDialog(
 				const std::string_view& title,

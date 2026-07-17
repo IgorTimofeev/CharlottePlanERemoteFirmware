@@ -6,18 +6,18 @@
 
 #include "UI/Elements/Referencer.hpp"
 #include "UI/Elements/PID/PIDChart.hpp"
-#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
 #include "UI/Theme.hpp"
 #include "Types/Generic.hpp"
-#include "Utilities/String.hpp"
 
 namespace pizda {
 	using namespace YOBA;
 
-	class PIDReferencerDialog : public ScrollViewDialog {
+	class PIDReferencerDialog : public TitleStackLayoutBottomSheetDialog {
 		public:
 			PIDReferencerDialog(const std::string_view titleText, const PIDCoefficients& coefficients, const std::function<void(const PIDCoefficients&)>& onConfirm) {
-				title.setText(titleText);
+				Theme::apply(this);
+
+				titleTextView.setText(titleText);
 
 				// Chart
 				chart.setHeight(120);
@@ -25,12 +25,12 @@ namespace pizda {
 				chart.setStepCount(10);
 				chart.setValueMax(100);
 				chart.setBackgroundColor(&Theme::bg3);
-				rows += &chart;
+				contentStackLayout += &chart;
 
 				// PID
 				PIDRow.setOrientation(Orientation::horizontal);
 				PIDRow.setGap(5);
-				rows += &PIDRow;
+				contentStackLayout += &PIDRow;
 
 				// P
 				Theme::apply(&PTextField);
@@ -73,12 +73,11 @@ namespace pizda {
 					Application::getCurrent()->invokeLater([this, onConfirm] {
 						onConfirm(chart.getCoefficients());
 
-						hide();
-						delete this;
+						Theme::closeDialog(this);
 					});
 				});
 
-				rows += &_confirmButton;
+				contentStackLayout += &_confirmButton;
 
 				// Initialization
 				updateChart();
@@ -102,9 +101,9 @@ namespace pizda {
 
 			void updateChart() {
 				chart.setCoefficients({
-					StringUtils::tryParseFloatOr(PTextField.getText(), 0),
-					StringUtils::tryParseFloatOr(ITextField.getText(), 0),
-					StringUtils::tryParseFloatOr(DTextField.getText(), 0)
+					Text::tryParseFloatOr(PTextField.getText(), 0),
+					Text::tryParseFloatOr(ITextField.getText(), 0),
+					Text::tryParseFloatOr(DTextField.getText(), 0)
 				});
 			}
 	};
@@ -127,15 +126,15 @@ namespace pizda {
 				addSuffixText(_textD_, "D");
 
 				setOnClick([this, dialogTitle] {
-					(
-						new PIDReferencerDialog(
-							dialogTitle,
-							_coefficients,
-							[this](const PIDCoefficients& coefficients) {
-								setCoefficients(coefficients);
-							}
-						)
-					)->show();
+					const auto dialog = new PIDReferencerDialog(
+						dialogTitle,
+						_coefficients,
+						[this](const PIDCoefficients& coefficients) {
+							setCoefficients(coefficients);
+						}
+					);
+
+					Theme::openDialog(dialog);
 				});
 			}
 

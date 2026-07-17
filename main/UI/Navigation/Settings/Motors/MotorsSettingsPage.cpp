@@ -25,8 +25,8 @@ namespace pizda {
 			auto& rc = RC::getInstance();
 
 			rc.getRemoteData().motorSettings.type = _type;
-			rc.getRemoteData().motorSettings.settings.min = static_cast<uint16_t>(StringUtils::tryParseInt32Or(_min.getText(), 1'000));
-			rc.getRemoteData().motorSettings.settings.max = static_cast<uint16_t>(StringUtils::tryParseInt32Or(_max.getText(), 2'000));
+			rc.getRemoteData().motorSettings.settings.min = static_cast<uint16_t>(Text::tryParseInt32Or(_min.getText(), 1'000));
+			rc.getRemoteData().motorSettings.settings.max = static_cast<uint16_t>(Text::tryParseInt32Or(_max.getText(), 2'000));
 			rc.getRemoteData().motorSettings.settings.reverse = _reverse.isActive();
 			rc.getRemoteData().motorSettings.settings.sanitize();
 

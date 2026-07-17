@@ -16,6 +16,7 @@ namespace pizda {
 	RGB565Color Theme::fg5 { 0 };
 	RGB565Color Theme::fg6 { 0 };
 	RGB565Color Theme::fg7 { 0 };
+	RGB565Color Theme::overlay { 0 };
 	RGB565Color Theme::accent1 { 0 };
 	RGB565Color Theme::accent2 { 0 };
 	RGB565Color Theme::good1 { 0 };
@@ -77,78 +78,82 @@ namespace pizda {
 
 	void Theme::updateColorScheme() {
 		if (RC::getInstance().getSettings().personalization.darkTheme) {
-			bg1 = RGB888Color(0x000000).toRGB565BE();
-			bg2 = RGB888Color(0x0C0C0C).toRGB565BE();
-			bg3 = RGB888Color(0x1C1C1C).toRGB565BE();
-			bg4 = RGB888Color(0x2C2C2C).toRGB565BE();
-			bg5 = RGB888Color(0x3C3C3C).toRGB565BE();
-			bg6 = RGB888Color(0x4C4C4C).toRGB565BE();
-			bg7 = RGB888Color(0x5C5C5C).toRGB565BE();
+			bg1 = RGB888Color(0x000000).toRGB565();
+			bg2 = RGB888Color(0x0C0C0C).toRGB565();
+			bg3 = RGB888Color(0x1C1C1C).toRGB565();
+			bg4 = RGB888Color(0x2C2C2C).toRGB565();
+			bg5 = RGB888Color(0x3C3C3C).toRGB565();
+			bg6 = RGB888Color(0x4C4C4C).toRGB565();
+			bg7 = RGB888Color(0x5C5C5C).toRGB565();
 
-			fg1 = RGB888Color(0xF0F0F0).toRGB565BE();
-			fg2 = RGB888Color(0xCCCCCC).toRGB565BE();
-			fg3 = RGB888Color(0x999999).toRGB565BE();
-			fg4 = RGB888Color(0x888888).toRGB565BE();
-			fg5 = RGB888Color(0x777777).toRGB565BE();
-			fg6 = RGB888Color(0x666666).toRGB565BE();
-			fg7 = RGB888Color(0x555555).toRGB565BE();
+			fg1 = RGB888Color(0xF0F0F0).toRGB565();
+			fg2 = RGB888Color(0xCCCCCC).toRGB565();
+			fg3 = RGB888Color(0x999999).toRGB565();
+			fg4 = RGB888Color(0x888888).toRGB565();
+			fg5 = RGB888Color(0x777777).toRGB565();
+			fg6 = RGB888Color(0x666666).toRGB565();
+			fg7 = RGB888Color(0x555555).toRGB565();
 
-			accent1 = RGB888Color(0xffd200).toRGB565BE();
-			accent2 = RGB888Color(0x997e53).toRGB565BE();
-			good1 = RGB888Color(0x1db153).toRGB565BE();
-			good2 = RGB888Color(0x28DA69).toRGB565BE();
-			bad1 = RGB888Color(0xf24949).toRGB565BE();
-			bad2 = RGB888Color(0x962828).toRGB565BE();
-			bad3 = RGB888Color(0x4b1313).toRGB565BE();
-			red = RGB888Color(0xff0000).toRGB565BE();
-			green1 = RGB888Color(0x00FF00).toRGB565BE();
-			green2 = RGB888Color(0x007F00).toRGB565BE();
-			blue = RGB888Color(0x0000FF).toRGB565BE();
-			magenta1 = RGB888Color(0xFF00FF).toRGB565BE();
-			magenta2 = RGB888Color(0xAA00AA).toRGB565BE();
-			ocean = RGB888Color(0x00FFFF).toRGB565BE();
-			yellow = RGB888Color(0xffd200).toRGB565BE();
-			ground1 = RGB888Color(0x97b838).toRGB565BE();
-			ground2 = RGB888Color(0xdef2a2).toRGB565BE();
-			sky1 = RGB888Color(0x317fcb).toRGB565BE();
-			sky2 = RGB888Color(0xaed1f2).toRGB565BE();
+			overlay = RGB888Color(0x000000).toRGB565();
+
+			accent1 = RGB888Color(0xffd200).toRGB565();
+			accent2 = RGB888Color(0x997e53).toRGB565();
+			good1 = RGB888Color(0x1db153).toRGB565();
+			good2 = RGB888Color(0x28DA69).toRGB565();
+			bad1 = RGB888Color(0xf24949).toRGB565();
+			bad2 = RGB888Color(0x962828).toRGB565();
+			bad3 = RGB888Color(0x4b1313).toRGB565();
+			red = RGB888Color(0xff0000).toRGB565();
+			green1 = RGB888Color(0x00FF00).toRGB565();
+			green2 = RGB888Color(0x007F00).toRGB565();
+			blue = RGB888Color(0x0000FF).toRGB565();
+			magenta1 = RGB888Color(0xFF00FF).toRGB565();
+			magenta2 = RGB888Color(0xAA00AA).toRGB565();
+			ocean = RGB888Color(0x00FFFF).toRGB565();
+			yellow = RGB888Color(0xffd200).toRGB565();
+			ground1 = RGB888Color(0x97b838).toRGB565();
+			ground2 = RGB888Color(0xdef2a2).toRGB565();
+			sky1 = RGB888Color(0x317fcb).toRGB565();
+			sky2 = RGB888Color(0xaed1f2).toRGB565();
 		}
 		else {
-			bg1 = RGB888Color(0xF0F0F0).toRGB565BE();
-			bg2 = RGB888Color(0xE0E0E0).toRGB565BE();
-			bg3 = RGB888Color(0xD0D0D0).toRGB565BE();
-			bg4 = RGB888Color(0xC0C0C0).toRGB565BE();
-			bg5 = RGB888Color(0xB0B0B0).toRGB565BE();
-			bg6 = RGB888Color(0xA0A0A0).toRGB565BE();
-			bg7 = RGB888Color(0x000000).toRGB565BE();
+			bg1 = RGB888Color(0xF0F0F0).toRGB565();
+			bg2 = RGB888Color(0xE0E0E0).toRGB565();
+			bg3 = RGB888Color(0xD0D0D0).toRGB565();
+			bg4 = RGB888Color(0xC0C0C0).toRGB565();
+			bg5 = RGB888Color(0xB0B0B0).toRGB565();
+			bg6 = RGB888Color(0xA0A0A0).toRGB565();
+			bg7 = RGB888Color(0x000000).toRGB565();
 
-			fg1 = RGB888Color(0x000000).toRGB565BE();
-			fg2 = RGB888Color(0x111111).toRGB565BE();
-			fg3 = RGB888Color(0x222222).toRGB565BE();
-			fg4 = RGB888Color(0x333333).toRGB565BE();
-			fg5 = RGB888Color(0x444444).toRGB565BE();
-			fg6 = RGB888Color(0x555555).toRGB565BE();
-			fg7 = RGB888Color(0x666666).toRGB565BE();
+			fg1 = RGB888Color(0x000000).toRGB565();
+			fg2 = RGB888Color(0x111111).toRGB565();
+			fg3 = RGB888Color(0x222222).toRGB565();
+			fg4 = RGB888Color(0x333333).toRGB565();
+			fg5 = RGB888Color(0x444444).toRGB565();
+			fg6 = RGB888Color(0x555555).toRGB565();
+			fg7 = RGB888Color(0x666666).toRGB565();
 
-			accent1 = RGB888Color(0xffd200).toRGB565BE();
-			accent2 = RGB888Color(0x997e53).toRGB565BE();
-			good1 = RGB888Color(0x1db153).toRGB565BE();
-			good2 = RGB888Color(0x28DA69).toRGB565BE();
-			bad1 = RGB888Color(0xf24949).toRGB565BE();
-			bad2 = RGB888Color(0x962828).toRGB565BE();
-			bad3 = RGB888Color(0x4b1313).toRGB565BE();
-			red = RGB888Color(0xff0000).toRGB565BE();
-			green1 = RGB888Color(0x00FF00).toRGB565BE();
-			green2 = RGB888Color(0x007F00).toRGB565BE();
-			blue = RGB888Color(0x0000FF).toRGB565BE();
-			magenta1 = RGB888Color(0xFF00FF).toRGB565BE();
-			magenta2 = RGB888Color(0xAA00AA).toRGB565BE();
-			ocean = RGB888Color(0x00FFFF).toRGB565BE();
-			yellow = RGB888Color(0xffd200).toRGB565BE();
-			ground1 = RGB888Color(0x97b838).toRGB565BE();
-			ground2 = RGB888Color(0xdef2a2).toRGB565BE();
-			sky1 = RGB888Color(0x317fcb).toRGB565BE();
-			sky2 = RGB888Color(0xaed1f2).toRGB565BE();
+			overlay = RGB888Color(0x000000).toRGB565();
+
+			accent1 = RGB888Color(0xffd200).toRGB565();
+			accent2 = RGB888Color(0x997e53).toRGB565();
+			good1 = RGB888Color(0x1db153).toRGB565();
+			good2 = RGB888Color(0x28DA69).toRGB565();
+			bad1 = RGB888Color(0xf24949).toRGB565();
+			bad2 = RGB888Color(0x962828).toRGB565();
+			bad3 = RGB888Color(0x4b1313).toRGB565();
+			red = RGB888Color(0xff0000).toRGB565();
+			green1 = RGB888Color(0x00FF00).toRGB565();
+			green2 = RGB888Color(0x007F00).toRGB565();
+			blue = RGB888Color(0x0000FF).toRGB565();
+			magenta1 = RGB888Color(0xFF00FF).toRGB565();
+			magenta2 = RGB888Color(0xAA00AA).toRGB565();
+			ocean = RGB888Color(0x00FFFF).toRGB565();
+			yellow = RGB888Color(0xffd200).toRGB565();
+			ground1 = RGB888Color(0x97b838).toRGB565();
+			ground2 = RGB888Color(0xdef2a2).toRGB565();
+			sky1 = RGB888Color(0x317fcb).toRGB565();
+			sky2 = RGB888Color(0xaed1f2).toRGB565();
 		}
 	}
 
@@ -307,7 +312,7 @@ namespace pizda {
 	void Theme::apply(Divider* divider) {
 		divider->setOrientation(Orientation::horizontal);
 		divider->setHeight(5);
-		divider->setFillColor(&Theme::bg4);
+		divider->setFillColor(&bg4);
 	}
 
 	void Theme::apply(Badge* badge) {
@@ -315,9 +320,108 @@ namespace pizda {
 		badge->setCornerRadius(badge->getSize().getHeight() / 2);
 		badge->setTextMargin(Margin(5, 0, 5, 0));
 
-		badge->setFillColor(&Theme::bad1);
-		badge->setTextColor(&Theme::fg1);
+		badge->setFillColor(&bad1);
+		badge->setTextColor(&fg1);
 
-		badge->setFont(&Theme::fontSmall);
+		badge->setFont(&fontSmall);
+	}
+
+	void Theme::apply(Titler* titler) {
+		titler->setGap(4);
+		applyElementTitle(&titler->titleTextView);
+	}
+
+	void Theme::apply(BottomSheetDialog* dialog) {
+		// Background
+		dialog->backgroundShape.setFillColor(&Theme::bg2);
+
+		// Overlay
+		dialog->overlayShape.setFillColor(&Theme::overlay);
+
+		dialog->overlayShape.setOnPointerEvent([dialog] {
+			Application::getCurrent()->invokeLater([dialog] {
+				closeDialog(dialog);
+			});
+		});
+	}
+
+	void Theme::apply(StackLayoutBottomSheetDialog* dialog) {
+		apply(static_cast<BottomSheetDialog*>(dialog));
+
+		// Scroll view
+		apply(&dialog->contentScrollView);
+	}
+
+	void Theme::apply(TitleStackLayoutBottomSheetDialog* dialog) {
+		apply(static_cast<StackLayoutBottomSheetDialog*>(dialog));
+
+		// Title
+		applyPageTitle(&dialog->titleTextView);
+	}
+
+	void Theme::apply(ColorPickerDialog* dialog) {
+		apply(static_cast<TitleStackLayoutBottomSheetDialog*>(dialog));
+
+		// Color palette
+		dialog->colorPalette.setHeight(120);
+		dialog->colorPalette.setHandleColor(&fg1);
+		dialog->colorPalette.setPixelSize(4);
+
+		// Text fields
+		dialog->textFieldRow.setGap(6);
+
+		apply(&dialog->hueTitler);
+		apply(&dialog->hueTextField);
+		dialog->hueTextField.setTextMargin(8);
+
+		apply(&dialog->saturationTitler);
+		apply(&dialog->saturationTextField);
+		dialog->saturationTextField.setTextMargin(dialog->hueTextField.getTextMargin());
+
+		apply(&dialog->brightnessTitler);
+		apply(&dialog->brightnessTextField);
+		dialog->brightnessTextField.setTextMargin(dialog->hueTextField.getTextMargin());
+
+		apply(&dialog->hexTitler);
+		apply(&dialog->hexTextField);
+		dialog->hexTextField.setTextMargin(dialog->hueTextField.getTextMargin());
+		dialog->textFieldRow.setRelativeSize(&dialog->hexTitler, 1.5);
+
+		// Confirm button
+		applyPrimary(&dialog->confirmButton);
+	}
+
+	void Theme::apply(ColorPicker* colorPicker) {
+		colorPicker->setHeight(elementHeight);
+		colorPicker->setCornerRadius(cornerRadius);
+
+		colorPicker->setDefaultBorerColor(&bg4);
+		colorPicker->setActiveBorerColor(&fg1);
+
+		colorPicker->setDialogOpener([] {
+			const auto dialog = new ColorPickerDialog();
+			apply(dialog);
+
+			openDialog(dialog);
+
+			return dialog;
+		});
+
+		colorPicker->setDialogCloser([](ColorPickerDialog* dialog) {
+			Application::getCurrent()->invokeLater([dialog] {
+				closeDialog(dialog);
+			});
+		});
+	}
+
+	void Theme::openDialog(BottomSheetDialog* dialog) {
+		*Application::getCurrent() += dialog;
+	}
+
+	void Theme::closeDialog(BottomSheetDialog* dialog) {
+		// Maybe dialog is not in application layout anymore
+		dialog->removeFromParent();
+
+		delete dialog;
 	}
 }

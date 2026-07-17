@@ -15,7 +15,7 @@ namespace pizda {
 		
 		auto& rc = RC::getInstance();
 
-		setFOV(toRadians(rc.getSettings().personalization.MFD.PFD.FOV));
+		setFOV(Math::toRadians(rc.getSettings().personalization.MFD.PFD.FOV));
 
 		// Runways
 		for (uint16_t i = 0; i < rc.getNavigationData().runways.size(); ++i) {
@@ -249,7 +249,7 @@ namespace pizda {
 				center.getX()
 					+ static_cast<int32_t>(std::clamp(
 						(rc.getAircraftData().computed.autopilot.rollRad - rc.getAircraftData().computed.rollRad)
-							/ toRadians(30)
+							/ Math::toRadians(30)
 							* flightDirectorLengthHalfF,
 						-flightDirectorLengthHalfF,
 						flightDirectorLengthHalfF
@@ -309,7 +309,7 @@ namespace pizda {
 				std::clamp<int32_t>(
 					center.getX()
 						+ static_cast<int32_t>(
-							std::tanf(toRadians(rc.getSettings().controls.cameraYawDeg))
+							std::tanf(Math::toRadians(rc.getSettings().controls.cameraYawDeg))
 							* projectionPlaneDistance
 						),
 					bounds.getX(),
@@ -318,7 +318,7 @@ namespace pizda {
 				std::clamp(
 					center.getY()
 						- static_cast<int32_t>(
-							std::tanf(toRadians(rc.getSettings().controls.cameraPitchDeg))
+							std::tanf(Math::toRadians(rc.getSettings().controls.cameraPitchDeg))
 							* projectionPlaneDistance
 						),
 					bounds.getY(),
@@ -418,7 +418,7 @@ namespace pizda {
 
 			// Same as tan(lineAngleDeg) * projectionPlaneDistance, but with spherical correction
 			// This loop uses horizon as starting point, not aircraft pitch, so we just subtract it
-			const auto lineCenterPerp = horizonCenter + horizonVecPerp * (std::tanf(rc.getAircraftData().computed.pitchRad + toRadians(lineAngleDeg)) * projectionPlaneDistance - pitchPixelOffsetProjected);
+			const auto lineCenterPerp = horizonCenter + horizonVecPerp * (std::tanf(rc.getAircraftData().computed.pitchRad + Math::toRadians(lineAngleDeg)) * projectionPlaneDistance - pitchPixelOffsetProjected);
 
 			const auto lineVec = horizonVecNorm * (
 				(
@@ -473,7 +473,7 @@ namespace pizda {
 
 		if (enoughSpace) {
 			const auto& renderLine = [&renderer, &center, &rc](const int8_t angle, const bool isBig) {
-				const auto vec = Vector2F(0, PFD::turnCoordinatorOverlayRollIndicatorRadius).rotate(toRadians(angle) - rc.getAircraftData().computed.rollRad);
+				const auto vec = Vector2F(0, PFD::turnCoordinatorOverlayRollIndicatorRadius).rotate(Math::toRadians(angle) - rc.getAircraftData().computed.rollRad);
 				const auto lineFrom = center - static_cast<Point>(vec);
 
 				renderer->strokeLine(

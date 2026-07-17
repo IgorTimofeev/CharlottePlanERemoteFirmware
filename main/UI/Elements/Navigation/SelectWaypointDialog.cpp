@@ -1,5 +1,4 @@
 #include "UI/Elements/Navigation/SelectWaypointDialog.hpp"
-#include "Utilities/String.hpp"
 
 #include "RC.hpp"
 #include "UI/Theme.hpp"
@@ -9,7 +8,7 @@ namespace pizda {
 		const std::string_view titleText,
 		const std::function<void(const WaypointDialogSelectedItem& selectedItem)>& onConfirm
 	) {
-		(new SelectWaypointDialog(titleText, std::nullopt, onConfirm))->show();
+		Theme::openDialog(new SelectWaypointDialog(titleText, std::nullopt, onConfirm));
 	}
 
 	void SelectWaypointDialog::edit(
@@ -17,11 +16,13 @@ namespace pizda {
 		const WaypointDialogSelectedItem& selectedItem,
 		const std::function<void(const WaypointDialogSelectedItem& selectedItem)>& onConfirm
 	) {
-		(new SelectWaypointDialog(
+		const auto dialog = new SelectWaypointDialog(
 			titleText,
 			selectedItem,
 			onConfirm
-		))->show();
+		);
+
+		Theme::openDialog(dialog);
 	}
 
 	SelectWaypointDialog::SelectWaypointDialog(
@@ -31,7 +32,9 @@ namespace pizda {
 	) {
 		auto& rc = RC::getInstance();
 
-		title.setText(titleText);
+		Theme::apply(this);
+
+		titleTextView.setText(titleText);
 
 		// Name
 		Theme::apply(&_searchTextField);
@@ -49,7 +52,7 @@ namespace pizda {
 				: std::ranges::find_if(
 					rc.getNavigationData().waypoints,
 					[this](const NavigationWaypointData& waypointData) {
-						return StringUtils::containsIgnoreCase(waypointData.name, _searchTextField.getText());
+						return Text::containsIgnoreCase(waypointData.name, _searchTextField.getText());
 					}
 				);
 
@@ -68,12 +71,12 @@ namespace pizda {
 			}
 		});
 
-		rows += &_searchTextFieldTitle;
+		contentStackLayout += &_searchTextFieldTitle;
 
 		// Waypoint
 		_waypointButton.setToggle(true);
 		_waypointButton.setEnabled(false);
-		rows += &_waypointTitle;
+		contentStackLayout += &_waypointTitle;
 
 		// Confirm button
 		Theme::applyPrimary(&_confirmButton);
@@ -86,12 +89,11 @@ namespace pizda {
 
 				onConfirm(WaypointDialogSelectedItem(_waypointButton.getWaypointIndex()));
 
-				hide();
-				delete this;
+				Theme::closeDialog(this);
 			});
 		});
 
-		rows += &_confirmButton;
+		contentStackLayout += &_confirmButton;
 
 		// Initialization
 		if (selectedItem.has_value()) {

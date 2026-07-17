@@ -4,7 +4,6 @@
 
 #include "UI/Elements/PID/PIDChart.hpp"
 #include "UI/Theme.hpp"
-#include "Utilities/String.hpp"
 
 namespace pizda {
 	PIDChart::PIDChart() {

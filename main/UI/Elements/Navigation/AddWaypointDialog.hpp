@@ -5,12 +5,10 @@
 #include <YOBA/Core.hpp>
 #include <YOBA/UI.hpp>
 
-#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
 #include "UI/Theme.hpp"
 #include "UI/Elements/Titler.hpp"
 #include "UI/Elements/TabSelector.hpp"
 #include "Types/NavigationData.hpp"
-#include "Utilities/String.hpp"
 #include "RC.hpp"
 
 namespace pizda {
@@ -33,36 +31,36 @@ namespace pizda {
 			TextField longitude {};
 
 			void fromRadians(const float lat, const float lon) {
-				latitude.setText(std::to_string(toDegrees(lat)));
-				longitude.setText(std::to_string(toDegrees(lon)));
+				latitude.setText(std::to_string(Math::toDegrees(lat)));
+				longitude.setText(std::to_string(Math::toDegrees(lon)));
 			}
 
 			bool toRadians(float& lat, float& lon) {
 				// Lat
-				if (!StringUtils::tryParseFloat(latitude.getText().data(), lat)) {
+				if (!Text::tryParseFloat(latitude.getText().data(), lat)) {
 					latitude.setDefaultBorderColor(&Theme::bad1);
 					return false;
 				}
 
-				lat = YOBA::toRadians(lat);
+				lat = YOBA::Math::toRadians(lat);
 
 				// Lon
-				if (!StringUtils::tryParseFloat(longitude.getText().data(), lon)) {
+				if (!Text::tryParseFloat(longitude.getText().data(), lon)) {
 					longitude.setDefaultBorderColor(&Theme::bad1);
 					return false;
 				}
 
-				lon = YOBA::toRadians(lon);
+				lon = YOBA::Math::toRadians(lon);
 
 				return true;
 			}
 	};
 
-	class AddWaypointDialog : public ScrollViewDialog {
+	class AddWaypointDialog : public TitleStackLayoutBottomSheetDialog {
 		public:
 			static void create(const GeoCoordinates& coordinates, const std::function<void()>& onConfirm) {
 				const auto dialog = new AddWaypointDialog(coordinates, onConfirm);
-				dialog->show();
+				Theme::openDialog(dialog);
 			}
 
 		private:
@@ -86,7 +84,9 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 				auto& nd = rc.getNavigationData();
 
-				title.setText("Create waypoint");
+				Theme::apply(this);
+
+				titleTextView.setText("Create waypoint");
 
 				// Type
 				_enrouteTypeItem.setText("Enroute");
@@ -98,15 +98,15 @@ namespace pizda {
 				_typeSelector.applyDialogStyle();
 				_typeSelector.setSelectedIndex(0);
 
-				rows += &_typeSelector;
+				contentStackLayout += &_typeSelector;
 
 				// Name
 				Theme::apply(&_nameTextField);
-				rows += &_nameTitle;
+				contentStackLayout += &_nameTitle;
 
 				// Latitude & longitude
 				_latLon.fromRadians(coordinates.getLatitude(), coordinates.getLongitude());
-				rows += &_latLonTitle;
+				contentStackLayout += &_latLonTitle;
 
 				// Confirm
 				Theme::applyPrimary(&_confirmButton);
@@ -135,12 +135,11 @@ namespace pizda {
 
 						_onConfirm();
 
-						hide();
-						delete this;
+						Theme::closeDialog(this);
 					});
 				});
 
-				rows += &_confirmButton;
+				contentStackLayout += &_confirmButton;
 			}
 	};
 }

@@ -14,7 +14,7 @@
 namespace pizda {
 	NDScene::NDScene() {
 		setClipToBounds(true);
-		setFOV(toRadians(90));
+		setFOV(Math::toRadians(90));
 
 		createSceneElementsFromNavigationData();
 	}
@@ -58,7 +58,7 @@ namespace pizda {
 		setCameraRotation(Vector3F(
 			-_cameraCoordinates.getLatitude(),
 			-rc.getAircraftData().computed.yawRad,
-			toRadians(90) + _cameraCoordinates.getLongitude()
+			Math::toRadians(90) + _cameraCoordinates.getLongitude()
 		));
 
 		invalidate();
@@ -106,7 +106,7 @@ namespace pizda {
 			const auto deltaRadLon = static_cast<float>(deltaPixels.getX()) * equatorialRadiansPerPixel / std::cosf(_cameraCoordinates.getLatitude());
 			const auto deltaRadLat = static_cast<float>(deltaPixels.getY()) * equatorialRadiansPerPixel;
 
-	//			ESP_LOGI("ND", "deltaDeg: %f lat, %f lon", toDegrees(deltaRadLat), toDegrees(deltaRadLon));
+	//			ESP_LOGI("ND", "deltaDeg: %f lat, %f lon", Math::toDegrees(deltaRadLat), Math::toDegrees(deltaRadLon));
 
 			setCameraOffset(GeoCoordinates(
 				_cameraOffset.getLatitude() + deltaRadLat,
@@ -114,11 +114,11 @@ namespace pizda {
 				_cameraOffset.getAltitude()
 			));
 
-	//			ESP_LOGI("ND", "cameraOffset: %f deg, %f deg, %f m", toDegrees(_cameraCoordinates.getLatitude()), toDegrees(_cameraCoordinates.getLongitude()), _cameraCoordinates.getAltitude());
+	//			ESP_LOGI("ND", "cameraOffset: %f deg, %f deg, %f m", Math::toDegrees(_cameraCoordinates.getLatitude()), Math::toDegrees(_cameraCoordinates.getLongitude()), _cameraCoordinates.getAltitude());
 
 	//			setCameraOffset(GeographicCoordinates(
-	//				_cameraOffset.getLatitude() + toRadians(deltaPixels.getX() >= 0 ? -5 : 5),
-	//				_cameraOffset.getLongitude() + toRadians(deltaPixels.getY() >= 0 ? -5 : 5),
+	//				_cameraOffset.getLatitude() + Math::toRadians(deltaPixels.getX() >= 0 ? -5 : 5),
+	//				_cameraOffset.getLongitude() + Math::toRadians(deltaPixels.getY() >= 0 ? -5 : 5),
 	//				_cameraOffset.getAltitude()
 	//			));
 	//
@@ -284,10 +284,10 @@ namespace pizda {
 				const int32_t yawSnappedInt = static_cast<int32_t>(stepUnitsPerYawDegIntPart) * compassTickMarkUnitsDeg;
 
 				for (int16_t angleDeg = tickAngleFromDeg; angleDeg <= tickAngleToDeg; angleDeg += compassTickMarkUnitsDeg) {
-					const uint16_t shownAngleDeg = normalizeAngleDeg360(yawSnappedInt + angleDeg);
+					const uint16_t shownAngleDeg = Math::normalizeAngleDeg360(yawSnappedInt + angleDeg);
 					const auto isBig = shownAngleDeg % compassTickMarkUnitsBigDeg == 0;
 
-					const auto angleEndVecNorm = Vector2F(0, -1).rotate(toRadians(
+					const auto angleEndVecNorm = Vector2F(0, -1).rotate(Math::toRadians(
 						static_cast<float>(angleDeg)
 						- stepUnitsPerYawDegFractPixels
 					));
@@ -322,7 +322,7 @@ namespace pizda {
 
 			// Autopilot selected value
 			if (rc.getSettings().flightModeSelection.lateralMode == AutopilotLateralMode::hdg) {
-				const auto apValueVecNorm = Vector2F(0, -1).rotate(toRadians(
+				const auto apValueVecNorm = Vector2F(0, -1).rotate(Math::toRadians(
 					rc.getSettings().flightModeSelection.headingDeg
 					- rc.getAircraftData().computed.headingDeg
 				));
@@ -330,7 +330,7 @@ namespace pizda {
 				// Indicator
 				if (
 					rc.getSettings().personalization.MFD.ND.mode != PersonalizationSettingsMFDNDMode::arc
-					|| std::abs(normalizeAngleDeg180(rc.getAircraftData().computed.headingDeg - rc.getSettings().flightModeSelection.headingDeg)) <= compassArcViewportHalfDeg
+					|| std::abs(Math::normalizeAngleDeg180(rc.getAircraftData().computed.headingDeg - rc.getSettings().flightModeSelection.headingDeg)) <= compassArcViewportHalfDeg
 				) {
 					constexpr static uint8_t compassAPValueIndicatorWidth = 6;
 					constexpr static uint8_t compassAPValueIndicatorHeight = 5;
@@ -491,7 +491,7 @@ namespace pizda {
 		// This allows us to easily determine how many equatorial radians of the earth our camera can see
 		// excluding of FOV limitations
 		const auto viewportRad = getFOV() * radiusFactor;
-//		ESP_LOGI("ND", "viewportDeg: %f", toDegrees(viewportRad));
+//		ESP_LOGI("ND", "viewportDeg: %f", Math::toDegrees(viewportRad));
 
 		// And then we can calculate how many equatorial radians of the earth is in 1 pixel of the screen
 		// viewport rad - width px

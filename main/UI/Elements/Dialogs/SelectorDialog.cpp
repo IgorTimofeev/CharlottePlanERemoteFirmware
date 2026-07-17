@@ -15,9 +15,8 @@ namespace pizda {
 
 		Application::getCurrent()->invokeLater([this] {
 			_comboBoxDialog->getOnItemSelected()(_index);
-			_comboBoxDialog->hide();
 
-			delete _comboBoxDialog;
+			Theme::closeDialog(_comboBoxDialog);
 		});
 	}
 
@@ -31,10 +30,12 @@ namespace pizda {
 		_selectedIndex(selectedIndex),
 		_onItemSelected(onItemSelected)
 	{
-		this->title.setText(title);
+		Theme::apply(this);
+
+		this->titleTextView.setText(title);
 
 		_itemRows.setGap(Theme::verticalGap);
-		rows += &_itemRows;
+		contentStackLayout += &_itemRows;
 
 		for (uint16_t i = 0; i < _items.size(); ++i) {
 			const auto item = new SelectorDialogItem(this, i);
@@ -58,7 +59,7 @@ namespace pizda {
 	}
 
 	void SelectorDialog::onAddedToParent(Parent* parent) {
-		ScrollViewDialog::onAddedToParent(parent);
+		TitleStackLayoutBottomSheetDialog::onAddedToParent(parent);
 
 		_itemRows[_selectedIndex]->scrollIntoView();
 	}

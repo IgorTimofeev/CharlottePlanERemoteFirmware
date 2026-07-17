@@ -12,7 +12,7 @@ namespace pizda {
 	void VerticalRotaryControlStab::onTick() {
 		RotaryControlSevenVariant::onTick();
 
-		setValue(static_cast<int32_t>(std::round(toDegrees(RC::getInstance().getAircraftData().computed.autopilot.pitchRad))));
+		setValue(static_cast<int32_t>(std::round(Math::toDegrees(RC::getInstance().getAircraftData().computed.autopilot.pitchRad))));
 	}
 
 	VerticalRotaryControlALT::VerticalRotaryControlALT() {

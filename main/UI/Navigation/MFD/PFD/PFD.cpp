@@ -29,9 +29,9 @@ namespace pizda {
 		_scene.setCameraPosition(rc.getAircraftData().computed.coordinates.toCartesian());
 
 		_scene.setWorldRotation(Vector3F(
-			toRadians(90) - rc.getAircraftData().computed.coordinates.getLatitude(),
+			Math::toRadians(90) - rc.getAircraftData().computed.coordinates.getLatitude(),
 			0,
-			toRadians(90) + rc.getAircraftData().computed.coordinates.getLongitude()
+			Math::toRadians(90) + rc.getAircraftData().computed.coordinates.getLongitude()
 		));
 
 		_scene.setCameraRotation(Vector3F(

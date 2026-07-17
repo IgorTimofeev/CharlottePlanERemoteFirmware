@@ -11,7 +11,7 @@ namespace pizda {
 	}
 
 	void FlightPlanItem::onClick() {
-		(new FlightPlanItemDialog(_legIndex))->show();
+		Theme::openDialog(new FlightPlanItemDialog(_legIndex));
 	}
 
 	void FlightPlanItem::onRender(Renderer* renderer, const Rectangle& bounds) {
@@ -63,7 +63,7 @@ namespace pizda {
 
 		// Distance
 		char coordsText[12];
-		std::snprintf(coordsText, sizeof(coordsText), "%f nm", YOBA::round(getDistanceNm(), 1));
+		std::snprintf(coordsText, sizeof(coordsText), "%f nm", Math::round(getDistanceNm(), 1));
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 

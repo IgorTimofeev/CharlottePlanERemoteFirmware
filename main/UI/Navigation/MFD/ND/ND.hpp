@@ -1,13 +1,11 @@
 #pragma once
 
 #include "UI/Navigation/MFD/ND/NDScene.hpp"
-#include "UI/Theme.hpp"
-#include "UI/Elements/Dialogs/ScrollViewDialog.hpp"
 
 namespace pizda {
 	using namespace YOBA;
 
-	class NDActionButtonDialog : public ScrollViewDialog {
+	class NDActionButtonDialog : public TitleStackLayoutBottomSheetDialog {
 		public:
 			NDActionButtonDialog(NDScene* scene);
 

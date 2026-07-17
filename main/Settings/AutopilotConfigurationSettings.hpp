@@ -63,14 +63,14 @@ namespace pizda {
 
 			void onRead(const NVSStream& stream) override {
 				// Lateral
-				maxRollAngleRad = stream.readFloat(_maxRollAngleRad, toRadians(30));
-				stabilizedModeRollAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModeRollAngleIncrementRadPerSecond, toRadians(5));
+				maxRollAngleRad = stream.readFloat(_maxRollAngleRad, Math::toRadians(30));
+				stabilizedModeRollAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModeRollAngleIncrementRadPerSecond, Math::toRadians(5));
 				rollAngleEMAFilterFactorPerSecond = stream.readFloat(_rollAngleEMAFilterFactorPerSecond, 0.8f);
 				maxAileronsPercent = stream.readUint8(_maxAileronsPercent, 100);
 
 				// Vertical
-				maxPitchAngleRad = stream.readFloat(_maxPitchAngleRad, toRadians(15));
-				stabilizedModePitchAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModePitchAngleIncrementRadPerSecond, toRadians(5));
+				maxPitchAngleRad = stream.readFloat(_maxPitchAngleRad, Math::toRadians(15));
+				stabilizedModePitchAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModePitchAngleIncrementRadPerSecond, Math::toRadians(5));
 				pitchAngleEMAFilterFactorPerSecond = stream.readFloat(_pitchAngleEMAFilterFactorPerSecond, 0.8f);
 				maxElevatorPercent = stream.readUint8(_maxElevatorPercent, 100);
 

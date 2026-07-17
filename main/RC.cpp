@@ -186,6 +186,7 @@ namespace pizda {
 			tickTimeUs = esp_timer_get_time();
 
 			_application.tick();
+			_application.updateLayout();
 			_application.render();
 
 			_tickDeltaTimeUs = esp_timer_get_time() - tickTimeUs;
@@ -245,8 +246,8 @@ namespace pizda {
 		);
 		
 		// Heading
-		_aircraftData.computed.headingDeg = normalizeAngleDeg360(toDegrees(-_aircraftData.computed.yawRad));
-//		ESP_LOGI("PIZDA", "raw: %f, raw deg: %f, computed: %f, deg: %f, heading: %f", _aircraftData.raw.yawRad, toDegrees(-_aircraftData.raw.yawRad), _aircraftData.computed.yawRad, toDegrees(_aircraftData.computed.yawRad), _aircraftData.computed.headingDeg);
+		_aircraftData.computed.headingDeg = Math::normalizeAngleDeg360(Math::toDegrees(-_aircraftData.computed.yawRad));
+//		ESP_LOGI("PIZDA", "raw: %f, raw deg: %f, computed: %f, deg: %f, heading: %f", _aircraftData.raw.yawRad, Math::toDegrees(-_aircraftData.raw.yawRad), _aircraftData.computed.yawRad, Math::toDegrees(_aircraftData.computed.yawRad), _aircraftData.computed.headingDeg);
 
 		// Coordinates
 		_aircraftData.computed.coordinates.setLatitude(applyEMA(

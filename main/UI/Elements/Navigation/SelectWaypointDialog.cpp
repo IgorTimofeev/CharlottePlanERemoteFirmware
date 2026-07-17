@@ -71,11 +71,14 @@ namespace pizda {
 			}
 		});
 
+		Theme::apply(&_searchTextFieldTitle);
 		contentStackLayout += &_searchTextFieldTitle;
 
 		// Waypoint
 		_waypointButton.setToggle(true);
 		_waypointButton.setEnabled(false);
+
+		Theme::apply(&_waypointTitle);
 		contentStackLayout += &_waypointTitle;
 
 		// Confirm button
@@ -123,14 +126,14 @@ namespace pizda {
 
 		// Runway
 		if (waypointData.type == NavigationWaypointType::runway) {
-			_waypointTitle.title.setText("Runway");
+			_waypointTitle.titleTextView.setText("Runway");
 
 			// const auto runwayIndex = nd.getRunwayIndex(waypointIndex);
 			// const auto& runway = nd.runways[runwayIndex];
 		}
 		// Waypoint
 		else {
-			_waypointTitle.title.setText("Waypoint");
+			_waypointTitle.titleTextView.setText("Waypoint");
 		}
 	}
 }

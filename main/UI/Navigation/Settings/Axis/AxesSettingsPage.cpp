@@ -16,11 +16,16 @@ namespace pizda {
 		title.setText("Axes");
 
 		// Axes editors
-		rows += &_leverLeftAxisEditorTitle;
-		rows += &_aileronsAxisEditorTitle;
-		rows += &_elevatorAxisEditorTitle;
-		rows += &_rudderAxisEditorTitle;
-		rows += &_leverRightAxisEditorTitle;
+		const auto addTitler = [this](Titler& titler) {
+			Theme::apply(&titler);
+			rows += &titler;
+		};
+
+		addTitler(_leverLeftAxisEditorTitle);
+		addTitler(_aileronsAxisEditorTitle);
+		addTitler(_elevatorAxisEditorTitle);
+		addTitler(_rudderAxisEditorTitle);
+		addTitler(_leverRightAxisEditorTitle);
 
 		// Jittering slider
 		Theme::apply(&_jitteringThresholdSlider);
@@ -41,7 +46,7 @@ namespace pizda {
 			settings.axes.writeLater();
 		});
 
-		rows += &_jitteringThresholdSliderTitle;
+		addTitler(_jitteringThresholdSliderTitle);
 
 		// Low pass slider
 		Theme::apply(&_EMAFilterFactorSlider);
@@ -58,7 +63,7 @@ namespace pizda {
 			settings.axes.writeLater();
 		});
 
-		rows += &_EMAFilterFactorSliderTitle;
+		addTitler(_EMAFilterFactorSliderTitle);
 
 		// Initialization
 		scrollView.setVerticalPosition(_scrollPosition);

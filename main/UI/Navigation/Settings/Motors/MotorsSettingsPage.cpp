@@ -6,6 +6,8 @@
 
 namespace pizda {
 	MotorEditor::MotorEditor(const std::string_view title, const MotorType type) : Titler(title), _type(type) {
+		Theme::apply(this);
+
 		const auto settings = RC::getInstance().getSettings().motors.getByType(type);
 
 		constexpr static uint8_t buttonSideMargin = Theme::cornerRadius + 1;

@@ -3,7 +3,6 @@
 #include <YOBA/Core.hpp>
 #include <YOBA/UI.hpp>
 
-#include "UI/Elements/Titler.hpp"
 #include "UI/Elements/Navigation/SelectWaypointDialog.hpp"
 #include "UI/Elements/Navigation/WaypointButton.hpp"
 #include "UI/Elements/TabSelector.hpp"

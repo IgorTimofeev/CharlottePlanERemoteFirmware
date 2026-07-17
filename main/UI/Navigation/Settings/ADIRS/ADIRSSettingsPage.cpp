@@ -26,6 +26,7 @@ namespace pizda {
 			rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::magneticDeclination);
 		});
 
+		Theme::apply(&_ADIRSMagneticDeclinationTitle);
 		rows += &_ADIRSMagneticDeclinationTitle;
 
 		// ----------------------------- Calibration -----------------------------

@@ -261,6 +261,7 @@ namespace pizda {
 			rc.getTransceiver().enqueueSystemPacket(packetType);
 		});
 
+		Theme::apply(&titler);
 		rows += &titler;
 	}
 }

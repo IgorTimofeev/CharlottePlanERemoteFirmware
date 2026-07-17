@@ -12,10 +12,12 @@ namespace pizda {
 		title.setText("General");
 
 		// Dark theme
-		_darkTheme.getSwitch().setActive(settings.personalization.darkTheme);
+		Theme::apply(&_darkTheme);
 
-		_darkTheme.getSwitch().setOnIsActiveChanged([this, &settings] {
-			settings.personalization.darkTheme = _darkTheme.getSwitch().isActive();
+		_darkTheme.switch_.setActive(settings.personalization.darkTheme);
+
+		_darkTheme.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.darkTheme = _darkTheme.switch_.isActive();
 			settings.personalization.writeLater();
 
 			Theme::updateColorScheme();
@@ -24,30 +26,36 @@ namespace pizda {
 		rows += &_darkTheme;
 
 		// Audio feedback
-		_generalAudioFeedback.getSwitch().setActive(settings.personalization.audioFeedback);
+		Theme::apply(&_generalAudioFeedback);
+
+		_generalAudioFeedback.switch_.setActive(settings.personalization.audioFeedback);
 		
-		_generalAudioFeedback.getSwitch().setOnIsActiveChanged([this, &settings] {
-			settings.personalization.audioFeedback = _generalAudioFeedback.getSwitch().isActive();
+		_generalAudioFeedback.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.audioFeedback = _generalAudioFeedback.switch_.isActive();
 			settings.personalization.writeLater();
 		});
 		
 		rows += &_generalAudioFeedback;
 		
 		// Interpolation
-		_generalDataInterpolation.getSwitch().setActive(settings.personalization.dataInterpolation);
+		Theme::apply(&_generalDataInterpolation);
+
+		_generalDataInterpolation.switch_.setActive(settings.personalization.dataInterpolation);
 		
-		_generalDataInterpolation.getSwitch().setOnIsActiveChanged([this, &settings] {
-			settings.personalization.dataInterpolation = _generalDataInterpolation.getSwitch().isActive();
+		_generalDataInterpolation.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.dataInterpolation = _generalDataInterpolation.switch_.isActive();
 			settings.personalization.writeLater();
 		});
 		
 		rows += &_generalDataInterpolation;
 
 		// Debug overlay
-		_generalDebugOverlay.getSwitch().setActive(settings.personalization.debugOverlay);
+		Theme::apply(&_generalDebugOverlay);
 
-		_generalDebugOverlay.getSwitch().setOnIsActiveChanged([this, &rc, &settings] {
-			settings.personalization.debugOverlay = _generalDebugOverlay.getSwitch().isActive();
+		_generalDebugOverlay.switch_.setActive(settings.personalization.debugOverlay);
+
+		_generalDebugOverlay.switch_.setOnIsActiveChanged([this, &rc, &settings] {
+			settings.personalization.debugOverlay = _generalDebugOverlay.switch_.isActive();
 			settings.personalization.writeLater();
 
 			rc.updateDebugOverlayVisibility();
@@ -79,13 +87,16 @@ namespace pizda {
 			settings.personalization.writeLater();
 		});
 
+		Theme::apply(&_PFDFOVTitle);
 		rows += &_PFDFOVTitle;
 
 		// Waypoint labels
-		_PFDWaypointLabels.getSwitch().setActive(settings.personalization.MFD.PFD.waypointLabels);
+		Theme::apply(&_PFDWaypointLabels);
 
-		_PFDWaypointLabels.getSwitch().setOnIsActiveChanged([this, &settings] {
-			settings.personalization.MFD.PFD.waypointLabels = _PFDWaypointLabels.getSwitch().isActive();
+		_PFDWaypointLabels.switch_.setActive(settings.personalization.MFD.PFD.waypointLabels);
+
+		_PFDWaypointLabels.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.MFD.PFD.waypointLabels = _PFDWaypointLabels.switch_.isActive();
 			settings.personalization.writeLater();
 		});
 
@@ -101,14 +112,17 @@ namespace pizda {
 		rows += &_NDTitle;
 
 		// Earth grid
-		_NDEarthGrid.getSwitch().setActive(settings.personalization.MFD.ND.earth);
+		Theme::apply(&_NDEarthGrid);
+
+		_NDEarthGrid.switch_.setActive(settings.personalization.MFD.ND.earth);
 		
-		_NDEarthGrid.getSwitch().setOnIsActiveChanged([this, &settings] {
-			settings.personalization.MFD.ND.earth = _NDEarthGrid.getSwitch().isActive();
+		_NDEarthGrid.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.MFD.ND.earth = _NDEarthGrid.switch_.isActive();
 			settings.personalization.writeLater();
 		});
 		
 		rows += &_NDEarthGrid;
+
 		// Initialization
 		scrollView.setVerticalPosition(_scrollPosition);
 	}

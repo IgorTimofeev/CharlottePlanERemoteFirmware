@@ -22,7 +22,7 @@ namespace pizda {
 	class ImageToolbarButton : public ToolbarSection, public ActiveElement {
 		public:
 			ImageToolbarButton(const std::string_view title, const Image* image) : ToolbarSection(title) {
-				_imageViewMargin.setMargin(Margin(Toolbar::contentHorizontalMargin, 2, Toolbar::contentHorizontalMargin, 0));
+				_imageViewMargin.setMargin(Margin(Toolbar::contentHorizontalMargin, 5, Toolbar::contentHorizontalMargin, 0));
 				_imageView.setLayoutTransform(&_imageViewMargin);
 
 				_imageView.setAlignment(Alignment::center);

@@ -41,6 +41,7 @@ namespace pizda {
 					updateChart();
 				});
 
+				Theme::apply(&PTitle);
 				PIDRow += &PTitle;
 
 				// I
@@ -52,6 +53,7 @@ namespace pizda {
 					updateChart();
 				});
 
+				Theme::apply(&ITitle);
 				PIDRow += &ITitle;
 
 				// D
@@ -63,6 +65,7 @@ namespace pizda {
 					updateChart();
 				});
 
+				Theme::apply(&DTitle);
 				PIDRow += &DTitle;
 
 				// Confirm button

@@ -4,7 +4,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Navigation/Page.hpp"
-#include "UI/Elements/Titler.hpp"
 #include "UI/Elements/PID/PIDReferencer.hpp"
 #include "UI/Elements/Separator.hpp"
 #include "Systems/Transceiver/Packet.hpp"

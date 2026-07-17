@@ -6,7 +6,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Theme.hpp"
-#include "UI/Elements/Titler.hpp"
 #include "UI/Elements/TabSelector.hpp"
 #include "Types/NavigationData.hpp"
 #include "RC.hpp"
@@ -71,12 +70,12 @@ namespace pizda {
 			TabSelector _typeSelector {};
 
 			TextField _nameTextField {};
-			Titler _nameTitle = { "Name", &_nameTextField };
+			Titler _nameTitle { "Name", &_nameTextField };
 
 			RelativeStackLayout _latitudeAndLongitudeRow { Orientation::horizontal, 10 };
 
 			LatLonRow _latLon {};
-			Titler _latLonTitle = { "Latitude & longitude", &_latLon };
+			Titler _latLonTitle { "Latitude & longitude", &_latLon };
 
 			Button _confirmButton {};
 
@@ -102,10 +101,12 @@ namespace pizda {
 
 				// Name
 				Theme::apply(&_nameTextField);
+				Theme::apply(&_nameTitle);
 				contentStackLayout += &_nameTitle;
 
 				// Latitude & longitude
 				_latLon.fromRadians(coordinates.getLatitude(), coordinates.getLongitude());
+				Theme::apply(&_latLonTitle);
 				contentStackLayout += &_latLonTitle;
 
 				// Confirm

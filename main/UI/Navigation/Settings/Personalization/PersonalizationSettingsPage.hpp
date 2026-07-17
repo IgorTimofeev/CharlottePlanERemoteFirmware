@@ -4,8 +4,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Navigation/Page.hpp"
-#include "UI/Elements/Titler.hpp"
-#include "UI/Elements/Switcher.hpp"
 #include "UI/Elements/Separator.hpp"
 
 namespace pizda {
@@ -21,10 +19,10 @@ namespace pizda {
 
 			// -------------------------------- General --------------------------------
 
-			Switcher _darkTheme { "Dark theme" };
-			Switcher _generalAudioFeedback { "Audio feedback" };
-			Switcher _generalDataInterpolation { "Data interpolation" };
-			Switcher _generalDebugOverlay { "Debug overlay" };
+			TextAndSwitch _darkTheme { "Dark theme" };
+			TextAndSwitch _generalAudioFeedback { "Audio feedback" };
+			TextAndSwitch _generalDataInterpolation { "Data interpolation" };
+			TextAndSwitch _generalDebugOverlay { "Debug overlay" };
 			HorizontalSeparator _generalSeparator {};
 
 			// -------------------------------- PFD --------------------------------
@@ -33,10 +31,10 @@ namespace pizda {
 
 			// FOV
 			Slider _PFDFOVSlider {};
-			Titler _PFDFOVTitle = Titler("Field of view", &_PFDFOVSlider);
+			Titler _PFDFOVTitle { "Field of view", &_PFDFOVSlider };
 
 			// Waypoint labels
-			Switcher _PFDWaypointLabels { "Waypoint labels" };
+			TextAndSwitch _PFDWaypointLabels { "Waypoint labels" };
 
 			HorizontalSeparator _PFDSeparator {};
 
@@ -45,6 +43,6 @@ namespace pizda {
 			TextView _NDTitle {};
 
 			// Earth grid
-			Switcher _NDEarthGrid { "Earth grid" };
+			TextAndSwitch _NDEarthGrid { "Earth grid" };
 	};
 }

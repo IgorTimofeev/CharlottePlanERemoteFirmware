@@ -5,7 +5,6 @@
 
 #include "UI/Navigation/Page.hpp"
 #include "UI/Elements/PID/PIDReferencer.hpp"
-#include "UI/Elements/Separator.hpp"
 #include "Systems/Transceiver/Packet.hpp"
 
 namespace pizda {
@@ -41,7 +40,7 @@ namespace pizda {
 
 			// ----------------------------- Vertical -----------------------------
 
-			HorizontalSeparator _verSeparator {};
+			Divider _verDivider {};
 			TextView _verTitle { "Vertical"};
 
 			TextField _verMaxPitch {};
@@ -67,7 +66,7 @@ namespace pizda {
 
 			// ----------------------------- Longitudinal -----------------------------
 
-			HorizontalSeparator _lonSeparator {};
+			Divider _logDivider {};
 			TextView _lonTitle { "Longitudinal"};
 
 			TextField _lonThrottleMin {};

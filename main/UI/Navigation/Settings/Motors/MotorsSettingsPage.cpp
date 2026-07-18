@@ -1,107 +1,211 @@
 #include <optional>
+#include <string>
 
 #include "UI/Navigation/Settings/Motors/MotorsSettingsPage.hpp"
 #include "UI/Theme.hpp"
 #include "RC.hpp"
 
 namespace pizda {
-	MotorEditor::MotorEditor(const std::string_view title, const MotorType type) : Titler(title), _type(type) {
+	MotorEditorDialog::MotorEditorDialog(const std::string_view title, MotorEditor* motorEditor): _motorEditor(motorEditor) {
 		Theme::apply(this);
 
-		const auto settings = RC::getInstance().getSettings().motors.getByType(type);
+		// Title
+		titleTextView.setText(title);
 
-		constexpr static uint8_t buttonSideMargin = Theme::cornerRadius + 1;
+		// Text fields row
+		contentStackLayout += &_textFieldsRow;
 
-		// Main row
-		*this += &_mainLayout;
+		// Midpoint
+		Theme::apply(&_midpointTextField);
+		_midpointTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
 
-		// Confirm
-		Theme::applyPrimary(&_confirm);
-		_confirm.setWidth(24);
-		_confirm.setHorizontalAlignment(Alignment::end);
-		_confirm.setContentMargin(Margin(buttonSideMargin - 1, 0, 0, 0));
-		_confirm.setFont(&Theme::fontSmall);
-		_confirm.setText(">");
-
-		_confirm.setOnClick([this] {
-			auto& rc = RC::getInstance();
-
-			rc.getRemoteData().motorSettings.type = _type;
-			rc.getRemoteData().motorSettings.settings.min = static_cast<uint16_t>(Text::tryParseInt32Or(_min.getText(), 1'000));
-			rc.getRemoteData().motorSettings.settings.max = static_cast<uint16_t>(Text::tryParseInt32Or(_max.getText(), 2'000));
-			rc.getRemoteData().motorSettings.settings.reverse = _reverse.isActive();
-			rc.getRemoteData().motorSettings.settings.sanitize();
-
-			*rc.getSettings().motors.getByType(_type) = rc.getRemoteData().motorSettings.settings;
-			rc.getSettings().motors.writeLater();
-
-			rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::motors);
+		_midpointTextField.setOnInput([this](const auto key, const auto text) {
+			if (key == Key::enter)
+				updatePreview();
 		});
 
-		_mainLayout += &_confirm;
+		Theme::apply(&_midpointTextFieldTitle);
+		_textFieldsRow += &_midpointTextFieldTitle;
+
+		// Range
+		Theme::apply(&_rangeTextField);
+		_rangeTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+
+		_rangeTextField.setOnInput([this](const auto key, const auto text) {
+			if (key == Key::enter)
+				updatePreview();
+		});
+
+		Theme::apply(&_rangeTextFieldTitle);
+		_textFieldsRow += &_rangeTextFieldTitle;
 
 		// Reverse
-		_reverseMargin.setMargin(Margin(0, 0, _confirm.getSize().getWidth() - buttonSideMargin, 0));
-		_reverse.setLayoutTransform(&_reverseMargin);
+		Theme::apply(&_reverseTextAndSwitch);
+		contentStackLayout += &_reverseTextAndSwitch;
 
-		Theme::applySecondary(&_reverse);
+		// Preview
+		Theme::applyDescription(&_previewTextView);
+		_previewTextView.setTextColor(&Theme::fg6);
+		contentStackLayout += &_previewTextView;
 
-		_reverse.setWidth(_confirm.getSize().getWidth() + 1);
-		_reverse.setHorizontalAlignment(Alignment::end);
-		_reverse.setContentMargin(Margin(buttonSideMargin - 1, 0, 0, 0));
+		// Confirm
+		Theme::applyPrimary(&_confirmButton);
+		_confirmButton.setText("Confirm");
 
-		_reverse.setDefaultBackgroundColor(&Theme::bg2);
-		_reverse.setDefaultTextColor(&Theme::fg4);
+		_confirmButton.setOnClick([this] {
+			Application::getCurrent()->invokeLater([this] {
+				auto& rc = RC::getInstance();
 
-		_reverse.setActiveBackgroundColor(&Theme::bg6);
-		_reverse.setActiveTextColor(&Theme::fg1);
-		
-		_reverse.setFont(&Theme::fontSmall);
-		_reverse.setText("<>");
-		_reverse.setToggle(true);
-		
-		_reverse.setActive(settings->reverse);
-		_mainLayout += &_reverse;
+				// Remote data
+				auto& motorSettings = rc.getRemoteData().motorSettings;
+				motorSettings.type = _motorEditor->getMotorType();
+				motorSettings.settings.reverse = _reverseTextAndSwitch.switch_.isActive();
 
-		// Min / max
-		_minMaxRowMargin.setMargin(Margin(0, 0, _confirm.getSize().getWidth() + _reverse.getSize().getWidth() - buttonSideMargin * 2, 0));
-		_minMaxRow.setLayoutTransform(&_minMaxRowMargin);
-		_minMaxRow.setOrientation(Orientation::horizontal);
-		_minMaxRow.setGap(8);
-		_mainLayout += &_minMaxRow;
+				tryParse(motorSettings.settings.min, motorSettings.settings.max);
 
-		// Min
-		addTextField(_min, settings->min);
-		
-		// Max
-		addTextField(_max, settings->max);
+				motorSettings.settings.sanitize();
+
+				// Settings
+				*rc.getSettings().motors.getByType(_motorEditor->getMotorType()) = rc.getRemoteData().motorSettings.settings;
+				rc.getSettings().motors.writeLater();
+
+				// Packer
+				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::motors);
+
+				// Motor editor
+				_motorEditor->fromSettings();
+
+				Theme::closeDialog(this);
+			});
+		});
+
+		contentStackLayout += &_confirmButton;
+
+		// Initialization
+		{
+			const auto motorSettings = RC::getInstance().getSettings().motors.getByType(_motorEditor->getMotorType());
+			const auto range = motorSettings->max - motorSettings->min;
+
+			_midpointTextField.setText(std::to_string(motorSettings->min + range / 2));
+			_rangeTextField.setText(std::to_string(range));
+			_reverseTextAndSwitch.switch_.setActive(motorSettings->reverse);
+
+			updatePreview();
+		}
+	}
+
+	void MotorEditorDialog::tryParse(uint16_t& min, uint16_t& max) const {
+		const auto midpoint = Text::tryParseInt32Or(_midpointTextField.getText(), 1500);
+		const auto range = Text::tryParseInt32Or(_rangeTextField.getText(), 500);
+		const auto rangeDiv2 = range / 2;
+
+		min = midpoint - rangeDiv2;
+		max = midpoint + rangeDiv2;
+	}
+
+	void MotorEditorDialog::updatePreview() {
+		uint16_t min, max;
+		tryParse(min, max);
+
+		char textBuffer[48];
+		std::snprintf(textBuffer, sizeof(textBuffer), "Pulse width: %d - %d us", min, max);
+		_previewTextView.setText(textBuffer);
+	}
+
+	MotorEditor::MotorEditor(const std::string_view dialogTitle, const MotorType motorType) : _dialogTitle(dialogTitle), _motorType(motorType) {
+		// Main row
+		setDefaultMargin(&_rowMargin, { 12, 9, 12, 8 });
+		_row.setLayoutTransform(&_rowMargin);
+		*this += &_row;
+
+		// Range text views
+		for (auto& textView : _rangeTextViews) {
+			Theme::applyPageTitle(&textView);
+			textView.setFont(&Theme::fontSmall);
+			textView.setVerticalAlignment(Alignment::center);
+			_row += &textView;
+		}
+
+		_rangeTextViews[0].setTextColor(&Theme::fg2);
+
+		_rangeTextViews[1].setText(" / ");
+		_rangeTextViews[1].setTextColor(&Theme::fg4);
+
+		_rangeTextViews[2].setTextColor(&Theme::magenta1);
+
+		// Reverse text view
+		Theme::apply(&_reverseTextView);
+		_reverseTextView.setVerticalAlignment(Alignment::center);
+		_reverseTextView.setTextColor(&Theme::accent1);
+		_reverseTextView.setText("REV");
+
+		_reverseTextViewMargin.setMargin({ 10, 0, 0, 2 });
+		_reverseTextView.setLayoutTransform(&_reverseTextViewMargin);
+
+		_row += &_reverseTextView;
+
+		fromSettings();
+	}
+
+	MotorType MotorEditor::getMotorType() const {
+		return _motorType;
+	}
+
+	void MotorEditor::fromSettings() {
+		const auto motorSettings = RC::getInstance().getSettings().motors.getByType(_motorType);
+		const auto motorSettingsRange = motorSettings->max - motorSettings->min;
+
+		// Range
+		_rangeTextViews[0].setText(std::to_string(motorSettings->min + motorSettingsRange / 2));
+		_rangeTextViews[2].setText(std::to_string(motorSettingsRange));
+
+		// Reverse
+		_reverseTextView.setVisible(motorSettings->reverse);
+	}
+
+	void MotorEditor::onClick() {
+		Referencer::onClick();
+
+		Theme::openDialog(new MotorEditorDialog(_dialogTitle, this));
 	}
 
 	MotorsSettingsPage::MotorsSettingsPage() {
 		title.setText("Throttle");
-		vaginoz(&_throttleLeft);
-		vaginoz(&_throttleRight);
-		rows += &_throttleSeparator;
+		vaginoz(_throttleLeftTitle);
+		vaginoz(_throttleRightTitle);
 
-		penisula(&_aileronsTitle);
-		vaginoz(&_aileronLeft);
-		vaginoz(&_aileronRight);
-		rows += &_aileronsSeparator;
+		// Ailerons
+		Theme::apply(&_aileronsDivider);
+		rows += &_aileronsDivider;
 
-		penisula(&_flapsTitle);
-		vaginoz(&_flapLeft);
-		vaginoz(&_flapRight);
-		rows += &_flapsSeparator;
+		penisula(_aileronsTitle);
+		vaginoz(_aileronLeftTitle);
+		vaginoz(_aileronRightTitle);
 
-		penisula(&_tailTitle);
-		vaginoz(&_tailLeft);
-		vaginoz(&_tailRight);
-		rows += &_tailSeparator;
+		// Flaps
+		Theme::apply(&_flapsDivider);
+		rows += &_flapsDivider;
 
-		penisula(&_noseTitle);
-		vaginoz(&_cameraPitch);
-		vaginoz(&_cameraYaw);
-		vaginoz(&_noseWheel);
+		penisula(_flapsTitle);
+		vaginoz(_flapLeftTitle);
+		vaginoz(_flapRightTitle);
+
+		// Tail
+		Theme::apply(&_tailDivider);
+		rows += &_tailDivider;
+
+		penisula(_tailTitle);
+		vaginoz(_tailLeftTitle);
+		vaginoz(_tailRightTitle);
+
+		// Nose
+		Theme::apply(&_noseDivider);
+		rows += &_noseDivider;
+
+		penisula(_noseTitle);
+		vaginoz(_cameraPitchTitle);
+		vaginoz(_cameraYawTitle);
+		vaginoz(_noseWheelTitle);
 
 		// Initialization
 		scrollView.setVerticalPosition(_scrollPosition);
@@ -113,13 +217,14 @@ namespace pizda {
 
 	int32_t MotorsSettingsPage::_scrollPosition = 0;
 
-	void MotorsSettingsPage::penisula(TextView* text) {
-		Theme::applyPageTitle(text);
+	void MotorsSettingsPage::penisula(TextView& titleTextView) {
+		Theme::applyPageTitle(&titleTextView);
 
-		rows += text;
+		rows += &titleTextView;
 	}
 
-	void MotorsSettingsPage::vaginoz(MotorEditor* motorEditor) {
-		rows += motorEditor;
+	void MotorsSettingsPage::vaginoz(Titler& titler) {
+		Theme::apply(&titler);
+		rows += &titler;
 	}
 }

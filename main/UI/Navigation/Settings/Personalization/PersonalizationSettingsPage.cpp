@@ -63,8 +63,9 @@ namespace pizda {
 
 		rows += &_generalDebugOverlay;
 		
-		// Separator
-		rows += &_generalSeparator;
+		// Divider
+		Theme::apply(&_generalDivider);
+		rows += &_generalDivider;
 		
 		// -------------------------------- PFD --------------------------------
 
@@ -102,8 +103,9 @@ namespace pizda {
 
 		rows += &_PFDWaypointLabels;
 
-		// Separator
-		rows += &_PFDSeparator;
+		// Divider
+		Theme::apply(&_PFDDivider);
+		rows += &_PFDDivider;
 
 		// -------------------------------- ND --------------------------------
 

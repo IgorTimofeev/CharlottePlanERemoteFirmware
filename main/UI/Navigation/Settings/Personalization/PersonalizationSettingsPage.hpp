@@ -4,7 +4,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Navigation/Page.hpp"
-#include "UI/Elements/Separator.hpp"
 
 namespace pizda {
 	using namespace YOBA;
@@ -23,7 +22,7 @@ namespace pizda {
 			TextAndSwitch _generalAudioFeedback { "Audio feedback" };
 			TextAndSwitch _generalDataInterpolation { "Data interpolation" };
 			TextAndSwitch _generalDebugOverlay { "Debug overlay" };
-			HorizontalSeparator _generalSeparator {};
+			Divider _generalDivider {};
 
 			// -------------------------------- PFD --------------------------------
 
@@ -36,7 +35,7 @@ namespace pizda {
 			// Waypoint labels
 			TextAndSwitch _PFDWaypointLabels { "Waypoint labels" };
 
-			HorizontalSeparator _PFDSeparator {};
+			Divider _PFDDivider {};
 
 			// -------------------------------- ND --------------------------------
 

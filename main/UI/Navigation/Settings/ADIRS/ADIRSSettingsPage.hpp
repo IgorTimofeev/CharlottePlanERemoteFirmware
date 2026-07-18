@@ -4,7 +4,6 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Navigation/Page.hpp"
-#include "UI/Elements/Separator.hpp"
 
 namespace pizda {
 	using namespace YOBA;
@@ -27,7 +26,7 @@ namespace pizda {
 
 			// ----------------------------- Calibration -----------------------------
 
-			HorizontalSeparator _calSeparator {};
+			Divider _calDivider {};
 
 			TextView _calTitle {};
 

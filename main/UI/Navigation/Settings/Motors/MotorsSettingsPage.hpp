@@ -6,39 +6,66 @@
 #include <YOBA/UI.hpp>
 
 #include "UI/Navigation/Page.hpp"
-#include "UI/Elements/Separator.hpp"
-
 #include "Types/Generic.hpp"
+#include "UI/Elements/Referencer.hpp"
 
 namespace pizda {
 	using namespace YOBA;
-	
-	class MotorEditor : public Titler {
+
+	class MotorEditor;
+
+	class MotorEditorDialog : public TitleStackLayoutBottomSheetDialog {
 		public:
-			MotorEditor(std::string_view title, MotorType type);
-			
+			MotorEditorDialog(const std::string_view title, MotorEditor* motorEditor);
+
 		private:
-			MotorType _type;
+			MotorEditor* _motorEditor;
 
-			Layout _mainLayout {};
+			RelativeStackLayout _textFieldsRow {
+				Orientation::horizontal,
+				10
+			};
 
-			MarginTransform _minMaxRowMargin {};
-			RelativeStackLayout _minMaxRow {};
-			TextField _min {};
-			TextField _max {};
+			TextField _midpointTextField {};
+			Titler _midpointTextFieldTitle { "Midpoint", &_midpointTextField };
 
-			MarginTransform _reverseMargin {};
-			Button _reverse {};
+			TextField _rangeTextField {};
+			Titler _rangeTextFieldTitle { "Range", &_rangeTextField };
 
-			Button _confirm {};
+			TextAndSwitch _reverseTextAndSwitch {"Reverse" };
 
-			template<std::integral T>
-			void addTextField(TextField& textField, T value) {
-				Theme::apply(&textField);
-				textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
-				textField.setText(std::to_string(value));
-				_minMaxRow += &textField;
-			}
+			TextView _previewTextView {};
+
+			Button _confirmButton {};
+
+			void tryParse(uint16_t& min, uint16_t& max) const;
+			void updatePreview();
+	};
+
+	class MotorEditor : public Referencer {
+		public:
+			MotorEditor(const std::string_view dialogTitle, const MotorType motorType);
+
+			MotorType getMotorType() const;
+
+			void fromSettings();
+
+		protected:
+			void onClick() override;
+
+		private:
+			const std::string_view _dialogTitle;
+			const MotorType _motorType;
+
+			StackLayout _row {
+				Orientation::horizontal
+			};
+
+			MarginTransform _rowMargin {};
+			TextView _rangeTextViews[3] {};
+
+			TextView _reverseTextView {};
+			MarginTransform _reverseTextViewMargin {};
 	};
 
 	class MotorsSettingsPage : public ScrollViewPage {
@@ -49,31 +76,57 @@ namespace pizda {
 		private:
 			static int32_t _scrollPosition;
 
-			MotorEditor _throttleLeft { "Left", MotorType::throttleLeft };
-			MotorEditor _throttleRight { "Right", MotorType::throttleRight };
-			HorizontalSeparator _throttleSeparator {};
+			// Throttle
+			MotorEditor _throttleLeft { "Left throttle", MotorType::throttleLeft };
+			Titler _throttleLeftTitle { "Left", &_throttleLeft };
 
+			MotorEditor _throttleRight { "Right throttle", MotorType::throttleRight };
+			Titler _throttleRightTitle { "Right", &_throttleRight };
+
+			// Ailerons
+			Divider _aileronsDivider {};
 			TextView _aileronsTitle { "Ailerons" };
-			MotorEditor _aileronLeft { "Left", MotorType::aileronLeft };
-			MotorEditor _aileronRight { "Right", MotorType::aileronRight };
-			HorizontalSeparator _aileronsSeparator {};
 
+			MotorEditor _aileronLeft { "Left aileron", MotorType::aileronLeft };
+			Titler _aileronLeftTitle { "Left", &_aileronLeft };
+
+			MotorEditor _aileronRight { "Right aileron", MotorType::aileronRight };
+			Titler _aileronRightTitle { "Right", &_aileronRight };
+
+			// Flaps
+			Divider _flapsDivider {};
 			TextView _flapsTitle { "Flaps" };
-			MotorEditor _flapLeft { "Left", MotorType::flapLeft };
-			MotorEditor _flapRight { "Right", MotorType::flapRight };
-			HorizontalSeparator _flapsSeparator {};
 
+			MotorEditor _flapLeft { "Left flap", MotorType::flapLeft };
+			Titler _flapLeftTitle { "Left", &_flapLeft };
+
+			MotorEditor _flapRight { "Right flap", MotorType::flapRight };
+			Titler _flapRightTitle { "Right", &_flapRight };
+
+			// Tail
+			Divider _tailDivider {};
 			TextView _tailTitle { "Tail" };
-			MotorEditor _tailLeft { "Left", MotorType::tailLeft };
-			MotorEditor _tailRight { "Right", MotorType::tailRight };
-			HorizontalSeparator _tailSeparator {};
 
+			MotorEditor _tailLeft { "Left tail", MotorType::tailLeft };
+			Titler _tailLeftTitle { "Left", &_tailLeft };
+
+			MotorEditor _tailRight { "Right tail", MotorType::tailRight };
+			Titler _tailRightTitle { "Right", &_tailRight };
+
+			// Nose
+			Divider _noseDivider {};
 			TextView _noseTitle { "Nose" };
-			MotorEditor _cameraPitch { "Camera pitch", MotorType::cameraPitch };
-			MotorEditor _cameraYaw { "Camera yaw", MotorType::cameraYaw };
-			MotorEditor _noseWheel { "Wheel steering", MotorType::noseWheel };
 
-			void penisula(TextView* text);
-			void vaginoz(MotorEditor* motorEditor);
+			MotorEditor _cameraPitch { "Camera pitch", MotorType::cameraPitch };
+			Titler _cameraPitchTitle { "Camera pitch", &_cameraPitch };
+
+			MotorEditor _cameraYaw { "Camera yaw", MotorType::cameraYaw };
+			Titler _cameraYawTitle { "Camera yaw", &_cameraYaw };
+
+			MotorEditor _noseWheel { "Nose wheel", MotorType::noseWheel };
+			Titler _noseWheelTitle { "Wheel", &_noseWheel };
+
+			void penisula(TextView& titleTextView);
+			void vaginoz(Titler& titler);
 	};
 }

@@ -19,6 +19,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMaxRollAngleRad
 		);
 
+		Theme::apply(&_latMaxRollTitle);
 		rows += &_latMaxRollTitle;
 
 		// Angle increment
@@ -29,6 +30,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond
 		);
 
+		Theme::apply(&_latSMTAIFRSTitle);
 		rows += &_latSMTAIFRSTitle;
 
 		// Angle EMA filter factor
@@ -41,6 +43,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotRollAngleEMAFilterFactorPerSecond
 		);
 
+		Theme::apply(&_latTAEMAFPSTitle);
 		rows += &_latTAEMAFPSTitle;
 
 		// Surface factor
@@ -51,6 +54,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMaxAileronsPercent
 		);
 
+		Theme::apply(&_latMaxAileronsFactorTitle);
 		rows += &_latMaxAileronsFactorTitle;
 
 		// PIDs
@@ -71,7 +75,8 @@ namespace pizda {
 
 		// ----------------------------- Vertical -----------------------------
 
-		rows += &_verSeparator;
+		Theme::apply(&_verDivider);
+		rows += &_verDivider;
 
 		Theme::applyPageTitle(&_verTitle);
 		rows += &_verTitle;
@@ -84,6 +89,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMaxPitchAngleRad
 		);
 
+		Theme::apply(&_verMaxPitchTitle);
 		rows += &_verMaxPitchTitle;
 
 		// Angle increment
@@ -94,6 +100,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond
 		);
 
+		Theme::apply(&_verSMTAIRPSTitle);
 		rows += &_verSMTAIRPSTitle;
 
 		// Angle EMA filter factor
@@ -106,6 +113,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotPitchAngleEMAFilterFactorPerSecond
 		);
 
+		Theme::apply(&_verTAEMAFPSTitle);
 		rows += &_verTAEMAFPSTitle;
 
 		// Surface factor
@@ -116,6 +124,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMaxElevatorPercent
 		);
 
+		Theme::apply(&_verMaxElevatorFactorTitle);
 		rows += &_verMaxElevatorFactorTitle;
 
 		// PIDs
@@ -142,7 +151,8 @@ namespace pizda {
 
 		// ----------------------------- Longitudinal -----------------------------
 
-		rows += &_lonSeparator;
+		Theme::apply(&_logDivider);
+		rows += &_logDivider;
 
 		Theme::applyPageTitle(&_lonTitle);
 		rows += &_lonTitle;
@@ -155,6 +165,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMinThrottlePercent
 		);
 
+		Theme::apply(&_lonThrottleMinTitle);
 		rows += &_lonThrottleMinTitle;
 
 		// Max
@@ -165,6 +176,7 @@ namespace pizda {
 			RemoteSystemPacketType::autopilotMaxThrottlePercent
 		);
 
+		Theme::apply(&_lonThrottleMaxTitle);
 		rows += &_lonThrottleMaxTitle;
 
 		// PIDs

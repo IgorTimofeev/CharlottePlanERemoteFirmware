@@ -31,8 +31,9 @@ namespace pizda {
 
 		// ----------------------------- Calibration -----------------------------
 
-		// Separator
-		rows += &_calSeparator;
+		// Divider
+		Theme::apply(&_calDivider);
+		rows += &_calDivider;
 
 		// Title
 		Theme::applyPageTitle(&_calTitle);

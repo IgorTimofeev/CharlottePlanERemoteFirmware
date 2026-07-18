@@ -568,7 +568,7 @@ namespace pizda {
 			renderText("---", false);
 		};
 		
-		const auto renderSeparator = [renderer, &x, &bounds] {
+		const auto renderDivider = [renderer, &x, &bounds] {
 			renderer->strokeVerticalLine(Point(x - 1, bounds.getY()), PFD::flightModeAnnunciatorHeight, &Theme::sky2);
 		};
 		
@@ -585,7 +585,7 @@ namespace pizda {
 			renderMissingText();
 		}
 		
-		renderSeparator();
+		renderDivider();
 		
 		// Lateral
 		if (rc.getTransceiver().isConnected()) {
@@ -608,7 +608,7 @@ namespace pizda {
 			renderMissingText();
 		}
 		
-		renderSeparator();
+		renderDivider();
 		
 		// Vertical
 		if (rc.getTransceiver().isConnected()) {

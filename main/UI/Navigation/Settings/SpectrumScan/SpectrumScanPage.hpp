@@ -48,9 +48,9 @@ namespace pizda {
 			Titler frequencyStepTitle { "Step (KHz)", &frequencyStepTextField };
 
 			MarginTransform frequencyPresetsButtonMargin {};
-			Button frequencyPresetsButton {};
+			TextButton frequencyPresetsButton {};
 
-			Button confirmButton {};
+			TextButton confirmButton {};
 
 			void updateConfirmButtonText();
 	};

@@ -14,7 +14,7 @@ namespace pizda {
 	class Menu;
 	class MenuView;
 
-	class MenuTabButton : public Button {
+	class MenuTabButton : public TextButton {
 		public:
 			MenuTabButton(std::string_view text, const Route* route);
 

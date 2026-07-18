@@ -79,6 +79,6 @@ namespace pizda {
 			TextField _transmittingTimeOffset {};
 			Titler _transmittingTimeOffsetTitle { "TX time offset (us)", &_transmittingTimeOffset };
 
-			Button _confirmButton {};
+			TextButton _confirmButton {};
 	};
 }

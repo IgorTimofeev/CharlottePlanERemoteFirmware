@@ -77,7 +77,7 @@ namespace pizda {
 			LatLonRow _latLon {};
 			Titler _latLonTitle { "Latitude & longitude", &_latLon };
 
-			Button _confirmButton {};
+			TextButton _confirmButton {};
 
 			AddWaypointDialog(const GeoCoordinates& coordinates, const std::function<void()>& onConfirm) : _onConfirm(onConfirm) {
 				auto& rc = RC::getInstance();

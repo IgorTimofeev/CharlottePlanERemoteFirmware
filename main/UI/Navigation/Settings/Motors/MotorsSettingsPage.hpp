@@ -36,7 +36,7 @@ namespace pizda {
 
 			TextView _previewTextView {};
 
-			Button _confirmButton {};
+			TextButton _confirmButton {};
 
 			void tryParse(uint16_t& min, uint16_t& max) const;
 			void updatePreview();

@@ -11,6 +11,6 @@ namespace pizda {
 			explicit WaypointItemDialog(uint16_t waypointIndex);
 
 		private:
-			Button _removeButton {};
+			TextButton _removeButton {};
 	};
 }

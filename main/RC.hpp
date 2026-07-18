@@ -4,9 +4,7 @@
 #include <esp_adc/adc_oneshot.h>
 
 #include <YOBA/Core.hpp>
-#include <YOBA/Hardware/Displays/ILI9341Display.hpp>
-#include <YOBA/Hardware/TouchPanels/FT6336UTouchPanel.hpp>
-#include <YOBA/Hardware/Encoder.hpp>
+#include <YOBA/Hardware.hpp>
 #include <YOBA/Rendering.hpp>
 #include <YOBA/UI.hpp>
 
@@ -81,7 +79,7 @@ namespace pizda {
 			adc_oneshot_unit_handle_t _ADCOneshotUnit1 {};
 
 			ILI9341Display _display {};
-			RGB565TransactionalBufferedRenderer _renderer {};
+			RGB565BufferedRenderer _renderer {};
 			FT6336UTouchPanel _touchPanel {};
 
 			// Transceiver

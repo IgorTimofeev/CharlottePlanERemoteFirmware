@@ -13,7 +13,7 @@ namespace pizda {
 
 	class SelectorDialog;
 
-	class SelectorDialogItem : public Button {
+	class SelectorDialogItem : public TextButton {
 		public:
 			SelectorDialogItem(SelectorDialog* comboBoxDialog, const uint8_t index);
 

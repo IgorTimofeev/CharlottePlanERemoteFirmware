@@ -8,7 +8,7 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class WaypointButton : public Button {
+	class WaypointButton : public TextButton {
 		public:
 			explicit WaypointButton();
 			explicit WaypointButton(uint32_t waypointIndex);

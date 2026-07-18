@@ -35,7 +35,7 @@ namespace pizda {
 			ProgressBar _calProgressBar {};
 			TextView _calProgressText {};
 			
-			Button _calAccelAndGyroButton {};
-			Button _calMagButton {};
+			TextButton _calAccelAndGyroButton {};
+			TextButton _calMagButton {};
 	};
 }

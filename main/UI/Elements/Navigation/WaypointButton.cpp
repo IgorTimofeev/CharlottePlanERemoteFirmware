@@ -89,7 +89,7 @@ namespace pizda {
 
 		// Distance
 		char coordsText[14];
-		std::snprintf(coordsText, sizeof(coordsText), "%f nm" PRIi32, Math::round(_distanceNm, 1));
+		std::snprintf(coordsText, sizeof(coordsText), "%.1f nm", Math::round(_distanceNm, 1));
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 

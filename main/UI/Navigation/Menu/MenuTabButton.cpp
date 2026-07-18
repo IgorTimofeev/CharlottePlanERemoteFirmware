@@ -17,14 +17,14 @@ namespace pizda {
 	}
 
 	void MenuTabButton::onRender(Renderer* renderer, const Rectangle& bounds) {
-		Button::onRender(renderer, bounds);
+		TextButton::onRender(renderer, bounds);
 
 		// if (isChecked())
 		// 	renderer->strokeHorizontalLine(bounds.getBottomLeft(), bounds.getWidth(), &Theme::fg1);
 	}
 
 	void MenuTabButton::onClick() {
-		Button::onClick();
+		TextButton::onClick();
 
 		reinterpret_cast<Menu*>(getParent()->getParent()->getParent()->getParent())->setViewRoute(_route);
 	}

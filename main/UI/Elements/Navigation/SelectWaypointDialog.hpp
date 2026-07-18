@@ -45,7 +45,7 @@ namespace pizda {
 			WaypointButton _waypointButton {};
 			Titler _waypointTitle = { "Waypoint", &_waypointButton };
 
-			Button _confirmButton {};
+			TextButton _confirmButton {};
 
 			void updateVisualsFromWaypoint(uint16_t waypointIndex, const NavigationWaypointData& waypointData);
 	};

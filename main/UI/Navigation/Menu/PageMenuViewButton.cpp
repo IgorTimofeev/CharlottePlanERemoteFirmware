@@ -10,7 +10,7 @@ namespace pizda {
 	}
 
 	void PageMenuViewButton::onClick() {
-		Button::onClick();
+		TextButton::onClick();
 
 		reinterpret_cast<PagesMenuView*>(getMenuView())->setRoute(_route);
 	}

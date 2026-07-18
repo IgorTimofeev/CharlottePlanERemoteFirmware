@@ -77,10 +77,10 @@ namespace pizda {
 
 			static void setup();
 			static void updateColorScheme();
-			static void applyPrimary(Button* button);
-			static void applySecondary(Button* button);
-			static void applyCritical(Button* button);
-			static void applyPlaceholder(Button* button);
+			static void applyPrimary(TextButton* button);
+			static void applySecondary(TextButton* button);
+			static void applyCritical(TextButton* button);
+			static void applyPlaceholder(TextButton* button);
 			static void apply(Slider* slider);
 			static void apply(TextField* textField);
 			static void apply(ScrollView* scrollView);

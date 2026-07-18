@@ -6,7 +6,7 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class OpenMenuButton : public Button {
+	class OpenMenuButton : public TextButton {
 		public:
 			OpenMenuButton();
 

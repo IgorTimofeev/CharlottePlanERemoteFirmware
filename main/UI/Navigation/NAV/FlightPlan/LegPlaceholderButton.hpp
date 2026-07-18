@@ -6,7 +6,7 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class LegPlaceholderButton : public Button {
+	class LegPlaceholderButton : public TextButton {
 		public:
 			LegPlaceholderButton();
 

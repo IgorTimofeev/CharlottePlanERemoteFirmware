@@ -63,7 +63,7 @@ namespace pizda {
 
 		// Distance
 		char coordsText[12];
-		std::snprintf(coordsText, sizeof(coordsText), "%f nm", Math::round(getDistanceNm(), 1));
+		std::snprintf(coordsText, sizeof(coordsText), "%.1f nm", Math::round(getDistanceNm(), 1));
 
 		x = bounds.getX2() - 10 - Theme::fontNormal.getWidth(coordsText);
 

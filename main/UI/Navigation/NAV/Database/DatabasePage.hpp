@@ -29,7 +29,7 @@ namespace pizda {
 
 			RelativeStackLayout _searchAndAddRow {};
 			TextField _searchTextField {};
-			Button _addButton {};
+			TextButton _addButton {};
 
 			StackLayout _itemsLayout {};
 	};

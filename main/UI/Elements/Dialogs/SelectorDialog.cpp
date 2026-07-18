@@ -11,7 +11,7 @@ namespace pizda {
 	}
 
 	void SelectorDialogItem::onClick() {
-		Button::onClick();
+		TextButton::onClick();
 
 		Application::getCurrent()->invokeLater([this] {
 			_comboBoxDialog->getOnItemSelected()(_index);

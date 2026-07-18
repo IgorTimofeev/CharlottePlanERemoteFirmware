@@ -100,7 +100,7 @@ namespace pizda {
 			TextField DTextField {};
 			Titler DTitle { "D", &DTextField };
 
-			Button _confirmButton {};
+			TextButton _confirmButton {};
 
 			void updateChart() {
 				chart.setCoefficients({

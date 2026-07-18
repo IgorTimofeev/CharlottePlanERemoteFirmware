@@ -15,7 +15,7 @@ namespace pizda {
 		setAlignment(Alignment::center, Alignment::end);
 		setSize(Size(size));
 		setCornerRadius(size / 2 - 1);
-		setContentMargin(Margin(0, 0, 0, 5));
+		setTextMargin(Margin(0, 0, 0, 5));
 
 		setDefaultBackgroundColor(&Theme::bg2);
 		setDefaultBorderColor(&Theme::bg3);

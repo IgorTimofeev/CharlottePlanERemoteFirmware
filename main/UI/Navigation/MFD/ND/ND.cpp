@@ -118,7 +118,7 @@ namespace pizda {
 		});
 	}
 
-	void ND::addGovnoButton(Button* button, const std::function<void()>& onClick) {
+	void ND::addGovnoButton(TextButton* button, const std::function<void()>& onClick) {
 		button->setSize(Size(PFD::speedWidth, 20));
 		button->setCornerRadius(0);
 

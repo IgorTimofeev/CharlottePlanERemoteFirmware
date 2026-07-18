@@ -178,7 +178,7 @@ namespace pizda {
 		text->setTextColor(&Theme::fg4);
 	}
 
-	void Theme::applyPrimary(Button* button) {
+	void Theme::applyPrimary(TextButton* button) {
 		button->setHeight(elementHeight);
 		button->setCornerRadius(cornerRadius);
 
@@ -191,7 +191,7 @@ namespace pizda {
 		button->setFont(&Theme::fontNormal);
 	}
 
-	void Theme::applySecondary(Button* button) {
+	void Theme::applySecondary(TextButton* button) {
 		button->setHeight(elementHeight);
 		button->setCornerRadius(cornerRadius);
 
@@ -204,7 +204,7 @@ namespace pizda {
 		button->setFont(&Theme::fontNormal);
 	}
 
-	void Theme::applyCritical(Button* button) {
+	void Theme::applyCritical(TextButton* button) {
 		button->setHeight(elementHeight);
 		button->setCornerRadius(cornerRadius);
 
@@ -217,7 +217,7 @@ namespace pizda {
 		button->setFont(&Theme::fontNormal);
 	}
 
-	void Theme::applyPlaceholder(Button* button) {
+	void Theme::applyPlaceholder(TextButton* button) {
 		button->setHeight(elementHeight);
 		button->setCornerRadius(cornerRadius);
 

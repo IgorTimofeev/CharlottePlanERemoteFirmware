@@ -10,8 +10,8 @@ namespace pizda {
 			NDActionButtonDialog(NDScene* scene);
 
 		private:
-			Button _addWaypointButton {};
-			Button _setHomeButton {};
+			TextButton _addWaypointButton {};
+			TextButton _setHomeButton {};
 	};
 
 	class ND : public Layout {
@@ -24,13 +24,13 @@ namespace pizda {
 
 			StackLayout _buttonRows {};
 
-			Button _splitButton {};
-			Button _viewModeButton {};
-			Button _latLongButton {};
-			Button _actionButton {};
+			TextButton _splitButton {};
+			TextButton _viewModeButton {};
+			TextButton _latLongButton {};
+			TextButton _actionButton {};
 
 			void updateViewModeButtonText();
 			void updateSplitButtonText();
-			void addGovnoButton(Button* button, const std::function<void()>& onClick);
+			void addGovnoButton(TextButton* button, const std::function<void()>& onClick);
 	};
 }

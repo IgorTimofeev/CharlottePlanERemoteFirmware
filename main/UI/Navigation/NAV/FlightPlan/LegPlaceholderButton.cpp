@@ -14,7 +14,7 @@ namespace pizda {
 	}
 
 	void LegPlaceholderButton::onClick() {
-		Button::onClick();
+		TextButton::onClick();
 
 		FlightPlanItemDialog::showWaypointSelectionDialogToInsertAt(getText(), RC::getInstance().getNavigationData().flightPlan.legs.size());
 	}

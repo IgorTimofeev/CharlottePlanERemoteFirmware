@@ -16,11 +16,11 @@ namespace pizda {
 			);
 
 		private:
-			Button _activateLegButton {};
-			Button _editButton {};
-			Button _insertBeforeButton {};
-			Button _insertAfterButton {};
-			Button _removeButton {};
+			TextButton _activateLegButton {};
+			TextButton _editButton {};
+			TextButton _insertBeforeButton {};
+			TextButton _insertAfterButton {};
+			TextButton _removeButton {};
 
 			void insertOnButtonClick(const std::string& title, uint16_t insertAt);
 	};

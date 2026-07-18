@@ -13,7 +13,7 @@ namespace pizda {
 
 	class MenuView;
 
-	class MenuViewButton : public Button {
+	class MenuViewButton : public TextButton {
 		public:
 			MenuViewButton(const Image* image, std::string_view text);
 

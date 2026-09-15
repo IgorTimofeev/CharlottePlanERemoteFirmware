@@ -18,30 +18,9 @@ namespace pizda {
 
 			// -------------------------------- General --------------------------------
 
-			TextAndSwitch _darkTheme { "Dark theme" };
+			TextAndSwitch _generalDarkTheme { "Dark theme" };
 			TextAndSwitch _generalAudioFeedback { "Audio feedback" };
 			TextAndSwitch _generalDataInterpolation { "Data interpolation" };
 			TextAndSwitch _generalDebugOverlay { "Debug overlay" };
-			Divider _generalDivider {};
-
-			// -------------------------------- PFD --------------------------------
-
-			TextView _PFDTitle {};
-
-			// FOV
-			Slider _PFDFOVSlider {};
-			Titler _PFDFOVTitle { "Field of view", &_PFDFOVSlider };
-
-			// Waypoint labels
-			TextAndSwitch _PFDWaypointLabels { "Waypoint labels" };
-
-			Divider _PFDDivider {};
-
-			// -------------------------------- ND --------------------------------
-
-			TextView _NDTitle {};
-
-			// Earth grid
-			TextAndSwitch _NDEarthGrid { "Earth grid" };
 	};
 }

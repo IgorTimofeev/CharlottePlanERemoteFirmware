@@ -39,6 +39,6 @@ namespace pizda {
 
 			MarginTransform _radioMargin {};
 			RadioIndicator _radio {};
-			ToolbarSection _radioSection { "SIG", &_radio };
+			ToolbarSection _radioSection { "RAD", &_radio };
 	};
 }

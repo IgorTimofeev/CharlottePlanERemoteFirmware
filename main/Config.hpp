@@ -115,20 +115,13 @@ namespace pizda {
 					constexpr static gpio_num_t b = GPIO_NUM_25;
 					constexpr static gpio_num_t sw = GPIO_NUM_27;
 			};
-	
+
 			/**
-			Some thoughts about measuring voltage & charge in percents using ADC:
-	
-			1) Safe voltage range for Li-ion 18650 battery is [2.5; 4.2]V, and for 2x batteries
-			in series it escalates to [5.0; 8.4]V. But let's give it some safety margins like
-			[6.0; 8.4]V, because of tons of trash batteries on market
-	
-			2) In theory ADC should receive up to 3.3V from GPIO, but Espressif docs says that ADC
-			configured with 12 dB attenuation can accurately measure only [0.15; 2.45]V on ESP32
+			Espressif docs says that ADC configured with 12 dB attenuation can accurately measure only [0.15; 2.45] V on ESP32
 			See: https://docs.espressif.com/projects/esp-idf/en/release-v4.3/esp32/api-reference/peripherals/adc.html
-	
-			Based on this shit & resistors I have, the voltage divider will be 1M / 330K,
-			giving final input range of [1.488; 2.084]V
+
+			Based on this shit & resistors I have, the voltage divider will be 330K / 1M,
+			giving final input range of [1.488; 2.084] V
 			*/
 			class battery {
 				public:
@@ -139,7 +132,7 @@ namespace pizda {
 							constexpr static uint32_t voltageMin = 2 * 3'000;
 							constexpr static uint32_t voltageMax = 2 * 4'200;
 
-							constexpr static uint32_t dividerResistanceR1 = 1000'000;
+							constexpr static uint32_t dividerResistanceR1 = 1'000'000;
 							constexpr static uint32_t dividerResistanceR2 = 330'000;
 					};
 

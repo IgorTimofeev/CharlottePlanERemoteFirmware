@@ -366,6 +366,7 @@ namespace pizda {
 
 	void PFD::renderSpeed(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
+		auto& settings = rc.getSettings();
 
 		const auto oldClip = renderer->pushClip(bounds);
 
@@ -395,39 +396,39 @@ namespace pizda {
 			barX,
 			speedBarSize,
 			0,
-			speedFlapsMin,
+			settings.personalization.MFD.PFD.speedRanges.VS0,
 			&Theme::red
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			speedFlapsMin,
-			speedFlapsMax,
+			settings.personalization.MFD.PFD.speedRanges.VS0,
+			settings.personalization.MFD.PFD.speedRanges.VFE,
 			&Theme::fg1
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			speedSmoothMin,
-			speedSmoothMax,
+			settings.personalization.MFD.PFD.speedRanges.VFE,
+			settings.personalization.MFD.PFD.speedRanges.VNO,
 			&Theme::green2
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			speedTurbulentMin,
-			speedTurbulentMax,
+			settings.personalization.MFD.PFD.speedRanges.VNO,
+			settings.personalization.MFD.PFD.speedRanges.VNE,
 			&Theme::yellow
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			speedStructuralMin,
-			speedStructuralMax,
+			settings.personalization.MFD.PFD.speedRanges.VNE,
+			settings.personalization.MFD.PFD.speedRanges.VNE + 100,
 			&Theme::red
 		);
 

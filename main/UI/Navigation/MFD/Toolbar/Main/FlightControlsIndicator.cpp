@@ -11,10 +11,15 @@ namespace pizda {
 		auto& rc = RC::getInstance();
 
 		const auto center = bounds.getCenter();
-		const auto radius = bounds.getWidth() / 2 - 2;
-		
-		renderer->strokeCircle(center, radius, &Theme::fg7);
-		
+
+		// Circle
+		const auto circleRadius = bounds.getWidth() / 2 - 2;
+		renderer->strokeCircle(center, circleRadius, &Theme::fg7);
+
+		// Levers
+		const auto arcMeasureRad = rc.getAxes().getLeverRight().getFilteredValueFloat() * Math::pi;
+		renderer->strokeArc(center, circleRadius, Math::halfPi - arcMeasureRad, arcMeasureRad, &Theme::red);
+
 		// Blackout
 		renderer->fillRectangle(Rectangle(bounds.getX(), center.getY() - 1, bounds.getWidth(), 3), &Theme::bg1);
 		renderer->fillRectangle(Rectangle(center.getX() - 1, bounds.getY(), 3, bounds.getHeight()), &Theme::bg1);
@@ -45,15 +50,6 @@ namespace pizda {
 			),
 			std::abs(ring),
 			&Theme::yellow
-		);
-		
-		// Levers
-		constexpr static uint8_t maxLeverHeight = 8;
-
-		renderer->strokeVerticalLine(
-			Point(bounds.getX2(), center.getY()),
-			rc.getAxes().getLeverRight().getFilteredValueUint8() * maxLeverHeight / 0xFF,
-			&Theme::bad1
 		);
 	}
 }

@@ -35,18 +35,6 @@ namespace pizda {
 			
 			constexpr static uint16_t speedBarSize = 2;
 
-			constexpr static uint16_t speedFlapsMin = 7;
-			constexpr static uint16_t speedFlapsMax = speedFlapsMin + 10;
-
-			constexpr static uint16_t speedSmoothMin = speedFlapsMax;
-			constexpr static uint16_t speedSmoothMax = speedSmoothMin + 10;
-
-			constexpr static uint16_t speedTurbulentMin = speedSmoothMax;
-			constexpr static uint16_t speedTurbulentMax = speedTurbulentMin + 10;
-
-			constexpr static uint16_t speedStructuralMin = speedTurbulentMax;
-			constexpr static uint16_t speedStructuralMax = speedStructuralMin * 4;
-
 			// Speed bugs
 			constexpr static uint8_t speedBugOffset = 3;
 			constexpr static uint8_t speedBugTextOffset = 1;

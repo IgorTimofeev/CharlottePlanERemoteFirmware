@@ -9,21 +9,21 @@ namespace pizda {
 
 		// ----------------------------- General -----------------------------
 
-		title.setText("General");
+		title.setText("Personalization");
 
 		// Dark theme
-		Theme::apply(&_darkTheme);
+		Theme::apply(&_generalDarkTheme);
 
-		_darkTheme.switch_.setActive(settings.personalization.darkTheme);
+		_generalDarkTheme.switch_.setActive(settings.personalization.darkTheme);
 
-		_darkTheme.switch_.setOnIsActiveChanged([this, &settings] {
-			settings.personalization.darkTheme = _darkTheme.switch_.isActive();
+		_generalDarkTheme.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.darkTheme = _generalDarkTheme.switch_.isActive();
 			settings.personalization.writeLater();
 
 			Theme::updateColorScheme();
 		});
 
-		rows += &_darkTheme;
+		rows += &_generalDarkTheme;
 
 		// Audio feedback
 		Theme::apply(&_generalAudioFeedback);
@@ -62,68 +62,6 @@ namespace pizda {
 		});
 
 		rows += &_generalDebugOverlay;
-		
-		// Divider
-		Theme::apply(&_generalDivider);
-		rows += &_generalDivider;
-		
-		// -------------------------------- PFD --------------------------------
-
-		Theme::applyPageTitle(&_PFDTitle);
-		_PFDTitle.setText("PFD");
-		rows += &_PFDTitle;
-				
-		// FOV
-		Theme::apply(&_PFDFOVSlider);
-		_PFDFOVSlider.setMinimumValue(20);
-		_PFDFOVSlider.setMaximumValue(120);
-		_PFDFOVSlider.setValue(settings.personalization.MFD.PFD.FOV);
-
-		_PFDFOVSlider.setTickCount(10);
-		_PFDFOVSlider.setBigTickStep(5);
-		_PFDFOVSlider.setTickLabelBuilder(Slider::int32TickLabelBuilder);
-
-		_PFDFOVSlider.setOnValueChanged([this, &settings] {
-			settings.personalization.MFD.PFD.FOV = _PFDFOVSlider.getValue();
-			settings.personalization.writeLater();
-		});
-
-		Theme::apply(&_PFDFOVTitle);
-		rows += &_PFDFOVTitle;
-
-		// Waypoint labels
-		Theme::apply(&_PFDWaypointLabels);
-
-		_PFDWaypointLabels.switch_.setActive(settings.personalization.MFD.PFD.waypointLabels);
-
-		_PFDWaypointLabels.switch_.setOnIsActiveChanged([this, &settings] {
-			settings.personalization.MFD.PFD.waypointLabels = _PFDWaypointLabels.switch_.isActive();
-			settings.personalization.writeLater();
-		});
-
-		rows += &_PFDWaypointLabels;
-
-		// Divider
-		Theme::apply(&_PFDDivider);
-		rows += &_PFDDivider;
-
-		// -------------------------------- ND --------------------------------
-
-		Theme::applyPageTitle(&_NDTitle);
-		_NDTitle.setText("ND");
-		rows += &_NDTitle;
-
-		// Earth grid
-		Theme::apply(&_NDEarthGrid);
-
-		_NDEarthGrid.switch_.setActive(settings.personalization.MFD.ND.earth);
-		
-		_NDEarthGrid.switch_.setOnIsActiveChanged([this, &settings] {
-			settings.personalization.MFD.ND.earth = _NDEarthGrid.switch_.isActive();
-			settings.personalization.writeLater();
-		});
-		
-		rows += &_NDEarthGrid;
 
 		// Initialization
 		scrollView.setVerticalPosition(_scrollPosition);

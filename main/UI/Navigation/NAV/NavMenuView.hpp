@@ -20,7 +20,7 @@ namespace pizda {
 
 			std::array<PageMenuViewButton, 2> _buttons {
 				PageMenuViewButton(&Images::menuIconFlightPlan, "Flight plan", &Routes::navFlightPlan),
-				PageMenuViewButton(&Images::menuIconWaypointsImage, "Database", &Routes::navWaypoints)
+				PageMenuViewButton(&Images::menuIconWaypoints, "Database", &Routes::navWaypoints)
 			};
 	};
 }

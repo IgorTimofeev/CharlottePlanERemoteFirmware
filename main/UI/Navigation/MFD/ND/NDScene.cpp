@@ -266,8 +266,8 @@ namespace pizda {
 				renderer->strokeArc(
 					pivot,
 					circleRadius,
-					(90 - compassArcViewportHalfDeg) * 255 / 360,
-					(90 + compassArcViewportHalfDeg) * 255 / 360,
+					Math::toRadians(90 - compassArcViewportHalfDeg),
+					Math::toRadians(compassArcViewportDeg),
 					&Theme::fg1
 				);
 			}

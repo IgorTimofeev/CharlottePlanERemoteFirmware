@@ -41,6 +41,8 @@ namespace pizda {
 			static RGB565Color bad1;
 			static RGB565Color bad2;
 			static RGB565Color bad3;
+			// White
+			static RGB565Color white;
 			// Red
 			static RGB565Color red;
 			// Green

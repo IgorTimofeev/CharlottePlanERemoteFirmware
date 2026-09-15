@@ -8,7 +8,31 @@ namespace pizda {
 		auto& rc = RC::getInstance();
 		auto& settings = rc.getSettings();
 		
-		title.setText("PFD");
+		title.setText("MFD");
+
+		// Waypoint labels
+		Theme::apply(&_PFDWaypointLabels);
+
+		_PFDWaypointLabels.switch_.setActive(settings.personalization.MFD.PFD.waypointLabels);
+
+		_PFDWaypointLabels.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.MFD.PFD.waypointLabels = _PFDWaypointLabels.switch_.isActive();
+			settings.personalization.writeLater();
+		});
+
+		rows += &_PFDWaypointLabels;
+
+		// Earth grid
+		Theme::apply(&_NDEarthGrid);
+
+		_NDEarthGrid.switch_.setActive(settings.personalization.MFD.ND.earth);
+
+		_NDEarthGrid.switch_.setOnIsActiveChanged([this, &settings] {
+			settings.personalization.MFD.ND.earth = _NDEarthGrid.switch_.isActive();
+			settings.personalization.writeLater();
+		});
+
+		rows += &_NDEarthGrid;
 
 		// FOV
 		Theme::apply(&_PFDFOVSlider);
@@ -28,59 +52,96 @@ namespace pizda {
 		Theme::apply(&_PFDFOVTitle);
 		rows += &_PFDFOVTitle;
 
-		// Waypoint labels
-		Theme::apply(&_PFDWaypointLabels);
-
-		_PFDWaypointLabels.switch_.setActive(settings.personalization.MFD.PFD.waypointLabels);
-
-		_PFDWaypointLabels.switch_.setOnIsActiveChanged([this, &settings] {
-			settings.personalization.MFD.PFD.waypointLabels = _PFDWaypointLabels.switch_.isActive();
-			settings.personalization.writeLater();
-		});
-
-		rows += &_PFDWaypointLabels;
-
 		// Divider
 		Theme::apply(&_PFDDivider);
 		rows += &_PFDDivider;
 
-		// -------------------------------- Speed --------------------------------
+		// -------------------------------- Speed tape --------------------------------
 
 		// Title
-		setupPageTitle(&_speedTitle, "Speed ranges");
+		setupPageTitle(&_speedTapeTitle, "Speed tape");
 
-		// Ranges
-		setupUint16TextField(_speedVS0, &settings.personalization.MFD.PFD.speedRanges.VS0);
-		setupTitler(&_speedVS0Title);
+		// Tick steps
+		setupUint8TextField(_speedTapeMinorTickStep, &settings.personalization.MFD.PFD.speed.minorTickStepKt);
+		setupTitler(&_speedTapeMinorTickStepTitle);
+		rows += &_speedTapeMinorTickStepTitle;
 
-		setupUint16TextField(_speedVFE, &settings.personalization.MFD.PFD.speedRanges.VFE);
-		setupTitler(&_speedVFETitle);
-
-		setupUint16TextField(_speedVNO, &settings.personalization.MFD.PFD.speedRanges.VNO);
-		setupTitler(&_speedVNOTitle);
-
-		setupUint16TextField(_speedVNE, &settings.personalization.MFD.PFD.speedRanges.VNE);
-		setupTitler(&_speedVNETitle);
+		setupUint8TextField(_speedTapeMajorTickStep, &settings.personalization.MFD.PFD.speed.majorTickStepKt);
+		setupTitler(&_speedTapeMajorTickStepTitle);
+		rows += &_speedTapeMajorTickStepTitle;
 
 		// Divider
-		Theme::apply(&_speedDivider);
-		rows += &_speedDivider;
+		Theme::apply(&_speedTapeDivider);
+		rows += &_speedTapeDivider;
 
-		// -------------------------------- ND --------------------------------
+		// -------------------------------- Speed ranges --------------------------------
 
-		setupPageTitle(&_NDTitle, "ND");
+		// Title
+		setupPageTitle(&_speedRangesTitle, "Speed bands");
 
-		// Earth grid
-		Theme::apply(&_NDEarthGrid);
+		// Ranges
+		_speedRangesColumns.setGap(10);
+		_speedRangesColumns.setOrientation(Orientation::horizontal);
 
-		_NDEarthGrid.switch_.setActive(settings.personalization.MFD.ND.earth);
+		// Band rows
+		_speedRangesColumns.setAutoSize(&_speedRangesBandRows);
+		_speedRangesColumns += &_speedRangesBandRows;
 
-		_NDEarthGrid.switch_.setOnIsActiveChanged([this, &settings] {
-			settings.personalization.MFD.ND.earth = _NDEarthGrid.switch_.isActive();
-			settings.personalization.writeLater();
-		});
+		rows += &_speedRangesColumns;
 
-		rows += &_NDEarthGrid;
+		// Text field rows
+		_speedRangesTextFieldRows.setGap(10);
+		_speedRangesColumns += &_speedRangesTextFieldRows;
+
+		// Vne
+		setupSpeedBand(_speedRangesVNEBand, &Theme::red);
+		_speedRangesBandRows.setAutoSize(&_speedRangesVNEBand);
+		_speedRangesVNEBand.setHeight(15 + Theme::elementHeight / 2);
+
+		setupUint16TextField(_speedRangesVNETextField, &settings.personalization.MFD.PFD.speed.ranges.VNE);
+		setupTitler(&_speedRangesVNETitle);
+		_speedRangesTextFieldRows += &_speedRangesVNETitle;
+
+		// Vno
+		setupSpeedBand(_speedRangesVNOBand, &Theme::yellow);
+		setupUint16TextField(_speedRangesVNOTextField, &settings.personalization.MFD.PFD.speed.ranges.VNO);
+		setupTitler(&_speedRangesVNOTitle);
+		_speedRangesTextFieldRows += &_speedRangesVNOTitle;
+
+		// Vfe
+		setupSpeedBand(_speedRangesVFEBand, &Theme::green1);
+		setupUint16TextField(_speedRangesVFETextField, &settings.personalization.MFD.PFD.speed.ranges.VFE);
+		setupTitler(&_speedRangesVFETitle);
+		_speedRangesTextFieldRows += &_speedRangesVFETitle;
+
+		// Vs0
+		setupSpeedBand(_speedRangesVS0Band, &Theme::white);
+		setupUint16TextField(_speedRangesVS0TextField, &settings.personalization.MFD.PFD.speed.ranges.VS0);
+		setupTitler(&_speedRangesVS0Title);
+		_speedRangesTextFieldRows += &_speedRangesVS0Title;
+
+		// Pre Vs0
+		setupSpeedBand(_speedRangesPreVS0Band, &Theme::red);
+		_speedRangesBandRows.setAutoSize(&_speedRangesPreVS0Band);
+		_speedRangesPreVS0Band.setHeight(Theme::elementHeight / 2);
+
+		// Divider
+		Theme::apply(&_speedRangesDivider);
+		rows += &_speedRangesDivider;
+
+		// -------------------------------- Altitude tape --------------------------------
+
+		// Title
+		setupPageTitle(&_altitudeTapeTitle, "Altitude tape");
+
+		// Tick steps
+		setupUint8TextField(_altitudeTapeMinorTickStep, &settings.personalization.MFD.PFD.altitude.minorTickStepFt);
+		setupTitler(&_altitudeTapeMinorTickStepTitle);
+		rows += &_altitudeTapeMinorTickStepTitle;
+
+		setupUint8TextField(_altitudeTapeMajorTickStep, &settings.personalization.MFD.PFD.altitude.majorTickStepFt);
+		setupTitler(&_altitudeTapeMajorTickStepTitle);
+		rows += &_altitudeTapeMajorTickStepTitle;
 
 		// Initialization
 		scrollView.setVerticalPosition(_scrollPosition);
@@ -100,7 +161,6 @@ namespace pizda {
 
 	void MFDSettingsPage::setupTitler(Titler* titler) {
 		Theme::apply(titler);
-		rows += titler;
 	}
 
 	void MFDSettingsPage::setupAnyTextField(TextField& textField, const std::string_view& text, const std::function<void()>& onEnter) {
@@ -113,6 +173,21 @@ namespace pizda {
 
 			onEnter();
 		});
+	}
+
+	void MFDSettingsPage::setupUint8TextField(TextField& textField, uint8_t* value) {
+		setupAnyTextField(
+			textField,
+			std::to_string(*value),
+			[&textField, value] {
+				auto& rc = RC::getInstance();
+
+				*value = std::max<uint8_t>(0, Text::tryParseInt32Or(textField.getText(), 0));
+				rc.getSettings().personalization.writeLater();
+			}
+		);
+
+		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
 	}
 
 	void MFDSettingsPage::setupUint16TextField(TextField& textField, uint16_t* value) {
@@ -128,5 +203,12 @@ namespace pizda {
 		);
 
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+	}
+
+	void MFDSettingsPage::setupSpeedBand(RectangularShape& band, const Color* color) {
+		band.setWidth(2);
+		band.setFillColor(color);
+
+		_speedRangesBandRows += &band;
 	}
 }

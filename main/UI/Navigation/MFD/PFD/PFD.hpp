@@ -28,9 +28,7 @@ namespace pizda {
 			// Speed
 			constexpr static uint8_t speedWidth = 24;
 			constexpr static uint8_t speedStepPixels = 9;
-			constexpr static uint16_t speedStepUnits = 1;
-			constexpr static uint16_t speedStepUnitsBig = 5;
-			
+
 			constexpr static uint8_t speedMaximumDigits = 3;
 			
 			constexpr static uint16_t speedBarSize = 2;
@@ -47,8 +45,6 @@ namespace pizda {
 
 			// Altitude
 			constexpr static uint8_t altitudeWidth = 26;
-			constexpr static uint16_t altitudeStepUnits = 50;
-			constexpr static uint16_t altitudeStepUnitsBig = 250;
 			constexpr static uint8_t altitudeStepPixels = 8;
 			
 			constexpr static uint8_t altitudeMaximumDigits = 4;

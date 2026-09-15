@@ -378,8 +378,8 @@ namespace pizda {
 		const auto barX = bounds.getX2() + 1 - speedBarSize;
 
 		const auto renderBar = [&](const int32_t x, const uint16_t width, const uint16_t fromSpeed, const uint16_t toSpeed, const Color* color) {
-			const int32_t fromY = centerY - static_cast<int32_t>((static_cast<float>(fromSpeed) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(speedStepUnits));
-			const int32_t height = (toSpeed - fromSpeed) * speedStepPixels / speedStepUnits;
+			const int32_t fromY = centerY - static_cast<int32_t>((static_cast<float>(fromSpeed) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt));
+			const int32_t height = (toSpeed - fromSpeed) * speedStepPixels / settings.personalization.MFD.PFD.speed.minorTickStepKt;
 
 			renderer->fillRectangle(
 				Rectangle(
@@ -396,44 +396,44 @@ namespace pizda {
 			barX,
 			speedBarSize,
 			0,
-			settings.personalization.MFD.PFD.speedRanges.VS0,
+			settings.personalization.MFD.PFD.speed.ranges.VS0,
 			&Theme::red
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speedRanges.VS0,
-			settings.personalization.MFD.PFD.speedRanges.VFE,
-			&Theme::fg1
+			settings.personalization.MFD.PFD.speed.ranges.VS0,
+			settings.personalization.MFD.PFD.speed.ranges.VFE,
+			&Theme::white
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speedRanges.VFE,
-			settings.personalization.MFD.PFD.speedRanges.VNO,
+			settings.personalization.MFD.PFD.speed.ranges.VFE,
+			settings.personalization.MFD.PFD.speed.ranges.VNO,
 			&Theme::green2
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speedRanges.VNO,
-			settings.personalization.MFD.PFD.speedRanges.VNE,
+			settings.personalization.MFD.PFD.speed.ranges.VNO,
+			settings.personalization.MFD.PFD.speed.ranges.VNE,
 			&Theme::yellow
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speedRanges.VNE,
-			settings.personalization.MFD.PFD.speedRanges.VNE + 100,
+			settings.personalization.MFD.PFD.speed.ranges.VNE,
+			settings.personalization.MFD.PFD.speed.ranges.VNE + 100,
 			&Theme::red
 		);
 
 		// Lines
-		const float snapped = rc.getAircraftData().computed.airspeedKt / static_cast<float>(speedStepUnits);
+		const float snapped = rc.getAircraftData().computed.airspeedKt / static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt);
 		const float snappedInteger = std::floorf(snapped);
 		const float snappedFractional = snapped - snappedInteger;
 
@@ -441,12 +441,12 @@ namespace pizda {
 		const auto altitudeYFullLines = static_cast<int32_t>(std::ceil(static_cast<float>(y) / static_cast<float>(speedStepPixels)));
 		y = y - altitudeYFullLines * speedStepPixels;
 
-		int32_t lineValue = static_cast<int32_t>(snappedInteger + 1) * speedStepUnits + altitudeYFullLines * speedStepUnits;
+		int32_t lineValue = static_cast<int32_t>(snappedInteger + 1) * settings.personalization.MFD.PFD.speed.minorTickStepKt + altitudeYFullLines * settings.personalization.MFD.PFD.speed.minorTickStepKt;
 
 		const Color* lineColor = &Theme::fg3;
 
 		do {
-			const auto isBig = lineValue % speedStepUnitsBig == 0;
+			const auto isBig = lineValue % settings.personalization.MFD.PFD.speed.majorTickStepKt == 0;
 
 			if (isBig) {
 				// Line
@@ -481,7 +481,7 @@ namespace pizda {
 				);
 			}
 
-			lineValue -= speedStepUnits;
+			lineValue -= settings.personalization.MFD.PFD.speed.minorTickStepKt;
 			y += speedStepPixels;
 		}
 		while (y <= bounds.getY2() && lineValue >= 0);
@@ -491,7 +491,7 @@ namespace pizda {
 			renderer,
 			bounds.getX2() - speedBarSize - lineSizeBig,
 			centerY,
-			speedStepUnits,
+			settings.personalization.MFD.PFD.speed.minorTickStepKt,
 			speedStepPixels,
 			rc.getAircraftData().computed.airspeedTrendKt
 		);
@@ -501,7 +501,7 @@ namespace pizda {
 			renderer,
 			bounds,
 			centerY,
-			speedStepUnits,
+			settings.personalization.MFD.PFD.speed.minorTickStepKt,
 			speedStepPixels,
 			rc.getAircraftData().computed.airspeedKt,
 			rc.getSettings().flightModeSelection.speedKt,
@@ -553,7 +553,7 @@ namespace pizda {
 		for (const auto& bug : speedBugs) {
 			const auto& bugBounds = Rectangle(
 				bounds.getX2() + 1 + speedBugOffset + speedBugTriangleWidth,
-				centerY - static_cast<int32_t>((static_cast<float>(bug.getValue()) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(speedStepUnits)),
+				centerY - static_cast<int32_t>((static_cast<float>(bug.getValue()) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt)),
 				Theme::fontSmall.getWidth(bug.getName()) + speedBugTextOffset * 2,
 				Theme::fontSmall.getLineHeight() + speedBugTextOffset * 2
 			);
@@ -584,6 +584,7 @@ namespace pizda {
 
 	void PFD::renderAltitude(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
+		auto& settings = rc.getSettings();
 
 		const auto centerY = bounds.getYCenter();
 		auto x = bounds.getX();
@@ -592,7 +593,7 @@ namespace pizda {
 		renderer->fillRectangle(bounds, &Theme::bg1);
 
 		const float altitude = rc.getAircraftData().computed.altitudeFt;
-		const float snapped = altitude / static_cast<float>(altitudeStepUnits);
+		const float snapped = altitude / static_cast<float>(settings.personalization.MFD.PFD.altitude.minorTickStepFt);
 		const float snappedInteger = std::floorf(snapped);
 		const float snappedFractional = snapped - snappedInteger;
 
@@ -600,12 +601,14 @@ namespace pizda {
 		const auto yFullLines = static_cast<int32_t>(std::ceilf(static_cast<float>(y) / static_cast<float>(altitudeStepPixels)));
 		y = y - yFullLines * altitudeStepPixels;
 
-		int32_t lineValue = static_cast<int32_t>(snappedInteger + 1) * altitudeStepUnits + yFullLines * altitudeStepUnits;
+		int32_t lineValue =
+			static_cast<int32_t>(snappedInteger + 1) * settings.personalization.MFD.PFD.altitude.minorTickStepFt
+			+ yFullLines * settings.personalization.MFD.PFD.altitude.minorTickStepFt;
 
 		const Color* lineColor = &Theme::fg3;
 
 		do {
-			const auto isBig = lineValue % altitudeStepUnitsBig == 0;
+			const auto isBig = lineValue % settings.personalization.MFD.PFD.altitude.majorTickStepFt == 0;
 
 			if (isBig) {
 				renderer->strokeHorizontalLine(
@@ -630,7 +633,7 @@ namespace pizda {
 				);
 			}
 
-			lineValue -= altitudeStepUnits;
+			lineValue -= settings.personalization.MFD.PFD.altitude.minorTickStepFt;
 			y += altitudeStepPixels;
 		} while (y < bounds.getY2() && lineValue >= 0);
 
@@ -677,7 +680,7 @@ namespace pizda {
 			renderer,
 			bounds.getX() + lineSizeBig,
 			centerY,
-			altitudeStepUnits,
+			settings.personalization.MFD.PFD.altitude.minorTickStepFt,
 			altitudeStepPixels,
 			rc.getAircraftData().computed.altitudeTrendFt
 		);
@@ -695,7 +698,7 @@ namespace pizda {
 				- static_cast<int32_t>(
 					(rc.getSettings().flightModeSelection.minimumAltitudeFt- altitude)
 					* static_cast<float>(altitudeStepPixels)
-					/ static_cast<float>(altitudeStepUnits)
+					/ static_cast<float>(settings.personalization.MFD.PFD.altitude.minorTickStepFt)
 				);
 
 			// Arrow
@@ -731,7 +734,7 @@ namespace pizda {
 						- altitude
 					)
 					* static_cast<float>(altitudeStepPixels)
-					/ static_cast<float>(altitudeStepUnits)
+					/ static_cast<float>(settings.personalization.MFD.PFD.altitude.minorTickStepFt)
 				);
 
 			// Arrow
@@ -759,7 +762,7 @@ namespace pizda {
 			renderer,
 			bounds,
 			centerY,
-			altitudeStepUnits,
+			settings.personalization.MFD.PFD.altitude.minorTickStepFt,
 			altitudeStepPixels,
 			altitude,
 			rc.getSettings().flightModeSelection.altitudeFt,

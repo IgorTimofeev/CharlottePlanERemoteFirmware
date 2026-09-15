@@ -24,6 +24,7 @@ namespace pizda {
 	RGB565Color Theme::bad1 { 0 };
 	RGB565Color Theme::bad2 { 0 };
 	RGB565Color Theme::bad3 { 0 };
+	RGB565Color Theme::white { 0 };
 	RGB565Color Theme::red { 0 };
 	RGB565Color Theme::green1 { 0 };
 	RGB565Color Theme::green2 { 0 };
@@ -103,6 +104,7 @@ namespace pizda {
 			bad1 = RGB888Color(0xf24949).toRGB565();
 			bad2 = RGB888Color(0x962828).toRGB565();
 			bad3 = RGB888Color(0x4b1313).toRGB565();
+			white = RGB888Color(0xffffff).toRGB565();
 			red = RGB888Color(0xff0000).toRGB565();
 			green1 = RGB888Color(0x00FF00).toRGB565();
 			green2 = RGB888Color(0x007F00).toRGB565();
@@ -142,6 +144,7 @@ namespace pizda {
 			bad1 = RGB888Color(0xf24949).toRGB565();
 			bad2 = RGB888Color(0x962828).toRGB565();
 			bad3 = RGB888Color(0x4b1313).toRGB565();
+			white = RGB888Color(0xffffff).toRGB565();
 			red = RGB888Color(0xff0000).toRGB565();
 			green1 = RGB888Color(0x00FF00).toRGB565();
 			green2 = RGB888Color(0x007F00).toRGB565();

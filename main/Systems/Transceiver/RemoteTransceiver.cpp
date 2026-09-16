@@ -311,8 +311,8 @@ namespace pizda {
 
 				// -------------------------------- Autopilot target roll / pitch --------------------------------
 
-				rc.getAircraftData().raw.autopilot.rollRad = readRadians(stream, AircraftSTierTelemetryPacket::autopilotTargetRollLengthBits, AircraftSTierTelemetryPacket::autopilotTargetRollLengthBits);
-				rc.getAircraftData().raw.autopilot.pitchRad = readRadians(stream, AircraftSTierTelemetryPacket::autopilotTargetPitchLengthBits, AircraftSTierTelemetryPacket::autopilotTargetPitchLengthBits);
+				rc.getAircraftData().raw.autopilot.rollRad = readRadians(stream, AircraftSTierTelemetryPacket::autopilotTargetRollRangeRad, AircraftSTierTelemetryPacket::autopilotTargetRollLengthBits);
+				rc.getAircraftData().raw.autopilot.pitchRad = readRadians(stream, AircraftSTierTelemetryPacket::autopilotTargetPitchRangeRad, AircraftSTierTelemetryPacket::autopilotTargetPitchLengthBits);
 
 				// -------------------------------- Data processing --------------------------------
 

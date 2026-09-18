@@ -63,71 +63,16 @@ namespace pizda {
 
 		// Tick steps
 		setupUint8TextField(_speedTapeMinorTickStep, &settings.personalization.MFD.PFD.speed.minorTickStepKt);
-		setupTitler(&_speedTapeMinorTickStepTitle);
+		Theme::apply(&_speedTapeMinorTickStepTitle);
 		rows += &_speedTapeMinorTickStepTitle;
 
 		setupUint8TextField(_speedTapeMajorTickStep, &settings.personalization.MFD.PFD.speed.majorTickStepKt);
-		setupTitler(&_speedTapeMajorTickStepTitle);
+		Theme::apply(&_speedTapeMajorTickStepTitle);
 		rows += &_speedTapeMajorTickStepTitle;
 
 		// Divider
 		Theme::apply(&_speedTapeDivider);
 		rows += &_speedTapeDivider;
-
-		// -------------------------------- Speed ranges --------------------------------
-
-		// Title
-		setupPageTitle(&_speedRangesTitle, "Speed bands");
-
-		// Ranges
-		_speedRangesColumns.setGap(10);
-		_speedRangesColumns.setOrientation(Orientation::horizontal);
-
-		// Band rows
-		_speedRangesColumns.setAutoSize(&_speedRangesBandRows);
-		_speedRangesColumns += &_speedRangesBandRows;
-
-		rows += &_speedRangesColumns;
-
-		// Text field rows
-		_speedRangesTextFieldRows.setGap(10);
-		_speedRangesColumns += &_speedRangesTextFieldRows;
-
-		// Vne
-		setupSpeedBand(_speedRangesVNEBand, &Theme::red);
-		_speedRangesBandRows.setAutoSize(&_speedRangesVNEBand);
-		_speedRangesVNEBand.setHeight(15 + Theme::elementHeight / 2);
-
-		setupUint16TextField(_speedRangesVNETextField, &settings.personalization.MFD.PFD.speed.ranges.VNE);
-		setupTitler(&_speedRangesVNETitle);
-		_speedRangesTextFieldRows += &_speedRangesVNETitle;
-
-		// Vno
-		setupSpeedBand(_speedRangesVNOBand, &Theme::yellow);
-		setupUint16TextField(_speedRangesVNOTextField, &settings.personalization.MFD.PFD.speed.ranges.VNO);
-		setupTitler(&_speedRangesVNOTitle);
-		_speedRangesTextFieldRows += &_speedRangesVNOTitle;
-
-		// Vfe
-		setupSpeedBand(_speedRangesVFEBand, &Theme::green1);
-		setupUint16TextField(_speedRangesVFETextField, &settings.personalization.MFD.PFD.speed.ranges.VFE);
-		setupTitler(&_speedRangesVFETitle);
-		_speedRangesTextFieldRows += &_speedRangesVFETitle;
-
-		// Vs0
-		setupSpeedBand(_speedRangesVS0Band, &Theme::white);
-		setupUint16TextField(_speedRangesVS0TextField, &settings.personalization.MFD.PFD.speed.ranges.VS0);
-		setupTitler(&_speedRangesVS0Title);
-		_speedRangesTextFieldRows += &_speedRangesVS0Title;
-
-		// Pre Vs0
-		setupSpeedBand(_speedRangesPreVS0Band, &Theme::red);
-		_speedRangesBandRows.setAutoSize(&_speedRangesPreVS0Band);
-		_speedRangesPreVS0Band.setHeight(Theme::elementHeight / 2);
-
-		// Divider
-		Theme::apply(&_speedRangesDivider);
-		rows += &_speedRangesDivider;
 
 		// -------------------------------- Altitude tape --------------------------------
 
@@ -136,11 +81,11 @@ namespace pizda {
 
 		// Tick steps
 		setupUint8TextField(_altitudeTapeMinorTickStep, &settings.personalization.MFD.PFD.altitude.minorTickStepFt);
-		setupTitler(&_altitudeTapeMinorTickStepTitle);
+		Theme::apply(&_altitudeTapeMinorTickStepTitle);
 		rows += &_altitudeTapeMinorTickStepTitle;
 
 		setupUint8TextField(_altitudeTapeMajorTickStep, &settings.personalization.MFD.PFD.altitude.majorTickStepFt);
-		setupTitler(&_altitudeTapeMajorTickStepTitle);
+		Theme::apply(&_altitudeTapeMajorTickStepTitle);
 		rows += &_altitudeTapeMajorTickStepTitle;
 
 		// Initialization
@@ -157,10 +102,6 @@ namespace pizda {
 		Theme::applyPageTitle(textView);
 		textView->setText(text);
 		rows += textView;
-	}
-
-	void MFDSettingsPage::setupTitler(Titler* titler) {
-		Theme::apply(titler);
 	}
 
 	void MFDSettingsPage::setupAnyTextField(TextField& textField, const std::string_view& text, const std::function<void()>& onEnter) {
@@ -188,27 +129,5 @@ namespace pizda {
 		);
 
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
-	}
-
-	void MFDSettingsPage::setupUint16TextField(TextField& textField, uint16_t* value) {
-		setupAnyTextField(
-			textField,
-			std::to_string(*value),
-			[&textField, value] {
-				auto& rc = RC::getInstance();
-
-				*value = std::max<uint16_t>(0, Text::tryParseInt32Or(textField.getText(), 0));
-				rc.getSettings().personalization.writeLater();
-			}
-		);
-
-		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
-	}
-
-	void MFDSettingsPage::setupSpeedBand(RectangularShape& band, const Color* color) {
-		band.setWidth(2);
-		band.setFillColor(color);
-
-		_speedRangesBandRows += &band;
 	}
 }

@@ -28,7 +28,7 @@ namespace pizda {
 		rc.getSettings().flightModeSelection.speedKt = static_cast<uint16_t>(seven.getValue());
 		rc.getSettings().flightModeSelection.writeLater();
 
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotSpeed);
+		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotSelectedSpeedMPS);
 	}
 	
 	void SpeedRotaryControl::onPress() {

@@ -82,7 +82,7 @@ namespace pizda {
 		rc.getSettings().flightModeSelection.altitudeFt = static_cast<uint16_t>(seven.getValue());
 		rc.getSettings().flightModeSelection.writeLater();
 
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotAltitude);
+		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotSelectedAltitudeM);
 	}
 
 	void VerticalRotaryControl::onVariantChanged() {

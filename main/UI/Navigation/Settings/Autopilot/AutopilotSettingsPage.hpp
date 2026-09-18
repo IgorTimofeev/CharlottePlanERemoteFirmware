@@ -43,6 +43,9 @@ namespace pizda {
 			Divider _verDivider {};
 			TextView _verTitle { "Vertical"};
 
+			TextField _verMinPitch {};
+			Titler _verMinPitchTitle { "Min pitch angle (deg)", &_verMinPitch };
+
 			TextField _verMaxPitch {};
 			Titler _verMaxPitchTitle { "Max pitch angle (deg)", &_verMaxPitch };
 
@@ -78,11 +81,40 @@ namespace pizda {
 			PIDReferencer _lonSpeedToThrottlePID { "Speed to throttle" };
 			Titler _lonSpeedToThrottlePIDTitle { "Speed to throttle", &_lonSpeedToThrottlePID };
 
+			RelativeStackLayout _lonVSpeedsColumns {};
+			RelativeStackLayout _lonVSpeedsBandRows {};
+			StackLayout _lonVSpeedsTextFieldRows {};
+
+			RectangularShape _lonVSpeedsPreVS0Band {};
+
+			RectangularShape _lonVSpeedsVS0Band {};
+			TextField _lonVSpeedsVS0TextField {};
+			Titler _lonVSpeedsVS0Title { "Vs0 - stall speed in ldg cnf (kt)", &_lonVSpeedsVS0TextField };
+
+			RectangularShape _lonVSpeedsVFEBand {};
+			TextField _lonVSpeedsVFETextField {};
+			Titler _lonVSpeedsVFETitle { "Vfe - max flap ext speed (kt)", &_lonVSpeedsVFETextField };
+
+			RectangularShape _lonVSpeedsVNOBand {};
+			TextField _lonVSpeedsVNOTextField {};
+			Titler _lonVSpeedsVNOTitle { "Vno - max crz speed (kt)", &_lonVSpeedsVNOTextField };
+
+			RectangularShape _lonVSpeedsVNEBand {};
+			TextField _lonVSpeedsVNETextField {};
+			Titler _lonVSpeedsVNETitle { "Vne - never exceed speed (kt)", &_lonVSpeedsVNETextField };
+
+			TextField _lonStallProtectionMargin {};
+			Titler _lonStallProtectionMarginTitle { "Stall prot margin (kt)", &_lonStallProtectionMargin };
+
+			TextField _lonOverspeedProtectionMargin {};
+			Titler _lonOverspeedProtectionMarginTitle { "Ovrspd prot margin (kt)", &_lonOverspeedProtectionMargin };
+
 			static void setupAnyTextField(TextField& textField, const std::string_view& text, const std::function<void()>& onEnter);
 			static void setupFloatTextField(TextField& textField, float* value, float fallbackValue, float min, float max, RemoteSystemPacketType  packetType);
 			static void setupRadTextField(TextField& textField, float* angleRad, float fallbackAngleDeg, RemoteSystemPacketType packetType);
 			static void setupUint8PercentTextField(TextField& textField, uint8_t* percent, float fallbackPercent, RemoteSystemPacketType packetType);
-
-			void addPID(Titler& titler, PIDReferencer& referencer, RemoteSystemPacketType packetType, PIDCoefficients* settingsCoefficients);
+			void setupPID(Titler& titler, PIDReferencer& referencer, RemoteSystemPacketType packetType, PIDCoefficients* settingsCoefficients);
+			void setupVSpeedTextField(TextField& textField, uint16_t* value, RemoteSystemPacketType packetType);
+			void setupSpeedBand(RectangularShape& band, const Color* color);
 	};
 }

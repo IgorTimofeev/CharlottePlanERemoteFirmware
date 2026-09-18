@@ -5,11 +5,23 @@
 #include <YOBA/Core.hpp>
 
 #include <NVSSettings.hpp>
+#include <Units.hpp>
 
 #include "Types/Generic.hpp"
 
 namespace pizda {
 	using namespace YOBA;
+
+	class PersonalizationSettingsMFDPFDSpeeds {
+		public:
+			uint16_t VS0 = 0;
+			uint16_t VFE = 0;
+			uint16_t VNO = 0;
+			uint16_t VNE = 0;
+
+			uint8_t stallProtectionMargin = 0;
+			uint8_t overspeedProtectionMargin = 0;
+	};
 
 	class AutopilotConfigurationSettingsPIDs {
 		public:
@@ -44,6 +56,7 @@ namespace pizda {
 			uint8_t maxAileronsPercent = 0;
 
 			// Vertical
+			float minPitchAngleRad = 0;
 			float maxPitchAngleRad = 0;
 			float stabilizedModePitchAngleIncrementRadPerSecond = 0;
 			float pitchAngleEMAFilterFactorPerSecond = 0;
@@ -52,6 +65,7 @@ namespace pizda {
 			// Longitudinal
 			uint8_t minThrottlePercent = 0;
 			uint8_t maxThrottlePercent = 0;
+			PersonalizationSettingsMFDPFDSpeeds speeds {};
 
 			// PIDs
 			AutopilotConfigurationSettingsPIDs PIDs {};
@@ -69,6 +83,7 @@ namespace pizda {
 				maxAileronsPercent = stream.readUint8(_maxAileronsPercent, 100);
 
 				// Vertical
+				minPitchAngleRad = stream.readFloat(_minPitchAngleRad, Math::toRadians(-15));
 				maxPitchAngleRad = stream.readFloat(_maxPitchAngleRad, Math::toRadians(15));
 				stabilizedModePitchAngleIncrementRadPerSecond = stream.readFloat(_stabilizedModePitchAngleIncrementRadPerSecond, Math::toRadians(5));
 				pitchAngleEMAFilterFactorPerSecond = stream.readFloat(_pitchAngleEMAFilterFactorPerSecond, 0.8f);
@@ -77,6 +92,14 @@ namespace pizda {
 				// Longitudinal
 				minThrottlePercent = stream.readUint8(_minThrottlePercent, 0);
 				maxThrottlePercent = stream.readUint8(_maxThrottlePercent, 100);
+
+				speeds.VS0 = stream.readUint16(_speedsVS0, Units::convertSpeed(10, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+				speeds.VFE = stream.readUint16(_speedsVFE, Units::convertSpeed(15, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+				speeds.VNO = stream.readUint16(_speedsVNO, Units::convertSpeed(30, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+				speeds.VNE = stream.readUint16(_speedsVNE, Units::convertSpeed(40, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+
+				speeds.stallProtectionMargin = stream.readUint8(_speedsStallProtectionMargin, Units::convertSpeed(5, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+				speeds.overspeedProtectionMargin = stream.readUint8(_speedsOverspeedProtectionMargin, Units::convertSpeed(5, SpeedUnit::knot, SpeedUnit::meterPerSecond));
 
 				// PIDs
 				AutopilotConfigurationSettingsPIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll, { 0.8f, 0.1f, 0.3f });
@@ -95,6 +118,7 @@ namespace pizda {
 				stream.writeUint8(_maxAileronsPercent, maxAileronsPercent);
 
 				// Vertical
+				stream.writeFloat(_minPitchAngleRad, minPitchAngleRad);
 				stream.writeFloat(_maxPitchAngleRad, maxPitchAngleRad);
 				stream.writeFloat(_stabilizedModePitchAngleIncrementRadPerSecond, stabilizedModePitchAngleIncrementRadPerSecond);
 				stream.writeFloat(_pitchAngleEMAFilterFactorPerSecond, pitchAngleEMAFilterFactorPerSecond);
@@ -103,6 +127,13 @@ namespace pizda {
 				// Longitudinal
 				stream.writeUint8(_minThrottlePercent, minThrottlePercent);
 				stream.writeUint8(_maxThrottlePercent, maxThrottlePercent);
+
+				stream.writeUint16(_speedsVFE, speeds.VFE);
+				stream.writeUint16(_speedsVNO, speeds.VNO);
+				stream.writeUint16(_speedsVNE, speeds.VNE);
+
+				stream.writeUint8(_speedsStallProtectionMargin, speeds.stallProtectionMargin);
+				stream.writeUint8(_speedsOverspeedProtectionMargin, speeds.overspeedProtectionMargin);
 
 				// PIDs
 				AutopilotConfigurationSettingsPIDs::write(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll);
@@ -123,7 +154,8 @@ namespace pizda {
 			constexpr static auto _maxAileronsPercent = "aipe";
 
 			// Vertical
-			constexpr static auto _maxPitchAngleRad = "mpia";
+			constexpr static auto _minPitchAngleRad = "mipa";
+			constexpr static auto _maxPitchAngleRad = "mxpa";
 			constexpr static auto _stabilizedModePitchAngleIncrementRadPerSecond = "pair";
 			constexpr static auto _pitchAngleEMAFilterFactorPerSecond = "paef";
 			constexpr static auto _maxElevatorPercent = "elpe";
@@ -131,6 +163,14 @@ namespace pizda {
 			// Longitudinal
 			constexpr static auto _minThrottlePercent = "tmip";
 			constexpr static auto _maxThrottlePercent = "tmap";
+
+			constexpr static auto _speedsVS0 = "svs0";
+			constexpr static auto _speedsVFE = "svfe";
+			constexpr static auto _speedsVNO = "svno";
+			constexpr static auto _speedsVNE = "svfne";
+
+			constexpr static auto _speedsStallProtectionMargin = "sspm";
+			constexpr static auto _speedsOverspeedProtectionMargin = "sopm";
 
 			// PIDs
 			constexpr static auto _yawToRollP = "pyrp";

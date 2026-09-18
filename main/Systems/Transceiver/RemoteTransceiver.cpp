@@ -624,12 +624,16 @@ namespace pizda {
 				break;
 			}
 
-			case RemoteSystemPacketType::autopilotHeading: {
-				stream.writeUint16(rc.getSettings().flightModeSelection.headingDeg, RemoteSystemPacket::autopilotHeadingLengthBits);
+			case RemoteSystemPacketType::autopilotSelectedHeadingDeg: {
+				stream.writeUint16(rc.getSettings().flightModeSelection.headingDeg, RemoteSystemPacket::autopilotSelectedHeadingDegLengthBits);
 				break;
 			}
-			case RemoteSystemPacketType::autopilotMaxRollAngleRad: {
-				stream.writeFloat(rc.getSettings().APConfiguration.maxRollAngleRad);
+			case RemoteSystemPacketType::autopilotMaxRollAngleDeg: {
+				stream.writeInt8(
+					static_cast<int8_t>(Math::toDegrees(rc.getSettings().APConfiguration.maxRollAngleRad)),
+					RemoteSystemPacket::autopilotMaxRollLengthBits
+				);
+
 				break;
 			}
 			case RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond: {
@@ -675,19 +679,31 @@ namespace pizda {
 
 				break;
 			}
-			case RemoteSystemPacketType::autopilotAltitude: {
+			case RemoteSystemPacketType::autopilotSelectedAltitudeM: {
 				writeAltitude(
 					stream,
 					Units::convertDistance(rc.getSettings().flightModeSelection.altitudeFt, DistanceUnit::foot, DistanceUnit::meter),
-					RemoteSystemPacket::autopilotAltitudeLengthBits,
-					RemoteSystemPacket::autopilotAltitudeMinM,
-					RemoteSystemPacket::autopilotAltitudeMaxM
+					RemoteSystemPacket::autopilotSelectedAltitudeLengthBits,
+					RemoteSystemPacket::autopilotSelectedAltitudeMinM,
+					RemoteSystemPacket::autopilotSelectedAltitudeMaxM
 				);
 
 				break;
 			}
-			case RemoteSystemPacketType::autopilotMaxPitchAngleRad: {
-				stream.writeFloat(rc.getSettings().APConfiguration.maxPitchAngleRad);
+			case RemoteSystemPacketType::autopilotMinPitchAngleDeg: {
+				stream.writeInt8(
+					Math::toDegrees(Math::normalizeAngleRadPi(rc.getSettings().APConfiguration.minPitchAngleRad)),
+					RemoteSystemPacket::autopilotMinMaxPitchLengthBits
+				);
+
+				break;
+			}
+			case RemoteSystemPacketType::autopilotMaxPitchAngleDeg: {
+				stream.writeInt8(
+					Math::toDegrees(Math::normalizeAngleRadPi(rc.getSettings().APConfiguration.maxPitchAngleRad)),
+					RemoteSystemPacket::autopilotMinMaxPitchLengthBits
+				);
+
 				break;
 			}
 			case RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond: {
@@ -721,17 +737,17 @@ namespace pizda {
 
 				break;
 			}
-			case RemoteSystemPacketType::autopilotSpeed: {
+			case RemoteSystemPacketType::autopilotSelectedSpeedMPS: {
 				const auto speedFactor =
 					std::min<float>(
 						Units::convertSpeed(rc.getSettings().flightModeSelection.speedKt, SpeedUnit::knot, SpeedUnit::meterPerSecond),
-						RemoteSystemPacket::autopilotSpeedMaxMPS
+						RemoteSystemPacket::autopilotSelectedSpeedMaxMPS
 					)
-					/ static_cast<float>(RemoteSystemPacket::autopilotSpeedMaxMPS);
+					/ static_cast<float>(RemoteSystemPacket::autopilotSelectedSpeedMaxMPS);
 
-				const auto speedMapped = static_cast<float>((1 << RemoteSystemPacket::autopilotSpeedLengthBits) - 1) * speedFactor;
+				const auto speedMapped = static_cast<float>((1 << RemoteSystemPacket::autopilotSelectedSpeedLengthBits) - 1) * speedFactor;
 
-				stream.writeUint8(static_cast<uint8_t>(std::round(speedMapped)), RemoteSystemPacket::autopilotSpeedLengthBits);
+				stream.writeUint8(static_cast<uint8_t>(std::round(speedMapped)), RemoteSystemPacket::autopilotSelectedSpeedLengthBits);
 
 				break;
 			}
@@ -745,6 +761,32 @@ namespace pizda {
 			}
 			case RemoteSystemPacketType::autopilotMaxThrottlePercent: {
 				stream.writeUint8(rc.getSettings().APConfiguration.maxThrottlePercent, RemoteSystemPacket::autopilotPercentLengthBits);
+				break;
+			}
+
+			case RemoteSystemPacketType::autopilotVS0: {
+				stream.writeUint16(rc.getSettings().APConfiguration.speeds.VS0, RemoteSystemPacket::autopilotVSpeedsLengthBits);
+				break;
+			}
+			case RemoteSystemPacketType::autopilotVFE: {
+				stream.writeUint16(rc.getSettings().APConfiguration.speeds.VFE, RemoteSystemPacket::autopilotVSpeedsLengthBits);
+				break;
+			}
+			case RemoteSystemPacketType::autopilotVNO: {
+				stream.writeUint16(rc.getSettings().APConfiguration.speeds.VNO, RemoteSystemPacket::autopilotVSpeedsLengthBits);
+				break;
+			}
+			case RemoteSystemPacketType::autopilotVNE: {
+				stream.writeUint16(rc.getSettings().APConfiguration.speeds.VNE, RemoteSystemPacket::autopilotVSpeedsLengthBits);
+				break;
+			}
+
+			case RemoteSystemPacketType::autopilotStallSpeedProtectionMargin: {
+				stream.writeUint16(rc.getSettings().APConfiguration.speeds.stallProtectionMargin, RemoteSystemPacket::autopilotSpeedProtectionLengthBits);
+				break;
+			}
+			case RemoteSystemPacketType::autopilotOverspeedProtectionMargin: {
+				stream.writeUint16(rc.getSettings().APConfiguration.speeds.overspeedProtectionMargin, RemoteSystemPacket::autopilotSpeedProtectionLengthBits);
 				break;
 			}
 

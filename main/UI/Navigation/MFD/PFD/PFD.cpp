@@ -396,39 +396,39 @@ namespace pizda {
 			barX,
 			speedBarSize,
 			0,
-			settings.personalization.MFD.PFD.speed.ranges.VS0,
+			settings.APConfiguration.speeds.VS0,
 			&Theme::red
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speed.ranges.VS0,
-			settings.personalization.MFD.PFD.speed.ranges.VFE,
+			settings.APConfiguration.speeds.VS0,
+			settings.APConfiguration.speeds.VFE,
 			&Theme::white
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speed.ranges.VFE,
-			settings.personalization.MFD.PFD.speed.ranges.VNO,
+			settings.APConfiguration.speeds.VFE,
+			settings.APConfiguration.speeds.VNO,
 			&Theme::green2
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speed.ranges.VNO,
-			settings.personalization.MFD.PFD.speed.ranges.VNE,
+			settings.APConfiguration.speeds.VNO,
+			settings.APConfiguration.speeds.VNE,
 			&Theme::yellow
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.personalization.MFD.PFD.speed.ranges.VNE,
-			settings.personalization.MFD.PFD.speed.ranges.VNE + 100,
+			settings.APConfiguration.speeds.VNE,
+			settings.APConfiguration.speeds.VNE + 100,
 			&Theme::red
 		);
 

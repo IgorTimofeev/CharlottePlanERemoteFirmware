@@ -7,20 +7,10 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class PersonalizationSettingsMFDPFDSpeedRanges {
-		public:
-			uint16_t VS0 = 0;
-			uint16_t VFE = 0;
-			uint16_t VNO = 0;
-			uint16_t VNE = 0;
-	};
-
 	class PersonalizationSettingsMFDPFDSpeed {
 		public:
 			uint8_t minorTickStepKt = 1;
 			uint8_t majorTickStepKt = 5;
-
-			PersonalizationSettingsMFDPFDSpeedRanges ranges {};
 	};
 
 	class PersonalizationSettingsMFDPFDAltitude {
@@ -112,11 +102,6 @@ namespace pizda {
 				MFD.PFD.speed.minorTickStepKt = stream.readUint8(_MFDPFDSpeedMinorTickStepKt, 1);
 				MFD.PFD.speed.majorTickStepKt = stream.readUint8(_MFDPFDSpeedMajorTickStepKt,5);
 
-				MFD.PFD.speed.ranges.VS0 = stream.readUint16(_MFDPFDSpeedRangesVS0, 7);
-				MFD.PFD.speed.ranges.VFE = stream.readUint16(_MFDPFDSpeedRangesVFE, 17);
-				MFD.PFD.speed.ranges.VNO = stream.readUint16(_MFDPFDSpeedRangesVNO, 24);
-				MFD.PFD.speed.ranges.VNE = stream.readUint16(_MFDPFDSpeedRangesVNE, 40);
-
 				// Altitude
 				MFD.PFD.altitude.minorTickStepFt = stream.readUint8(_MFDPFDAltitudeMinorTickStepFt, 50);
 				MFD.PFD.altitude.majorTickStepFt = stream.readUint8(_MFDPFDAltitudeMajorTickStepFt, 250);
@@ -146,11 +131,6 @@ namespace pizda {
 				// Speed
 				stream.writeUint8(_MFDPFDSpeedMinorTickStepKt, MFD.PFD.speed.minorTickStepKt);
 				stream.writeUint8(_MFDPFDSpeedMajorTickStepKt, MFD.PFD.speed.majorTickStepKt);
-
-				stream.writeUint16(_MFDPFDSpeedRangesVS0, MFD.PFD.speed.ranges.VS0);
-				stream.writeUint16(_MFDPFDSpeedRangesVFE, MFD.PFD.speed.ranges.VFE);
-				stream.writeUint16(_MFDPFDSpeedRangesVNO, MFD.PFD.speed.ranges.VNO);
-				stream.writeUint16(_MFDPFDSpeedRangesVNE, MFD.PFD.speed.ranges.VNE);
 
 				// Altitude
 				stream.writeUint8(_MFDPFDAltitudeMinorTickStepFt, MFD.PFD.altitude.minorTickStepFt);
@@ -182,11 +162,6 @@ namespace pizda {
 
 			constexpr static auto _MFDPFDSpeedMinorTickStepKt = "mpsit";
 			constexpr static auto _MFDPFDSpeedMajorTickStepKt = "mpsat";
-
-			constexpr static auto _MFDPFDSpeedRangesVS0 = "mpss0";
-			constexpr static auto _MFDPFDSpeedRangesVFE = "mpsfe";
-			constexpr static auto _MFDPFDSpeedRangesVNO = "mpsno";
-			constexpr static auto _MFDPFDSpeedRangesVNE = "mpsne";
 
 			constexpr static auto _MFDPFDAltitudeMinorTickStepFt = "mpait";
 			constexpr static auto _MFDPFDAltitudeMajorTickStepFt = "mpaat";

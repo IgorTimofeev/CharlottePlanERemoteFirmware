@@ -48,8 +48,8 @@ namespace pizda {
 
 		// Lateral
 		autopilotLateralMode,
-		autopilotHeading,
-		autopilotMaxRollAngleRad,
+		autopilotSelectedHeadingDeg,
+		autopilotMaxRollAngleDeg,
 		autopilotYawToRollPID,
 		autopilotRollToAileronsPID,
 		autopilotStabilizedModeRollAngleIncrementRadPerSecond,
@@ -58,8 +58,9 @@ namespace pizda {
 
 		// Vertical
 		autopilotVerticalMode,
-		autopilotAltitude,
-		autopilotMaxPitchAngleRad,
+		autopilotSelectedAltitudeM,
+		autopilotMinPitchAngleDeg,
+		autopilotMaxPitchAngleDeg,
 		autopilotSpeedToPitchPID,
 		autopilotAltitudeToPitchPID,
 		autopilotPitchToElevatorPID,
@@ -68,10 +69,17 @@ namespace pizda {
 		autopilotMaxElevatorPercent,
 
 		// Longitudinal
-		autopilotSpeed,
+		autopilotSelectedSpeedMPS,
 		autopilotSpeedToThrottlePID,
 		autopilotMinThrottlePercent,
 		autopilotMaxThrottlePercent,
+
+		autopilotVS0,
+		autopilotVFE,
+		autopilotVNO,
+		autopilotVNE,
+		autopilotStallSpeedProtectionMargin,
+		autopilotOverspeedProtectionMargin,
 
 		communicationSettings,
 
@@ -80,7 +88,8 @@ namespace pizda {
 
 	class RemoteSystemPacket {
 		public:
-			constexpr static uint8_t typeLengthBits = 5;
+			// Max val = 63
+			constexpr static uint8_t typeLengthBits = 6;
 
 			constexpr static uint8_t magneticDeclinationLengthBits = 9;
 
@@ -116,19 +125,19 @@ namespace pizda {
 			// Speed
 			// The Guinness World Record for the fastest RC jet-powered aircraft is 749.221 km/h, set by Niels Herbrich in 2017.
 			// In our case 350 km/h (97.2 m/s) will be enough, because it gives precision of ~0.37 m/s per 1 bit
-			constexpr static uint8_t autopilotSpeedLengthBits = 8;
-			constexpr static int16_t autopilotSpeedMaxMPS = 97;
+			constexpr static uint8_t autopilotSelectedSpeedLengthBits = 8;
+			constexpr static int16_t autopilotSelectedSpeedMaxMPS = 97;
 
 			// 360 deg = 9 bits
-			constexpr static uint8_t autopilotHeadingLengthBits = 9;
+			constexpr static uint8_t autopilotSelectedHeadingDegLengthBits = 9;
 
 			// Altitude
 			// 13 bit = 8191, not enough
 			// 14 bit = 16383, more than enough
 			// Mapping [-1000; 10000] to [0; 16383]
-			constexpr static uint8_t autopilotAltitudeLengthBits = 14;
-			constexpr static int16_t autopilotAltitudeMinM = -1'000;
-			constexpr static int16_t autopilotAltitudeMaxM = 10'000;
+			constexpr static uint8_t autopilotSelectedAltitudeLengthBits = 14;
+			constexpr static int16_t autopilotSelectedAltitudeMinM = -1'000;
+			constexpr static int16_t autopilotSelectedAltitudeMaxM = 10'000;
 
 			// Mode
 			constexpr static uint8_t autopilotLateralModeLengthBits = 2;
@@ -136,6 +145,12 @@ namespace pizda {
 
 			// Ailerons, elevator, throttle
 			constexpr static uint8_t autopilotPercentLengthBits = 7;
+
+			constexpr static uint8_t autopilotMinMaxPitchLengthBits = 7;
+			constexpr static uint8_t autopilotMaxRollLengthBits = 7;
+
+			constexpr static uint8_t autopilotVSpeedsLengthBits = 8;
+			constexpr static uint8_t autopilotSpeedProtectionLengthBits = 5;
 	};
 
 	class RemoteSystemCommunicationSettingsPacket {
@@ -180,7 +195,7 @@ namespace pizda {
 	class AircraftSTierTelemetryPacket {
 		public:
 			// Roll / pitch / yaw
-			// Precision of 0.25 - 0.5 deg should be enough for any client-side visualization with LPF
+			// Precision of 0.25 - 0.5 deg should be enough for any client-side visualization with EMA filter
 			// So 360 * 1 / 0.25 = 1440 ~= 10 bits
 
 			// Roll range is [-180; 180] deg
@@ -200,12 +215,12 @@ namespace pizda {
 			constexpr static uint8_t slipAndSkidLengthBits = 8;
 			constexpr static uint8_t slipAndSkidMaxG = 2;
 
-			constexpr static uint8_t speedLengthBits = RemoteSystemPacket::autopilotSpeedLengthBits;
-			constexpr static int16_t speedMaxMPS = RemoteSystemPacket::autopilotSpeedMaxMPS;
+			constexpr static uint8_t speedLengthBits = RemoteSystemPacket::autopilotSelectedSpeedLengthBits;
+			constexpr static int16_t speedMaxMPS = RemoteSystemPacket::autopilotSelectedSpeedMaxMPS;
 
-			constexpr static uint8_t altitudeLengthBits = RemoteSystemPacket::autopilotAltitudeLengthBits;
-			constexpr static int16_t altitudeMinM = RemoteSystemPacket::autopilotAltitudeMinM;
-			constexpr static int16_t altitudeMaxM = RemoteSystemPacket::autopilotAltitudeMaxM;
+			constexpr static uint8_t altitudeLengthBits = RemoteSystemPacket::autopilotSelectedAltitudeLengthBits;
+			constexpr static int16_t altitudeMinM = RemoteSystemPacket::autopilotSelectedAltitudeMinM;
+			constexpr static int16_t altitudeMaxM = RemoteSystemPacket::autopilotSelectedAltitudeMaxM;
 
 			constexpr static uint8_t autopilotTargetRollLengthBits = rollLengthBits;
 			constexpr static float autopilotTargetRollRangeRad = rollRangeRad;
@@ -231,9 +246,9 @@ namespace pizda {
 			constexpr static uint8_t autopilotVerticalModeLengthBits =
 				RemoteSystemPacket::autopilotVerticalModeLengthBits;
 
-			constexpr static uint8_t autopilotAltitudeLengthBits = RemoteSystemPacket::autopilotAltitudeLengthBits;
-			constexpr static int16_t autopilotAltitudeMinM = RemoteSystemPacket::autopilotAltitudeMinM;
-			constexpr static int16_t autopilotAltitudeMaxM = RemoteSystemPacket::autopilotAltitudeMaxM;
+			constexpr static uint8_t autopilotAltitudeLengthBits = RemoteSystemPacket::autopilotSelectedAltitudeLengthBits;
+			constexpr static int16_t autopilotAltitudeMinM = RemoteSystemPacket::autopilotSelectedAltitudeMinM;
+			constexpr static int16_t autopilotAltitudeMaxM = RemoteSystemPacket::autopilotSelectedAltitudeMaxM;
 	};
 
 	enum class AircraftSystemPacketType : uint8_t {

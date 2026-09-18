@@ -6,6 +6,7 @@
 namespace pizda {
 	AutopilotSettingsPage::AutopilotSettingsPage() {
 		auto& rc = RC::getInstance();
+		auto& settings = rc.getSettings();
 
 		// ----------------------------- Lateral -----------------------------
 
@@ -14,9 +15,9 @@ namespace pizda {
 		// Angle max
 		setupRadTextField(
 			_latMaxRoll,
-			&rc.getSettings().APConfiguration.maxRollAngleRad,
+			&settings.APConfiguration.maxRollAngleRad,
 			30.f,
-			RemoteSystemPacketType::autopilotMaxRollAngleRad
+			RemoteSystemPacketType::autopilotMaxRollAngleDeg
 		);
 
 		Theme::apply(&_latMaxRollTitle);
@@ -25,7 +26,7 @@ namespace pizda {
 		// Angle increment
 		setupRadTextField(
 			_latSMTAIRPS,
-			&rc.getSettings().APConfiguration.stabilizedModeRollAngleIncrementRadPerSecond,
+			&settings.APConfiguration.stabilizedModeRollAngleIncrementRadPerSecond,
 			5,
 			RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond
 		);
@@ -36,7 +37,7 @@ namespace pizda {
 		// Angle EMA filter factor
 		setupFloatTextField(
 			_latTAEMAFPS,
-			&rc.getSettings().APConfiguration.rollAngleEMAFilterFactorPerSecond,
+			&settings.APConfiguration.rollAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
@@ -49,7 +50,7 @@ namespace pizda {
 		// Surface factor
 		setupUint8PercentTextField(
 			_latMaxAileronsFactor,
-			&rc.getSettings().APConfiguration.maxAileronsPercent,
+			&settings.APConfiguration.maxAileronsPercent,
 			100,
 			RemoteSystemPacketType::autopilotMaxAileronsPercent
 		);
@@ -58,18 +59,18 @@ namespace pizda {
 		rows += &_latMaxAileronsFactorTitle;
 
 		// PIDs
-		addPID(
+		setupPID(
 			_latYawToRollPIDTitle,
 			_latYawToRollPID,
 			RemoteSystemPacketType::autopilotYawToRollPID,
-			&rc.getSettings().APConfiguration.PIDs.yawToRoll
+			&settings.APConfiguration.PIDs.yawToRoll
 		);
 
-		addPID(
+		setupPID(
 			_latRollToAileronsPIDTitle,
 			_latRollToAileronsPID,
 			RemoteSystemPacketType::autopilotRollToAileronsPID,
-			&rc.getSettings().APConfiguration.PIDs.rollToAilerons
+			&settings.APConfiguration.PIDs.rollToAilerons
 		);
 
 
@@ -81,12 +82,25 @@ namespace pizda {
 		Theme::applyPageTitle(&_verTitle);
 		rows += &_verTitle;
 
+		// Angle min
+		setupRadTextField(
+			_verMinPitch,
+			&settings.APConfiguration.minPitchAngleRad,
+			-15.f,
+			RemoteSystemPacketType::autopilotMinPitchAngleDeg
+		);
+		
+		_verMinPitch.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional | KeyboardLayoutOptions::allowSigned);
+
+		Theme::apply(&_verMinPitchTitle);
+		rows += &_verMinPitchTitle;
+
 		// Angle max
 		setupRadTextField(
 			_verMaxPitch,
-			&rc.getSettings().APConfiguration.maxPitchAngleRad,
+			&settings.APConfiguration.maxPitchAngleRad,
 			15.f,
-			RemoteSystemPacketType::autopilotMaxPitchAngleRad
+			RemoteSystemPacketType::autopilotMaxPitchAngleDeg
 		);
 
 		Theme::apply(&_verMaxPitchTitle);
@@ -95,7 +109,7 @@ namespace pizda {
 		// Angle increment
 		setupRadTextField(
 			_verSMTARFPS,
-			&rc.getSettings().APConfiguration.stabilizedModePitchAngleIncrementRadPerSecond,
+			&settings.APConfiguration.stabilizedModePitchAngleIncrementRadPerSecond,
 			5,
 			RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond
 		);
@@ -106,7 +120,7 @@ namespace pizda {
 		// Angle EMA filter factor
 		setupFloatTextField(
 			_verTAEMAFPS,
-			&rc.getSettings().APConfiguration.pitchAngleEMAFilterFactorPerSecond,
+			&settings.APConfiguration.pitchAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
@@ -119,7 +133,7 @@ namespace pizda {
 		// Surface factor
 		setupUint8PercentTextField(
 			_verMaxElevatorFactor,
-			&rc.getSettings().APConfiguration.maxElevatorPercent,
+			&settings.APConfiguration.maxElevatorPercent,
 			100,
 			RemoteSystemPacketType::autopilotMaxElevatorPercent
 		);
@@ -128,25 +142,25 @@ namespace pizda {
 		rows += &_verMaxElevatorFactorTitle;
 
 		// PIDs
-		addPID(
+		setupPID(
 			_varAltitudeToPitchPIDTitle,
 			_verAltitudeToPitchPID,
 			RemoteSystemPacketType::autopilotAltitudeToPitchPID,
-			&rc.getSettings().APConfiguration.PIDs.altitudeToPitch
+			&settings.APConfiguration.PIDs.altitudeToPitch
 		);
 
-		addPID(
+		setupPID(
 			_verSpeedToPitchPIDTitle,
 			_verSpeedToPitchPID,
 			RemoteSystemPacketType::autopilotSpeedToPitchPID,
-			&rc.getSettings().APConfiguration.PIDs.speedToPitch
+			&settings.APConfiguration.PIDs.speedToPitch
 		);
 
-		addPID(
+		setupPID(
 			_verPitchToElevatorPIDTitle,
 			_verPitchToElevatorPID,
 			RemoteSystemPacketType::autopilotPitchToElevatorPID,
-			&rc.getSettings().APConfiguration.PIDs.pitchToElevator
+			&settings.APConfiguration.PIDs.pitchToElevator
 		);
 
 		// ----------------------------- Longitudinal -----------------------------
@@ -157,10 +171,90 @@ namespace pizda {
 		Theme::applyPageTitle(&_lonTitle);
 		rows += &_lonTitle;
 
+		// V-speeds
+		_lonVSpeedsColumns.setGap(10);
+		_lonVSpeedsColumns.setOrientation(Orientation::horizontal);
+
+		// Band rows
+		_lonVSpeedsColumns.setAutoSize(&_lonVSpeedsBandRows);
+		_lonVSpeedsColumns += &_lonVSpeedsBandRows;
+
+		rows += &_lonVSpeedsColumns;
+
+		// Text field rows
+		_lonVSpeedsTextFieldRows.setGap(10);
+		_lonVSpeedsColumns += &_lonVSpeedsTextFieldRows;
+
+		// Vne
+		setupSpeedBand(_lonVSpeedsVNEBand, &Theme::red);
+		_lonVSpeedsBandRows.setAutoSize(&_lonVSpeedsVNEBand);
+		_lonVSpeedsVNEBand.setHeight(15 + Theme::elementHeight / 2);
+
+		setupVSpeedTextField(_lonVSpeedsVNETextField, &settings.APConfiguration.speeds.VNE, RemoteSystemPacketType::autopilotVNE);
+		Theme::apply(&_lonVSpeedsVNETitle);
+		_lonVSpeedsTextFieldRows += &_lonVSpeedsVNETitle;
+
+		// Vno
+		setupSpeedBand(_lonVSpeedsVNOBand, &Theme::yellow);
+		setupVSpeedTextField(_lonVSpeedsVNOTextField, &settings.APConfiguration.speeds.VNO, RemoteSystemPacketType::autopilotVNO);
+		Theme::apply(&_lonVSpeedsVNOTitle);
+		_lonVSpeedsTextFieldRows += &_lonVSpeedsVNOTitle;
+
+		// Vfe
+		setupSpeedBand(_lonVSpeedsVFEBand, &Theme::green1);
+		setupVSpeedTextField(_lonVSpeedsVFETextField, &settings.APConfiguration.speeds.VFE, RemoteSystemPacketType::autopilotVFE);
+		Theme::apply(&_lonVSpeedsVFETitle);
+		_lonVSpeedsTextFieldRows += &_lonVSpeedsVFETitle;
+
+		// Vs0
+		setupSpeedBand(_lonVSpeedsVS0Band, &Theme::white);
+		setupVSpeedTextField(_lonVSpeedsVS0TextField, &settings.APConfiguration.speeds.VS0, RemoteSystemPacketType::autopilotVS0);
+		Theme::apply(&_lonVSpeedsVS0Title);
+		_lonVSpeedsTextFieldRows += &_lonVSpeedsVS0Title;
+
+		// Pre Vs0
+		setupSpeedBand(_lonVSpeedsPreVS0Band, &Theme::red);
+		_lonVSpeedsBandRows.setAutoSize(&_lonVSpeedsPreVS0Band);
+		_lonVSpeedsPreVS0Band.setHeight(Theme::elementHeight / 2);
+
+		// Stall protection margin
+		setupAnyTextField(
+			_lonStallProtectionMargin,
+			std::to_string(settings.APConfiguration.speeds.stallProtectionMargin),
+			[&rc, &settings, this] {
+				settings.APConfiguration.speeds.stallProtectionMargin = Text::tryParseInt32Or(_lonStallProtectionMargin.getText(), 0);
+				settings.APConfiguration.writeLater();
+
+				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotStallSpeedProtectionMargin);
+			}
+		);
+
+		_lonStallProtectionMargin.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+
+		Theme::apply(&_lonStallProtectionMarginTitle);
+		rows += &_lonStallProtectionMarginTitle;
+
+		// Overspeed protection margin
+		setupAnyTextField(
+			_lonOverspeedProtectionMargin,
+			std::to_string(settings.APConfiguration.speeds.overspeedProtectionMargin),
+			[&rc, &settings, this] {
+				settings.APConfiguration.speeds.overspeedProtectionMargin = Text::tryParseInt32Or(_lonOverspeedProtectionMargin.getText(), 0);
+				settings.APConfiguration.writeLater();
+
+				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotOverspeedProtectionMargin);
+			}
+		);
+
+		_lonOverspeedProtectionMargin.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+
+		Theme::apply(&_lonOverspeedProtectionMarginTitle);
+		rows += &_lonOverspeedProtectionMarginTitle;
+
 		// Min
 		setupUint8PercentTextField(
 			_lonThrottleMin,
-			&rc.getSettings().APConfiguration.minThrottlePercent,
+			&settings.APConfiguration.minThrottlePercent,
 			100,
 			RemoteSystemPacketType::autopilotMinThrottlePercent
 		);
@@ -171,7 +265,7 @@ namespace pizda {
 		// Max
 		setupUint8PercentTextField(
 			_lonThrottleMax,
-			&rc.getSettings().APConfiguration.maxThrottlePercent,
+			&settings.APConfiguration.maxThrottlePercent,
 			100,
 			RemoteSystemPacketType::autopilotMaxThrottlePercent
 		);
@@ -180,11 +274,11 @@ namespace pizda {
 		rows += &_lonThrottleMaxTitle;
 
 		// PIDs
-		addPID(
+		setupPID(
 			_lonSpeedToThrottlePIDTitle,
 			_lonSpeedToThrottlePID,
 			RemoteSystemPacketType::autopilotSpeedToThrottlePID,
-			&rc.getSettings().APConfiguration.PIDs.speedToThrottle
+			&settings.APConfiguration.PIDs.speedToThrottle
 		);
 
 		// Initialization
@@ -260,7 +354,7 @@ namespace pizda {
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
 	}
 
-	void AutopilotSettingsPage::addPID(Titler& titler, PIDReferencer& referencer,
+	void AutopilotSettingsPage::setupPID(Titler& titler, PIDReferencer& referencer,
 		RemoteSystemPacketType packetType, PIDCoefficients* settingsCoefficients) {
 		referencer.setCoefficients(*settingsCoefficients);
 
@@ -275,5 +369,29 @@ namespace pizda {
 
 		Theme::apply(&titler);
 		rows += &titler;
+	}
+
+	void AutopilotSettingsPage::setupVSpeedTextField(TextField& textField, uint16_t* value, const RemoteSystemPacketType packetType) {
+		setupAnyTextField(
+			textField,
+			std::to_string(*value),
+			[&textField, value, packetType] {
+				auto& rc = RC::getInstance();
+
+				*value = std::max<uint16_t>(0, Text::tryParseInt32Or(textField.getText(), 0));
+				rc.getSettings().personalization.writeLater();
+
+				rc.getTransceiver().enqueueSystemPacket(packetType);
+			}
+		);
+
+		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+	}
+
+	void AutopilotSettingsPage::setupSpeedBand(RectangularShape& band, const Color* color) {
+		band.setWidth(2);
+		band.setFillColor(color);
+
+		_lonVSpeedsBandRows += &band;
 	}
 }

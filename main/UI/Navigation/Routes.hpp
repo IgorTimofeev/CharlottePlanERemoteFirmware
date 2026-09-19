@@ -9,11 +9,10 @@
 #include "UI/Navigation/Settings/Personalization/PersonalizationSettingsPage.hpp"
 #include "UI/Navigation/Settings/ADIRS/ADIRSSettingsPage.hpp"
 #include "UI/Navigation/Settings/SpectrumScan/SpectrumScanPage.hpp"
-#include "UI/Navigation/Settings/Autopilot/AutopilotSettingsPage.hpp"
+#include "UI/Navigation/Settings/FlyByWire/FlyByWireSettingsPage.hpp"
 #include "UI/Navigation/Settings/Motors/MotorsSettingsPage.hpp"
 #include "UI/Navigation/Settings/Axis/AxesSettingsPage.hpp"
 #include "UI/Navigation/Settings/Transceiver/TransceiverSettingsPage.hpp"
-#include "UI/Navigation/Settings/MFD/MFDSettingsPage.hpp"
 
 namespace pizda {
 	class Routes {
@@ -26,10 +25,9 @@ namespace pizda {
 			constexpr static ElementRoute<PersonalizationSettingsPage> settingsPersonalization {};
 			constexpr static ElementRoute<ADIRSSettingsPage> settingsADIRS {};
 			constexpr static ElementRoute<SpectrumScanPage> settingsSpectrumScan {};
-			constexpr static ElementRoute<AutopilotSettingsPage> settingsAutopilot {};
+			constexpr static ElementRoute<FlyByWireSettingsPage> settingsFlyByWire {};
 			constexpr static ElementRoute<MotorsSettingsPage> settingsMotors {};
 			constexpr static ElementRoute<AxesSettingsPage> settingsAxes {};
 			constexpr static ElementRoute<TransceiverSettingsPage> settingsTransceiver {};
-			constexpr static ElementRoute<MFDSettingsPage> settingsMFD {};
 	};
 }

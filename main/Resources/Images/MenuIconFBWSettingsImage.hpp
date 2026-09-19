@@ -8,9 +8,9 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class MenuIconMFDSettingsImage : public Image {
+	class MenuIconFBWSettingsImage : public Image {
 		public:
-			constexpr MenuIconMFDSettingsImage() : Image(
+			constexpr MenuIconFBWSettingsImage() : Image(
 				ColorModel::RGB565,
 				ImageOptions::none,
 				Size(45, 33),

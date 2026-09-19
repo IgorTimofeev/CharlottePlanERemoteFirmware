@@ -53,7 +53,7 @@ namespace pizda {
 		rc.getSettings().flightModeSelection.headingDeg = static_cast<uint16_t>(seven.getValue());
 		rc.getSettings().flightModeSelection.writeLater();
 
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotSelectedHeadingDeg);
+		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::flyByWireSelectedHeadingDeg);
 	}
 
 	void LateralRotaryControl::onVariantChanged() {
@@ -77,7 +77,7 @@ namespace pizda {
 
 		auto& rc = RC::getInstance();
 
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotLateralMode);
+		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::flyByWireLateralMode);
 	}
 	
 	void LateralRotaryControl::onTick() {

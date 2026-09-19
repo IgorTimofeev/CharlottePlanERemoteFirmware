@@ -6,7 +6,7 @@
 #include "Settings/NavigationSettings.hpp"
 #include "Settings/MotorsSettings.hpp"
 #include "Settings/TransceiverSettings.hpp"
-#include "Settings/AutopilotConfigurationSettings.hpp"
+#include "Settings/FlyByWireSettings.hpp"
 #include "Settings/FlightModeSelectionSettings.hpp"
 
 namespace pizda {
@@ -18,7 +18,7 @@ namespace pizda {
 			NavigationSettings navigation {};
 			MotorsSettings motors {};
 			TransceiverSettings transceiver {};
-			AutopilotConfigurationSettings APConfiguration {};
+			FlyByWireSettings FBW {};
 			FlightModeSelectionSettings flightModeSelection {};
 
 			void readAll() {
@@ -29,7 +29,7 @@ namespace pizda {
 				navigation.read();
 				motors.read();
 				transceiver.read();
-				APConfiguration.read();
+				FBW.read();
 				flightModeSelection.read();
 			}
 	};

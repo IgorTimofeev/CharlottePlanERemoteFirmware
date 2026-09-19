@@ -366,7 +366,7 @@ namespace pizda {
 
 	void PFD::renderSpeed(Renderer* renderer, const Rectangle& bounds) {
 		auto& rc = RC::getInstance();
-		auto& settings = rc.getSettings();
+		const auto& settings = rc.getSettings();
 
 		const auto oldClip = renderer->pushClip(bounds);
 
@@ -378,13 +378,20 @@ namespace pizda {
 		const auto barX = bounds.getX2() + 1 - speedBarSize;
 
 		const auto renderBar = [&](const int32_t x, const uint16_t width, const uint16_t fromSpeed, const uint16_t toSpeed, const Color* color) {
-			const int32_t fromY = centerY - static_cast<int32_t>((static_cast<float>(fromSpeed) - rc.getAircraftData().computed.airspeedKt) * static_cast<float>(speedStepPixels) / static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt));
+			const int32_t y =
+				centerY
+				- static_cast<int32_t>(
+					(static_cast<float>(fromSpeed) - rc.getAircraftData().computed.airspeedKt)
+					* static_cast<float>(speedStepPixels)
+					/ static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt)
+				);
+
 			const int32_t height = (toSpeed - fromSpeed) * speedStepPixels / settings.personalization.MFD.PFD.speed.minorTickStepKt;
 
 			renderer->fillRectangle(
 				Rectangle(
 					x,
-					fromY - height,
+					y - height,
 					width,
 					height
 				),
@@ -396,41 +403,63 @@ namespace pizda {
 			barX,
 			speedBarSize,
 			0,
-			settings.APConfiguration.speeds.VS0,
+			settings.FBW.speeds.VS0,
 			&Theme::red
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.APConfiguration.speeds.VS0,
-			settings.APConfiguration.speeds.VFE,
+			settings.FBW.speeds.VS0,
+			settings.FBW.speeds.VFE,
 			&Theme::white
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.APConfiguration.speeds.VFE,
-			settings.APConfiguration.speeds.VNO,
+			settings.FBW.speeds.VFE,
+			settings.FBW.speeds.VNO,
 			&Theme::green2
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.APConfiguration.speeds.VNO,
-			settings.APConfiguration.speeds.VNE,
+			settings.FBW.speeds.VNO,
+			settings.FBW.speeds.VNE,
 			&Theme::yellow
 		);
 
 		renderBar(
 			barX,
 			speedBarSize,
-			settings.APConfiguration.speeds.VNE,
-			settings.APConfiguration.speeds.VNE + 100,
+			settings.FBW.speeds.VNE,
+			settings.FBW.speeds.VNE + 100,
 			&Theme::red
 		);
+
+		// Protection speeds
+		const auto renderProtectionSpeed = [&rc, &settings, &bounds, centerY, renderer](const uint16_t speed) {
+			const int32_t y =
+				centerY
+				- static_cast<int32_t>(
+					(static_cast<float>(speed) - rc.getAircraftData().computed.airspeedKt)
+					* static_cast<float>(speedStepPixels)
+					/ static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt)
+				);
+
+			constexpr static uint8_t width = speedBarSize + 4;
+
+			renderer->strokeHorizontalLine(
+				Point(bounds.getX2() - width + 1, y),
+				width,
+				&Theme::orange
+			);
+		};
+
+		renderProtectionSpeed(settings.FBW.speeds.VS0 + settings.FBW.speeds.stallProtectionMargin);
+		renderProtectionSpeed(settings.FBW.speeds.VNE - settings.FBW.speeds.overspeedProtectionMargin);
 
 		// Lines
 		const float snapped = rc.getAircraftData().computed.airspeedKt / static_cast<float>(settings.personalization.MFD.PFD.speed.minorTickStepKt);

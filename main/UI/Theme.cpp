@@ -33,6 +33,7 @@ namespace pizda {
 	RGB565Color Theme::magenta2 { 0 };
 	RGB565Color Theme::ocean { 0 };
 	RGB565Color Theme::yellow { 0 };
+	RGB565Color Theme::orange { 0 };
 	RGB565Color Theme::ground1 { 0 };
 	RGB565Color Theme::ground2 { 0 };
 	RGB565Color Theme::sky1 { 0 };
@@ -113,6 +114,7 @@ namespace pizda {
 			magenta2 = RGB888Color(0xAA00AA).toRGB565();
 			ocean = RGB888Color(0x00FFFF).toRGB565();
 			yellow = RGB888Color(0xffd200).toRGB565();
+			orange = RGB888Color(0xffc400).toRGB565();
 			ground1 = RGB888Color(0x97b838).toRGB565();
 			ground2 = RGB888Color(0xdef2a2).toRGB565();
 			sky1 = RGB888Color(0x317fcb).toRGB565();
@@ -153,6 +155,7 @@ namespace pizda {
 			magenta2 = RGB888Color(0xAA00AA).toRGB565();
 			ocean = RGB888Color(0x00FFFF).toRGB565();
 			yellow = RGB888Color(0xffd200).toRGB565();
+			orange = RGB888Color(0xffc400).toRGB565();
 			ground1 = RGB888Color(0x97b838).toRGB565();
 			ground2 = RGB888Color(0xdef2a2).toRGB565();
 			sky1 = RGB888Color(0x317fcb).toRGB565();

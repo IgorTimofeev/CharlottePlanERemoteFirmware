@@ -1,10 +1,10 @@
-#include "UI/Navigation/Settings/Autopilot/AutopilotSettingsPage.hpp"
+#include "UI/Navigation/Settings/FlyByWire/FlyByWireSettingsPage.hpp"
 #include "UI/Theme.hpp"
 #include "Types/Generic.hpp"
 #include "RC.hpp"
 
 namespace pizda {
-	AutopilotSettingsPage::AutopilotSettingsPage() {
+	FlyByWireSettingsPage::FlyByWireSettingsPage() {
 		auto& rc = RC::getInstance();
 		auto& settings = rc.getSettings();
 
@@ -15,9 +15,9 @@ namespace pizda {
 		// Angle max
 		setupRadTextField(
 			_latMaxRoll,
-			&settings.APConfiguration.maxRollAngleRad,
+			&settings.FBW.maxRollAngleRad,
 			30.f,
-			RemoteSystemPacketType::autopilotMaxRollAngleDeg
+			RemoteSystemPacketType::flyByWireMaxRollAngleDeg
 		);
 
 		Theme::apply(&_latMaxRollTitle);
@@ -26,9 +26,9 @@ namespace pizda {
 		// Angle increment
 		setupRadTextField(
 			_latSMTAIRPS,
-			&settings.APConfiguration.stabilizedModeRollAngleIncrementRadPerSecond,
+			&settings.FBW.stabilizedModeRollAngleIncrementRadPerSecond,
 			5,
-			RemoteSystemPacketType::autopilotStabilizedModeRollAngleIncrementRadPerSecond
+			RemoteSystemPacketType::flyByWireStabilizedModeRollAngleIncrementRadPerSecond
 		);
 
 		Theme::apply(&_latSMTAIFRSTitle);
@@ -37,11 +37,11 @@ namespace pizda {
 		// Angle EMA filter factor
 		setupFloatTextField(
 			_latTAEMAFPS,
-			&settings.APConfiguration.rollAngleEMAFilterFactorPerSecond,
+			&settings.FBW.rollAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
-			RemoteSystemPacketType::autopilotRollAngleEMAFilterFactorPerSecond
+			RemoteSystemPacketType::flyByWireRollAngleEMAFilterFactorPerSecond
 		);
 
 		Theme::apply(&_latTAEMAFPSTitle);
@@ -50,9 +50,9 @@ namespace pizda {
 		// Surface factor
 		setupUint8PercentTextField(
 			_latMaxAileronsFactor,
-			&settings.APConfiguration.maxAileronsPercent,
+			&settings.FBW.maxAileronsPercent,
 			100,
-			RemoteSystemPacketType::autopilotMaxAileronsPercent
+			RemoteSystemPacketType::flyByWireMaxAileronsPercent
 		);
 
 		Theme::apply(&_latMaxAileronsFactorTitle);
@@ -62,15 +62,15 @@ namespace pizda {
 		setupPID(
 			_latYawToRollPIDTitle,
 			_latYawToRollPID,
-			RemoteSystemPacketType::autopilotYawToRollPID,
-			&settings.APConfiguration.PIDs.yawToRoll
+			RemoteSystemPacketType::flyByWireYawToRollPID,
+			&settings.FBW.PIDs.yawToRoll
 		);
 
 		setupPID(
 			_latRollToAileronsPIDTitle,
 			_latRollToAileronsPID,
-			RemoteSystemPacketType::autopilotRollToAileronsPID,
-			&settings.APConfiguration.PIDs.rollToAilerons
+			RemoteSystemPacketType::flyByWireRollToAileronsPID,
+			&settings.FBW.PIDs.rollToAilerons
 		);
 
 
@@ -85,9 +85,9 @@ namespace pizda {
 		// Angle min
 		setupRadTextField(
 			_verMinPitch,
-			&settings.APConfiguration.minPitchAngleRad,
+			&settings.FBW.minPitchAngleRad,
 			-15.f,
-			RemoteSystemPacketType::autopilotMinPitchAngleDeg
+			RemoteSystemPacketType::flyByWireMinPitchAngleDeg
 		);
 		
 		_verMinPitch.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional | KeyboardLayoutOptions::allowSigned);
@@ -98,9 +98,9 @@ namespace pizda {
 		// Angle max
 		setupRadTextField(
 			_verMaxPitch,
-			&settings.APConfiguration.maxPitchAngleRad,
+			&settings.FBW.maxPitchAngleRad,
 			15.f,
-			RemoteSystemPacketType::autopilotMaxPitchAngleDeg
+			RemoteSystemPacketType::flyByWireMaxPitchAngleDeg
 		);
 
 		Theme::apply(&_verMaxPitchTitle);
@@ -109,9 +109,9 @@ namespace pizda {
 		// Angle increment
 		setupRadTextField(
 			_verSMTARFPS,
-			&settings.APConfiguration.stabilizedModePitchAngleIncrementRadPerSecond,
+			&settings.FBW.stabilizedModePitchAngleIncrementRadPerSecond,
 			5,
-			RemoteSystemPacketType::autopilotStabilizedModePitchAngleIncrementRadPerSecond
+			RemoteSystemPacketType::flyByWireStabilizedModePitchAngleIncrementRadPerSecond
 		);
 
 		Theme::apply(&_verSMTAIRPSTitle);
@@ -120,11 +120,11 @@ namespace pizda {
 		// Angle EMA filter factor
 		setupFloatTextField(
 			_verTAEMAFPS,
-			&settings.APConfiguration.pitchAngleEMAFilterFactorPerSecond,
+			&settings.FBW.pitchAngleEMAFilterFactorPerSecond,
 			0.6f,
 			0.0f,
 			1000.0f,
-			RemoteSystemPacketType::autopilotPitchAngleEMAFilterFactorPerSecond
+			RemoteSystemPacketType::flyByWirePitchAngleEMAFilterFactorPerSecond
 		);
 
 		Theme::apply(&_verTAEMAFPSTitle);
@@ -133,9 +133,9 @@ namespace pizda {
 		// Surface factor
 		setupUint8PercentTextField(
 			_verMaxElevatorFactor,
-			&settings.APConfiguration.maxElevatorPercent,
+			&settings.FBW.maxElevatorPercent,
 			100,
-			RemoteSystemPacketType::autopilotMaxElevatorPercent
+			RemoteSystemPacketType::flyByWireMaxElevatorPercent
 		);
 
 		Theme::apply(&_verMaxElevatorFactorTitle);
@@ -145,22 +145,22 @@ namespace pizda {
 		setupPID(
 			_varAltitudeToPitchPIDTitle,
 			_verAltitudeToPitchPID,
-			RemoteSystemPacketType::autopilotAltitudeToPitchPID,
-			&settings.APConfiguration.PIDs.altitudeToPitch
+			RemoteSystemPacketType::flyByWireAltitudeToPitchPID,
+			&settings.FBW.PIDs.altitudeToPitch
 		);
 
 		setupPID(
 			_verSpeedToPitchPIDTitle,
 			_verSpeedToPitchPID,
-			RemoteSystemPacketType::autopilotSpeedToPitchPID,
-			&settings.APConfiguration.PIDs.speedToPitch
+			RemoteSystemPacketType::flyByWireSpeedToPitchPID,
+			&settings.FBW.PIDs.speedToPitch
 		);
 
 		setupPID(
 			_verPitchToElevatorPIDTitle,
 			_verPitchToElevatorPID,
-			RemoteSystemPacketType::autopilotPitchToElevatorPID,
-			&settings.APConfiguration.PIDs.pitchToElevator
+			RemoteSystemPacketType::flyByWirePitchToElevatorPID,
+			&settings.FBW.PIDs.pitchToElevator
 		);
 
 		// ----------------------------- Longitudinal -----------------------------
@@ -190,25 +190,25 @@ namespace pizda {
 		_lonVSpeedsBandRows.setAutoSize(&_lonVSpeedsVNEBand);
 		_lonVSpeedsVNEBand.setHeight(15 + Theme::elementHeight / 2);
 
-		setupVSpeedTextField(_lonVSpeedsVNETextField, &settings.APConfiguration.speeds.VNE, RemoteSystemPacketType::autopilotVNE);
+		setupVSpeedTextField(_lonVSpeedsVNETextField, &settings.FBW.speeds.VNE, RemoteSystemPacketType::flyByWireVNE);
 		Theme::apply(&_lonVSpeedsVNETitle);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVNETitle;
 
 		// Vno
 		setupSpeedBand(_lonVSpeedsVNOBand, &Theme::yellow);
-		setupVSpeedTextField(_lonVSpeedsVNOTextField, &settings.APConfiguration.speeds.VNO, RemoteSystemPacketType::autopilotVNO);
+		setupVSpeedTextField(_lonVSpeedsVNOTextField, &settings.FBW.speeds.VNO, RemoteSystemPacketType::flyByWireVNO);
 		Theme::apply(&_lonVSpeedsVNOTitle);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVNOTitle;
 
 		// Vfe
 		setupSpeedBand(_lonVSpeedsVFEBand, &Theme::green1);
-		setupVSpeedTextField(_lonVSpeedsVFETextField, &settings.APConfiguration.speeds.VFE, RemoteSystemPacketType::autopilotVFE);
+		setupVSpeedTextField(_lonVSpeedsVFETextField, &settings.FBW.speeds.VFE, RemoteSystemPacketType::flyByWireVFE);
 		Theme::apply(&_lonVSpeedsVFETitle);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVFETitle;
 
 		// Vs0
 		setupSpeedBand(_lonVSpeedsVS0Band, &Theme::white);
-		setupVSpeedTextField(_lonVSpeedsVS0TextField, &settings.APConfiguration.speeds.VS0, RemoteSystemPacketType::autopilotVS0);
+		setupVSpeedTextField(_lonVSpeedsVS0TextField, &settings.FBW.speeds.VS0, RemoteSystemPacketType::flyByWireVS0);
 		Theme::apply(&_lonVSpeedsVS0Title);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVS0Title;
 
@@ -220,12 +220,12 @@ namespace pizda {
 		// Stall protection margin
 		setupAnyTextField(
 			_lonStallProtectionMargin,
-			std::to_string(settings.APConfiguration.speeds.stallProtectionMargin),
+			std::to_string(settings.FBW.speeds.stallProtectionMargin),
 			[&rc, &settings, this] {
-				settings.APConfiguration.speeds.stallProtectionMargin = Text::tryParseInt32Or(_lonStallProtectionMargin.getText(), 0);
-				settings.APConfiguration.writeLater();
+				settings.FBW.speeds.stallProtectionMargin = Text::tryParseInt32Or(_lonStallProtectionMargin.getText(), 0);
+				settings.FBW.writeLater();
 
-				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotStallSpeedProtectionMargin);
+				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::flyByWireStallSpeedProtectionMargin);
 			}
 		);
 
@@ -237,12 +237,12 @@ namespace pizda {
 		// Overspeed protection margin
 		setupAnyTextField(
 			_lonOverspeedProtectionMargin,
-			std::to_string(settings.APConfiguration.speeds.overspeedProtectionMargin),
+			std::to_string(settings.FBW.speeds.overspeedProtectionMargin),
 			[&rc, &settings, this] {
-				settings.APConfiguration.speeds.overspeedProtectionMargin = Text::tryParseInt32Or(_lonOverspeedProtectionMargin.getText(), 0);
-				settings.APConfiguration.writeLater();
+				settings.FBW.speeds.overspeedProtectionMargin = Text::tryParseInt32Or(_lonOverspeedProtectionMargin.getText(), 0);
+				settings.FBW.writeLater();
 
-				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotOverspeedProtectionMargin);
+				rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::flyByWireOverspeedProtectionMargin);
 			}
 		);
 
@@ -254,9 +254,9 @@ namespace pizda {
 		// Min
 		setupUint8PercentTextField(
 			_lonThrottleMin,
-			&settings.APConfiguration.minThrottlePercent,
+			&settings.FBW.minThrottlePercent,
 			100,
-			RemoteSystemPacketType::autopilotMinThrottlePercent
+			RemoteSystemPacketType::flyByWireMinThrottlePercent
 		);
 
 		Theme::apply(&_lonThrottleMinTitle);
@@ -265,9 +265,9 @@ namespace pizda {
 		// Max
 		setupUint8PercentTextField(
 			_lonThrottleMax,
-			&settings.APConfiguration.maxThrottlePercent,
+			&settings.FBW.maxThrottlePercent,
 			100,
-			RemoteSystemPacketType::autopilotMaxThrottlePercent
+			RemoteSystemPacketType::flyByWireMaxThrottlePercent
 		);
 
 		Theme::apply(&_lonThrottleMaxTitle);
@@ -277,21 +277,21 @@ namespace pizda {
 		setupPID(
 			_lonSpeedToThrottlePIDTitle,
 			_lonSpeedToThrottlePID,
-			RemoteSystemPacketType::autopilotSpeedToThrottlePID,
-			&settings.APConfiguration.PIDs.speedToThrottle
+			RemoteSystemPacketType::flyByWireSpeedToThrottlePID,
+			&settings.FBW.PIDs.speedToThrottle
 		);
 
 		// Initialization
 		scrollView.setVerticalPosition(_scrollPosition);
 	}
 
-	AutopilotSettingsPage::~AutopilotSettingsPage() {
+	FlyByWireSettingsPage::~FlyByWireSettingsPage() {
 		_scrollPosition = scrollView.getVerticalPosition();
 	}
 
-	int32_t AutopilotSettingsPage::_scrollPosition = 0;
+	int32_t FlyByWireSettingsPage::_scrollPosition = 0;
 
-	void AutopilotSettingsPage::setupAnyTextField(TextField& textField, const std::string_view& text, const std::function<void()>& onEnter) {
+	void FlyByWireSettingsPage::setupAnyTextField(TextField& textField, const std::string_view& text, const std::function<void()>& onEnter) {
 		Theme::apply(&textField);
 		textField.setText(text);
 
@@ -303,7 +303,7 @@ namespace pizda {
 		});
 	}
 
-	void AutopilotSettingsPage::setupFloatTextField(TextField& textField, float* value, float fallbackValue, float min, float max, RemoteSystemPacketType packetType) {
+	void FlyByWireSettingsPage::setupFloatTextField(TextField& textField, float* value, float fallbackValue, float min, float max, RemoteSystemPacketType packetType) {
 		setupAnyTextField(
 			textField,
 			std::to_string(*value),
@@ -311,7 +311,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*value = std::clamp(Text::tryParseFloatOr(textField.getText(), fallbackValue), min, max);
-				rc.getSettings().APConfiguration.writeLater();
+				rc.getSettings().FBW.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -320,7 +320,7 @@ namespace pizda {
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
 	}
 
-	void AutopilotSettingsPage::setupRadTextField(TextField& textField, float* angleRad, float fallbackAngleDeg, RemoteSystemPacketType packetType) {
+	void FlyByWireSettingsPage::setupRadTextField(TextField& textField, float* angleRad, float fallbackAngleDeg, RemoteSystemPacketType packetType) {
 		setupAnyTextField(
 			textField,
 			std::to_string(Math::round(Math::toDegrees(*angleRad), 2)),
@@ -328,7 +328,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*angleRad = Math::toRadians(Text::tryParseFloatOr(textField.getText(), fallbackAngleDeg));
-				rc.getSettings().APConfiguration.writeLater();
+				rc.getSettings().FBW.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -337,7 +337,7 @@ namespace pizda {
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
 	}
 
-	void AutopilotSettingsPage::setupUint8PercentTextField(TextField& textField, uint8_t* percent, float fallbackPercent, RemoteSystemPacketType packetType) {
+	void FlyByWireSettingsPage::setupUint8PercentTextField(TextField& textField, uint8_t* percent, float fallbackPercent, RemoteSystemPacketType packetType) {
 		setupAnyTextField(
 			textField,
 			std::to_string(*percent),
@@ -345,7 +345,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*percent = static_cast<uint8_t>(std::clamp<int32_t>(Text::tryParseInt32Or(textField.getText(), fallbackPercent), 0, 100));
-				rc.getSettings().APConfiguration.writeLater();
+				rc.getSettings().FBW.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -354,7 +354,7 @@ namespace pizda {
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
 	}
 
-	void AutopilotSettingsPage::setupPID(Titler& titler, PIDReferencer& referencer,
+	void FlyByWireSettingsPage::setupPID(Titler& titler, PIDReferencer& referencer,
 		RemoteSystemPacketType packetType, PIDCoefficients* settingsCoefficients) {
 		referencer.setCoefficients(*settingsCoefficients);
 
@@ -362,7 +362,7 @@ namespace pizda {
 			auto& rc = RC::getInstance();
 
 			*settingsCoefficients = newCoefficients;
-			rc.getSettings().APConfiguration.writeLater();
+			rc.getSettings().FBW.writeLater();
 
 			rc.getTransceiver().enqueueSystemPacket(packetType);
 		});
@@ -371,7 +371,7 @@ namespace pizda {
 		rows += &titler;
 	}
 
-	void AutopilotSettingsPage::setupVSpeedTextField(TextField& textField, uint16_t* value, const RemoteSystemPacketType packetType) {
+	void FlyByWireSettingsPage::setupVSpeedTextField(TextField& textField, uint16_t* value, const RemoteSystemPacketType packetType) {
 		setupAnyTextField(
 			textField,
 			std::to_string(*value),
@@ -379,7 +379,7 @@ namespace pizda {
 				auto& rc = RC::getInstance();
 
 				*value = std::max<uint16_t>(0, Text::tryParseInt32Or(textField.getText(), 0));
-				rc.getSettings().personalization.writeLater();
+				rc.getSettings().FBW.writeLater();
 
 				rc.getTransceiver().enqueueSystemPacket(packetType);
 			}
@@ -388,7 +388,7 @@ namespace pizda {
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
 	}
 
-	void AutopilotSettingsPage::setupSpeedBand(RectangularShape& band, const Color* color) {
+	void FlyByWireSettingsPage::setupSpeedBand(RectangularShape& band, const Color* color) {
 		band.setWidth(2);
 		band.setFillColor(color);
 

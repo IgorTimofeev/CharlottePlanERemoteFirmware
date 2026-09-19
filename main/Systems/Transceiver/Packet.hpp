@@ -40,46 +40,46 @@ namespace pizda {
 		magneticDeclination,
 		motors,
 
-		// ----------------------------- Autopilot -----------------------------
+		// ----------------------------- FlyByWire -----------------------------
 
 		// Generic
-		autopilotEnabled,
-		autopilotAutothrottleEnabled,
+		flyByWireAutopilot,
+		flyByWireAutothrottle,
 
 		// Lateral
-		autopilotLateralMode,
-		autopilotSelectedHeadingDeg,
-		autopilotMaxRollAngleDeg,
-		autopilotYawToRollPID,
-		autopilotRollToAileronsPID,
-		autopilotStabilizedModeRollAngleIncrementRadPerSecond,
-		autopilotRollAngleEMAFilterFactorPerSecond,
-		autopilotMaxAileronsPercent,
+		flyByWireLateralMode,
+		flyByWireSelectedHeadingDeg,
+		flyByWireMaxRollAngleDeg,
+		flyByWireYawToRollPID,
+		flyByWireRollToAileronsPID,
+		flyByWireStabilizedModeRollAngleIncrementRadPerSecond,
+		flyByWireRollAngleEMAFilterFactorPerSecond,
+		flyByWireMaxAileronsPercent,
 
 		// Vertical
-		autopilotVerticalMode,
-		autopilotSelectedAltitudeM,
-		autopilotMinPitchAngleDeg,
-		autopilotMaxPitchAngleDeg,
-		autopilotSpeedToPitchPID,
-		autopilotAltitudeToPitchPID,
-		autopilotPitchToElevatorPID,
-		autopilotStabilizedModePitchAngleIncrementRadPerSecond,
-		autopilotPitchAngleEMAFilterFactorPerSecond,
-		autopilotMaxElevatorPercent,
+		flyByWireVerticalMode,
+		flyByWireSelectedAltitudeM,
+		flyByWireMinPitchAngleDeg,
+		flyByWireMaxPitchAngleDeg,
+		flyByWireSpeedToPitchPID,
+		flyByWireAltitudeToPitchPID,
+		flyByWirePitchToElevatorPID,
+		flyByWireStabilizedModePitchAngleIncrementRadPerSecond,
+		flyByWirePitchAngleEMAFilterFactorPerSecond,
+		flyByWireMaxElevatorPercent,
 
 		// Longitudinal
-		autopilotSelectedSpeedMPS,
-		autopilotSpeedToThrottlePID,
-		autopilotMinThrottlePercent,
-		autopilotMaxThrottlePercent,
+		flyByWireSelectedSpeedMPS,
+		flyByWireSpeedToThrottlePID,
+		flyByWireMinThrottlePercent,
+		flyByWireMaxThrottlePercent,
 
-		autopilotVS0,
-		autopilotVFE,
-		autopilotVNO,
-		autopilotVNE,
-		autopilotStallSpeedProtectionMargin,
-		autopilotOverspeedProtectionMargin,
+		flyByWireVS0,
+		flyByWireVFE,
+		flyByWireVNO,
+		flyByWireVNE,
+		flyByWireStallSpeedProtectionMargin,
+		flyByWireOverspeedProtectionMargin,
 
 		communicationSettings,
 
@@ -120,37 +120,37 @@ namespace pizda {
 			constexpr static uint8_t cameraPitchLengthBits = 9;
 			constexpr static uint8_t cameraYawLengthBits = cameraPitchLengthBits;
 
-			// -------------------------------- Autopilot --------------------------------
+			// -------------------------------- FlyByWire --------------------------------
 
 			// Speed
 			// The Guinness World Record for the fastest RC jet-powered aircraft is 749.221 km/h, set by Niels Herbrich in 2017.
 			// In our case 350 km/h (97.2 m/s) will be enough, because it gives precision of ~0.37 m/s per 1 bit
-			constexpr static uint8_t autopilotSelectedSpeedLengthBits = 8;
-			constexpr static int16_t autopilotSelectedSpeedMaxMPS = 97;
+			constexpr static uint8_t flyByWireSelectedSpeedLengthBits = 8;
+			constexpr static int16_t flyByWireSelectedSpeedMaxMPS = 97;
 
 			// 360 deg = 9 bits
-			constexpr static uint8_t autopilotSelectedHeadingDegLengthBits = 9;
+			constexpr static uint8_t flyByWireSelectedHeadingDegLengthBits = 9;
 
 			// Altitude
 			// 13 bit = 8191, not enough
 			// 14 bit = 16383, more than enough
 			// Mapping [-1000; 10000] to [0; 16383]
-			constexpr static uint8_t autopilotSelectedAltitudeLengthBits = 14;
-			constexpr static int16_t autopilotSelectedAltitudeMinM = -1'000;
-			constexpr static int16_t autopilotSelectedAltitudeMaxM = 10'000;
+			constexpr static uint8_t flyByWireSelectedAltitudeLengthBits = 14;
+			constexpr static int16_t flyByWireSelectedAltitudeMinM = -1'000;
+			constexpr static int16_t flyByWireSelectedAltitudeMaxM = 10'000;
 
 			// Mode
-			constexpr static uint8_t autopilotLateralModeLengthBits = 2;
-			constexpr static uint8_t autopilotVerticalModeLengthBits = 3;
+			constexpr static uint8_t flyByWireLateralModeLengthBits = 2;
+			constexpr static uint8_t flyByWireVerticalModeLengthBits = 3;
 
 			// Ailerons, elevator, throttle
-			constexpr static uint8_t autopilotPercentLengthBits = 7;
+			constexpr static uint8_t flyByWirePercentLengthBits = 7;
 
-			constexpr static uint8_t autopilotMinMaxPitchLengthBits = 7;
-			constexpr static uint8_t autopilotMaxRollLengthBits = 7;
+			constexpr static uint8_t flyByWireMinMaxPitchLengthBits = 7;
+			constexpr static uint8_t flyByWireMaxRollLengthBits = 7;
 
-			constexpr static uint8_t autopilotVSpeedsLengthBits = 8;
-			constexpr static uint8_t autopilotSpeedProtectionLengthBits = 5;
+			constexpr static uint8_t flyByWireVSpeedsLengthBits = 8;
+			constexpr static uint8_t flyByWireSpeedProtectionLengthBits = 5;
 	};
 
 	class RemoteSystemCommunicationSettingsPacket {
@@ -215,18 +215,18 @@ namespace pizda {
 			constexpr static uint8_t slipAndSkidLengthBits = 8;
 			constexpr static uint8_t slipAndSkidMaxG = 2;
 
-			constexpr static uint8_t speedLengthBits = RemoteSystemPacket::autopilotSelectedSpeedLengthBits;
-			constexpr static int16_t speedMaxMPS = RemoteSystemPacket::autopilotSelectedSpeedMaxMPS;
+			constexpr static uint8_t speedLengthBits = RemoteSystemPacket::flyByWireSelectedSpeedLengthBits;
+			constexpr static int16_t speedMaxMPS = RemoteSystemPacket::flyByWireSelectedSpeedMaxMPS;
 
-			constexpr static uint8_t altitudeLengthBits = RemoteSystemPacket::autopilotSelectedAltitudeLengthBits;
-			constexpr static int16_t altitudeMinM = RemoteSystemPacket::autopilotSelectedAltitudeMinM;
-			constexpr static int16_t altitudeMaxM = RemoteSystemPacket::autopilotSelectedAltitudeMaxM;
+			constexpr static uint8_t altitudeLengthBits = RemoteSystemPacket::flyByWireSelectedAltitudeLengthBits;
+			constexpr static int16_t altitudeMinM = RemoteSystemPacket::flyByWireSelectedAltitudeMinM;
+			constexpr static int16_t altitudeMaxM = RemoteSystemPacket::flyByWireSelectedAltitudeMaxM;
 
-			constexpr static uint8_t autopilotTargetRollLengthBits = rollLengthBits;
-			constexpr static float autopilotTargetRollRangeRad = rollRangeRad;
+			constexpr static uint8_t flyByWireTargetRollLengthBits = rollLengthBits;
+			constexpr static float flyByWireTargetRollRangeRad = rollRangeRad;
 
-			constexpr static uint8_t autopilotTargetPitchLengthBits = pitchLengthBits;
-			constexpr static float autopilotTargetPitchRangeRad = pitchRangeRad;
+			constexpr static uint8_t flyByWireTargetPitchLengthBits = pitchLengthBits;
+			constexpr static float flyByWireTargetPitchRangeRad = pitchRangeRad;
 	};
 
 	class AircraftATierTelemetryPacket {
@@ -241,14 +241,14 @@ namespace pizda {
 		public:
 			constexpr static uint8_t batteryLengthBits = 9;
 
-			constexpr static uint8_t autopilotLateralModeLengthBits =
-				RemoteSystemPacket::autopilotLateralModeLengthBits;
-			constexpr static uint8_t autopilotVerticalModeLengthBits =
-				RemoteSystemPacket::autopilotVerticalModeLengthBits;
+			constexpr static uint8_t flyByWireLateralModeLengthBits =
+				RemoteSystemPacket::flyByWireLateralModeLengthBits;
+			constexpr static uint8_t flyByWireVerticalModeLengthBits =
+				RemoteSystemPacket::flyByWireVerticalModeLengthBits;
 
-			constexpr static uint8_t autopilotAltitudeLengthBits = RemoteSystemPacket::autopilotSelectedAltitudeLengthBits;
-			constexpr static int16_t autopilotAltitudeMinM = RemoteSystemPacket::autopilotSelectedAltitudeMinM;
-			constexpr static int16_t autopilotAltitudeMaxM = RemoteSystemPacket::autopilotSelectedAltitudeMaxM;
+			constexpr static uint8_t flyByWireAltitudeLengthBits = RemoteSystemPacket::flyByWireSelectedAltitudeLengthBits;
+			constexpr static int16_t flyByWireAltitudeMinM = RemoteSystemPacket::flyByWireSelectedAltitudeMinM;
+			constexpr static int16_t flyByWireAltitudeMaxM = RemoteSystemPacket::flyByWireSelectedAltitudeMaxM;
 	};
 
 	enum class AircraftSystemPacketType : uint8_t {

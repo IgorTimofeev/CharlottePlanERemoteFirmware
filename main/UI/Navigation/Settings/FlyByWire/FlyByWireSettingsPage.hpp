@@ -10,10 +10,10 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class AutopilotSettingsPage : public ScrollViewPage {
+	class FlyByWireSettingsPage : public ScrollViewPage {
 		public:
-			AutopilotSettingsPage();
-			~AutopilotSettingsPage() override;
+			FlyByWireSettingsPage();
+			~FlyByWireSettingsPage() override;
 
 		private:
 			static int32_t _scrollPosition;

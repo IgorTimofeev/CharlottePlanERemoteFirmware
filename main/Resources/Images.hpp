@@ -4,9 +4,9 @@
 #pragma once
 
 #include "Resources/Images/MenuIconADIRSImage.hpp"
-#include "Resources/Images/MenuIconAutopilotSettingsImage.hpp"
 #include "Resources/Images/MenuIconAxesImage.hpp"
 #include "Resources/Images/MenuIconDevImage.hpp"
+#include "Resources/Images/MenuIconFBWSettingsImage.hpp"
 #include "Resources/Images/MenuIconFlightPlanImage.hpp"
 #include "Resources/Images/MenuIconMFDImage.hpp"
 #include "Resources/Images/MenuIconMFDAutopilotImage.hpp"
@@ -24,7 +24,6 @@
 #include "Resources/Images/MenuIconMFDMetricUnitsImage.hpp"
 #include "Resources/Images/MenuIconMFDNDImage.hpp"
 #include "Resources/Images/MenuIconMFDPFDImage.hpp"
-#include "Resources/Images/MenuIconMFDSettingsImage.hpp"
 #include "Resources/Images/MenuIconMFDTrimImage.hpp"
 #include "Resources/Images/MenuIconMotorsImage.hpp"
 #include "Resources/Images/MenuIconPersonalizationImage.hpp"
@@ -39,9 +38,9 @@ namespace pizda {
 	class Images {
 		public:
 			constexpr static MenuIconADIRSImage menuIconADIRS {};
-			constexpr static MenuIconAutopilotSettingsImage menuIconAutopilotSettings {};
 			constexpr static MenuIconAxesImage menuIconAxes {};
 			constexpr static MenuIconDevImage menuIconDev {};
+			constexpr static MenuIconFBWSettingsImage menuIconFBWSettings {};
 			constexpr static MenuIconFlightPlanImage menuIconFlightPlan {};
 			constexpr static MenuIconMFDImage menuIconMFD {};
 			constexpr static MenuIconMFDAutopilotImage menuIconMFDAutopilot {};
@@ -59,7 +58,6 @@ namespace pizda {
 			constexpr static MenuIconMFDMetricUnitsImage menuIconMFDMetricUnits {};
 			constexpr static MenuIconMFDNDImage menuIconMFDND {};
 			constexpr static MenuIconMFDPFDImage menuIconMFDPFD {};
-			constexpr static MenuIconMFDSettingsImage menuIconMFDSettings {};
 			constexpr static MenuIconMFDTrimImage menuIconMFDTrim {};
 			constexpr static MenuIconMotorsImage menuIconMotors {};
 			constexpr static MenuIconPersonalizationImage menuIconPersonalization {};

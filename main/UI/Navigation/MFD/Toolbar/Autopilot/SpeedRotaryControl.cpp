@@ -13,7 +13,7 @@ namespace pizda {
 	}
 	
 	std::string_view SpeedRotaryControl::variantIndexToTitle(uint8_t index) {
-		return "IAS";
+		return "SPD";
 	}
 	
 	bool SpeedRotaryControl::isVariantEditable(const uint8_t index) {
@@ -28,7 +28,7 @@ namespace pizda {
 		rc.getSettings().flightModeSelection.speedKt = static_cast<uint16_t>(seven.getValue());
 		rc.getSettings().flightModeSelection.writeLater();
 
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotSelectedSpeedMPS);
+		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::flyByWireSelectedSpeedMPS);
 	}
 	
 	void SpeedRotaryControl::onPress() {
@@ -38,7 +38,7 @@ namespace pizda {
 
 		rc.getRemoteData().autopilot.autothrottle = !RC::getInstance().getRemoteData().autopilot.autothrottle;
 
-		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::autopilotAutothrottleEnabled);
+		rc.getTransceiver().enqueueSystemPacket(RemoteSystemPacketType::flyByWireAutothrottle);
 	}
 	
 	void SpeedRotaryControl::onTick() {

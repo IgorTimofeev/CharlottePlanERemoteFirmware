@@ -75,6 +75,7 @@ namespace pizda {
 		flyByWireMaxThrottlePercent,
 
 		flyByWireVS0,
+		flyByWireVS1,
 		flyByWireVFE,
 		flyByWireVNO,
 		flyByWireVNE,

@@ -31,7 +31,7 @@ namespace pizda {
 
 			constexpr static uint8_t speedMaximumDigits = 3;
 			
-			constexpr static uint16_t speedBarSize = 2;
+			constexpr static uint16_t speedBarSize = 4;
 
 			// Speed bugs
 			constexpr static uint8_t speedBugOffset = 3;

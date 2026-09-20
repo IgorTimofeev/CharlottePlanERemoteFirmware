@@ -22,7 +22,7 @@ namespace pizda {
 				// Chart
 				chart.setHeight(120);
 				chart.setDeltaTime(1.f / 30.f);
-				chart.setStepCount(10);
+				chart.setStepCount(11);
 				chart.setValueMax(100);
 				chart.setBackgroundColor(&Theme::bg3);
 				contentStackLayout += &chart;

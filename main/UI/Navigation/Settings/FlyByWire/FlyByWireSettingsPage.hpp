@@ -81,25 +81,35 @@ namespace pizda {
 			PIDReferencer _lonSpeedToThrottlePID { "Speed to throttle" };
 			Titler _lonSpeedToThrottlePIDTitle { "Speed to throttle", &_lonSpeedToThrottlePID };
 
+			// ----------------------------- Speed bands -----------------------------
+
+			constexpr static uint8_t speedBandWidth = 4;
+
 			RelativeStackLayout _lonVSpeedsColumns {};
 			RelativeStackLayout _lonVSpeedsBandRows {};
 			StackLayout _lonVSpeedsTextFieldRows {};
 
-			RectangularShape _lonVSpeedsPreVS0Band {};
+			RectangularShape _lonVSpeedsPreVS0Band { &Theme::red };
 
-			RectangularShape _lonVSpeedsVS0Band {};
+			RectangularShape _lonVSpeedsVS0Band { &Theme::white };
 			TextField _lonVSpeedsVS0TextField {};
 			Titler _lonVSpeedsVS0Title { "Vs0 - stall speed in ldg cnf (kt)", &_lonVSpeedsVS0TextField };
 
-			RectangularShape _lonVSpeedsVFEBand {};
+			RelativeStackLayout _lonVSpeedsVS1BandRow { Orientation::horizontal };
+			RectangularShape _lonVSpeedsVS1BandRect1 { &Theme::green2 };
+			RectangularShape _lonVSpeedsVS1BandRect2 { &Theme::white };
+			TextField _lonVSpeedsVS1TextField {};
+			Titler _lonVSpeedsVS1Title { "Vs1 - stall speed in clean cnf (kt)", &_lonVSpeedsVS1TextField };
+
+			RectangularShape _lonVSpeedsVFEBand { &Theme::green2 };
 			TextField _lonVSpeedsVFETextField {};
 			Titler _lonVSpeedsVFETitle { "Vfe - max flap ext speed (kt)", &_lonVSpeedsVFETextField };
 
-			RectangularShape _lonVSpeedsVNOBand {};
+			RectangularShape _lonVSpeedsVNOBand { &Theme::yellow };
 			TextField _lonVSpeedsVNOTextField {};
 			Titler _lonVSpeedsVNOTitle { "Vno - max crz speed (kt)", &_lonVSpeedsVNOTextField };
 
-			RectangularShape _lonVSpeedsVNEBand {};
+			RectangularShape _lonVSpeedsVNEBand { &Theme::red };
 			TextField _lonVSpeedsVNETextField {};
 			Titler _lonVSpeedsVNETitle { "Vne - never exceed speed (kt)", &_lonVSpeedsVNETextField };
 
@@ -115,6 +125,6 @@ namespace pizda {
 			static void setupUint8PercentTextField(TextField& textField, uint8_t* percent, float fallbackPercent, RemoteSystemPacketType packetType);
 			void setupPID(Titler& titler, PIDReferencer& referencer, RemoteSystemPacketType packetType, PIDCoefficients* settingsCoefficients);
 			void setupVSpeedTextField(TextField& textField, uint16_t* value, RemoteSystemPacketType packetType);
-			void setupSpeedBand(RectangularShape& band, const Color* color);
+			void setupSpeedBand(RectangularShape& band);
 	};
 }

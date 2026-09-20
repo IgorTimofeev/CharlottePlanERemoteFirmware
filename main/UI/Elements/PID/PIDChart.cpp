@@ -34,6 +34,7 @@ namespace pizda {
 
 	void PIDChart::onRender(Renderer* renderer, const Rectangle& bounds) {
 		constexpr static uint8_t textHOffset = 4;
+		constexpr static uint8_t textVOffset = 2;
 
 		// Background
 		renderer->fillRectangle(
@@ -54,15 +55,16 @@ namespace pizda {
 			&Theme::fg4
 		);
 
-		// ----------------------------- Value -----------------------------
+		// ----------------------------- Value text & line -----------------------------
 
 		const auto valueTarget = _valueFactor * _valueMax;
+		char text[32];
 
 		{
 			const auto y = bounds.getY2() - static_cast<int32_t>(_valueFactor * bounds.getHeight());
 
 			// Text
-			const auto text = std::to_string(valueTarget);
+			std::snprintf(text, sizeof(text), "%.0f", valueTarget);
 
 			renderer->putText(
 				Point(
@@ -86,6 +88,25 @@ namespace pizda {
 				&Theme::fg4
 			);
 		}
+
+		// ----------------------------- Delta time text -----------------------------
+
+		if (_deltaTime < 1.f) {
+			std::snprintf(text, sizeof(text), "%.1f ms", _deltaTime * 1000.f);
+		}
+		else {
+			std::snprintf(text, sizeof(text), "%.1f s", _deltaTime);
+		}
+
+		renderer->putText(
+			Point(
+				bounds.getX2() - Theme::fontSmall.getWidth(text) + 1 - textHOffset,
+				bounds.getY2() - Theme::fontSmall.getLineHeight() + 1 - textVOffset
+			),
+			&Theme::fontSmall,
+			&Theme::fg4,
+			text
+		);
 
 		// ----------------------------- Chart -----------------------------
 

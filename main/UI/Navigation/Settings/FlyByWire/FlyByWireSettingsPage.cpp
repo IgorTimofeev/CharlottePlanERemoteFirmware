@@ -186,7 +186,7 @@ namespace pizda {
 		_lonVSpeedsColumns += &_lonVSpeedsTextFieldRows;
 
 		// Vne
-		setupSpeedBand(_lonVSpeedsVNEBand, &Theme::red);
+		setupSpeedBand(_lonVSpeedsVNEBand);
 		_lonVSpeedsBandRows.setAutoSize(&_lonVSpeedsVNEBand);
 		_lonVSpeedsVNEBand.setHeight(15 + Theme::elementHeight / 2);
 
@@ -195,25 +195,35 @@ namespace pizda {
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVNETitle;
 
 		// Vno
-		setupSpeedBand(_lonVSpeedsVNOBand, &Theme::yellow);
+		setupSpeedBand(_lonVSpeedsVNOBand);
 		setupVSpeedTextField(_lonVSpeedsVNOTextField, &settings.FBW.speeds.VNO, RemoteSystemPacketType::flyByWireVNO);
 		Theme::apply(&_lonVSpeedsVNOTitle);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVNOTitle;
 
 		// Vfe
-		setupSpeedBand(_lonVSpeedsVFEBand, &Theme::green1);
+		setupSpeedBand(_lonVSpeedsVFEBand);
 		setupVSpeedTextField(_lonVSpeedsVFETextField, &settings.FBW.speeds.VFE, RemoteSystemPacketType::flyByWireVFE);
 		Theme::apply(&_lonVSpeedsVFETitle);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVFETitle;
 
+		// Vs1
+		_lonVSpeedsVS1BandRow.setWidth(speedBandWidth);
+		_lonVSpeedsVS1BandRow += &_lonVSpeedsVS1BandRect1;
+		_lonVSpeedsVS1BandRow += &_lonVSpeedsVS1BandRect2;
+		_lonVSpeedsBandRows += &_lonVSpeedsVS1BandRow;
+
+		setupVSpeedTextField(_lonVSpeedsVS1TextField, &settings.FBW.speeds.VS1, RemoteSystemPacketType::flyByWireVS1);
+		Theme::apply(&_lonVSpeedsVS1Title);
+		_lonVSpeedsTextFieldRows += &_lonVSpeedsVS1Title;
+
 		// Vs0
-		setupSpeedBand(_lonVSpeedsVS0Band, &Theme::white);
+		setupSpeedBand(_lonVSpeedsVS0Band);
 		setupVSpeedTextField(_lonVSpeedsVS0TextField, &settings.FBW.speeds.VS0, RemoteSystemPacketType::flyByWireVS0);
 		Theme::apply(&_lonVSpeedsVS0Title);
 		_lonVSpeedsTextFieldRows += &_lonVSpeedsVS0Title;
 
 		// Pre Vs0
-		setupSpeedBand(_lonVSpeedsPreVS0Band, &Theme::red);
+		setupSpeedBand(_lonVSpeedsPreVS0Band);
 		_lonVSpeedsBandRows.setAutoSize(&_lonVSpeedsPreVS0Band);
 		_lonVSpeedsPreVS0Band.setHeight(Theme::elementHeight / 2);
 
@@ -388,10 +398,8 @@ namespace pizda {
 		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
 	}
 
-	void FlyByWireSettingsPage::setupSpeedBand(RectangularShape& band, const Color* color) {
-		band.setWidth(2);
-		band.setFillColor(color);
-
+	void FlyByWireSettingsPage::setupSpeedBand(RectangularShape& band) {
+		band.setWidth(speedBandWidth);
 		_lonVSpeedsBandRows += &band;
 	}
 }

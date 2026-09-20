@@ -12,9 +12,10 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class FlyByWireMFDPFDSpeeds {
+	class FlyByWireSettingsSpeeds {
 		public:
 			uint16_t VS0 = 0;
+			uint16_t VS1 = 0;
 			uint16_t VFE = 0;
 			uint16_t VNO = 0;
 			uint16_t VNE = 0;
@@ -23,7 +24,7 @@ namespace pizda {
 			uint8_t overspeedProtectionMargin = 0;
 	};
 
-	class FlyByWirePIDs {
+	class FlyByWireSettingsPIDs {
 		public:
 			PIDCoefficients yawToRoll {};
 			PIDCoefficients altitudeToPitch {};
@@ -65,10 +66,10 @@ namespace pizda {
 			// Longitudinal
 			uint8_t minThrottlePercent = 0;
 			uint8_t maxThrottlePercent = 0;
-			FlyByWireMFDPFDSpeeds speeds {};
+			FlyByWireSettingsSpeeds speeds {};
 
 			// PIDs
-			FlyByWirePIDs PIDs {};
+			FlyByWireSettingsPIDs PIDs {};
 
 		protected:
 			const char* getNamespace() override {
@@ -94,7 +95,8 @@ namespace pizda {
 				maxThrottlePercent = stream.readUint8(_maxThrottlePercent, 100);
 
 				speeds.VS0 = stream.readUint16(_speedsVS0, Units::convertSpeed(10, SpeedUnit::knot, SpeedUnit::meterPerSecond));
-				speeds.VFE = stream.readUint16(_speedsVFE, Units::convertSpeed(15, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+				speeds.VS1 = stream.readUint16(_speedsVS1, Units::convertSpeed(15, SpeedUnit::knot, SpeedUnit::meterPerSecond));
+				speeds.VFE = stream.readUint16(_speedsVFE, Units::convertSpeed(20, SpeedUnit::knot, SpeedUnit::meterPerSecond));
 				speeds.VNO = stream.readUint16(_speedsVNO, Units::convertSpeed(30, SpeedUnit::knot, SpeedUnit::meterPerSecond));
 				speeds.VNE = stream.readUint16(_speedsVNE, Units::convertSpeed(40, SpeedUnit::knot, SpeedUnit::meterPerSecond));
 
@@ -102,12 +104,12 @@ namespace pizda {
 				speeds.overspeedProtectionMargin = stream.readUint8(_speedsOverspeedProtectionMargin, Units::convertSpeed(5, SpeedUnit::knot, SpeedUnit::meterPerSecond));
 
 				// PIDs
-				FlyByWirePIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll, { 0.8f, 0.1f, 0.3f });
-				FlyByWirePIDs::read(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch, { 0.04f, 0.01f, 0.01f });
-				FlyByWirePIDs::read(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch, { 0.2f, 0.05f, 0.01f });
-				FlyByWirePIDs::read(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons, { 2.5f, 0.01f, 0.2f });
-				FlyByWirePIDs::read(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator, { 3.5f, 0.3f, 0.2f });
-				FlyByWirePIDs::read(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle, { 0.4f, 0.1f, 0.1f });
+				FlyByWireSettingsPIDs::read(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll, { 0.8f, 0.1f, 0.3f });
+				FlyByWireSettingsPIDs::read(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch, { 0.04f, 0.01f, 0.01f });
+				FlyByWireSettingsPIDs::read(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch, { 0.2f, 0.05f, 0.01f });
+				FlyByWireSettingsPIDs::read(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons, { 2.5f, 0.01f, 0.2f });
+				FlyByWireSettingsPIDs::read(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator, { 3.5f, 0.3f, 0.2f });
+				FlyByWireSettingsPIDs::read(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle, { 0.4f, 0.1f, 0.1f });
 			}
 
 			void onWrite(const NVSStream& stream) override {
@@ -128,6 +130,8 @@ namespace pizda {
 				stream.writeUint8(_minThrottlePercent, minThrottlePercent);
 				stream.writeUint8(_maxThrottlePercent, maxThrottlePercent);
 
+				stream.writeUint16(_speedsVS0, speeds.VS0);
+				stream.writeUint16(_speedsVS1, speeds.VS1);
 				stream.writeUint16(_speedsVFE, speeds.VFE);
 				stream.writeUint16(_speedsVNO, speeds.VNO);
 				stream.writeUint16(_speedsVNE, speeds.VNE);
@@ -136,12 +140,12 @@ namespace pizda {
 				stream.writeUint8(_speedsOverspeedProtectionMargin, speeds.overspeedProtectionMargin);
 
 				// PIDs
-				FlyByWirePIDs::write(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll);
-				FlyByWirePIDs::write(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch);
-				FlyByWirePIDs::write(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch);
-				FlyByWirePIDs::write(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons);
-				FlyByWirePIDs::write(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator);
-				FlyByWirePIDs::write(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle);
+				FlyByWireSettingsPIDs::write(stream, _yawToRollP, _yawToRollI, _yawToRollD, PIDs.yawToRoll);
+				FlyByWireSettingsPIDs::write(stream, _altitudeToPitchP, _altitudeToPitchI, _altitudeToPitchD, PIDs.altitudeToPitch);
+				FlyByWireSettingsPIDs::write(stream, _speedToPitchP, _speedToPitchI, _speedToPitchD, PIDs.speedToPitch);
+				FlyByWireSettingsPIDs::write(stream, _rollToAileronsP, _rollToAileronsI, _rollToAileronsD, PIDs.rollToAilerons);
+				FlyByWireSettingsPIDs::write(stream, _pitchToElevatorP, _pitchToElevatorI, _pitchToElevatorD, PIDs.pitchToElevator);
+				FlyByWireSettingsPIDs::write(stream, _speedToThrottleP, _speedToThrottleI, _speedToThrottleD, PIDs.speedToThrottle);
 			}
 
 		private:
@@ -165,6 +169,7 @@ namespace pizda {
 			constexpr static auto _maxThrottlePercent = "tmap";
 
 			constexpr static auto _speedsVS0 = "svs0";
+			constexpr static auto _speedsVS1 = "svs1";
 			constexpr static auto _speedsVFE = "svfe";
 			constexpr static auto _speedsVNO = "svno";
 			constexpr static auto _speedsVNE = "svfne";

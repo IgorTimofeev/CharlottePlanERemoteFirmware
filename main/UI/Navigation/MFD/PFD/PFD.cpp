@@ -377,7 +377,13 @@ namespace pizda {
 		// Bars
 		const auto barX = bounds.getX2() + 1 - speedBarSize;
 
-		const auto renderBar = [&](const int32_t x, const uint16_t width, const uint16_t fromSpeed, const uint16_t toSpeed, const Color* color) {
+		const auto renderBar = [&](
+			const int32_t x,
+			const uint16_t width,
+			const uint16_t fromSpeed,
+			const uint16_t toSpeed,
+			const Color* color
+		) {
 			const int32_t y =
 				centerY
 				- static_cast<int32_t>(
@@ -411,6 +417,22 @@ namespace pizda {
 			barX,
 			speedBarSize,
 			settings.FBW.speeds.VS0,
+			settings.FBW.speeds.VS1,
+			&Theme::white
+		);
+
+		renderBar(
+			barX,
+			speedBarSize / 2,
+			settings.FBW.speeds.VS1,
+			settings.FBW.speeds.VFE,
+			&Theme::green2
+		);
+
+		renderBar(
+			barX + speedBarSize / 2,
+			speedBarSize / 2,
+			settings.FBW.speeds.VS1,
 			settings.FBW.speeds.VFE,
 			&Theme::white
 		);

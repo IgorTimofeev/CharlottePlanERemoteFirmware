@@ -768,6 +768,10 @@ namespace pizda {
 				stream.writeUint16(rc.getSettings().FBW.speeds.VS0, RemoteSystemPacket::flyByWireVSpeedsLengthBits);
 				break;
 			}
+			case RemoteSystemPacketType::flyByWireVS1: {
+				stream.writeUint16(rc.getSettings().FBW.speeds.VS1, RemoteSystemPacket::flyByWireVSpeedsLengthBits);
+				break;
+			}
 			case RemoteSystemPacketType::flyByWireVFE: {
 				stream.writeUint16(rc.getSettings().FBW.speeds.VFE, RemoteSystemPacket::flyByWireVSpeedsLengthBits);
 				break;

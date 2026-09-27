@@ -8,11 +8,11 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class MenuIconMFDAutopilotGyroImage : public Image {
+	class MenuIconMFDAutopilotGyroImage : public EmbeddedImage {
 		public:
-			constexpr MenuIconMFDAutopilotGyroImage() : Image(
+			constexpr MenuIconMFDAutopilotGyroImage() : EmbeddedImage(
 				ColorModel::RGB565,
-				ImageOptions::alpha1Bit,
+				EmbeddedImageOptions::alpha1Bit,
 				Size(19, 13),
 				_bitmap
 			) {

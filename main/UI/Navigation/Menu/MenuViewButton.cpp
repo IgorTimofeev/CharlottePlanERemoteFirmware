@@ -29,7 +29,7 @@ namespace pizda {
 		);
 
 		// Image
-		renderer->putImage(bounds.getTopLeft(), _image);
+		renderer->putImage(bounds, _image);
 
 		// Border
 		if (isActive()) {

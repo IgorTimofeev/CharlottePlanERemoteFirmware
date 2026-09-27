@@ -72,7 +72,7 @@ namespace pizda {
 		_renderer.setTarget(&_display);
 
 		// Rendering splash screen
-		_renderer.putImage(Point(), &Images::splashScreen);
+		_renderer.putImage(Rectangle(_display.getSize()), &Images::splashScreen);
 		_renderer.flush();
 
 		// Turning display on

@@ -84,7 +84,7 @@ namespace pizda {
 
 		const auto& horizonVec = static_cast<Vector2F>(horizonRight - horizonLeft);
 		const auto& horizonVecNorm = horizonVec.normalize();
-		const auto& horizonVecPerp = horizonVecNorm.counterClockwisePerpendicular();
+		const auto& horizonVecPerp = horizonVecNorm.getCounterClockwisePerpendicular();
 		const auto& horizonCenter = static_cast<Vector2F>(horizonLeft) + horizonVec / 2.0f;
 
 		// SVT background
@@ -186,7 +186,7 @@ namespace pizda {
 		//
 		// 	const auto arrowVec = Vector2F(0, arrowSize).rotate(rc.getAircraftData().computed.windDirectionRad + std::numbers::pi_v<float> + rc.getAircraftData().computed.yawRad);
 		// 	const auto arrowVecNorm = arrowVec.normalize();
-		// 	const auto arrowVecPerp = arrowVecNorm.counterClockwisePerpendicular();
+		// 	const auto arrowVecPerp = arrowVecNorm.getCounterClockwisePerpendicular();
 		//
 		// 	const auto arrowCenter = Vector2F (
 		// 		windPosition.getX() + arrowSize / 2,

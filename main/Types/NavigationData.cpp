@@ -42,7 +42,7 @@ namespace pizda {
 		const auto headingRad = Math::toRadians(static_cast<float>(this->headingDeg));
 		const auto& headingVectorNorm = Vector2F(std::sinf(headingRad), std::cosf(headingRad));
 		const auto center01M = headingVectorNorm * (static_cast<float>(this->lengthM) / 2.f);
-		const auto corner0OffsetM = headingVectorNorm.counterClockwisePerpendicular() * (static_cast<float>(this->widthM) / 2.f);
+		const auto corner0OffsetM = headingVectorNorm.getCounterClockwisePerpendicular() * (static_cast<float>(this->widthM) / 2.f);
 		const auto corner0Rad = (center01M + corner0OffsetM) * GeoCoordinates::equatorialRadiansPerMeter;
 		const auto corner1Rad = (center01M - corner0OffsetM) * GeoCoordinates::equatorialRadiansPerMeter;
 

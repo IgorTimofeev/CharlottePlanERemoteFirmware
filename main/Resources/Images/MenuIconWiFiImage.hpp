@@ -8,11 +8,11 @@
 namespace pizda {
 	using namespace YOBA;
 
-	class MenuIconWiFiImage : public Image {
+	class MenuIconWiFiImage : public EmbeddedImage {
 		public:
-			constexpr MenuIconWiFiImage() : Image(
+			constexpr MenuIconWiFiImage() : EmbeddedImage(
 				ColorModel::RGB565,
-				ImageOptions::alpha1Bit,
+				EmbeddedImageOptions::alpha1Bit,
 				Size(45, 33),
 				_bitmap
 			) {

@@ -337,7 +337,7 @@ namespace pizda {
 					constexpr static uint8_t compassAPValueTrianglePartWidth = 2;
 					constexpr static uint8_t compassAPValueTriangleHeight = 3;
 
-					const auto apValueVecNormCWPerp = apValueVecNorm.clockwisePerpendicular();
+					const auto apValueVecNormCWPerp = apValueVecNorm.getClockwisePerpendicular();
 					const auto apValueVec = apValueVecNorm * tickMarksRadius;
 
 					const auto apValueIndicatorTopLeftVec = apValueVec - apValueVecNormCWPerp * compassAPValueIndicatorWidth;

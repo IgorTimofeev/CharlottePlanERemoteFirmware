@@ -1,6 +1,4 @@
-file(GLOB_RECURSE pizda_sources
-    "*.*"
-)
+file(GLOB_RECURSE pizda_sources "*.cpp")
 
 idf_component_register(
     SRCS ${pizda_sources}
@@ -21,4 +19,4 @@ idf_component_register(
         ESP-IDF-BuzzerAudio
 )
 
-include_directories(.)
+component_compile_options("-frtti")

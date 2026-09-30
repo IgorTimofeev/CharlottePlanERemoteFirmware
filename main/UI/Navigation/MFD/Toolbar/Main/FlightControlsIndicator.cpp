@@ -36,10 +36,10 @@ namespace pizda {
 		const auto joyH = bounds.getX() + rc.getAxes().getJoystickHorizontal().getFilteredValueUint8() * bounds.getWidth() / 0xFF;
 		const auto joyV = bounds.getY() + (0xFF - rc.getAxes().getJoystickVertical().getFilteredValueUint8()) * bounds.getWidth() / 0xFF;
 		
-		renderer->putPixel(Point(joyH - 1, joyV), &Theme::yellow);
-		renderer->putPixel(Point(joyH + 1, joyV), &Theme::yellow);
-		renderer->putPixel(Point(joyH, joyV - 1), &Theme::yellow);
-		renderer->putPixel(Point(joyH, joyV + 1), &Theme::yellow);
+		renderer->setPixel(Point(joyH - 1, joyV), &Theme::yellow);
+		renderer->setPixel(Point(joyH + 1, joyV), &Theme::yellow);
+		renderer->setPixel(Point(joyH, joyV - 1), &Theme::yellow);
+		renderer->setPixel(Point(joyH, joyV + 1), &Theme::yellow);
 		
 		// Ring
 		const auto ring = (rc.getAxes().getRing().getFilteredValueUint8() - 0xFF / 2) * bounds.getWidth() / 0xFF;

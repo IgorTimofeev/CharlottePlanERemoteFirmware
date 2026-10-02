@@ -54,7 +54,7 @@ namespace pizda {
 
 		// Remote
 		_batteryIndicatorRC.setVoltage(rc.getBattery().getVoltageMV());
-		_batteryIndicatorRC.setCharge(rc.getBattery().getCharge16());
+		_batteryIndicatorRC.setCharge(rc.getBattery().getChargeUint16());
 
 		// Aircraft
 		_batteryIndicatorAC.setVoltage(

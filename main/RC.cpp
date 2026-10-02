@@ -60,13 +60,25 @@ namespace pizda {
 		// which will definitely cause bleed from videophiles eyes
 		//
 		// So...
-		_display.setup(
+		_displayInterface.setup(
+			SPI2_HOST,
+			0,
+
 			config::SPI::MOSI,
 			config::SPI::SCK,
 			config::screen::SS,
+			config::screen::SPIFrequencyHz,
+
 			config::screen::DC,
-			config::screen::RST,
-			config::screen::SPIFrequencyHz
+			config::screen::RST
+		);
+
+		_display.setup(
+			&_displayInterface,
+
+			Size(240, 320),
+			Rotation::none,
+			ColorModel::RGB565
 		);
 
 		_renderer.setTarget(&_display);
@@ -138,16 +150,20 @@ namespace pizda {
 			adc_channel_t ADCChannel;
 			ESP_ERROR_CHECK(adc_continuous_io_to_channel(config::battery::remote::pin, &ADCUnit, &ADCChannel));
 
-			_battery.setup(
+			_batteryVoltmeter.setup(
 				ADCUnit,
 				getAssignedADCOneshotUnit(ADCUnit),
 				ADCChannel,
 
-				config::battery::remote::voltageMin,
-				config::battery::remote::voltageMax,
-
 				config::battery::remote::dividerResistanceR1,
 				config::battery::remote::dividerResistanceR2
+			);
+
+			_battery.setup(
+				&_batteryVoltmeter,
+				config::battery::remote::voltageMin,
+				config::battery::remote::voltageMax,
+				8
 			);
 		}
 
@@ -424,7 +440,7 @@ namespace pizda {
 		return _axes;
 	}
 
-	ADCVoltmeter RC::getBattery() const {
+	ADCBattery RC::getBattery() const {
 		return _battery;
 	}
 

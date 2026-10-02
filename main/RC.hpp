@@ -45,7 +45,7 @@ namespace pizda {
 			PushButtonEncoder& getEncoder();
 			Axes& getAxes();
 
-			ADCVoltmeter getBattery() const;
+			ADCBattery getBattery() const;
 			RemoteTransceiver& getTransceiver();
 			
 			void updateDebugOverlayVisibility();
@@ -78,6 +78,7 @@ namespace pizda {
 
 			adc_oneshot_unit_handle_t _ADCOneshotUnit1 {};
 
+			SPIDisplayInterface _displayInterface {};
 			ILI9341Display _display {};
 			RGB565BufferedRenderer _renderer {};
 			FT6336UTouchPanel _touchPanel {};
@@ -96,7 +97,8 @@ namespace pizda {
 			Axes _axes {};
 
 			// Battery
-			ADCVoltmeter _battery {};
+			ADCVoltmeter _batteryVoltmeter {};
+			ADCBattery _battery {};
 
 			// Audio
 			Buzzer _buzzer {

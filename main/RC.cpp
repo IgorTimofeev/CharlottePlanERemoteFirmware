@@ -81,6 +81,7 @@ namespace pizda {
 			ColorModel::RGB565
 		);
 
+		_renderer.setup();
 		_renderer.setTarget(&_display);
 
 		// Rendering splash screen

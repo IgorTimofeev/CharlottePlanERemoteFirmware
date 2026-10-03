@@ -38,7 +38,7 @@ namespace pizda {
 
 		char buffer[64];
 
-		std::snprintf(buffer, sizeof(buffer), "CPU frequency: %" PRIu32 " MHz", static_cast<uint32_t>(esp_clk_cpu_freq()) / 1'000'000);
+		std::snprintf(buffer, sizeof(buffer), "CPU freq: %" PRIu32 " MHz", static_cast<uint32_t>(esp_clk_cpu_freq()) / 1'000'000);
 		renderLine(buffer);
 
 		std::snprintf(buffer, sizeof(buffer), "Heap free: %" PRIu32 " kB", esp_get_free_heap_size() / 1024);
@@ -48,6 +48,16 @@ namespace pizda {
 		renderLine(buffer);
 
 		std::snprintf(buffer, sizeof(buffer), "Packet rate RX: %" PRIu16 ", TX: %" PRIu16, rc.getTransceiver().getRXPacketRate(), rc.getTransceiver().getTXPacketRate());
+		renderLine(buffer);
+
+		std::snprintf(
+			buffer,
+			sizeof(buffer),
+			"Battery: %" PRIu8 "%%, %" PRIu32 " mV",
+			static_cast<uint8_t>(rc.getBattery().getChargeUint16() * 100 / 0xFFFF),
+			rc.getBattery().getVoltmeter()->getSourceVoltageMV()
+		);
+
 		renderLine(buffer);
 	}
 }

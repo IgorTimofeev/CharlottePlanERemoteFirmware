@@ -61,16 +61,15 @@ namespace pizda {
 		//
 		// So...
 		_displayInterface.setup(
-			SPI2_HOST,
-			0,
-
 			config::SPI::MOSI,
 			config::SPI::SCK,
 			config::screen::SS,
-			config::screen::SPIFrequencyHz,
-
 			config::screen::DC,
-			config::screen::RST
+			config::screen::RST,
+			
+			SPI2_HOST,
+			0,
+			config::screen::SPIFrequencyHz
 		);
 
 		_display.setup(

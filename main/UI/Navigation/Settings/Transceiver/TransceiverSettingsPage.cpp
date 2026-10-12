@@ -12,7 +12,7 @@ namespace pizda {
 
 		// RF frequency
 		Theme::apply(&_RFFrequency);
-		_RFFrequency.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_RFFrequency.setTextParsingOptions(TextParsingOptions::number);
 		_RFFrequency.setText(std::to_string(rc.getSettings().transceiver.communication.frequencyHz / 1'000'000));
 		Theme::apply(&_RFFrequencyTitle);
 		rows += &_RFFrequencyTitle;
@@ -40,42 +40,42 @@ namespace pizda {
 
 		// Sync word
 		Theme::apply(&_syncWord);
-		_syncWord.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_syncWord.setTextParsingOptions(TextParsingOptions::number);
 		_syncWord.setText(std::to_string(rc.getSettings().transceiver.communication.syncWord));
 		Theme::apply(&_syncWordTitle);
 		rows += &_syncWordTitle;
 
 		// Preamble length
 		Theme::apply(&_preambleLength);
-		_preambleLength.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_preambleLength.setTextParsingOptions(TextParsingOptions::number);
 		_preambleLength.setText(std::to_string(rc.getSettings().transceiver.communication.preambleLength));
 		Theme::apply(&_preambleLengthTitle);
 		rows += &_preambleLengthTitle;
 
 		// Current limit
 		Theme::apply(&_currentLimit);
-		_currentLimit.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_currentLimit.setTextParsingOptions(TextParsingOptions::number);
 		_currentLimit.setText(std::to_string(rc.getSettings().transceiver.communication.currentLimitMA));
 		Theme::apply(&_currentLimitTitle);
 		rows += &_currentLimitTitle;
 
 		// Power
 		Theme::apply(&_power);
-		_power.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_power.setTextParsingOptions(TextParsingOptions::number);
 		_power.setText(std::to_string(rc.getSettings().transceiver.communication.powerDBm));
 		Theme::apply(&_powerTitle);
 		rows += &_powerTitle;
 
 		// Receiving time offset
 		Theme::apply(&_receivingTimeOffset);
-		_receivingTimeOffset.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowSigned);
+		_receivingTimeOffset.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::sign);
 		_receivingTimeOffset.setText(std::to_string(rc.getSettings().transceiver.communication.receivingTimeOffsetUs));
 		Theme::apply(&_receivingTimeOffsetTitle);
 		rows += &_receivingTimeOffsetTitle;
 
 		// Transmitting time offset
 		Theme::apply(&_transmittingTimeOffset);
-		_transmittingTimeOffset.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowSigned);
+		_transmittingTimeOffset.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::sign);
 		_transmittingTimeOffset.setText(std::to_string(rc.getSettings().transceiver.communication.transmittingTimeOffsetUs));
 		Theme::apply(&_transmittingTimeOffsetTitle);
 		rows += &_transmittingTimeOffsetTitle;

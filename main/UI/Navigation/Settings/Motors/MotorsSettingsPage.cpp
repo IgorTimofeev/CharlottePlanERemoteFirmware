@@ -17,7 +17,7 @@ namespace pizda {
 
 		// Midpoint
 		Theme::apply(&_midpointTextField);
-		_midpointTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_midpointTextField.setTextParsingOptions(TextParsingOptions::number);
 
 		_midpointTextField.setOnInput([this](const auto key, const auto text) {
 			if (key == Key::enter)
@@ -29,7 +29,7 @@ namespace pizda {
 
 		// Range
 		Theme::apply(&_rangeTextField);
-		_rangeTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_rangeTextField.setTextParsingOptions(TextParsingOptions::number);
 
 		_rangeTextField.setOnInput([this](const auto key, const auto text) {
 			if (key == Key::enter)

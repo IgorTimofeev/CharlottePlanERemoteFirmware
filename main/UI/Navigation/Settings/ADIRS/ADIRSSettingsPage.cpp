@@ -12,7 +12,7 @@ namespace pizda {
 
 		// Magnetic declination
 		Theme::apply(&_ADIRSMagneticDeclinationTextField);
-		_ADIRSMagneticDeclinationTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowSigned);
+		_ADIRSMagneticDeclinationTextField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::sign);
 		_ADIRSMagneticDeclinationTextField.setText(std::to_string(RC::getInstance().getSettings().flightModeSelection.magneticDeclinationDeg));
 
 		_ADIRSMagneticDeclinationTextField.setOnInput([this](const Key key, std::optional<std::string_view>) {

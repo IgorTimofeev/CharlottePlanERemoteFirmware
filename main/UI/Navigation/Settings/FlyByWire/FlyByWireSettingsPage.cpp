@@ -90,7 +90,7 @@ namespace pizda {
 			RemoteSystemPacketType::flyByWireMinPitchAngleDeg
 		);
 		
-		_verMinPitch.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional | KeyboardLayoutOptions::allowSigned);
+		_verMinPitch.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint | TextParsingOptions::sign);
 
 		Theme::apply(&_verMinPitchTitle);
 		rows += &_verMinPitchTitle;
@@ -239,7 +239,7 @@ namespace pizda {
 			}
 		);
 
-		_lonStallProtectionMargin.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_lonStallProtectionMargin.setTextParsingOptions(TextParsingOptions::number);
 
 		Theme::apply(&_lonStallProtectionMarginTitle);
 		rows += &_lonStallProtectionMarginTitle;
@@ -256,7 +256,7 @@ namespace pizda {
 			}
 		);
 
-		_lonOverspeedProtectionMargin.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		_lonOverspeedProtectionMargin.setTextParsingOptions(TextParsingOptions::number);
 
 		Theme::apply(&_lonOverspeedProtectionMarginTitle);
 		rows += &_lonOverspeedProtectionMarginTitle;
@@ -327,7 +327,7 @@ namespace pizda {
 			}
 		);
 
-		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+		textField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 	}
 
 	void FlyByWireSettingsPage::setupRadTextField(TextField& textField, float* angleRad, float fallbackAngleDeg, RemoteSystemPacketType packetType) {
@@ -344,7 +344,7 @@ namespace pizda {
 			}
 		);
 
-		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+		textField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 	}
 
 	void FlyByWireSettingsPage::setupUint8PercentTextField(TextField& textField, uint8_t* percent, float fallbackPercent, RemoteSystemPacketType packetType) {
@@ -361,7 +361,7 @@ namespace pizda {
 			}
 		);
 
-		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		textField.setTextParsingOptions(TextParsingOptions::number);
 	}
 
 	void FlyByWireSettingsPage::setupPID(Titler& titler, PIDReferencer& referencer,
@@ -395,7 +395,7 @@ namespace pizda {
 			}
 		);
 
-		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+		textField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 	}
 
 	void FlyByWireSettingsPage::setupSpeedBand(RectangularShape& band) {

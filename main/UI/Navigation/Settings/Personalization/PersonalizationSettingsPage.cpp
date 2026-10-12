@@ -178,6 +178,6 @@ namespace pizda {
 			}
 		);
 
-		textField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+		textField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 	}
 }

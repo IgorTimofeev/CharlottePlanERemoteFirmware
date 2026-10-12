@@ -281,21 +281,21 @@ namespace pizda {
 
 		// From
 		Theme::apply(&frequencyFromTextField);
-		frequencyFromTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		frequencyFromTextField.setTextParsingOptions(TextParsingOptions::number);
 		frequencyFromTextField.setText(std::to_string(RC::getInstance().getSettings().transceiver.spectrumScanning.frequency.from / 1'000'000));
 		Theme::apply(&frequencyFromTitle);
 		frequencyRow += &frequencyFromTitle;
 
 		// To
 		Theme::apply(&frequencyToTextField);
-		frequencyToTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		frequencyToTextField.setTextParsingOptions(TextParsingOptions::number);
 		frequencyToTextField.setText(std::to_string(RC::getInstance().getSettings().transceiver.spectrumScanning.frequency.to / 1'000'000));
 		Theme::apply(&frequencyToTitle);
 		frequencyRow += &frequencyToTitle;
 
 		// Step
 		Theme::apply(&frequencyStepTextField);
-		frequencyStepTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric);
+		frequencyStepTextField.setTextParsingOptions(TextParsingOptions::number);
 		frequencyStepTextField.setText(std::to_string(RC::getInstance().getSettings().transceiver.spectrumScanning.frequency.step / 1'000));
 		Theme::apply(&frequencyStepTitle);
 		frequencyRow += &frequencyStepTitle;

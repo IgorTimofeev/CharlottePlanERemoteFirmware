@@ -88,6 +88,7 @@ namespace pizda {
 			static void apply(Slider* slider);
 			static void apply(TextField* textField);
 			static void apply(ScrollView* scrollView);
+			static void apply(Keyboard* keyboard);
 			static void apply(Switch* sw);
 			static void apply(ProgressBar* progressBar);
 			static void apply(TextView* text);

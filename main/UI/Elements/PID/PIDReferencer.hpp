@@ -34,7 +34,7 @@ namespace pizda {
 
 				// P
 				Theme::apply(&PTextField);
-				PTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+				PTextField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 				PTextField.setText(std::to_string(coefficients.p));
 
 				PTextField.setOnInput([this](Key, std::optional<std::string_view>) {
@@ -46,7 +46,7 @@ namespace pizda {
 
 				// I
 				Theme::apply(&ITextField);
-				ITextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+				ITextField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 				ITextField.setText(std::to_string(coefficients.i));
 
 				ITextField.setOnInput([this](Key, std::optional<std::string_view>) {
@@ -58,7 +58,7 @@ namespace pizda {
 
 				// D
 				Theme::apply(&DTextField);
-				DTextField.setKeyboardLayoutOptions(KeyboardLayoutOptions::numeric | KeyboardLayoutOptions::allowFractional);
+				DTextField.setTextParsingOptions(TextParsingOptions::number | TextParsingOptions::decimalPoint);
 				DTextField.setText(std::to_string(coefficients.d));
 
 				DTextField.setOnInput([this](Key, std::optional<std::string_view>) {

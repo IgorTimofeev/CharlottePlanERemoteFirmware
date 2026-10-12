@@ -41,41 +41,6 @@ namespace pizda {
 
 	void Theme::setup() {
 		updateColorScheme();
-
-		// Keyboard
-		KeyboardController::setOnShow([](Keyboard* keyboard) {
-			keyboard->setFont(&Theme::fontNormal);
-			keyboard->setBackgroundColor(&Theme::bg1);
-
-			keyboard->setKeyHeight(24);
-			keyboard->setKeyCornerRadius(0);
-
-			keyboard->setHorizontalKeyGap(1);
-			keyboard->setVerticalKeyGap(1);
-
-			keyboard->setDefaultKeyBackgroundColor(&Theme::bg3);
-			keyboard->setDefaultKeyTextColor(&Theme::fg1);
-
-			keyboard->setActionKeyBackgroundColor(&Theme::bg2);
-			keyboard->setActionKeyTextColor(&Theme::fg1);
-
-			keyboard->setDisabledKeyBackgroundColor(&Theme::bg2);
-			keyboard->setDisabledKeyTextColor(&Theme::fg6);
-
-			keyboard->setNumericLayoutBuilder([] {
-				return new NumericKeyboardLayout();
-			});
-
-			keyboard->setCharactersLayoutBuilder([] {
-				return new CharactersKeyboardLayout();
-			});
-
-			keyboard->setCyclicLayoutBuilders({
-				[] {
-					return new EnglishKeyboardLayout();
-				}
-			});
-		});
 	}
 
 	void Theme::updateColorScheme() {
@@ -295,6 +260,52 @@ namespace pizda {
 		scrollView->setScrollBarThumbColor(&Theme::bg3);
 	}
 
+	void Theme::apply(Keyboard* keyboard) {
+		keyboard->setFont(&fontNormal);
+		keyboard->setBackgroundColor(&bg1);
+
+		keyboard->setKeyHeight(24);
+		keyboard->setKeyCornerRadius(0);
+
+		keyboard->setHorizontalKeyGap(1);
+		keyboard->setVerticalKeyGap(1);
+
+		keyboard->setDefaultKeyBackgroundColor(&bg3);
+		keyboard->setDefaultKeyTextColor(&fg1);
+
+		keyboard->setActionKeyBackgroundColor(&bg2);
+		keyboard->setActionKeyTextColor(&fg1);
+
+		keyboard->setDisabledKeyBackgroundColor(&bg2);
+		keyboard->setDisabledKeyTextColor(&fg6);
+
+		// Assigning layout getters. On desktop, it doesn't really matter, but for MCUs
+		// it would be wise to allocate them on stack and reuse instead of heap jerking
+		keyboard->setNumericLayoutGetter([] {
+			return new NumericKeyboardLayout();
+		});
+
+		keyboard->setCharactersLayoutGetter([] {
+			return new CharactersKeyboardLayout();
+		});
+
+		static std::array<std::function<KeyboardLayout*()>, 2> cyclicLayouts {
+			[] {
+				return new EnglishKeyboardLayout();
+			},
+			[] {
+				return new RussianKeyboardLayout();
+			}
+		};
+
+		keyboard->setCyclicLayoutsGetter(cyclicLayouts);
+
+		// Deleting previous keyboard layout when it's changed
+		keyboard->setOnLayoutChanged([](const KeyboardLayout* previousLayout, const KeyboardLayout*) {
+			delete previousLayout;
+		});
+	}
+
 	void Theme::apply(TextField* textField) {
 		textField->setHeight(elementHeight);
 		textField->setCornerRadius(cornerRadius);
@@ -313,6 +324,44 @@ namespace pizda {
 		textField->setCursorColor(&Theme::accent1);
 
 		textField->setFont(&Theme::fontNormal);
+
+		textField->setOnInputStateChanged([textField] {
+			static KeyboardOverlay* keyboardOverlay = nullptr;
+
+			// Input started
+			if (textField->getInputState()) {
+				// Creating new keyboard overlay if none
+				if (!keyboardOverlay) {
+					// Creating keyboard overlay
+					keyboardOverlay = new KeyboardOverlay();
+
+					// Applying default keyboard style
+					apply(keyboardOverlay->getKeyboard());
+
+					// Showing keyboard overlay
+					keyboardOverlay->show();
+				}
+
+				// Selecting desired keyboard layout
+				keyboardOverlay->getKeyboard()->setLayoutFromTextParsingOptions(textField->getTextParsingOptions());
+
+				textField->scrollIntoView();
+			}
+			// Input finished
+			else {
+				if (!keyboardOverlay)
+					return;
+
+				// Hiding keyboard overlay
+				keyboardOverlay->hide();
+
+				// Deleting keyboard overlay
+				Application::getCurrent()->invokeLater([] {
+					delete keyboardOverlay;
+					keyboardOverlay = nullptr;
+				});
+			}
+		});
 	}
 
 	void Theme::apply(Divider* divider) {
